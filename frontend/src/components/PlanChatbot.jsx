@@ -142,42 +142,50 @@ export default function PlanChatbot({ currentState, onApplyActions }) {
         </div>
       </div>
 
-      <div className="chatbot-messages">
-        {messages.map(msg => (
-          <div key={msg.id} className={`message-bubble message-${msg.sender}`}>
-            <div>{formatMessageContent(msg.content)}</div>
-            {msg.actions && msg.actions.map((act, i) => (
-              <span key={i} className="message-action-tag">
-                [Action Applied] {act.type}: {act.code} {act.sem ? `(${act.sem})` : ''}
-              </span>
-            ))}
-          </div>
-        ))}
-        {isTyping && (
-          <div className="typing-indicator">
-            Advisor is typing...
-          </div>
-        )}
-        <div ref={messagesEndRef} />
-      </div>
+      <div className="chatbot-body">
+        <div className="chatbot-messages">
+          {messages.map(msg => (
+            <div key={msg.id} className={`message-bubble message-${msg.sender}`}>
+              <div>{formatMessageContent(msg.content)}</div>
+              {msg.actions && msg.actions.map((act, i) => (
+                <span key={i} className="message-action-tag">
+                  [Action Applied] {act.type}: {act.code} {act.sem ? `(${act.sem})` : ''}
+                </span>
+              ))}
+            </div>
+          ))}
+          {isTyping && (
+            <div className="typing-indicator">
+              Advisor is typing...
+            </div>
+          )}
+          <div ref={messagesEndRef} />
+        </div>
 
-      <form onSubmit={handleSend} className="chat-input-container">
-        <input
-          type="text"
-          value={inputText}
-          onChange={(e) => setInputText(e.target.value)}
-          placeholder="Ask advice or give plan instructions..."
-          className="chat-input"
-          disabled={isTyping}
-        />
-        <button
-          type="submit"
-          className="chat-send-btn"
-          disabled={isTyping || !inputText.trim()}
-        >
-          Send
-        </button>
-      </form>
+        <form onSubmit={handleSend} className="chat-input-container">
+          <textarea
+            value={inputText}
+            onChange={(e) => setInputText(e.target.value)}
+            placeholder="Ask advice or type plan commands..."
+            className="chat-input"
+            style={{ height: '80px', resize: 'none', padding: '8px' }}
+            disabled={isTyping}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                handleSend(e);
+              }
+            }}
+          />
+          <button
+            type="submit"
+            className="chat-send-btn"
+            disabled={isTyping || !inputText.trim()}
+          >
+            Send
+          </button>
+        </form>
+      </div>
     </div>
   );
 }

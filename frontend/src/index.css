@@ -704,7 +704,7 @@ body {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 8px;
-  height: 600px;
+  height: 350px;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
@@ -712,25 +712,33 @@ body {
 .chat-header {
   background: var(--accent);
   color: #fff;
-  padding: 1rem;
+  padding: 0.75rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .chat-header h3 {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
 }
 
 .chat-header-desc {
-  font-size: 10px;
+  font-size: 9px;
   color: rgba(255, 255, 255, 0.7);
   font-family: var(--mono);
 }
 
-.chatbot-messages {
+.chatbot-body {
+  display: flex;
   flex: 1;
+  overflow: hidden;
+  flex-direction: row;
+}
+
+.chatbot-messages {
+  flex: 2;
   padding: 1rem;
   overflow-y: auto;
   background: #FAF9F6;
@@ -794,14 +802,18 @@ body {
 
 .chat-input-container {
   display: flex;
-  padding: 10px;
+  flex-direction: column;
+  padding: 1.25rem;
   background: var(--surface);
-  border-top: 1px solid var(--border);
-  gap: 8px;
+  border-left: 1px solid var(--border);
+  gap: 10px;
+  justify-content: center;
+  width: 280px;
+  flex-shrink: 0;
 }
 
 .chat-input {
-  flex: 1;
+  width: 100%;
   padding: 8px 12px;
   border: 1px solid var(--border);
   border-radius: 6px;
@@ -820,7 +832,7 @@ body {
   background: var(--accent);
   color: #fff;
   border: none;
-  padding: 0 16px;
+  padding: 8px 16px;
   border-radius: 6px;
   font-family: var(--sans);
   font-size: 13px;
@@ -846,6 +858,23 @@ body {
   font-style: italic;
   padding: 6px 12px;
   border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .chatbot-body {
+    flex-direction: column;
+    height: calc(100% - 40px);
+  }
+  .chatbot-container {
+    height: 500px;
+  }
+  .chat-input-container {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    flex-direction: row;
+    padding: 10px;
+  }
 }
 
 @media (max-width: 768px) {

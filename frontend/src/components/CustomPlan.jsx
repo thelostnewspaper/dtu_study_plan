@@ -255,6 +255,11 @@ export default function CustomPlan({ customState, setCustomState }) {
       </div>
 
       <div className="main">
+        {/* AI Advisor Chatbot at the top, full width */}
+        <div style={{ marginBottom: '2rem' }}>
+          <PlanChatbot currentState={customState} onApplyActions={handleApplyChatActions} />
+        </div>
+
         {/* Specialization Tracker */}
         <div className="section-title">Specialization Tracks ECTS Tracker</div>
         <div className="spec-tracker">
@@ -277,11 +282,11 @@ export default function CustomPlan({ customState, setCustomState }) {
           </div>
         </div>
 
-        {/* 3-Column Layout */}
+        {/* 2-Column Layout */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginTop: '1.5rem', alignItems: 'flex-start' }}>
           
           {/* Catalog Column */}
-          <div style={{ flex: '1 1 350px', minWidth: 320, background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 8, padding: '1.5rem' }}>
+          <div style={{ flex: '1 1 480px', minWidth: 320, background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 8, padding: '1.5rem' }}>
             <h3 style={{ fontSize: 15, fontWeight: 600, marginBottom: '1rem', borderBottom: '2px solid var(--accent)', paddingBottom: 6 }}>1. Course Catalog</h3>
             
             <div style={{ display: 'flex', gap: 10, marginBottom: '1rem' }}>
@@ -360,7 +365,7 @@ export default function CustomPlan({ customState, setCustomState }) {
           </div>
 
           {/* Schedule Column */}
-          <div style={{ flex: '1 1 350px', minWidth: 320 }}>
+          <div style={{ flex: '1 1 480px', minWidth: 320 }}>
             <h3 style={{ fontSize: 15, fontWeight: 600, marginBottom: '1rem', borderBottom: '2px solid var(--accent)', paddingBottom: 6 }}>2. Custom Schedule</h3>
             <p style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: '1.5rem' }}>Select courses on the left or type in the chat. They appear below where you can adjust timing.</p>
 
@@ -456,13 +461,6 @@ export default function CustomPlan({ customState, setCustomState }) {
                 );
               })}
             </div>
-          </div>
-
-          {/* Chatbot Column */}
-          <div style={{ flex: '1 1 350px', minWidth: 320 }}>
-            <h3 style={{ fontSize: 15, fontWeight: 600, marginBottom: '1rem', borderBottom: '2px solid var(--accent)', paddingBottom: 6 }}>3. AI Planner Assistant</h3>
-            <p style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: '1.5rem' }}>Chat with the AI to suggest, add, or remove courses directly.</p>
-            <PlanChatbot currentState={customState} onApplyActions={handleApplyChatActions} />
           </div>
 
         </div>
