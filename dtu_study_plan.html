@@ -1,0 +1,2363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DTU MSc CSE — Study Plan</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg: #F7F6F3;
+      --surface: #FFFFFF;
+      --surface2: #F0EEE9;
+      --border: #E2DFD8;
+      --border-strong: #C8C4BA;
+      --text: #1A1916;
+      --text-muted: #6B6860;
+      --text-faint: #A09D97;
+      --accent: #1B4B8A;
+      --accent-light: #EBF0F9;
+      --accent-mid: #4A7FC1;
+      --green: #1A6B3A;
+      --green-light: #E8F5EE;
+      --amber: #7A4F00;
+      --amber-light: #FFF4DC;
+      --red: #8B1A1A;
+      --red-light: #FDEAEA;
+      --purple: #4A2080;
+      --purple-light: #F0EBFA;
+      --teal: #0E5F5F;
+      --teal-light: #E6F5F5;
+      --mono: 'JetBrains Mono', monospace;
+      --sans: 'Inter', sans-serif;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    /* HEADER */
+    .header {
+      background: var(--accent);
+      color: #fff;
+      padding: 2.5rem 2rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .header-eyebrow {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+      margin-bottom: 0.5rem;
+    }
+
+    .header h1 {
+      font-size: 22px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .header-sub {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 1.5rem;
+    }
+
+    .header-stats {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .hstat {}
+
+    .hstat-num {
+      font-size: 24px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1;
+      font-family: var(--mono);
+    }
+
+    .hstat-label {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.5);
+      margin-top: 2px;
+    }
+
+    /* PROGRESS BAR */
+    .progress-wrap {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    }
+
+    .progress-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .progress-bar-outer {
+      flex: 1;
+      height: 6px;
+      background: var(--surface2);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .progress-bar-inner {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    .progress-ects {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent);
+      white-space: nowrap;
+      min-width: 70px;
+      text-align: right;
+    }
+
+    .req-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .req-pill {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .req-pill.met {
+      background: var(--green-light);
+      border-color: #A8D5BC;
+      color: var(--green);
+    }
+
+    /* MAIN LAYOUT */
+    .main {
+      padding: 1.5rem 2rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* LEGEND */
+    .legend {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      padding: 0.75rem 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* SEMESTER BLOCK */
+    .sem-block {
+      margin-bottom: 2rem;
+    }
+
+    .sem-header {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .sem-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .sem-period {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-faint);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .sem-ects-total {
+      margin-left: auto;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .sem-note {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      padding: 5px 10px;
+      background: var(--accent-light);
+      border-left: 2px solid var(--accent-mid);
+      border-radius: 0 4px 4px 0;
+    }
+
+    /* COURSE TABLE */
+    .course-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .course-table thead tr {
+      background: var(--surface2);
+    }
+
+    .course-table th {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 6px 10px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .course-table tbody tr {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+      cursor: default;
+    }
+
+    .course-table tbody tr:last-child {
+      border-bottom: none;
+    }
+
+    .course-table tbody tr:hover {
+      background: #FAFAF8;
+    }
+
+    .course-table tbody tr.choice-row {
+      background: #FFFDF8;
+    }
+
+    .course-table tbody tr.choice-row:hover {
+      background: #FFF8EE;
+    }
+
+    .course-table tbody tr.selected-choice {
+      background: var(--green-light) !important;
+    }
+
+    .course-table tbody tr.disabled-choice {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .course-table td {
+      padding: 10px 10px;
+      vertical-align: top;
+    }
+
+    .code {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    .course-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .course-detail {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      line-height: 1.4;
+    }
+
+    .ects-cell {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    /* TIMING BADGE */
+    .timing {
+      display: inline-block;
+      font-size: 10px;
+      font-family: var(--mono);
+      padding: 2px 7px;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+
+    .timing-autumn {
+      background: #FFF0E0;
+      color: #7A4F00;
+      border: 1px solid #F0D4A0;
+    }
+
+    .timing-spring {
+      background: #E0F0FF;
+      color: #1A4A7A;
+      border: 1px solid #A0C8F0;
+    }
+
+    .timing-jan {
+      background: #F0E8FF;
+      color: #4A2080;
+      border: 1px solid #C8A8F0;
+    }
+
+    .timing-june {
+      background: #E8F8E8;
+      color: #1A6B3A;
+      border: 1px solid #A0D8A0;
+    }
+
+    .timing-both {
+      background: var(--surface2);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .timing-verify {
+      background: #FDEAEA;
+      color: #8B1A1A;
+      border: 1px solid #F0B0B0;
+    }
+
+    /* CATEGORY TAG */
+    .cat {
+      display: inline-block;
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-weight: 500;
+    }
+
+    .cat-mandatory {
+      background: var(--accent-light);
+      color: var(--accent);
+    }
+
+    .cat-core {
+      background: var(--purple-light);
+      color: var(--purple);
+    }
+
+    .cat-prog {
+      background: var(--green-light);
+      color: var(--green);
+    }
+
+    .cat-innov {
+      background: var(--amber-light);
+      color: var(--amber);
+    }
+
+    .cat-elective {
+      background: var(--surface2);
+      color: var(--text-muted);
+    }
+
+    .cat-thesis {
+      background: var(--teal-light);
+      color: var(--teal);
+    }
+
+    /* CHOICE BUTTON */
+    .choice-btn {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: var(--sans);
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .choice-btn:hover {
+      background: var(--accent-light);
+      border-color: var(--accent-mid);
+      color: var(--accent);
+    }
+
+    .choice-btn.active {
+      background: var(--green);
+      border-color: var(--green);
+      color: #fff;
+    }
+
+    /* SPECIALIZATION TRACKER */
+    .spec-tracker {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .spec-tracker h3 {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+
+    .spec-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .spec-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .spec-name {
+      font-size: 12px;
+      color: var(--text-muted);
+      width: 200px;
+      flex-shrink: 0;
+    }
+
+    .spec-bar-outer {
+      flex: 1;
+      height: 5px;
+      background: var(--surface2);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .spec-bar-inner {
+      height: 100%;
+      border-radius: 3px;
+      transition: width 0.3s ease;
+    }
+
+    .spec-bar-embedded {
+      background: var(--accent);
+    }
+
+    .spec-bar-cyber {
+      background: var(--teal);
+    }
+
+    .spec-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      width: 55px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .spec-check {
+      font-size: 13px;
+      width: 18px;
+      flex-shrink: 0;
+    }
+
+    /* WARN BOX */
+    .warn-box {
+      font-size: 11px;
+      color: var(--amber);
+      background: var(--amber-light);
+      border: 1px solid #F0D090;
+      border-radius: 6px;
+      padding: 8px 12px;
+      margin-top: 0.75rem;
+      line-height: 1.5;
+    }
+
+    /* ELECTIVE PICKER */
+    .elective-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 10px;
+      margin-top: 0.75rem;
+    }
+
+    .elective-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: all 0.15s;
+      position: relative;
+    }
+
+    .elective-card:hover {
+      border-color: var(--accent-mid);
+      background: var(--accent-light);
+    }
+
+    .elective-card.selected {
+      border-color: var(--accent);
+      background: var(--accent-light);
+    }
+
+    .elective-card.selected::after {
+      content: '✓';
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .elective-card-code {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-faint);
+      margin-bottom: 4px;
+    }
+
+    .elective-card-name {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .elective-card-why {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .elective-card-meta {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      margin-top: 6px;
+    }
+
+    /* THESIS BLOCK */
+    .thesis-block {
+      background: var(--teal-light);
+      border: 1px solid #A0D0D0;
+      border-radius: 8px;
+      padding: 1.25rem;
+    }
+
+    .thesis-block h3 {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--teal);
+      margin-bottom: 0.5rem;
+    }
+
+    .thesis-tips {
+      margin-top: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .thesis-tip {
+      font-size: 12px;
+      color: var(--teal);
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+    }
+
+    .thesis-tip::before {
+      content: '→';
+      flex-shrink: 0;
+    }
+
+    /* SUMMARY TABLE */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
+      margin-bottom: 1.5rem;
+    }
+
+    .sum-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .sum-num {
+      font-family: var(--mono);
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .sum-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-faint);
+      margin-bottom: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 2rem 0;
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        padding: 1.5rem 1rem 1rem;
+      }
+
+      .main {
+        padding: 1rem 1rem 2rem;
+      }
+
+      .progress-wrap {
+        padding: 0.75rem 1rem;
+      }
+
+      .sem-title {
+        font-size: 13px;
+      }
+
+      .course-table th:nth-child(5),
+      .course-table td:nth-child(5) {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="header-eyebrow">Technical University of Denmark · MSc Computer Science & Engineering</div>
+    <h1>Your 120 ECTS Study Plan</h1>
+    <div class="header-sub">Specialization: Embedded & Distributed Systems · Secondary: security-aware</div>
+    <div class="header-stats">
+      <div class="hstat">
+        <div class="hstat-num" id="total-ects">0</div>
+        <div class="hstat-label">ECTS selected</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">120</div>
+        <div class="hstat-label">ECTS required</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num" id="embedded-ects">0</div>
+        <div class="hstat-label">Embedded specialization ECTS</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num">4</div>
+        <div class="hstat-label">Semesters</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-bar"
+    style="display: flex; justify-content: center; gap: 12px; background: var(--surface); border-bottom: 1px solid var(--border); padding: 0.75rem 2rem; position: sticky; top: 0; z-index: 200; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+    <button class="choice-btn active" id="tab-btn-recommended" onclick="switchTab('recommended')"
+      style="font-size: 13px; padding: 8px 16px;">Recommended Plan</button>
+    <button class="choice-btn" id="tab-btn-custom" onclick="switchTab('custom')"
+      style="font-size: 13px; padding: 8px 16px;">Custom Plan Builder</button>
+  </div>
+
+  <div id="tab-recommended" class="tab-content">
+
+    <div class="progress-wrap" style="top: 54px; z-index: 150;">
+      <span class="progress-label">Progress</span>
+      <div class="progress-bar-outer">
+        <div class="progress-bar-inner" id="main-progress" style="width:0%"></div>
+      </div>
+      <span class="progress-ects" id="progress-label">0 / 120 ECTS</span>
+      <div class="req-pills">
+        <span class="req-pill" id="req-sustain">Sustainability</span>
+        <span class="req-pill" id="req-innov">Innovation I</span>
+        <span class="req-pill" id="req-innov2">Innovation II</span>
+        <span class="req-pill" id="req-core">Core (2 courses)</span>
+        <span class="req-pill" id="req-spec">Embedded ≥25 ECTS</span>
+        <span class="req-pill" id="req-thesis">Thesis</span>
+      </div>
+    </div>
+
+    <div class="main">
+
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#1B4B8A"></div>Mandatory foundation
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#4A2080"></div>Core competence
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#1A6B3A"></div>Programme-specific
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#7A4F00"></div>Innovation II
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#6B6860"></div>Free elective
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#0E5F5F"></div>Thesis
+        </div>
+        <div class="legend-item">
+          <span class="timing timing-autumn">E</span> Autumn (efterår)
+        </div>
+        <div class="legend-item">
+          <span class="timing timing-spring">F</span> Spring (forår)
+        </div>
+        <div class="legend-item">
+          <span class="timing timing-jan">Jan</span> January intensive
+        </div>
+        <div class="legend-item">
+          <span class="timing timing-verify">⚠ verify</span> Confirm on Study Planner
+        </div>
+      </div>
+
+      <!-- SEM 1 -->
+      <div class="sem-block">
+        <div class="sem-header">
+          <span class="sem-title">Semester 1 — Autumn</span>
+          <span class="sem-period">September – December</span>
+          <span class="sem-ects-total" id="sem1-ects-total">30 ECTS</span>
+        </div>
+        <div class="sem-note">Easing in: practical, hands-on courses. No heavy theory yet. Getting comfortable with
+          DTU's system.</div>
+        <table class="course-table">
+          <thead>
+            <tr>
+              <th style="width:70px">Code</th>
+              <th>Course</th>
+              <th style="width:50px;text-align:center">ECTS</th>
+              <th style="width:120px">Category</th>
+              <th style="width:90px">Timing</th>
+              <th style="width:200px">Notes</th>
+            </tr>
+          </thead>
+          <tbody id="sem1-tbody">
+            <tr data-ects="5" data-cats="core" data-spec="embedded">
+              <td class="code">02203</td>
+              <td>
+                <div class="course-name">Design of Digital Systems</div>
+                <div class="course-detail">FPGA hardware design, CAD tools, digital circuit implementation</div>
+              </td>
+              <td class="ects-cell">5</td>
+              <td><span class="cat cat-core">Core competence</span></td>
+              <td><span class="timing timing-autumn">E — Autumn</span></td>
+              <td class="course-detail">Core pick 1 of 2. Hands-on with real hardware — good entry point.</td>
+            </tr>
+            <tr data-ects="5" data-cats="core" data-spec="embedded">
+              <td class="code">02226</td>
+              <td>
+                <div class="course-name">Networked Embedded Systems</div>
+                <div class="course-detail">Communication protocols, IoT architectures, real-world embedded labs</div>
+              </td>
+              <td class="ects-cell">5</td>
+              <td><span class="cat cat-prog">Programme-specific</span></td>
+              <td><span class="timing timing-autumn">E — Autumn</span></td>
+              <td class="course-detail">Practical and lab-heavy. Accessible for new students. Core to your profile.</td>
+            </tr>
+            <tr data-ects="5" data-cats="prog" data-spec="embedded">
+              <td class="code">02258</td>
+              <td>
+                <div class="course-name">Parallel Computer Systems</div>
+                <div class="course-detail">Concurrent programming, parallel architectures, performance models</div>
+              </td>
+              <td class="ects-cell">5</td>
+              <td><span class="cat cat-prog">Programme-specific</span></td>
+              <td><span class="timing timing-autumn">E — Autumn</span></td>
+              <td class="course-detail">Autumn confirmed. Complements embedded track directly.</td>
+            </tr>
+            <tr data-ects="5" data-cats="prog" data-spec="embedded">
+              <td class="code">02291</td>
+              <td>
+                <div class="course-name">System Integration</div>
+                <div class="course-detail">Heterogeneous systems, APIs, middleware, service-oriented architectures</div>
+              </td>
+              <td class="ects-cell">5</td>
+              <td><span class="cat cat-prog">Programme-specific</span></td>
+              <td><span class="timing timing-autumn">E — Autumn</span></td>
+              <td class="course-detail">Counts toward Embedded specialization. Bridges hardware and software.</td>
+            </tr>
+            <tr data-ects="5" data-cats="mandatory" data-spec="none">
+              <td class="code">12105</td>
+              <td>
+                <div class="course-name">Quantitative Methods to Assess Sustainability</div>
+                <div class="course-detail">Life-cycle assessment, environmental impact quantification</div>
+              </td>
+              <td class="ects-cell">5</td>
+              <td><span class="cat cat-mandatory">Mandatory foundation</span></td>
+              <td><span class="timing timing-autumn">E — Autumn <br><small>(eve slot Tue 18–22)</small></span></td>
+              <td class="course-detail">Tick-the-box requirement. Evening slot means minimal schedule clash. Light
+                workload.</td>
+            </tr>
+            <tr data-ects="5" data-cats="core" data-spec="none">
+              <td class="code">02270</td>
+              <td>
+                <div class="course-name">Cybersecurity Fundamentals</div>
+                <div class="course-detail">Network security, threat modeling, secure systems design</div>
+              </td>
+              <td class="ects-cell">5</td>
+              <td><span class="cat cat-prog">Programme-specific</span></td>
+              <td><span class="timing timing-autumn">E — Autumn</span></td>
+              <td class="course-detail">Core pick 2 of 2 (or programme-specific). NIS2 literacy — useful for all Danish
+                industrial roles. Not a detour.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- JANUARY -->
+      <div class="sem-block">
+        <div class="sem-header">
+          <span class="sem-title">January Intensive</span>
+          <span class="sem-period">3-week block · January</span>
+          <span class="sem-ects-total" id="jan-ects-total">10 ECTS</span>
+        </div>
+        <div class="sem-note">Mandatory foundation courses. Both run in January — confirm they don't clash within the
+          same 3-week window via DTU Study Planner.</div>
+        <table class="course-table">
+          <thead>
+            <tr>
+              <th style="width:70px">Code</th>
+              <th>Course</th>
+              <th style="width:50px;text-align:center">ECTS</th>
+              <th style="width:120px">Category</th>
+              <th style="width:90px">Timing</th>
+              <th style="width:200px">Notes</th>
+            </tr>
+          </thead>
+          <tbody id="jan-tbody">
+            <tr data-ects="5" data-cats="mandatory" data-spec="none">
+              <td class="code">42500</td>
+              <td>
+                <div class="course-name">Innovation in Engineering</div>
+                <div class="course-detail">Entrepreneurship, design thinking, innovation processes</div>
+              </td>
+              <td class="ects-cell">5</td>
+              <td><span class="cat cat-mandatory">Mandatory foundation</span></td>
+              <td><span class="timing timing-jan">January</span></td>
+              <td class="course-detail">Must complete. Also offered June (42501) or Aug (42504) if January fills up.
+              </td>
+            </tr>
+            <tr data-ects="5" data-cats="innov" data-spec="none">
+              <td class="code">02266</td>
+              <td>
+                <div class="course-name">User Experience Engineering</div>
+                <div class="course-detail">UI/UX methods, user research, prototyping, usability testing</div>
+              </td>
+              <td class="ects-cell">5</td>
+              <td><span class="cat cat-innov">Innovation II</span></td>
+              <td><span class="timing timing-jan">January</span></td>
+              <td class="course-detail">Mandatory Innovation II pick. Practical and project-based — not heavy theory.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="warn-box">⚠ Confirm both January courses run in different weeks of the 3-week block, or that they
+          don't overlap. Check via DTU Study Planner once enrolled.</div>
+      </div>
+
+      <!-- SEM 2 -->
+      <div class="sem-block">
+        <div class="sem-header">
+          <span class="sem-title">Semester 2 — Spring</span>
+          <span class="sem-period">February – May</span>
+          <span class="sem-ects-total" id="sem2-ects-total">25 ECTS</span>
+        </div>
+        <div class="sem-note">Core embedded depth. 02225 is your most important course — it's Spring only. Slightly
+          lighter semester by design.</div>
+        <table class="course-table">
+          <thead>
+            <tr>
+              <th style="width:70px">Code</th>
+              <th>Course</th>
+              <th style="width:50px;text-align:center">ECTS</th>
+              <th style="width:120px">Category</th>
+              <th style="width:90px">Timing</th>
+              <th style="width:200px">Notes</th>
+            </tr>
+          </thead>
+          <tbody id="sem2-tbody">
+            <tr data-ects="5" data-cats="core" data-spec="embedded" id="row-02225">
+              <td class="code">02225</td>
+              <td>
+                <div class="course-name">Distributed Real-Time Systems</div>
+                <div class="course-detail">Real-time scheduling, fault tolerance, distributed protocols, timing
+                  constraints</div>
+              </td>
+              <td class="ects-cell">5</td>
+              <td><span class="cat cat-core">Core competence</span></td>
+              <td>
+                <span class="timing timing-verify" id="timing-02225">⚠ verify — likely Spring</span>
+                <button class="choice-btn" id="btn-toggle-02225"
+                  style="margin-top: 4px; padding: 2px 6px; font-size: 9px; display: block;"
+                  onclick="toggleCourseSemester('02225')">Move to Autumn</button>
+              </td>
+              <td class="course-detail">The single most important course for your profile. Spring only (F4B). Confirm on
+                Study Planner.</td>
+            </tr>
+            <tr data-ects="5" data-cats="prog" data-spec="embedded">
+              <td class="code">02214</td>
+              <td>
+                <div class="course-name">Hardware/Software Codesign</div>
+                <div class="course-detail">FPGA-software interfaces, firmware-hardware boundary, co-simulation</div>
+              </td>
+              <td class="ects-cell">5</td>
+              <td><span class="cat cat-prog">Programme-specific</span></td>
+              <td><span class="timing timing-spring">F — Spring</span></td>
+              <td class="course-detail">Deepens the embedded layer. Firmware/hardware boundary is a key skill for Danish
+                industrial jobs.</td>
+            </tr>
+            <tr data-ects="5" data-cats="prog" data-spec="none" id="row-02231">
+              <td class="code">02231</td>
+              <td>
+                <div class="course-name">Cryptography Fundamentals</div>
+                <div class="course-detail">Symmetric/asymmetric crypto, protocols, mathematical foundations</div>
+              </td>
+              <td class="ects-cell">5</td>
+              <td><span class="cat cat-prog">Programme-specific</span></td>
+              <td>
+                <span class="timing timing-spring" id="timing-02231">Spring (F)</span>
+                <button class="choice-btn" id="btn-toggle-02231"
+                  style="margin-top: 4px; padding: 2px 6px; font-size: 9px; display: block;"
+                  onclick="toggleCourseSemester('02231')">Move to Autumn (Sem 1)</button>
+              </td>
+              <td class="course-detail">Move to Sem 1 if timing allows. Embedded crypto on constrained devices is a
+                valued specialism.</td>
+            </tr>
+            <tr data-ects="5" data-cats="prog" data-spec="none" id="row-02277">
+              <td class="code">02277</td>
+              <td>
+                <div class="course-name">Cyber Risk Management and Incident Response</div>
+                <div class="course-detail">NIS2 compliance, risk frameworks, incident handling, governance</div>
+              </td>
+              <td class="ects-cell">5</td>
+              <td><span class="cat cat-prog">Programme-specific</span></td>
+              <td>
+                <span class="timing timing-verify" id="timing-02277">⚠ verify — likely Spring</span>
+                <button class="choice-btn" id="btn-toggle-02277"
+                  style="margin-top: 4px; padding: 2px 6px; font-size: 9px; display: block;"
+                  onclick="toggleCourseSemester('02277')">Move to Autumn</button>
+              </td>
+              <td class="course-detail">NIS2-directly relevant. Danish industrial employers increasingly expect this
+                literacy. Confirm semester.</td>
+            </tr>
+            <tr data-ects="5" data-cats="elective" data-spec="none" class="choice-row" id="elective-slot-sem2">
+              <td class="code">—</td>
+              <td>
+                <div class="course-name">Free elective slot</div>
+                <div class="course-detail">See elective picker below — choose based on target industry</div>
+              </td>
+              <td class="ects-cell">5</td>
+              <td><span class="cat cat-elective">Free elective</span></td>
+              <td><span class="timing timing-both">varies</span></td>
+              <td class="course-detail">Use the elective picker section below to select your preferred option.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- SEM 3 -->
+      <div class="sem-block">
+        <div class="sem-header">
+          <span class="sem-title">Semester 3 — Autumn</span>
+          <span class="sem-period">September – December</span>
+          <span class="sem-ects-total" id="sem3-ects-total">25 ECTS</span>
+        </div>
+        <div class="sem-note">Consolidation and thesis preparation. Start contacting potential thesis supervisors in
+          October of this semester.</div>
+        <table class="course-table">
+          <thead>
+            <tr>
+              <th style="width:70px">Code</th>
+              <th>Course</th>
+              <th style="width:50px;text-align:center">ECTS</th>
+              <th style="width:120px">Category</th>
+              <th style="width:90px">Timing</th>
+              <th style="width:200px">Notes</th>
+            </tr>
+          </thead>
+          <tbody id="sem3-tbody">
+            <tr data-ects="5" data-cats="prog" data-spec="embedded">
+              <td class="code">02211</td>
+              <td>
+                <div class="course-name">Research Topics in Computer Architecture</div>
+                <div class="course-detail">Advanced processor design, memory hierarchies, current research directions
+                </div>
+              </td>
+              <td class="ects-cell">5</td>
+              <td><span class="cat cat-prog">Programme-specific</span></td>
+              <td><span class="timing timing-autumn">E — Autumn</span></td>
+              <td class="course-detail">Rounds out Embedded specialization. Good for thesis ideation in
+                hardware-adjacent topics.</td>
+            </tr>
+
+            <!-- CHOICE GROUP -->
+            <tr data-ects="7.5" data-cats="prog" data-spec="embedded" class="choice-row" data-choice-group="sem3-hard"
+              data-choice-id="02249">
+              <td class="code">02249</td>
+              <td>
+                <div class="course-name">Computationally Hard Problems <span
+                    style="color:var(--text-faint);font-weight:400;font-size:11px">— option A</span></div>
+                <div class="course-detail">NP-completeness, approximation algorithms, exact exponential algorithms</div>
+              </td>
+              <td class="ects-cell">7.5</td>
+              <td><span class="cat cat-prog">Programme-specific</span></td>
+              <td><span class="timing timing-autumn">E — Autumn</span></td>
+              <td class="course-detail">Counts toward Embedded specialization. Needed to reach 25 ECTS threshold.
+                Challenging but broadens algorithmic thinking.</td>
+            </tr>
+            <tr data-ects="7.5" data-cats="prog" data-spec="none" class="choice-row" data-choice-group="sem3-hard"
+              data-choice-id="02242">
+              <td class="code">02242</td>
+              <td>
+                <div class="course-name">Program Analysis <span
+                    style="color:var(--text-faint);font-weight:400;font-size:11px">— option B</span></div>
+                <div class="course-detail">Static analysis, dataflow, type systems, software reliability</div>
+              </td>
+              <td class="ects-cell">7.5</td>
+              <td><span class="cat cat-prog">Programme-specific</span></td>
+              <td><span class="timing timing-autumn">E — Autumn</span></td>
+              <td class="course-detail">Software reliability angle — preferred if you target safety-critical software
+                roles over pure hardware. Does not count toward Embedded specialization.</td>
+            </tr>
+            <tr id="choice-prompt-sem3" style="background:var(--amber-light)">
+              <td colspan="6" style="padding:8px 10px;">
+                <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                  <span style="font-size:12px;color:var(--amber);font-weight:500">Pick one for semester 3:</span>
+                  <button class="choice-btn" onclick="selectChoice('sem3-hard','02249',this)">Select 02249 —
+                    Computationally Hard Problems</button>
+                  <button class="choice-btn" onclick="selectChoice('sem3-hard','02242',this)">Select 02242 — Program
+                    Analysis</button>
+                  <span style="font-size:11px;color:var(--text-faint);margin-left:4px">Note: 02249 counts toward
+                    Embedded specialization; 02242 does not.</span>
+                </div>
+              </td>
+            </tr>
+
+            <tr data-ects="5" data-cats="prog" data-spec="none">
+              <td class="code">02275</td>
+              <td>
+                <div class="course-name">Ethical Hacking</div>
+                <div class="course-detail">Penetration testing, vulnerability assessment, exploitation techniques</div>
+              </td>
+              <td class="ects-cell">5</td>
+              <td><span class="cat cat-prog">Programme-specific</span></td>
+              <td><span class="timing timing-autumn">E — Autumn</span></td>
+              <td class="course-detail">Autumn (E5B — Wed 13–17). Top-listed skill in Danish market. Now no longer
+                conflicts with 02270 (done in Sem 1).</td>
+            </tr>
+
+            <tr data-ects="7.5" data-cats="elective" data-spec="none" class="choice-row" id="elective-slot-sem3">
+              <td class="code">—</td>
+              <td>
+                <div class="course-name">Free elective slot</div>
+                <div class="course-detail">See elective picker below — choose based on target industry</div>
+              </td>
+              <td class="ects-cell">7.5</td>
+              <td><span class="cat cat-elective">Free elective</span></td>
+              <td><span class="timing timing-both">varies</span></td>
+              <td class="course-detail">Use the elective picker section below.</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="warn-box">⚠ 02277 (Cyber Risk Management) is tentatively placed in Semester 2 Spring. If it turns
+          out to be Autumn-only, move it here and adjust elective slots accordingly. Always verify on DTU Study Planner.
+        </div>
+      </div>
+
+      <!-- ELECTIVE PICKER -->
+      <div class="divider"></div>
+      <div class="section-title">Free elective slots — pick based on your target industry</div>
+      <p style="font-size:12px;color:var(--text-muted);margin-bottom:0.75rem">You have one ~5 ECTS slot in Sem 2 and one
+        ~7.5 ECTS slot in Sem 3. Click a card to select it. These are suggestions — you can also take any DTU course
+        from another department.</p>
+
+      <div class="elective-grid" id="elective-grid">
+
+        <div class="elective-card" onclick="toggleElective(this)">
+          <div class="elective-card-code">02267</div>
+          <div class="elective-card-name">Software Development of Web Services</div>
+          <div class="elective-card-why">Adds cloud/API layer. Many embedded roles now involve IoT cloud connectivity
+            (Grundfos, Kamstrup, Danfoss).</div>
+          <div class="elective-card-meta"><span class="timing timing-spring">F — Spring</span><span
+              class="cat cat-elective" style="margin-left:4px">5 ECTS</span></div>
+        </div>
+
+        <div class="elective-card" onclick="toggleElective(this)">
+          <div class="elective-card-code">02268</div>
+          <div class="elective-card-name">Process-Oriented & Event-Driven Software Systems</div>
+          <div class="elective-card-why">Industrial automation and IoT event pipelines. Relevant to manufacturing and
+            process industries — common in Denmark.</div>
+          <div class="elective-card-meta"><span class="timing timing-spring">F — Spring</span><span
+              class="cat cat-elective" style="margin-left:4px">5 ECTS</span></div>
+        </div>
+
+        <div class="elective-card" onclick="toggleElective(this)">
+          <div class="elective-card-code">02278</div>
+          <div class="elective-card-name">Post-Quantum Cryptography</div>
+          <div class="elective-card-why">Forward bet — EU quantum regulation incoming. Rare skill that differentiates
+            within security-aware embedded roles.</div>
+          <div class="elective-card-meta"><span class="timing timing-june">June intensive</span><span
+              class="cat cat-elective" style="margin-left:4px">5 ECTS</span></div>
+        </div>
+
+        <div class="elective-card" onclick="toggleElective(this)">
+          <div class="elective-card-code">02234</div>
+          <div class="elective-card-name">Research Topics in Cybersecurity</div>
+          <div class="elective-card-why">Keeps you current on emerging threats. Good for thesis ideation if targeting
+            OT/ICS security at Terma or telecom companies.</div>
+          <div class="elective-card-meta"><span class="timing timing-autumn">E — Autumn</span><span
+              class="cat cat-elective" style="margin-left:4px">5 ECTS</span></div>
+        </div>
+
+        <div class="elective-card" onclick="toggleElective(this)">
+          <div class="elective-card-code">02285</div>
+          <div class="elective-card-name">AI and Multi-Agent Systems</div>
+          <div class="elective-card-why">If you want to angle toward robotics or autonomous systems — growing sector in
+            Denmark (Universal Robots, MAN Energy).</div>
+          <div class="elective-card-meta"><span class="timing timing-autumn">E — Autumn</span><span
+              class="cat cat-elective" style="margin-left:4px">7.5 ECTS</span></div>
+        </div>
+
+        <!-- OUTSIDE DEPARTMENT ELECTIVES -->
+        <div class="elective-card" onclick="toggleElective(this)">
+          <div class="elective-card-code">31372</div>
+          <div class="elective-card-name">Hierarchical and Distributed Automation Systems</div>
+          <div class="elective-card-why">DTU Electro. Covers PLC, SCADA, and fieldbuses. Perfect for Danish industrial
+            IoT roles (Grundfos, Danfoss) where embedded HW meets automation.</div>
+          <div class="elective-card-meta"><span class="timing timing-spring">F — Spring</span><span
+              class="cat cat-elective" style="margin-left:4px">5 ECTS</span></div>
+        </div>
+
+        <div class="elective-card" onclick="toggleElective(this)">
+          <div class="elective-card-code">34760</div>
+          <div class="elective-card-name">Safety and Reliability in Robotic Systems</div>
+          <div class="elective-card-why">DTU Electro. Safety standards, risk analysis, reliability modeling. Critical
+            for safety-critical and security-aware industrial embedded careers.</div>
+          <div class="elective-card-meta"><span class="timing timing-autumn">E — Autumn</span><span
+              class="cat cat-elective" style="margin-left:4px">5 ECTS</span></div>
+        </div>
+
+        <div class="elective-card" onclick="toggleElective(this)">
+          <div class="elective-card-code">30310</div>
+          <div class="elective-card-name">Space Systems Engineering</div>
+          <div class="elective-card-why">DTU Space. Covers systems engineering, trade-offs, reliability, integration,
+            and risk management in extreme environments. Excellent for complex systems.</div>
+          <div class="elective-card-meta"><span class="timing timing-autumn">E — Autumn</span><span
+              class="cat cat-elective" style="margin-left:4px">5 ECTS</span></div>
+        </div>
+
+        <!-- BIO / HEALTH TECH ELECTIVES -->
+        <div class="elective-card" onclick="toggleElective(this)">
+          <div class="elective-card-code">22058</div>
+          <div class="elective-card-name">Wearable Sensors: Designing and Prototyping</div>
+          <div class="elective-card-why">DTU Health Tech. Hands-on design of wearable bio-sensors (ECG, IMU). Crucial if
+            targeting Danish medical tech giants like Demant or GN Hearing.</div>
+          <div class="elective-card-meta"><span class="timing timing-spring">F — Spring</span><span
+              class="cat cat-elective" style="margin-left:4px">5 ECTS</span></div>
+        </div>
+
+        <div class="elective-card" onclick="toggleElective(this)">
+          <div class="elective-card-code">22449</div>
+          <div class="elective-card-name">Introduction to Biomedical Product Development</div>
+          <div class="elective-card-why">DTU Health Tech. Medical device regulations, QA, and risk management (ISO
+            13485). Key for security-aware compliance engineering.</div>
+          <div class="elective-card-meta"><span class="timing timing-autumn">E — Autumn</span><span
+              class="cat cat-elective" style="margin-left:4px">5 ECTS</span></div>
+        </div>
+
+        <div class="elective-card" onclick="toggleElective(this)">
+          <div class="elective-card-code">27510</div>
+          <div class="elective-card-name">Biosensors and Bioanalysis</div>
+          <div class="elective-card-why">DTU Bioengineering. Biological transducers, micro/nanofabrication, and sensor
+            integration. Bridges biotech and physical sensors.</div>
+          <div class="elective-card-meta"><span class="timing timing-spring">F — Spring</span><span
+              class="cat cat-elective" style="margin-left:4px">5 ECTS</span></div>
+        </div>
+
+        <div class="elective-card" onclick="toggleElective(this)">
+          <div class="elective-card-code">—</div>
+          <div class="elective-card-name">Other outside-department course</div>
+          <div class="elective-card-why">Choose based on target industry. Wind energy → offshore systems. Pharma →
+            biomedical devices. Maritime → autonomous vessels.</div>
+          <div class="elective-card-meta"><span class="timing timing-both">varies</span><span class="cat cat-elective"
+              style="margin-left:4px">5–7.5 ECTS</span></div>
+        </div>
+
+      </div>
+
+      <!-- SEM 4 THESIS -->
+      <div class="divider"></div>
+      <div class="sem-block">
+        <div class="sem-header">
+          <span class="sem-title">Semester 4 — Spring</span>
+          <span class="sem-period">February – June</span>
+          <span class="sem-ects-total">30 ECTS</span>
+        </div>
+        <div class="thesis-block">
+          <h3>Master's Thesis — 30 ECTS</h3>
+          <p style="font-size:13px;color:var(--teal);line-height:1.6">The thesis is your single most important career
+            asset. An industry-partnered thesis is what converts the degree into a job offer for international
+            graduates.</p>
+          <div class="thesis-tips">
+            <div class="thesis-tip">Start researching company partners in <strong>Semester 2</strong>. DTU career office
+              and department boards post live company collaboration opportunities.</div>
+            <div class="thesis-tip">Contact potential supervisors by <strong>October of Semester 3</strong>. Supervisors
+              fill up early.</div>
+            <div class="thesis-tip">Target companies: <strong>Vestas, Grundfos, Terma, Ericsson Denmark, Siemens Gamesa,
+                Kamstrup, Danfoss, MAN Energy</strong> — all have English-first engineering cultures and DTU pipelines.
+            </div>
+            <div class="thesis-tip">Suggested angle: <em>"Security architecture for real-time networked embedded systems
+                under NIS2 compliance constraints"</em> — or any OT/ICS security topic relevant to your partner company.
+            </div>
+            <div class="thesis-tip">Notify the head of study you want <strong>"Embedded and Distributed
+                Systems"</strong> on your diploma before submitting the thesis.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SPECIALIZATION TRACKER -->
+      <div class="divider"></div>
+      <div class="section-title">Specialization ECTS tracker</div>
+      <div class="spec-tracker">
+        <h3>Diploma eligibility — minimum 25 ECTS per specialization</h3>
+        <div class="spec-rows">
+          <div class="spec-row">
+            <span class="spec-check" id="check-embedded">○</span>
+            <span class="spec-name">Embedded & Distributed Systems</span>
+            <div class="spec-bar-outer">
+              <div class="spec-bar-inner spec-bar-embedded" id="bar-embedded" style="width:0%"></div>
+            </div>
+            <span class="spec-num" id="num-embedded">0 / 25 ECTS</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-check" id="check-cyber">○</span>
+            <span class="spec-name">Cybersecurity (secondary)</span>
+            <div class="spec-bar-outer">
+              <div class="spec-bar-inner spec-bar-cyber" id="bar-cyber" style="width:0%"></div>
+            </div>
+            <span class="spec-num" id="num-cyber">0 / 25 ECTS</span>
+          </div>
+        </div>
+        <p style="font-size:11px;color:var(--text-faint);margin-top:0.75rem">Only one specialization appears on your
+          diploma. Both are tracked here so you can see your options. Recommend: Embedded & Distributed Systems as
+          primary.</p>
+      </div>
+
+      <!-- SUMMARY -->
+      <div class="section-title">Summary</div>
+      <div class="summary-grid">
+        <div class="sum-card">
+          <div class="sum-num" id="s-total">0</div>
+          <div class="sum-label">Total ECTS</div>
+        </div>
+        <div class="sum-card">
+          <div class="sum-num" id="s-mandatory">0</div>
+          <div class="sum-label">Foundation ECTS</div>
+        </div>
+        <div class="sum-card">
+          <div class="sum-num" id="s-embedded-spec">0</div>
+          <div class="sum-label">Embedded spec ECTS</div>
+        </div>
+        <div class="sum-card">
+          <div class="sum-num" id="s-cyber-spec">0</div>
+          <div class="sum-label">Cybersec spec ECTS</div>
+        </div>
+        <div class="sum-card">
+          <div class="sum-num">30</div>
+          <div class="sum-label">Thesis ECTS</div>
+        </div>
+        <div class="sum-card">
+          <div class="sum-num" id="s-remaining">120</div>
+          <div class="sum-label">Remaining</div>
+        </div>
+      </div>
+
+    </div> <!-- end of main -->
+  </div> <!-- end of tab-recommended -->
+
+  <div id="tab-custom" class="tab-content" style="display: none;">
+    <div class="progress-wrap" style="top: 54px; z-index: 150;">
+      <span class="progress-label">Custom Progress</span>
+      <div class="progress-bar-outer">
+        <div class="progress-bar-inner" id="custom-progress-bar" style="width:0%"></div>
+      </div>
+      <span class="progress-ects" id="custom-progress-label">0 / 120 ECTS</span>
+      <div class="req-pills">
+        <span class="req-pill" id="custom-req-sustain">Sustainability</span>
+        <span class="req-pill" id="custom-req-innov">Innovation I</span>
+        <span class="req-pill" id="custom-req-innov2">Innovation II (≥5 ECTS)</span>
+        <span class="req-pill" id="custom-req-core">Core (≥2 courses)</span>
+        <span class="req-pill" id="custom-req-prog">Prog-Specific (≥50 ECTS)</span>
+        <span class="req-pill" id="custom-req-thesis">Thesis (30 ECTS)</span>
+      </div>
+    </div>
+
+    <div class="main">
+      <!-- Specialization Tracker for Custom Tab -->
+      <div class="section-title">Specialization Tracks ECTS Tracker</div>
+      <div class="spec-tracker">
+        <h3 style="font-size: 13px; font-weight: 600; margin-bottom: 1rem; color: var(--text);">Diploma Endorsement
+          Eligibility — Minimum 25 ECTS in a specialization line</h3>
+        <div class="spec-rows"
+          style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px 20px;">
+          <!-- AI & Algorithms -->
+          <div class="spec-row">
+            <span class="spec-check" id="custom-check-ai" style="color: var(--text-faint);">○</span>
+            <span class="spec-name" style="width: 180px;">AI & Algorithms</span>
+            <div class="spec-bar-outer">
+              <div class="spec-bar-inner" id="custom-bar-ai" style="width:0%; background: var(--purple);"></div>
+            </div>
+            <span class="spec-num" id="custom-num-ai">0 / 25 ECTS</span>
+          </div>
+          <!-- Cybersecurity -->
+          <div class="spec-row">
+            <span class="spec-check" id="custom-check-cyber" style="color: var(--text-faint);">○</span>
+            <span class="spec-name" style="width: 180px;">Cybersecurity</span>
+            <div class="spec-bar-outer">
+              <div class="spec-bar-inner" id="custom-bar-cyber" style="width:0%; background: var(--teal);"></div>
+            </div>
+            <span class="spec-num" id="custom-num-cyber">0 / 25 ECTS</span>
+          </div>
+          <!-- Digital Systems -->
+          <div class="spec-row">
+            <span class="spec-check" id="custom-check-digital" style="color: var(--text-faint);">○</span>
+            <span class="spec-name" style="width: 180px;">Digital Systems</span>
+            <div class="spec-bar-outer">
+              <div class="spec-bar-inner" id="custom-bar-digital" style="width:0%; background: var(--red);"></div>
+            </div>
+            <span class="spec-num" id="custom-num-digital">0 / 25 ECTS</span>
+          </div>
+          <!-- Embedded and Distributed -->
+          <div class="spec-row">
+            <span class="spec-check" id="custom-check-embedded" style="color: var(--text-faint);">○</span>
+            <span class="spec-name" style="width: 180px;">Embedded & Distributed</span>
+            <div class="spec-bar-outer">
+              <div class="spec-bar-inner" id="custom-bar-embedded" style="width:0%; background: var(--accent);"></div>
+            </div>
+            <span class="spec-num" id="custom-num-embedded">0 / 25 ECTS</span>
+          </div>
+          <!-- Safe and Secure by Design -->
+          <div class="spec-row">
+            <span class="spec-check" id="custom-check-safe" style="color: var(--text-faint);">○</span>
+            <span class="spec-name" style="width: 180px;">Safe & Secure by Design</span>
+            <div class="spec-bar-outer">
+              <div class="spec-bar-inner" id="custom-bar-safe" style="width:0%; background: var(--amber);"></div>
+            </div>
+            <span class="spec-num" id="custom-num-safe">0 / 25 ECTS</span>
+          </div>
+          <!-- Software Engineering -->
+          <div class="spec-row">
+            <span class="spec-check" id="custom-check-software" style="color: var(--text-faint);">○</span>
+            <span class="spec-name" style="width: 180px;">Software Engineering</span>
+            <div class="spec-bar-outer">
+              <div class="spec-bar-inner" id="custom-bar-software" style="width:0%; background: var(--green);"></div>
+            </div>
+            <span class="spec-num" id="custom-num-software">0 / 25 ECTS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Layout Columns -->
+      <div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 1.5rem;">
+
+        <!-- Left Column: Selector -->
+        <div
+          style="flex: 1 1 500px; min-width: 320px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1.5rem;">
+          <h3
+            style="font-size: 15px; font-weight: 600; margin-bottom: 1rem; color: var(--text); border-bottom: 2px solid var(--accent); padding-bottom: 6px;">
+            1. Course Catalog Options</h3>
+
+          <!-- Search and Filters -->
+          <div style="display: flex; gap: 10px; margin-bottom: 1rem;">
+            <input type="text" id="custom-search-input" placeholder="Search by course code or name..."
+              oninput="filterCustomCourses()"
+              style="flex: 1; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-family: var(--sans); font-size: 13px; outline: none; background: var(--bg); color: var(--text);">
+            <select id="custom-spec-filter" onchange="filterCustomCourses()"
+              style="padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; font-family: var(--sans); font-size: 13px; background: var(--surface); color: var(--text);">
+              <option value="all">All Specializations</option>
+              <option value="ai">AI & Algorithms</option>
+              <option value="cyber">Cybersecurity</option>
+              <option value="digital">Digital Systems</option>
+              <option value="embedded">Embedded & Distributed</option>
+              <option value="safe">Safe and Secure</option>
+              <option value="software">Software Engineering</option>
+              <option value="mandatory">Mandatory Foundation</option>
+              <option value="innov2">Innovation II</option>
+            </select>
+          </div>
+
+          <div style="max-height: 800px; overflow-y: auto; border: 1px solid var(--border); border-radius: 6px;">
+            <table class="course-table">
+              <thead>
+                <tr style="position: sticky; top: 0; z-index: 10; background: var(--surface2);">
+                  <th style="width: 50px; text-align: center;">Select</th>
+                  <th style="width: 70px;">Code</th>
+                  <th>Course Details</th>
+                  <th style="width: 60px; text-align: center;">ECTS</th>
+                </tr>
+              </thead>
+              <tbody id="custom-selector-tbody">
+                <!-- Rendered via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Right Column: Schedule -->
+        <div style="flex: 1 1 500px; min-width: 320px;">
+          <h3
+            style="font-size: 15px; font-weight: 600; margin-bottom: 1rem; color: var(--text); border-bottom: 2px solid var(--accent); padding-bottom: 6px;">
+            2. Your Custom Study Schedule</h3>
+          <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 1.5rem;">Select courses on the left. They
+            will automatically appear in their designated semester block below, where you can further adjust their
+            timing.</p>
+
+          <div id="custom-schedule-container">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Custom ECTS Summary Grid -->
+      <div class="section-title" style="margin-top: 3rem;">Custom Plan Summary</div>
+      <div class="summary-grid">
+        <div class="sum-card">
+          <div class="sum-num" id="custom-summary-total">0</div>
+          <div class="sum-label">Total ECTS</div>
+        </div>
+        <div class="sum-card">
+          <div class="sum-num" id="custom-summary-mandatory">0</div>
+          <div class="sum-label">Foundation ECTS</div>
+        </div>
+        <div class="sum-card">
+          <div class="sum-num" id="custom-summary-prog">0</div>
+          <div class="sum-label">Prog-Specific ECTS</div>
+        </div>
+        <div class="sum-card">
+          <div class="sum-num" id="custom-summary-thesis">30</div>
+          <div class="sum-label">Thesis ECTS</div>
+        </div>
+        <div class="sum-card">
+          <div class="sum-num" id="custom-summary-remaining">120</div>
+          <div class="sum-label">Remaining ECTS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Tab Switching
+    function switchTab(tabName) {
+      const recommendedTab = document.getElementById('tab-recommended');
+      const customTab = document.getElementById('tab-custom');
+      const recommendedBtn = document.getElementById('tab-btn-recommended');
+      const customBtn = document.getElementById('tab-btn-custom');
+
+      if (tabName === 'recommended') {
+        recommendedTab.style.display = 'block';
+        customTab.style.display = 'none';
+        recommendedBtn.classList.add('active');
+        customBtn.classList.remove('active');
+      } else {
+        recommendedTab.style.display = 'none';
+        customTab.style.display = 'block';
+        recommendedBtn.classList.remove('active');
+        customBtn.classList.add('active');
+
+        // Initialize custom builder if not already done
+        initCustomBuilder();
+      }
+    }
+
+    // ----------------------------------------------------
+    // RECOMMENDED PLAN JAVASCRIPT
+    // ----------------------------------------------------
+    const EMBEDDED_COURSES = ['02203', '02211', '02214', '02225', '02226', '02249', '02258', '02291'];
+    const CYBER_COURSES = ['02231', '02232', '02234', '02270', '02271', '02275', '02276', '02277', '02278', '02291'];
+
+    const FIXED_ECTS = {
+      mandatory: 10 + 5, // 42500 + 12105 + 02266
+      innov2: 5,
+      thesis: 30
+    };
+
+    let choiceGroups = {};
+    let selectedElectives = new Set();
+
+    function selectChoice(group, id, btn) {
+      choiceGroups[group] = id;
+
+      const rows = document.querySelectorAll(`[data-choice-group="${group}"]`);
+      rows.forEach(row => {
+        row.classList.remove('selected-choice', 'disabled-choice');
+        if (row.dataset.choiceId === id) {
+          row.classList.add('selected-choice');
+        } else {
+          row.classList.add('disabled-choice');
+        }
+      });
+
+      const btns = btn.parentElement.querySelectorAll('.choice-btn');
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      updateStats();
+    }
+
+    function toggleElective(card) {
+      if (card.classList.contains('selected')) {
+        card.classList.remove('selected');
+        selectedElectives.delete(card);
+      } else {
+        card.classList.add('selected');
+        selectedElectives.add(card);
+      }
+      updateStats();
+    }
+
+    function toggleCourseSemester(courseCode) {
+      if (courseCode === '02225') {
+        const row = document.getElementById('row-02225');
+        const btn = document.getElementById('btn-toggle-02225');
+        const timing = document.getElementById('timing-02225');
+        if (row.parentElement.id === 'sem2-tbody') {
+          insertCourseIntoSemester(row, 'sem3-tbody');
+          timing.className = 'timing timing-autumn';
+          timing.innerHTML = 'Autumn';
+          btn.textContent = 'Move to Spring (Sem 2)';
+        } else {
+          insertCourseIntoSemester(row, 'sem2-tbody');
+          timing.className = 'timing timing-verify';
+          timing.innerHTML = '⚠ verify — likely Spring';
+          btn.textContent = 'Move to Autumn (Sem 3)';
+        }
+      } else if (courseCode === '02277') {
+        const row = document.getElementById('row-02277');
+        const btn = document.getElementById('btn-toggle-02277');
+        const timing = document.getElementById('timing-02277');
+        if (row.parentElement.id === 'sem2-tbody') {
+          insertCourseIntoSemester(row, 'sem3-tbody');
+          timing.className = 'timing timing-autumn';
+          timing.innerHTML = 'Autumn';
+          btn.textContent = 'Move to Spring (Sem 2)';
+        } else {
+          insertCourseIntoSemester(row, 'sem2-tbody');
+          timing.className = 'timing timing-verify';
+          timing.innerHTML = '⚠ verify — likely Spring';
+          btn.textContent = 'Move to Autumn (Sem 3)';
+        }
+      } else if (courseCode === '02231') {
+        const row = document.getElementById('row-02231');
+        const btn = document.getElementById('btn-toggle-02231');
+        const timing = document.getElementById('timing-02231');
+        if (row.parentElement.id === 'sem2-tbody') {
+          insertCourseIntoSemester(row, 'sem1-tbody');
+          timing.className = 'timing timing-autumn';
+          timing.innerHTML = 'E — Autumn';
+          btn.textContent = 'Move to Spring (Sem 2)';
+        } else {
+          insertCourseIntoSemester(row, 'sem2-tbody');
+          timing.className = 'timing timing-spring';
+          timing.innerHTML = 'Spring (F)';
+          btn.textContent = 'Move to Autumn (Sem 1)';
+        }
+      }
+      updateStats();
+    }
+
+    function insertCourseIntoSemester(row, targetTbodyId) {
+      const tbody = document.getElementById(targetTbodyId);
+      if (!tbody) return;
+      const electiveRow = tbody.querySelector('tr[id^="elective-slot-"]');
+      if (electiveRow) {
+        tbody.insertBefore(row, electiveRow);
+      } else {
+        tbody.appendChild(row);
+      }
+    }
+
+    function updateElectiveSlots() {
+      const cards = Array.from(selectedElectives);
+
+      resetElectiveSlot('elective-slot-sem2', 5, 'Use the elective picker section below to select your preferred option.');
+      resetElectiveSlot('elective-slot-sem3', 7.5, 'Use the elective picker section below.');
+
+      let slot2Filled = false;
+      let slot3Filled = false;
+
+      cards.forEach(card => delete card.dataset.assignedSlot);
+
+      // Match Autumn/7.5 ECTS electives to Sem 3 slot
+      cards.forEach(card => {
+        const code = card.querySelector('.elective-card-code').textContent.trim();
+        const name = card.querySelector('.elective-card-name').textContent.trim();
+        const why = card.querySelector('.elective-card-why').textContent.trim();
+        const ectsText = card.querySelector('.cat-elective')?.textContent || '';
+        const m = ectsText.match(/[\d.]+/);
+        const ects = m ? parseFloat(m[0]) : 5;
+        const timingHtml = card.querySelector('.timing').outerHTML;
+        const timingText = card.querySelector('.timing').textContent;
+
+        const isAutumn = timingText.includes('Autumn') || timingText.includes('E');
+        const is7_5 = ects === 7.5;
+
+        if ((isAutumn || is7_5) && !slot3Filled) {
+          fillElectiveSlot('elective-slot-sem3', code, name, why, ects, timingHtml);
+          slot3Filled = true;
+          card.dataset.assignedSlot = 'sem3';
+        }
+      });
+
+      // Match Spring/5 ECTS electives to Sem 2 slot, or remaining to Sem 3 slot if still empty
+      cards.forEach(card => {
+        if (card.dataset.assignedSlot) return;
+
+        const code = card.querySelector('.elective-card-code').textContent.trim();
+        const name = card.querySelector('.elective-card-name').textContent.trim();
+        const why = card.querySelector('.elective-card-why').textContent.trim();
+        const ectsText = card.querySelector('.cat-elective')?.textContent || '';
+        const m = ectsText.match(/[\d.]+/);
+        const ects = m ? parseFloat(m[0]) : 5;
+        const timingHtml = card.querySelector('.timing').outerHTML;
+
+        if (!slot2Filled) {
+          fillElectiveSlot('elective-slot-sem2', code, name, why, ects, timingHtml);
+          slot2Filled = true;
+          card.dataset.assignedSlot = 'sem2';
+        } else if (!slot3Filled) {
+          fillElectiveSlot('elective-slot-sem3', code, name, why, ects, timingHtml);
+          slot3Filled = true;
+          card.dataset.assignedSlot = 'sem3';
+        }
+      });
+    }
+
+    function resetElectiveSlot(id, defaultEcts, defaultNote) {
+      const row = document.getElementById(id);
+      if (!row) return;
+
+      row.classList.remove('selected-choice');
+      row.dataset.ects = defaultEcts;
+
+      const codeCell = row.querySelector('.code');
+      if (codeCell) codeCell.textContent = '—';
+
+      const courseCell = row.cells[1];
+      if (courseCell) {
+        courseCell.innerHTML = `
+      <div class="course-name">Free elective slot</div>
+      <div class="course-detail">See elective picker below — choose based on target industry</div>
+    `;
+      }
+
+      const ectsCell = row.querySelector('.ects-cell');
+      if (ectsCell) ectsCell.textContent = defaultEcts;
+
+      const timingCell = row.cells[4];
+      if (timingCell) timingCell.innerHTML = '<span class="timing timing-both">varies</span>';
+
+      const notesCell = row.cells[5];
+      if (notesCell) notesCell.textContent = defaultNote;
+    }
+
+    function fillElectiveSlot(id, code, name, why, ects, timingHtml) {
+      const row = document.getElementById(id);
+      if (!row) return;
+
+      row.classList.add('selected-choice');
+      row.dataset.ects = ects;
+
+      const codeCell = row.querySelector('.code');
+      if (codeCell) codeCell.textContent = code;
+
+      const courseCell = row.cells[1];
+      if (courseCell) {
+        courseCell.innerHTML = `
+      <div class="course-name">${name}</div>
+      <div class="course-detail">Selected Elective</div>
+    `;
+      }
+
+      const ectsCell = row.querySelector('.ects-cell');
+      if (ectsCell) ectsCell.textContent = ects;
+
+      const timingCell = row.cells[4];
+      if (timingCell) timingCell.innerHTML = timingHtml;
+
+      const notesCell = row.cells[5];
+      if (notesCell) notesCell.textContent = why;
+    }
+
+    function updateSemesterTotals() {
+      const semesters = [
+        { id: 'sem1', tbodyId: 'sem1-tbody', totalId: 'sem1-ects-total' },
+        { id: 'jan', tbodyId: 'jan-tbody', totalId: 'jan-ects-total' },
+        { id: 'sem2', tbodyId: 'sem2-tbody', totalId: 'sem2-ects-total' },
+        { id: 'sem3', tbodyId: 'sem3-tbody', totalId: 'sem3-ects-total' }
+      ];
+
+      semesters.forEach(sem => {
+        const tbody = document.getElementById(sem.tbodyId);
+        const totalEl = document.getElementById(sem.totalId);
+        if (!tbody || !totalEl) return;
+
+        let semTotal = 0;
+        const rows = tbody.querySelectorAll('tr[data-ects]');
+        rows.forEach(row => {
+          if (row.classList.contains('disabled-choice')) return;
+          const ects = parseFloat(row.dataset.ects || 0);
+          semTotal += ects;
+        });
+
+        totalEl.textContent = semTotal + ' ECTS';
+      });
+    }
+
+    function getSelectedECTS() {
+      let total = 30; // thesis always counted
+      let embeddedECTS = 0;
+      let cyberECTS = 0;
+      let mandatoryECTS = 0;
+      let sustainMet = false, innovMet = false, innov2Met = false, coreMet = 0, thesisMet = true;
+
+      // Fixed foundation
+      mandatoryECTS += 15;
+      sustainMet = true;
+      innovMet = true;
+      innov2Met = true;
+
+      // Count all non-choice rows
+      const allRows = document.querySelectorAll('#tab-recommended .course-table tbody tr[data-ects]');
+      allRows.forEach(row => {
+        if (row.dataset.choiceGroup) return; // handled separately
+        if (row.classList.contains('choice-row') && row.id !== 'choice-prompt-sem3') return;
+
+        const ects = parseFloat(row.dataset.ects || 0);
+        const code = row.querySelector('.code')?.textContent?.trim() || '';
+
+        total += ects;
+
+        if (EMBEDDED_COURSES.includes(code)) embeddedECTS += ects;
+        if (CYBER_COURSES.includes(code)) cyberECTS += ects;
+
+        const cats = row.dataset.cats || '';
+        if (cats.includes('core')) coreMet++;
+      });
+
+      // Choice groups
+      Object.entries(choiceGroups).forEach(([group, id]) => {
+        const row = document.querySelector(`#tab-recommended [data-choice-group="${group}"][data-choice-id="${id}"]`);
+        if (row) {
+          const ects = parseFloat(row.dataset.ects || 0);
+          const code = row.querySelector('.code')?.textContent?.trim() || '';
+          total += ects;
+          if (EMBEDDED_COURSES.includes(code)) embeddedECTS += ects;
+          if (CYBER_COURSES.includes(code)) cyberECTS += ects;
+        }
+      });
+
+      // Electives (approximate 5 each for display)
+      selectedElectives.forEach(card => {
+        const ectsText = card.querySelector('.cat-elective')?.textContent || '5 ECTS';
+        const m = ectsText.match(/[\d.]+/);
+        const ects = m ? parseFloat(m[0]) : 5;
+        total += ects;
+        const code = card.querySelector('.elective-card-code')?.textContent?.trim() || '';
+        if (EMBEDDED_COURSES.includes(code)) embeddedECTS += ects;
+        if (CYBER_COURSES.includes(code)) cyberECTS += ects;
+      });
+
+      return { total, embeddedECTS, cyberECTS, mandatoryECTS, sustainMet, innovMet, innov2Met, coreMet: coreMet >= 2, thesisMet };
+    }
+
+    function updateStats() {
+      updateElectiveSlots();
+
+      const s = getSelectedECTS();
+
+      document.getElementById('total-ects').textContent = s.total;
+      document.getElementById('embedded-ects').textContent = s.embeddedECTS;
+
+      const pct = Math.min(100, (s.total / 120) * 100);
+      document.getElementById('main-progress').style.width = pct + '%';
+      document.getElementById('progress-label').textContent = s.total + ' / 120 ECTS';
+
+      // req pills
+      setReq('req-sustain', s.sustainMet);
+      setReq('req-innov', s.innovMet);
+      setReq('req-innov2', s.innov2Met);
+      setReq('req-core', s.coreMet);
+      setReq('req-spec', s.embeddedECTS >= 25);
+      setReq('req-thesis', s.thesisMet);
+
+      // spec bars
+      const embPct = Math.min(100, (s.embeddedECTS / 35) * 100);
+      const cybPct = Math.min(100, (s.cyberECTS / 35) * 100);
+      document.getElementById('bar-embedded').style.width = embPct + '%';
+      document.getElementById('bar-cyber').style.width = cybPct + '%';
+      document.getElementById('num-embedded').textContent = s.embeddedECTS + ' / 25 ECTS';
+      document.getElementById('num-cyber').textContent = s.cyberECTS + ' / 25 ECTS';
+      document.getElementById('check-embedded').textContent = s.embeddedECTS >= 25 ? '✓' : '○';
+      document.getElementById('check-embedded').style.color = s.embeddedECTS >= 25 ? 'var(--green)' : 'var(--text-faint)';
+      document.getElementById('check-cyber').textContent = s.cyberECTS >= 25 ? '✓' : '○';
+      document.getElementById('check-cyber').style.color = s.cyberECTS >= 25 ? 'var(--teal)' : 'var(--text-faint)';
+
+      // summary
+      document.getElementById('s-total').textContent = s.total;
+      document.getElementById('s-mandatory').textContent = s.mandatoryECTS;
+      document.getElementById('s-embedded-spec').textContent = s.embeddedECTS;
+      document.getElementById('s-cyber-spec').textContent = s.cyberECTS;
+      document.getElementById('s-remaining').textContent = Math.max(0, 120 - s.total);
+
+      updateSemesterTotals();
+    }
+
+    function setReq(id, met) {
+      const el = document.getElementById(id);
+      if (el) {
+        if (met) el.classList.add('met');
+        else el.classList.remove('met');
+      }
+    }
+
+    // ----------------------------------------------------
+    // CUSTOM PLAN BUILDER JAVASCRIPT
+    // ----------------------------------------------------
+    const COURSE_CATALOG = {
+      // Sustainability
+      "12100": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Autumn"], cat: "mandatory", specs: [], desc: "Life-cycle assessment, environmental impact quantification." },
+      "12101": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Spring"], cat: "mandatory", specs: [], desc: "Life-cycle assessment, environmental impact quantification." },
+      "12105": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Autumn"], cat: "mandatory", specs: [], desc: "Life-cycle assessment, environmental impact quantification (Evening slot)." },
+      "12106": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Spring"], cat: "mandatory", specs: [], desc: "Life-cycle assessment, environmental impact quantification." },
+
+      // Innovation
+      "42500": { name: "Innovation in Engineering", ects: 5, sem: ["January"], cat: "mandatory", specs: [], desc: "Entrepreneurship, design thinking, innovation processes." },
+      "42501": { name: "Innovation in Engineering", ects: 5, sem: ["June"], cat: "mandatory", specs: [], desc: "Entrepreneurship, design thinking, innovation processes." },
+      "42504": { name: "Innovation in Engineering", ects: 5, sem: ["August"], cat: "mandatory", specs: [], desc: "Entrepreneurship, design thinking, innovation processes." },
+      "42502": { name: "Facilitating Innovation in Multidisciplinary Teams", ects: 5, sem: ["January"], cat: "mandatory", specs: [], desc: "Team dynamics, innovation design, creative facilitation." },
+      "42503": { name: "Facilitating Innovation in Multidisciplinary Teams", ects: 5, sem: ["June"], cat: "mandatory", specs: [], desc: "Team dynamics, innovation design, creative facilitation." },
+      "42505": { name: "Facilitating Innovation in Multidisciplinary Teams", ects: 5, sem: ["August"], cat: "mandatory", specs: [], desc: "Team dynamics, innovation design, creative facilitation." },
+
+      // Thesis
+      "thesis": { name: "Master's Thesis", ects: 30, sem: ["Spring", "Autumn"], cat: "thesis", specs: [], desc: "Standalone independent project, typically done in Semester 4." },
+
+      // Innovation II
+      "02266": { name: "User Experience Engineering", ects: 5, sem: ["January"], cat: "innov2", specs: ["software"], desc: "UI/UX methods, user research, prototyping, usability testing." },
+      "38102": { name: "Technology Entrepreneurship", ects: 5, sem: ["Autumn"], cat: "innov2", specs: [], desc: "Business modeling, startup creation, commercialization strategies." },
+      "38103": { name: "X-Tech Entrepreneurship", ects: 10, sem: ["Autumn", "Spring"], cat: "innov2", specs: [], desc: "Project incubator connecting researchers and students to build startups." },
+      "38106": { name: "Developing an Entrepreneurial Mindset", ects: 5, sem: ["Spring"], cat: "innov2", specs: [], desc: "Creativity, mindset building, startup exploration." },
+      "38113": { name: "Applied AI for Entrepreneurs", ects: 5, sem: ["Autumn"], cat: "innov2", specs: [], desc: "Leveraging AI/ML systems to build new commercial platforms." },
+
+      // Core & Programme-specific
+      "02201": { name: "Agile Hardware Design", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["digital"], desc: "Modern agile workflows for digital systems, rapid prototyping." },
+      "02203": { name: "Design of Digital Systems", ects: 5, sem: ["Autumn"], cat: "core", specs: ["digital", "embedded"], desc: "FPGA hardware design, CAD tools, digital circuit implementation." },
+      "02205": { name: "VLSI Design", ects: 5, sem: ["Spring"], cat: "prog", specs: ["digital"], desc: "Very Large Scale Integration, CMOS technology, transistor-level layout." },
+      "02207": { name: "Verification of Digital Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["digital"], desc: "Formal verification, model checking, assertion-based testing." },
+      "02209": { name: "Test of Digital Systems", ects: 5, sem: ["Spring"], cat: "prog", specs: ["digital"], desc: "Fault modeling, automatic test pattern generation, design-for-testability." },
+      "02211": { name: "Research Topics in Computer Architecture", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["digital", "embedded"], desc: "Advanced processor design, memory hierarchies, research directions." },
+      "02214": { name: "Hardware/Software Codesign", ects: 5, sem: ["Spring"], cat: "prog", specs: ["digital", "embedded"], desc: "FPGA-software interfaces, firmware-hardware boundary, co-simulation." },
+      "02225": { name: "Distributed Real-Time Systems", ects: 5, sem: ["Spring"], cat: "core", specs: ["digital", "embedded"], desc: "Real-time scheduling, fault tolerance, distributed protocols." },
+      "02226": { name: "Networked Embedded Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["embedded"], desc: "Communication protocols, IoT architectures, real-world embedded labs." },
+      "02231": { name: "Cryptography Fundamentals", ects: 5, sem: ["Autumn", "Spring"], cat: "prog", specs: ["cyber", "safe"], desc: "Symmetric/asymmetric crypto, protocols, mathematical foundations." },
+      "02232": { name: "Applied Cryptography", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber", "safe"], desc: "Implementation of crypto algorithms, secure communication protocols." },
+      "02234": { name: "Research Topics in Cybersecurity", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["cyber"], desc: "Keeps you current on emerging threats and OT/ICS security." },
+      "02242": { name: "Program Analysis", ects: 7.5, sem: ["Autumn"], cat: "core", specs: ["safe", "software"], desc: "Static analysis, dataflow, type systems, software reliability." },
+      "02244": { name: "Logic for Security", ects: 7.5, sem: ["Autumn"], cat: "prog", specs: ["safe"], desc: "Mathematical logic, formal models of security protocols." },
+      "02245": { name: "Program Verification", ects: 7.5, sem: ["Spring"], cat: "prog", specs: ["safe", "software"], desc: "Formal verification tools, Hoare logic, proving program correctness." },
+      "02246": { name: "Model Checking", ects: 7.5, sem: ["Spring"], cat: "prog", specs: ["safe"], desc: "Automated verification of finite-state concurrent systems." },
+      "02247": { name: "Compiler Construction", ects: 5, sem: ["Spring"], cat: "prog", specs: ["safe"], desc: "Parsing, lexing, semantic analysis, compiler design." },
+      "02249": { name: "Computationally Hard Problems", ects: 7.5, sem: ["Autumn"], cat: "core", specs: ["ai", "embedded"], desc: "NP-completeness, approximation algorithms, exact algorithms." },
+      "02256": { name: "Automated Reasoning", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai", "safe"], desc: "Theorem proving, SAT/SMT solvers, logical frameworks." },
+      "02258": { name: "Parallel Computer Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["embedded"], desc: "Concurrent programming, parallel architectures, performance models." },
+      "02262": { name: "Formal Aspects of Process Science", ects: 5, sem: ["Spring"], cat: "prog", specs: ["safe", "software"], desc: "Concurrency theory, Petri nets, process algebra." },
+      "02267": { name: "Software Development of Web Services", ects: 5, sem: ["Spring"], cat: "prog", specs: ["software"], desc: "Cloud/API layer and IoT cloud connectivity." },
+      "02268": { name: "Process-Oriented and Event-Driven Software Systems", ects: 5, sem: ["Spring"], cat: "prog", specs: ["software"], desc: "Industrial automation and IoT event pipelines." },
+      "02269": { name: "Process Mining", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["software"], desc: "Discovering, monitoring, and improving processes from event logs." },
+      "02270": { name: "Cybersecurity Fundamentals", ects: 5, sem: ["Autumn"], cat: "core", specs: ["cyber", "software"], desc: "Network security, threat modeling, secure systems design." },
+      "02271": { name: "Advanced Cybersecurity", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber"], desc: "Advanced threat defense, secure architecture design." },
+      "02275": { name: "Ethical Hacking", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["cyber"], desc: "Penetration testing, vulnerability assessment, exploitation." },
+      "02276": { name: "Usable Security and Privacy", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber"], desc: "Human factors in security, interface design for security." },
+      "02277": { name: "Cyber Risk Management and Incident Response", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber"], desc: "NIS2 compliance, risk frameworks, incident handling." },
+      "02278": { name: "Post-Quantum Cryptography", ects: 5, sem: ["June"], cat: "prog", specs: ["cyber"], desc: "Forward bet on quantum-resistant cryptographic algorithms." },
+      "02282": { name: "Algorithms for Massive Data Sets", ects: 7.5, sem: ["Autumn"], cat: "prog", specs: ["ai"], desc: "Streaming algorithms, hashing, handling giant data collections." },
+      "02285": { name: "Artificial Intelligence and Multi-Agent Systems", ects: 7.5, sem: ["Autumn"], cat: "prog", specs: ["ai"], desc: "Robotics and autonomous agent decision-making models." },
+      "02287": { name: "Logical Theories for Uncertainty and Learning", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai"], desc: "Probabilistic logic and foundations of machine learning." },
+      "02289": { name: "Algorithmic Techniques for Modern Data Models", ects: 5, sem: ["Spring"], cat: "prog", specs: ["ai"], desc: "Advanced graph algorithms, data structures, metric spaces." },
+      "02291": { name: "System Integration", ects: 5, sem: ["Autumn"], cat: "core", specs: ["ai", "cyber", "digital", "embedded", "safe", "software"], desc: "Heterogeneous systems, APIs, middleware, SOA." }
+    };
+
+    const SEMESTERS = [
+      { id: "sem1", title: "Semester 1 — Autumn", period: "September – December" },
+      { id: "jan", title: "January Intensive", period: "3-week block · January" },
+      { id: "sem2", title: "Semester 2 — Spring", period: "February – May" },
+      { id: "summer", title: "Summer Intensive", period: "June / August" },
+      { id: "sem3", title: "Semester 3 — Autumn", period: "September – December" },
+      { id: "sem4", title: "Semester 4 — Spring", period: "February – June" }
+    ];
+
+    let customState = {
+      "12105": "sem1",
+      "42500": "jan",
+      "02266": "jan",
+      "02203": "sem1",
+      "02225": "sem2",
+      "thesis": "sem4"
+    };
+
+    let customBuilderInitialized = false;
+
+    function initCustomBuilder() {
+      if (customBuilderInitialized) return;
+      renderCustomSelector();
+      renderCustomSchedule();
+      updateCustomStats();
+      customBuilderInitialized = true;
+    }
+
+    function filterCustomCourses() {
+      renderCustomSelector();
+    }
+
+    function renderCustomSelector() {
+      const tbody = document.getElementById('custom-selector-tbody');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      const searchQuery = document.getElementById('custom-search-input').value.toLowerCase().trim();
+      const specFilter = document.getElementById('custom-spec-filter').value;
+
+      Object.entries(COURSE_CATALOG).forEach(([code, course]) => {
+        // Filter by search query
+        const matchesSearch = code.includes(searchQuery) || course.name.toLowerCase().includes(searchQuery);
+        if (!matchesSearch) return;
+
+        // Filter by specialization/category
+        let matchesFilter = true;
+        if (specFilter !== 'all') {
+          if (specFilter === 'mandatory') {
+            matchesFilter = (course.cat === 'mandatory');
+          } else if (specFilter === 'innov2') {
+            matchesFilter = (course.cat === 'innov2');
+          } else {
+            matchesFilter = course.specs.includes(specFilter);
+          }
+        }
+        if (!matchesFilter) return;
+
+        // Create row
+        const isSelected = customState[code] !== undefined;
+        const tr = document.createElement('tr');
+        tr.id = `custom-sel-row-${code}`;
+        tr.style.cursor = 'pointer';
+        if (isSelected) {
+          tr.classList.add('selected-choice');
+        }
+
+        // Custom spec tags
+        const specBadges = course.specs.map(specId => {
+          const specNameMap = {
+            ai: "AI & Algorithms",
+            cyber: "Cybersecurity",
+            digital: "Digital Systems",
+            embedded: "Embedded & Distributed",
+            safe: "Safe & Secure",
+            software: "Software Engineering"
+          };
+          const specColors = {
+            ai: "var(--purple-light); color: var(--purple);",
+            cyber: "var(--teal-light); color: var(--teal);",
+            digital: "var(--red-light); color: var(--red);",
+            embedded: "var(--accent-light); color: var(--accent);",
+            safe: "var(--amber-light); color: var(--amber);",
+            software: "var(--green-light); color: var(--green);"
+          };
+          return `<span class="cat" style="font-size: 8px; padding: 1px 4px; margin-right: 2px; background: ${specColors[specId]}">${specNameMap[specId]}</span>`;
+        }).join('');
+
+        // Category badge
+        let catBadge = '';
+        if (course.cat === 'mandatory') {
+          catBadge = `<span class="cat cat-mandatory" style="font-size: 8px; padding: 1px 4px; margin-right: 2px;">Mandatory</span>`;
+        } else if (course.cat === 'innov2') {
+          catBadge = `<span class="cat cat-innov" style="font-size: 8px; padding: 1px 4px; margin-right: 2px;">Innovation II</span>`;
+        } else if (course.cat === 'core') {
+          catBadge = `<span class="cat cat-core" style="font-size: 8px; padding: 1px 4px; margin-right: 2px;">Core Competence</span>`;
+        } else if (course.cat === 'thesis') {
+          catBadge = `<span class="cat cat-thesis" style="font-size: 8px; padding: 1px 4px; margin-right: 2px;">Thesis</span>`;
+        } else {
+          catBadge = `<span class="cat cat-elective" style="font-size: 8px; padding: 1px 4px; margin-right: 2px;">Programme-Specific</span>`;
+        }
+
+        // Timings
+        const timingText = course.sem.join(' / ');
+        let timingClass = 'timing-both';
+        if (timingText.includes('Autumn') || timingText.includes('August')) timingClass = 'timing-autumn';
+        else if (timingText.includes('Spring') || timingText.includes('June')) timingClass = 'timing-spring';
+        else if (timingText.includes('January')) timingClass = 'timing-jan';
+
+        const timingBadge = `<span class="timing ${timingClass}" style="font-size: 9px; padding: 1px 4px; margin-right: 2px;">${timingText}</span>`;
+
+        tr.innerHTML = `
+      <td style="text-align: center; vertical-align: middle;" onclick="event.stopPropagation(); toggleCustomCourse('${code}')">
+        <input type="checkbox" id="custom-check-${code}" ${isSelected ? 'checked' : ''} style="cursor: pointer;">
+      </td>
+      <td class="code" onclick="toggleCustomCourse('${code}')">${code === 'thesis' ? 'THESIS' : code}</td>
+      <td onclick="toggleCustomCourse('${code}')">
+        <div class="course-name" style="font-size: 12px; font-weight: 500;">${course.name}</div>
+        <div class="course-detail" style="font-size: 11px; margin-top: 2px;">${course.desc}</div>
+        <div style="margin-top: 4px; display: flex; flex-wrap: wrap; gap: 2px;">
+          ${catBadge}
+          ${timingBadge}
+          ${specBadges}
+        </div>
+      </td>
+      <td class="ects-cell" onclick="toggleCustomCourse('${code}')" style="vertical-align: middle;">${course.ects}</td>
+    `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function renderCustomSchedule() {
+      const container = document.getElementById('custom-schedule-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      SEMESTERS.forEach(sem => {
+        // Filter selected courses for this semester
+        const semCourses = Object.entries(customState).filter(([code, chosenSem]) => chosenSem === sem.id);
+
+        const block = document.createElement('div');
+        block.className = 'sem-block';
+        block.style.marginBottom = '1.5rem';
+
+        let ectsSum = 0;
+        semCourses.forEach(([code]) => {
+          ectsSum += COURSE_CATALOG[code].ects;
+        });
+
+        const header = `
+      <div class="sem-header" style="margin-bottom: 0.5rem; border-bottom: 2px solid var(--accent); display: flex; align-items: baseline; justify-content: space-between;">
+        <span class="sem-title" style="font-size: 14px; font-weight: 600; color: var(--text);">${sem.title}</span>
+        <span class="sem-period" style="font-family: var(--mono); font-size: 10px; color: var(--text-faint); margin-left: 10px;">${sem.period}</span>
+        <span class="sem-ects-total" id="custom-ects-${sem.id}" style="font-family: var(--mono); font-size: 12px; font-weight: 600; color: var(--accent); margin-left: auto;">${ectsSum} ECTS</span>
+      </div>
+    `;
+
+        let rowsHtml = '';
+        if (semCourses.length === 0) {
+          rowsHtml = `
+        <tr>
+          <td colspan="5" style="text-align: center; color: var(--text-faint); font-style: italic; padding: 12px; font-size: 11px;">
+            No courses selected for this semester. Select courses from the catalog.
+          </td>
+        </tr>
+      `;
+        } else {
+          semCourses.forEach(([code]) => {
+            const course = COURSE_CATALOG[code];
+
+            // Generate semester options for this course
+            let semOptions = '';
+            const isAutumnOnly = course.sem.length === 1 && course.sem[0] === 'Autumn';
+            const isSpringOnly = course.sem.length === 1 && course.sem[0] === 'Spring';
+            const isJanuaryOnly = course.sem.length === 1 && course.sem[0] === 'January';
+            const isSummerOnly = course.sem.length === 1 && (course.sem[0] === 'June' || course.sem[0] === 'August' || course.sem.join().includes('June'));
+
+            if (code === 'thesis') {
+              semOptions = `
+            <option value="sem4" ${sem.id === 'sem4' ? 'selected' : ''}>Sem 4 (Spring)</option>
+            <option value="sem3" ${sem.id === 'sem3' ? 'selected' : ''}>Sem 3 (Autumn)</option>
+          `;
+            } else if (isJanuaryOnly) {
+              semOptions = `<option value="jan" selected>January</option>`;
+            } else if (isSummerOnly) {
+              semOptions = `<option value="summer" selected>Summer (June/Aug)</option>`;
+            } else if (isAutumnOnly) {
+              semOptions = `
+            <option value="sem1" ${sem.id === 'sem1' ? 'selected' : ''}>Sem 1 (Autumn)</option>
+            <option value="sem3" ${sem.id === 'sem3' ? 'selected' : ''}>Sem 3 (Autumn)</option>
+          `;
+            } else if (isSpringOnly) {
+              semOptions = `
+            <option value="sem2" ${sem.id === 'sem2' ? 'selected' : ''}>Sem 2 (Spring)</option>
+            <option value="sem4" ${sem.id === 'sem4' ? 'selected' : ''}>Sem 4 (Spring)</option>
+          `;
+            } else {
+              semOptions = `
+            <option value="sem1" ${sem.id === 'sem1' ? 'selected' : ''}>Sem 1 (Autumn)</option>
+            <option value="sem2" ${sem.id === 'sem2' ? 'selected' : ''}>Sem 2 (Spring)</option>
+            <option value="sem3" ${sem.id === 'sem3' ? 'selected' : ''}>Sem 3 (Autumn)</option>
+            <option value="sem4" ${sem.id === 'sem4' ? 'selected' : ''}>Sem 4 (Spring)</option>
+          `;
+            }
+
+            let catBadge = '';
+            if (course.cat === 'mandatory') catBadge = `<span class="cat cat-mandatory" style="font-size: 8px; padding: 1px 4px;">Mandatory</span>`;
+            else if (course.cat === 'innov2') catBadge = `<span class="cat cat-innov" style="font-size: 8px; padding: 1px 4px;">Innov II</span>`;
+            else if (course.cat === 'core') catBadge = `<span class="cat cat-core" style="font-size: 8px; padding: 1px 4px;">Core</span>`;
+            else if (course.cat === 'thesis') catBadge = `<span class="cat cat-thesis" style="font-size: 8px; padding: 1px 4px;">Thesis</span>`;
+            else catBadge = `<span class="cat cat-elective" style="font-size: 8px; padding: 1px 4px;">Prog-Spec</span>`;
+
+            rowsHtml += `
+          <tr style="background: var(--surface);">
+            <td class="code" style="width: 70px; font-size: 11px; vertical-align: middle;">${code === 'thesis' ? 'THESIS' : code}</td>
+            <td style="vertical-align: middle;">
+              <div class="course-name" style="font-size: 12px; font-weight: 500;">${course.name}</div>
+              <div style="margin-top: 2px;">${catBadge}</div>
+            </td>
+            <td class="ects-cell" style="width: 50px; text-align: center; font-size: 12px; vertical-align: middle;">${course.ects}</td>
+            <td style="width: 120px; vertical-align: middle;">
+              <select onchange="changeCustomCourseSemester('${code}', this.value)" style="width: 100%; padding: 3px 6px; border: 1px solid var(--border); border-radius: 4px; font-family: var(--sans); font-size: 11px; background: var(--surface); color: var(--text);">
+                ${semOptions}
+              </select>
+            </td>
+            <td style="width: 35px; text-align: center; vertical-align: middle;">
+              <button onclick="toggleCustomCourse('${code}')" style="border: none; background: none; color: var(--red); cursor: pointer; font-size: 16px; line-height: 1; padding: 4px;">&times;</button>
+            </td>
+          </tr>
+        `;
+          });
+        }
+
+        block.innerHTML = `
+      ${header}
+      <table class="course-table" style="width: 100%; border-collapse: collapse; box-shadow: 0 1px 2px rgba(0,0,0,0.02);">
+        <tbody>
+          ${rowsHtml}
+        </tbody>
+      </table>
+    `;
+        container.appendChild(block);
+      });
+    }
+
+    function toggleCustomCourse(code) {
+      if (customState[code] !== undefined) {
+        delete customState[code];
+      } else {
+        const course = COURSE_CATALOG[code];
+        if (code === 'thesis') customState[code] = 'sem4';
+        else if (course.sem.includes('January')) customState[code] = 'jan';
+        else if (course.sem.includes('June') || course.sem.includes('August') || course.sem.join().includes('June')) customState[code] = 'summer';
+        else if (course.sem.includes('Autumn')) customState[code] = 'sem1';
+        else customState[code] = 'sem2';
+      }
+      renderCustomSelector();
+      renderCustomSchedule();
+      updateCustomStats();
+    }
+
+    function changeCustomCourseSemester(code, sem) {
+      customState[code] = sem;
+      renderCustomSchedule();
+      updateCustomStats();
+    }
+
+    function updateCustomStats() {
+      let totalEcts = 0;
+      let mandatoryEcts = 0;
+      let progSpecificEcts = 0;
+
+      let coreCount = 0;
+      let sustainSelected = false;
+      let innovSelected = false;
+      let innov2Ects = 0;
+      let thesisSelected = false;
+
+      let specEcts = {
+        ai: 0,
+        cyber: 0,
+        digital: 0,
+        embedded: 0,
+        safe: 0,
+        software: 0
+      };
+
+      Object.entries(customState).forEach(([code]) => {
+        const course = COURSE_CATALOG[code];
+        const ects = course.ects;
+
+        totalEcts += ects;
+
+        if (["12100", "12101", "12105", "12106"].includes(code)) {
+          sustainSelected = true;
+          mandatoryEcts += ects;
+        }
+
+        if (["42500", "42501", "42502", "42503", "42504", "42505"].includes(code)) {
+          innovSelected = true;
+          mandatoryEcts += ects;
+        }
+
+        if (course.cat === 'innov2') {
+          innov2Ects += ects;
+          progSpecificEcts += ects;
+        }
+
+        if (course.cat === 'core') {
+          coreCount++;
+          progSpecificEcts += ects;
+        }
+
+        if (course.cat === 'prog') {
+          progSpecificEcts += ects;
+        }
+
+        if (code === 'thesis') {
+          thesisSelected = true;
+        }
+
+        course.specs.forEach(specId => {
+          specEcts[specId] += ects;
+        });
+      });
+
+      document.getElementById('custom-progress-label').textContent = `${totalEcts} / 120 ECTS`;
+      const pct = Math.min(100, (totalEcts / 120) * 100);
+      document.getElementById('custom-progress-bar').style.width = pct + '%';
+
+      setCustomReq('custom-req-sustain', sustainSelected);
+      setCustomReq('custom-req-innov', innovSelected);
+      setCustomReq('custom-req-innov2', innov2Ects >= 5);
+      setCustomReq('custom-req-core', coreCount >= 2);
+      setCustomReq('custom-req-prog', progSpecificEcts >= 50);
+      setCustomReq('custom-req-thesis', thesisSelected);
+
+      const specsList = ['ai', 'cyber', 'digital', 'embedded', 'safe', 'software'];
+      specsList.forEach(specId => {
+        const ectsVal = specEcts[specId];
+        const pctVal = Math.min(100, (ectsVal / 25) * 100);
+
+        document.getElementById(`custom-bar-${specId}`).style.width = pctVal + '%';
+        document.getElementById(`custom-num-${specId}`).textContent = `${ectsVal} / 25 ECTS`;
+
+        const checkEl = document.getElementById(`custom-check-${specId}`);
+        if (checkEl) {
+          if (ectsVal >= 25) {
+            checkEl.textContent = '✓';
+            checkEl.style.color = 'var(--green)';
+          } else {
+            checkEl.textContent = '○';
+            checkEl.style.color = 'var(--text-faint)';
+          }
+        }
+      });
+
+      document.getElementById('custom-summary-total').textContent = totalEcts;
+      document.getElementById('custom-summary-mandatory').textContent = mandatoryEcts;
+      document.getElementById('custom-summary-prog').textContent = progSpecificEcts;
+      document.getElementById('custom-summary-thesis').textContent = thesisSelected ? 30 : 0;
+      document.getElementById('custom-summary-remaining').textContent = Math.max(0, 120 - totalEcts);
+    }
+
+    function setCustomReq(id, met) {
+      const el = document.getElementById(id);
+      if (el) {
+        if (met) el.classList.add('met');
+        else el.classList.remove('met');
+      }
+    }
+
+    // ----------------------------------------------------
+    // INITIALIZATION
+    // ----------------------------------------------------
+    updateStats();
+  </script>
+</body>
+
+</html>
