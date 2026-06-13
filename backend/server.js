@@ -132,8 +132,10 @@ Be proactive. If the user asks to add a course but doesn't specify which semeste
 
 app.post('/api/chat', async (req, res) => {
   const { messages, currentState } = req.body;
+  console.log(`\n[Server] POST /api/chat received. History length: ${messages?.length || 0}`);
 
   if (!messages || !Array.isArray(messages)) {
+    console.warn("[Server] Bad Request: missing messages array.");
     return res.status(400).json({ error: "Missing or invalid messages array." });
   }
 
@@ -146,11 +148,12 @@ Please respond to the user's message. Assess if they want to add/remove/move cou
 
   if (!ai) {
     // Mock Mode (when API key is not present)
-    console.log("Gemini API key not configured. Processing in Mock Mode.");
+    console.log("[Server] Gemini API key not configured. Processing in Mock Mode.");
     return handleMockChat(messages[messages.length - 1].content, currentState, res);
   }
 
   try {
+    console.log("[Server] Calling Gemini API (gemini-2.5-flash)...");
     const model = ai.getGenerativeModel({
       model: 'gemini-2.5-flash',
       systemInstruction: SYSTEM_INSTRUCTION
@@ -207,7 +210,9 @@ Please respond to the user's message. Assess if they want to add/remove/move cou
       }
     });
 
+    console.log("[Server] Gemini API response received successfully!");
     const responseText = result.response.text();
+    console.log(`[Server] Response JSON: ${responseText}`);
     const jsonResponse = JSON.parse(responseText);
     res.json(jsonResponse);
 
