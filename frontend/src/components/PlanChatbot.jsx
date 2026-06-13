@@ -88,13 +88,22 @@ export default function PlanChatbot({ currentState, onApplyActions }) {
     let listItems = [];
     const elements = [];
 
-    const parseBold = (str) => {
-      const parts = str.split(/\*\*(.*?)\*\*/g);
-      return parts.map((part, index) => {
-        if (index % 2 === 1) {
-          return <strong key={index}>{part}</strong>;
+    const parseFormatting = (str) => {
+      const boldParts = str.split(/\*\*(.*?)\*\*/g);
+      return boldParts.flatMap((bPart, bIndex) => {
+        const isBold = bIndex % 2 === 1;
+        const italicParts = bPart.split(/\*(.*?)\*/g);
+        const rendered = italicParts.map((iPart, iIndex) => {
+          const isItalic = iIndex % 2 === 1;
+          if (isItalic) {
+            return <em key={`i-${iIndex}`}>{iPart}</em>;
+          }
+          return iPart;
+        });
+        if (isBold) {
+          return <strong key={`b-${bIndex}`}>{rendered}</strong>;
         }
-        return part;
+        return rendered;
       });
     };
 
@@ -105,14 +114,14 @@ export default function PlanChatbot({ currentState, onApplyActions }) {
           inList = true;
           listItems = [];
         }
-        listItems.push(<li key={idx}>{parseBold(trimmed.substring(2))}</li>);
+        listItems.push(<li key={idx}>{parseFormatting(trimmed.substring(2))}</li>);
       } else {
         if (inList) {
           elements.push(<ul key={`list-${idx}`}>{listItems}</ul>);
           inList = false;
         }
         if (trimmed) {
-          elements.push(<p key={idx}>{parseBold(line)}</p>);
+          elements.push(<p key={idx}>{parseFormatting(line)}</p>);
         }
       }
     });
@@ -129,7 +138,7 @@ export default function PlanChatbot({ currentState, onApplyActions }) {
       <div className="chat-header">
         <div>
           <h3>Study Plan AI Advisor</h3>
-          <span className="chat-header-desc">Gemini 1.5 Flash</span>
+          <span className="chat-header-desc">Gemini 2.5 Flash</span>
         </div>
       </div>
 
