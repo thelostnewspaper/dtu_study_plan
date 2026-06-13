@@ -152,7 +152,7 @@ Please respond to the user's message. Assess if they want to add/remove/move cou
 
   try {
     const model = ai.getGenerativeModel({
-      model: 'gemini-1.5-flash',
+      model: 'gemini-2.5-flash',
       systemInstruction: SYSTEM_INSTRUCTION
     });
 
