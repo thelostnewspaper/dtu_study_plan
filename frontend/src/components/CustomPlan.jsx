@@ -1,59 +1,12 @@
 import React, { useState } from 'react';
 import PlanChatbot from './PlanChatbot';
-
-const COURSE_CATALOG = {
-  "12100": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Autumn"], cat: "mandatory", specs: [], desc: "Life-cycle assessment, environmental impact quantification." },
-  "12101": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Spring"], cat: "mandatory", specs: [], desc: "Life-cycle assessment, environmental impact quantification." },
-  "12105": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Autumn"], cat: "mandatory", specs: [], desc: "Life-cycle assessment, environmental impact quantification (Evening slot)." },
-  "12106": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Spring"], cat: "mandatory", specs: [], desc: "Life-cycle assessment, environmental impact quantification." },
-  "42500": { name: "Innovation in Engineering", ects: 5, sem: ["January"], cat: "mandatory", specs: [], desc: "Entrepreneurship, design thinking, innovation processes." },
-  "42501": { name: "Innovation in Engineering", ects: 5, sem: ["June"], cat: "mandatory", specs: [], desc: "Entrepreneurship, design thinking, innovation processes." },
-  "42504": { name: "Innovation in Engineering", ects: 5, sem: ["August"], cat: "mandatory", specs: [], desc: "Entrepreneurship, design thinking, innovation processes." },
-  "42502": { name: "Facilitating Innovation in Multidisciplinary Teams", ects: 5, sem: ["January"], cat: "mandatory", specs: [], desc: "Team dynamics, innovation design, creative facilitation." },
-  "42503": { name: "Facilitating Innovation in Multidisciplinary Teams", ects: 5, sem: ["June"], cat: "mandatory", specs: [], desc: "Team dynamics, innovation design, creative facilitation." },
-  "42505": { name: "Facilitating Innovation in Multidisciplinary Teams", ects: 5, sem: ["August"], cat: "mandatory", specs: [], desc: "Team dynamics, innovation design, creative facilitation." },
-  "thesis": { name: "Master's Thesis", ects: 30, sem: ["Spring", "Autumn"], cat: "thesis", specs: [], desc: "Standalone independent project, typically done in Semester 4." },
-  "02266": { name: "User Experience Engineering", ects: 5, sem: ["January"], cat: "innov2", specs: ["software"], desc: "UI/UX methods, user research, prototyping, usability testing." },
-  "38102": { name: "Technology Entrepreneurship", ects: 5, sem: ["Autumn"], cat: "innov2", specs: [], desc: "Business modeling, startup creation, commercialization strategies." },
-  "38103": { name: "X-Tech Entrepreneurship", ects: 10, sem: ["Autumn", "Spring"], cat: "innov2", specs: [], desc: "Project incubator connecting researchers and students to build startups." },
-  "38106": { name: "Developing an Entrepreneurial Mindset", ects: 5, sem: ["Spring"], cat: "innov2", specs: [], desc: "Creativity, mindset building, startup exploration." },
-  "38113": { name: "Applied AI for Entrepreneurs", ects: 5, sem: ["Autumn"], cat: "innov2", specs: [], desc: "Leveraging AI/ML systems to build new commercial platforms." },
-  "02201": { name: "Agile Hardware Design", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["digital"], desc: "Modern agile workflows for digital systems, rapid prototyping." },
-  "02203": { name: "Design of Digital Systems", ects: 5, sem: ["Autumn"], cat: "core", specs: ["digital", "embedded"], desc: "FPGA hardware design, CAD tools, digital circuit implementation." },
-  "02205": { name: "VLSI Design", ects: 5, sem: ["Spring"], cat: "prog", specs: ["digital"], desc: "Very Large Scale Integration, CMOS technology, transistor-level layout." },
-  "02207": { name: "Verification of Digital Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["digital"], desc: "Formal verification, model checking, assertion-based testing." },
-  "02209": { name: "Test of Digital Systems", ects: 5, sem: ["Spring"], cat: "prog", specs: ["digital"], desc: "Fault modeling, automatic test pattern generation, design-for-testability." },
-  "02211": { name: "Research Topics in Computer Architecture", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["digital", "embedded"], desc: "Advanced processor design, memory hierarchies, research directions." },
-  "02214": { name: "Hardware/Software Codesign", ects: 5, sem: ["Spring"], cat: "prog", specs: ["digital", "embedded"], desc: "FPGA-software interfaces, firmware-hardware boundary, co-simulation." },
-  "02225": { name: "Distributed Real-Time Systems", ects: 5, sem: ["Spring"], cat: "core", specs: ["digital", "embedded"], desc: "Real-time scheduling, fault tolerance, distributed protocols." },
-  "02226": { name: "Networked Embedded Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["embedded"], desc: "Communication protocols, IoT architectures, real-world embedded labs." },
-  "02231": { name: "Cryptography Fundamentals", ects: 5, sem: ["Autumn", "Spring"], cat: "prog", specs: ["cyber", "safe"], desc: "Symmetric/asymmetric crypto, protocols, mathematical foundations." },
-  "02232": { name: "Applied Cryptography", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber", "safe"], desc: "Implementation of crypto algorithms, secure communication protocols." },
-  "02234": { name: "Research Topics in Cybersecurity", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["cyber"], desc: "Keeps you current on emerging threats and OT/ICS security." },
-  "02242": { name: "Program Analysis", ects: 7.5, sem: ["Autumn"], cat: "core", specs: ["safe", "software"], desc: "Static analysis, dataflow, type systems, software reliability." },
-  "02244": { name: "Logic for Security", ects: 7.5, sem: ["Autumn"], cat: "prog", specs: ["safe"], desc: "Mathematical logic, formal models of security protocols." },
-  "02245": { name: "Program Verification", ects: 7.5, sem: ["Spring"], cat: "prog", specs: ["safe", "software"], desc: "Formal verification tools, Hoare logic, proving program correctness." },
-  "02246": { name: "Model Checking", ects: 7.5, sem: ["Spring"], cat: "prog", specs: ["safe"], desc: "Automated verification of finite-state concurrent systems." },
-  "02247": { name: "Compiler Construction", ects: 5, sem: ["Spring"], cat: "prog", specs: ["safe"], desc: "Parsing, lexing, semantic analysis, compiler design." },
-  "02249": { name: "Computationally Hard Problems", ects: 7.5, sem: ["Autumn"], cat: "core", specs: ["ai", "embedded"], desc: "NP-completeness, approximation algorithms, exact algorithms." },
-  "02256": { name: "Automated Reasoning", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai", "safe"], desc: "Theorem proving, SAT/SMT solvers, logical frameworks." },
-  "02258": { name: "Parallel Computer Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["embedded"], desc: "Concurrent programming, parallel architectures, performance models." },
-  "02262": { name: "Formal Aspects of Process Science", ects: 5, sem: ["Spring"], cat: "prog", specs: ["safe", "software"], desc: "Concurrency theory, Petri nets, process algebra." },
-  "02267": { name: "Software Development of Web Services", ects: 5, sem: ["Spring"], cat: "prog", specs: ["software"], desc: "Cloud/API layer and IoT cloud connectivity." },
-  "02268": { name: "Process-Oriented and Event-Driven Software Systems", ects: 5, sem: ["Spring"], cat: "prog", specs: ["software"], desc: "Industrial automation and IoT event pipelines." },
-  "02269": { name: "Process Mining", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["software"], desc: "Discovering, monitoring, and improving processes from event logs." },
-  "02270": { name: "Cybersecurity Fundamentals", ects: 5, sem: ["Autumn"], cat: "core", specs: ["cyber", "software"], desc: "Network security, threat modeling, secure systems design." },
-  "02271": { name: "Advanced Cybersecurity", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber"], desc: "Advanced threat defense, secure architecture design." },
-  "02275": { name: "Ethical Hacking", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["cyber"], desc: "Penetration testing, vulnerability assessment, exploitation." },
-  "02276": { name: "Usable Security and Privacy", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber"], desc: "Human factors in security, interface design for security." },
-  "02277": { name: "Cyber Risk Management and Incident Response", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber"], desc: "NIS2 compliance, risk frameworks, incident handling." },
-  "02278": { name: "Post-Quantum Cryptography", ects: 5, sem: ["June"], cat: "prog", specs: ["cyber"], desc: "Forward bet on quantum-resistant cryptographic algorithms." },
-  "02282": { name: "Algorithms for Massive Data Sets", ects: 7.5, sem: ["Autumn"], cat: "prog", specs: ["ai"], desc: "Streaming algorithms, hashing, handling giant data collections." },
-  "02280": { name: "Artificial Intelligence and Multi-Agent Systems", ects: 10, sem: ["Autumn"], cat: "prog", specs: ["ai"], desc: "Robotics and autonomous agent decision-making models." },
-  "02287": { name: "Logical Theories for Uncertainty and Learning", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai"], desc: "Probabilistic logic and foundations of machine learning." },
-  "02289": { name: "Algorithmic Techniques for Modern Data Models", ects: 5, sem: ["Spring"], cat: "prog", specs: ["ai"], desc: "Advanced graph algorithms, data structures, metric spaces." },
-  "02291": { name: "System Integration", ects: 5, sem: ["Autumn"], cat: "core", specs: ["ai", "cyber", "digital", "embedded", "safe", "software"], desc: "Heterogeneous systems, APIs, middleware, SOA." }
-};
+import {
+  COURSE_CATALOG,
+  getCategoryClass,
+  getCategoryLabel,
+  getTimingClass,
+  getTimingLabel
+} from '../courses';
 
 const SEMESTERS = [
   { id: "sem1", title: "Semester 1 — Autumn", period: "September – December" },
@@ -188,35 +141,7 @@ export default function CustomPlan({ customState, setCustomState }) {
     });
   });
 
-  const getCategoryClass = (cat) => {
-    switch (cat) {
-      case 'mandatory': return 'cat-mandatory';
-      case 'core': return 'cat-core';
-      case 'prog': return 'cat-prog';
-      case 'innov2': return 'cat-innov';
-      case 'thesis': return 'cat-thesis';
-      default: return 'cat-elective';
-    }
-  };
-
-  const getCategoryLabel = (cat) => {
-    switch (cat) {
-      case 'mandatory': return 'Mandatory';
-      case 'core': return 'Core Competence';
-      case 'prog': return 'Programme-Specific';
-      case 'innov2': return 'Innovation II';
-      case 'thesis': return 'Thesis';
-      default: return 'Elective';
-    }
-  };
-
-  const getTimingClass = (sems) => {
-    const text = sems.join('/');
-    if (text.includes('Autumn') || text.includes('August')) return 'timing-autumn';
-    if (text.includes('Spring') || text.includes('June')) return 'timing-spring';
-    if (text.includes('January')) return 'timing-jan';
-    return 'timing-both';
-  };
+  // Category and timing helpers are imported from courses.js
 
   const specNameMap = {
     ai: "AI & Algorithms",
@@ -278,10 +203,10 @@ export default function CustomPlan({ customState, setCustomState }) {
         </div>
 
         {/* 2-Column Layout */}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginTop: '1.5rem', alignItems: 'flex-start' }}>
+        <div className="custom-plan-layout" style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginTop: '1.5rem', alignItems: 'flex-start' }}>
           
           {/* Catalog Column */}
-          <div style={{ flex: '1 1 480px', minWidth: 320, background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 8, padding: '1.5rem' }}>
+          <div className="custom-plan-catalog" style={{ flex: '1 1 480px', minWidth: 320, background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 8, padding: '1.5rem' }}>
             <h3 style={{ fontSize: 15, fontWeight: 600, marginBottom: '1rem', borderBottom: '2px solid var(--accent)', paddingBottom: 6 }}>1. Course Catalog</h3>
             
             <div style={{ display: 'flex', gap: 10, marginBottom: '1rem' }}>
@@ -344,7 +269,7 @@ export default function CustomPlan({ customState, setCustomState }) {
                             <div className="course-detail" style={{ fontSize: 11, marginTop: 2 }}>{c.desc}</div>
                             <div style={{ marginTop: 4, display: 'flex', flexWrap: 'wrap', gap: 2 }}>
                               <span className={`cat ${getCategoryClass(c.cat)}`} style={{ fontSize: 8, padding: '1px 4px' }}>{getCategoryLabel(c.cat)}</span>
-                              <span className={`timing ${getTimingClass(c.sem)}`} style={{ fontSize: 8, padding: '1px 4px' }}>{c.sem.join('/')}</span>
+                              <span className={`timing ${getTimingClass(c.sem.join('/'))}`} style={{ fontSize: 8, padding: '1px 4px' }}>{c.sem.join('/')}</span>
                               {c.specs.map(sId => (
                                 <span key={sId} className="cat" style={{ fontSize: 8, padding: '1px 4px', background: specColors[sId] }}>{specNameMap[sId]}</span>
                               ))}
@@ -360,7 +285,7 @@ export default function CustomPlan({ customState, setCustomState }) {
           </div>
 
           {/* Schedule Column */}
-          <div style={{ flex: '1 1 480px', minWidth: 320 }}>
+          <div className="custom-plan-schedule" style={{ flex: '1 1 480px', minWidth: 320 }}>
             <h3 style={{ fontSize: 15, fontWeight: 600, marginBottom: '1rem', borderBottom: '2px solid var(--accent)', paddingBottom: 6 }}>2. Custom Schedule</h3>
             <p style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: '1.5rem' }}>Select courses on the left or type in the chat. They appear below where you can adjust timing.</p>
 
@@ -478,7 +403,7 @@ export default function CustomPlan({ customState, setCustomState }) {
                                       <div className="course-name" style={{ fontSize: 11, fontWeight: 500 }}>{c.name}</div>
                                     </td>
                                     <td className="ects-cell" style={{ width: 40, verticalAlign: 'middle', fontSize: 11 }}>{c.ects}</td>
-                                    <td style={{ width: 100, verticalAlign: 'middle' }}>
+                                    <td className="hide-print" style={{ width: 100, verticalAlign: 'middle' }}>
                                       <select
                                         value={sem.id}
                                         onChange={(e) => changeCustomCourseSemester(code, e.target.value)}
@@ -489,7 +414,7 @@ export default function CustomPlan({ customState, setCustomState }) {
                                         ))}
                                       </select>
                                     </td>
-                                    <td style={{ width: 25, textAlign: 'center', verticalAlign: 'middle' }}>
+                                    <td className="hide-print" style={{ width: 25, textAlign: 'center', verticalAlign: 'middle' }}>
                                       <button onClick={() => toggleCustomCourse(code)} style={{ border: 'none', background: 'none', color: 'var(--red)', cursor: 'pointer', fontSize: 14 }}>&times;</button>
                                     </td>
                                   </tr>

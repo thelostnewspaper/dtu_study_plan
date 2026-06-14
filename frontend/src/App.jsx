@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import RecommendedPlan from './components/RecommendedPlan';
 import CustomPlan from './components/CustomPlan';
-
-const EMBEDDED_COURSES = ['02203', '02211', '02214', '02225', '02226', '02249', '02258', '02291'];
-
-const COURSE_CATALOG = {
-  "12105": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Autumn"], cat: "mandatory", specs: [] },
-  "42500": { name: "Innovation in Engineering", ects: 5, sem: ["January"], cat: "mandatory", specs: [] },
-  "02266": { name: "User Experience Engineering", ects: 5, sem: ["January"], cat: "innov2", specs: ["software"] },
-  "02203": { name: "Design of Digital Systems", ects: 5, sem: ["Autumn"], cat: "core", specs: ["digital", "embedded"] },
-  "02225": { name: "Distributed Real-Time Systems", ects: 5, sem: ["Spring"], cat: "core", specs: ["digital", "embedded"] },
-  "thesis": { name: "Master's Thesis", ects: 30, sem: ["Spring", "Autumn"], cat: "thesis", specs: [] }
-};
+import {
+  COURSE_CATALOG,
+  EMBEDDED_COURSES,
+  getCategoryClass,
+  getCategoryLabel,
+  getTimingClass,
+  getTimingLabel,
+  getElectiveSlots
+} from './courses';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('recommended');
@@ -58,61 +56,17 @@ export default function App() {
         }
       }
 
-      // 3. Electives assigned to slots (derived from selectedElectives logic)
-      // Mirror the slots logic from RecommendedPlan
-      const ELECTIVES_DATA = {
-        '02267': { code: '02267', ects: 5, timing: 'spring' },
-        '02268': { code: '02268', ects: 5, timing: 'spring' },
-        '02278': { code: '02278', ects: 5, timing: 'june' },
-        '02234': { code: '02234', ects: 5, timing: 'autumn' },
-        '02280': { code: '02280', ects: 10, timing: 'autumn' },
-        '31372': { code: '31372', ects: 5, timing: 'spring' },
-        '34760': { code: '34760', ects: 5, timing: 'autumn' },
-        '30310': { code: '30310', ects: 5, timing: 'autumn' },
-        '22058': { code: '22058', ects: 5, timing: 'spring' },
-        '22449': { code: '22449', ects: 5, timing: 'autumn' },
-        '27510': { code: '27510', ects: 5, timing: 'spring' },
-        'other': { code: 'other', ects: 5, timing: 'both' }
-      };
+      // 3. Electives assigned to slots (using shared helper)
+      const { slotSem2, slotSem3 } = getElectiveSlots(selectedElectives);
+      let slot2Ects = slotSem2.selected ? slotSem2.ects : 0;
+      let slot3Ects = slotSem3.selected ? slotSem3.ects : 0;
 
-      const activeElectives = Array.from(selectedElectives).map(code => ELECTIVES_DATA[code]).filter(Boolean);
-      let slot2Ects = 0;
-      let slot3Ects = 0;
-      let slot3Filled = false;
-      let slot2Filled = false;
-      const assigned = new Set();
-
-      activeElectives.forEach(item => {
-        const isAutumn = item.timing === 'autumn' || item.timing === 'both';
-        const is7_5 = item.ects === 7.5 || item.ects === 10;
-        if ((isAutumn || is7_5) && !slot3Filled) {
-          slot3Ects = item.ects;
-          slot3Filled = true;
-          assigned.add(item.code);
-          if (EMBEDDED_COURSES.includes(item.code)) {
-            embeddedECTS += item.ects;
-          }
-        }
-      });
-
-      activeElectives.forEach(item => {
-        if (assigned.has(item.code)) return;
-        if (!slot2Filled) {
-          slot2Ects = item.ects;
-          slot2Filled = true;
-          assigned.add(item.code);
-          if (EMBEDDED_COURSES.includes(item.code)) {
-            embeddedECTS += item.ects;
-          }
-        } else if (!slot3Filled) {
-          slot3Ects = item.ects;
-          slot3Filled = true;
-          assigned.add(item.code);
-          if (EMBEDDED_COURSES.includes(item.code)) {
-            embeddedECTS += item.ects;
-          }
-        }
-      });
+      if (slotSem2.selected && EMBEDDED_COURSES.includes(slotSem2.code)) {
+        embeddedECTS += slotSem2.ects;
+      }
+      if (slotSem3.selected && EMBEDDED_COURSES.includes(slotSem3.code)) {
+        embeddedECTS += slotSem3.ects;
+      }
 
       total += slot2Ects + slot3Ects;
 
@@ -152,6 +106,134 @@ export default function App() {
 
   const { total, embeddedECTS } = calculateHeaderStats();
 
+  const getPrintPlanCourses = () => {
+    if (activeTab === 'recommended') {
+      const sem1 = {
+        title: 'Semester 1 — Autumn',
+        period: 'September – December',
+        courses: [
+          { code: '02203', ...COURSE_CATALOG['02203'], notes: 'Core pick 1 of 2. Hands-on with real hardware — good entry point.' },
+          { code: '02226', ...COURSE_CATALOG['02226'], notes: 'Practical and lab-heavy. Accessible for new students. Core to your profile.' },
+          { code: '02258', ...COURSE_CATALOG['02258'], notes: 'Autumn confirmed. Complements embedded track directly.' },
+          { code: '02291', ...COURSE_CATALOG['02291'], notes: 'Counts toward Embedded specialization. Bridges hardware and software.' },
+          { code: '12105', ...COURSE_CATALOG['12105'], notes: 'Tick-the-box requirement. Evening slot means minimal schedule clash. Light workload.' },
+          { code: '02270', ...COURSE_CATALOG['02270'], notes: 'Core pick 2 of 2 (or programme-specific). NIS2 literacy — useful for all Danish industrial roles. Not a detour.' }
+        ]
+      };
+      if (semestersState['02231'] === 'sem1') {
+        sem1.courses.push({ code: '02231', ...COURSE_CATALOG['02231'], notes: 'Moved to Sem 1. Embedded crypto on constrained devices is a valued specialism.' });
+      }
+
+      const jan = {
+        title: 'January Intensive',
+        period: '3-week block · January',
+        courses: [
+          { code: '42500', ...COURSE_CATALOG['42500'], notes: 'Must complete. Also offered June (42501) or Aug (42504) if January fills up.' },
+          { code: '02266', ...COURSE_CATALOG['02266'], notes: 'Mandatory Innovation II pick. Practical and project-based — not heavy theory.' }
+        ]
+      };
+
+      const sem2 = {
+        title: 'Semester 2 — Spring',
+        period: 'February – May',
+        courses: []
+      };
+      if (semestersState['02225'] === 'sem2') {
+        sem2.courses.push({ code: '02225', ...COURSE_CATALOG['02225'], notes: 'The single most important course for your profile. Spring only (F4B). Confirm on Study Planner.' });
+      }
+      sem2.courses.push({ code: '02214', ...COURSE_CATALOG['02214'], notes: 'Deepens the embedded layer. Firmware/hardware boundary is a key skill for Danish industrial jobs.' });
+      if (semestersState['02231'] === 'sem2') {
+        sem2.courses.push({ code: '02231', ...COURSE_CATALOG['02231'], notes: 'Move to Sem 1 if timing allows. Embedded crypto on constrained devices is a valued specialism.' });
+      }
+      if (semestersState['02277'] === 'sem2') {
+        sem2.courses.push({ code: '02277', ...COURSE_CATALOG['02277'], notes: 'NIS2-directly relevant. Danish industrial employers increasingly expect this literacy. Confirm semester.' });
+      }
+      const { slotSem2, slotSem3 } = getElectiveSlots(selectedElectives);
+      if (slotSem2.selected) {
+        sem2.courses.push({
+          code: slotSem2.code,
+          name: slotSem2.name,
+          ects: slotSem2.ects,
+          cat: 'elective',
+          timing: slotSem2.timing,
+          notes: slotSem2.why
+        });
+      }
+
+      const sem3 = {
+        title: 'Semester 3 — Autumn',
+        period: 'September – December',
+        courses: [
+          { code: '02211', ...COURSE_CATALOG['02211'], notes: 'Rounds out Embedded specialization. Good for thesis ideation in hardware-adjacent topics.' }
+        ]
+      };
+      if (semestersState['02225'] === 'sem3') {
+        sem3.courses.push({ code: '02225', ...COURSE_CATALOG['02225'], notes: 'Moved to Autumn. Confirm on Study Planner.' });
+      }
+      if (semestersState['02277'] === 'sem3') {
+        sem3.courses.push({ code: '02277', ...COURSE_CATALOG['02277'], notes: 'Moved to Autumn. Confirm on Study Planner.' });
+      }
+      if (choiceGroupSem3 === '02249') {
+        sem3.courses.push({ code: '02249', ...COURSE_CATALOG['02249'], notes: 'Counts toward Embedded specialization. Needed to reach 25 ECTS threshold. Challenging but broadens algorithmic thinking.' });
+      } else if (choiceGroupSem3 === '02242') {
+        sem3.courses.push({ code: '02242', ...COURSE_CATALOG['02242'], notes: 'Software reliability angle — preferred if you target safety-critical software roles over pure hardware. Does not count toward Embedded specialization.' });
+      }
+      sem3.courses.push({ code: '02275', ...COURSE_CATALOG['02275'], notes: 'Autumn (E5B — Wed 13–17). Top-listed skill in Danish market. Now no longer conflicts with 02270 (done in Sem 1).' });
+      if (slotSem3.selected) {
+        sem3.courses.push({
+          code: slotSem3.code,
+          name: slotSem3.name,
+          ects: slotSem3.ects,
+          cat: 'elective',
+          timing: slotSem3.timing,
+          notes: slotSem3.why
+        });
+      }
+
+      const sem4 = {
+        title: 'Semester 4 — Spring',
+        period: 'February – June',
+        courses: [
+          { code: 'thesis', ...COURSE_CATALOG['thesis'], notes: 'The thesis is your single most important career asset. An industry-partnered thesis is what converts the degree into a job offer for international graduates.' }
+        ]
+      };
+
+      const semesters = [sem1, jan, sem2, sem3, sem4];
+      semesters.forEach(s => {
+        s.ects = s.courses.reduce((acc, c) => acc + c.ects, 0);
+      });
+      return semesters;
+    } else {
+      const semesters = [
+        { id: "sem1", title: "Semester 1 — Autumn", period: "September – December", courses: [] },
+        { id: "jan", title: "January Intensive", period: "3-week block · January", courses: [] },
+        { id: "sem2", title: "Semester 2 — Spring", period: "February – May", courses: [] },
+        { id: "summer", title: "Summer Intensive", period: "June / August", courses: [] },
+        { id: "sem3", title: "Semester 3 — Autumn", period: "September – December", courses: [] },
+        { id: "sem4", title: "Semester 4 — Spring", period: "February – June", courses: [] }
+      ];
+
+      semesters.forEach(s => {
+        s.courses = Object.entries(customState)
+          .filter(([_, sVal]) => sVal === s.id)
+          .map(([code]) => {
+            const course = COURSE_CATALOG[code];
+            return {
+              code,
+              name: course.name,
+              ects: course.ects,
+              cat: course.cat,
+              timing: course.sem.join('/'),
+              notes: course.desc
+            };
+          });
+        s.ects = s.courses.reduce((acc, c) => acc + c.ects, 0);
+      });
+
+      return semesters.filter(s => s.courses.length > 0);
+    }
+  };
+
   return (
     <div>
       {/* HEADER */}
@@ -181,20 +263,33 @@ export default function App() {
 
       {/* TAB BAR */}
       <div className="tab-bar">
-        <button
-          className={`choice-btn ${activeTab === 'recommended' ? 'active' : ''}`}
-          onClick={() => setActiveTab('recommended')}
-          style={{ fontSize: 13, padding: '8px 16px' }}
-        >
-          Recommended Plan
-        </button>
-        <button
-          className={`choice-btn ${activeTab === 'custom' ? 'active' : ''}`}
-          onClick={() => setActiveTab('custom')}
-          style={{ fontSize: 13, padding: '8px 16px' }}
-        >
-          Custom Plan Builder
-        </button>
+        <div style={{ flex: 1 }}></div>
+        <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
+          <button
+            className={`choice-btn ${activeTab === 'recommended' ? 'active' : ''}`}
+            onClick={() => setActiveTab('recommended')}
+            style={{ fontSize: 13, padding: '8px 16px' }}
+          >
+            Recommended Plan
+          </button>
+          <button
+            className={`choice-btn ${activeTab === 'custom' ? 'active' : ''}`}
+            onClick={() => setActiveTab('custom')}
+            style={{ fontSize: 13, padding: '8px 16px' }}
+          >
+            Custom Plan Builder
+          </button>
+        </div>
+        <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
+          {total >= 120 && (
+            <button
+              className="download-pdf-btn"
+              onClick={() => window.print()}
+            >
+              📥 Download PDF
+            </button>
+          )}
+        </div>
       </div>
 
       {/* ECTS PROGRESS TRACKER BAR */}
@@ -222,6 +317,65 @@ export default function App() {
           setCustomState={setCustomState}
         />
       )}
+
+      {/* PRINT-ONLY STUDY PLAN RENDER */}
+      <div className="print-only">
+        <div className="print-header">
+          <div className="header-eyebrow">Technical University of Denmark · MSc Computer Science & Engineering</div>
+          <h1>DTU Study Plan</h1>
+          <div className="print-header-sub">
+            <span><strong>Active Plan:</strong> {activeTab === 'recommended' ? 'Recommended Plan' : 'Custom Study Plan'}</span>
+            <span style={{ marginLeft: 20 }}><strong>Total ECTS:</strong> {total} / 120 ECTS</span>
+            <span style={{ marginLeft: 20 }}><strong>Embedded Specialization ECTS:</strong> {embeddedECTS} / 25 ECTS</span>
+          </div>
+        </div>
+
+        {getPrintPlanCourses().map((sem, idx) => (
+          <div key={idx} className="sem-block" style={{ pageBreakInside: 'avoid' }}>
+            <div className="sem-header">
+              <span className="sem-title">{sem.title}</span>
+              <span className="sem-period">{sem.period}</span>
+              <span className="sem-ects-total">{sem.ects} ECTS</span>
+            </div>
+            <table className="course-table">
+              <thead>
+                <tr>
+                  <th style={{ width: 80 }}>Code</th>
+                  <th>Course</th>
+                  <th style={{ width: 60, textAlign: 'center' }}>ECTS</th>
+                  <th style={{ width: 140 }}>Category</th>
+                  <th style={{ width: 110 }}>Timing</th>
+                  <th>Notes / Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sem.courses.map(course => {
+                  const tClass = getTimingClass(course.timing || '');
+                  const tLabel = getTimingLabel(course.timing || '');
+                  return (
+                    <tr key={course.code}>
+                      <td className="code">{course.code === 'thesis' ? 'THESIS' : course.code}</td>
+                      <td>
+                        <div className="course-name">{course.name}</div>
+                      </td>
+                      <td className="ects-cell">{course.ects}</td>
+                      <td>
+                        <span className={`cat ${getCategoryClass(course.cat)}`}>
+                          {getCategoryLabel(course.cat)}
+                        </span>
+                      </td>
+                      <td>
+                        <span className={`timing ${tClass}`}>{tLabel}</span>
+                      </td>
+                      <td className="course-detail">{course.notes || course.desc}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

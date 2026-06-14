@@ -1,22 +1,14 @@
 import React from 'react';
-
-const EMBEDDED_COURSES = ['02203', '02211', '02214', '02225', '02226', '02249', '02258', '02291'];
-const CYBER_COURSES = ['02231', '02232', '02234', '02270', '02271', '02275', '02276', '02277', '02278', '02291'];
-
-const ELECTIVES_LIST = [
-  { code: '02267', name: 'Software Development of Web Services', why: 'Adds cloud/API layer. Many embedded roles now involve IoT cloud connectivity (Grundfos, Kamstrup, Danfoss).', semText: 'F — Spring', ects: 5, timing: 'spring' },
-  { code: '02268', name: 'Process-Oriented & Event-Driven Software Systems', why: 'Industrial automation and IoT event pipelines. Relevant to manufacturing and process industries — common in Denmark.', semText: 'F — Spring', ects: 5, timing: 'spring' },
-  {code: '02278', name: 'Post-Quantum Cryptography', why: 'Forward bet — EU quantum regulation incoming. Rare skill that differentiates within security-aware embedded roles.', semText: 'June intensive', ects: 5, timing: 'june' },
-  { code: '02234', name: 'Research Topics in Cybersecurity', why: 'Keeps you current on emerging threats. Good for thesis ideation if targeting OT/ICS security at Terma or telecom companies.', semText: 'E — Autumn', ects: 5, timing: 'autumn' },
-  { code: '02280', name: 'Artificial Intelligence and Multi-Agent Systems', why: 'If you want to angle toward robotics or autonomous systems — growing sector in Denmark (Universal Robots, MAN Energy).', semText: 'E — Autumn', ects: 10, timing: 'autumn' },
-  { code: '31372', name: 'Hierarchical and Distributed Automation Systems', why: 'DTU Electro. Covers PLC, SCADA, and fieldbuses. Perfect for Danish industrial IoT roles (Grundfos, Danfoss) where embedded HW meets automation.', semText: 'F — Spring', ects: 5, timing: 'spring' },
-  { code: '34760', name: 'Safety and Reliability in Robotic Systems', why: 'DTU Electro. Safety standards, risk analysis, reliability modeling. Critical for safety-critical and security-aware industrial embedded careers.', semText: 'E — Autumn', ects: 5, timing: 'autumn' },
-  { code: '30310', name: 'Space Systems Engineering', why: 'DTU Space. Covers systems engineering, trade-offs, reliability, integration, and risk management in extreme environments. Excellent for complex systems.', semText: 'E — Autumn', ects: 5, timing: 'autumn' },
-  { code: '22058', name: 'Wearable Sensors: Designing and Prototyping', why: 'DTU Health Tech. Hands-on design of wearable bio-sensors (ECG, IMU). Crucial if targeting Danish medical tech giants like Demant or GN Hearing.', semText: 'F — Spring', ects: 5, timing: 'spring' },
-  { code: '22449', name: 'Introduction to Biomedical Product Development', why: 'DTU Health Tech. Medical device regulations, QA, and risk management (ISO 13485). Key for security-aware compliance engineering.', semText: 'E — Autumn', ects: 5, timing: 'autumn' },
-  { code: '27510', name: 'Biosensors and Bioanalysis', why: 'DTU Bioengineering. Biological transducers, micro/nanofabrication, and sensor integration. Bridges biotech and physical sensors.', semText: 'F — Spring', ects: 5, timing: 'spring' },
-  { code: 'other', name: 'Other outside-department course', why: 'Choose based on target industry. Wind energy → offshore systems. Pharma → biomedical devices. Maritime → autonomous vessels.', semText: 'varies', ects: 5, timing: 'both' }
-];
+import {
+  EMBEDDED_COURSES,
+  CYBER_COURSES,
+  ELECTIVES_LIST,
+  getCategoryClass,
+  getCategoryLabel,
+  getElectiveSlots,
+  getTimingClass,
+  getTimingLabel
+} from '../courses';
 
 export default function RecommendedPlan({
   choiceGroupSem3,
@@ -54,67 +46,7 @@ export default function RecommendedPlan({
     });
   };
 
-  // Elective slot routing logic
-  const getElectiveSlots = () => {
-    const activeElectives = ELECTIVES_LIST.filter(e => selectedElectives.has(e.code));
-    
-    let slotSem2 = { code: '—', name: 'Free elective slot', ects: 5, why: 'Use the elective picker section below to select your preferred option.', timingHtml: <span className="timing timing-both">varies</span>, selected: false };
-    let slotSem3 = { code: '—', name: 'Free elective slot', ects: 7.5, why: 'Use the elective picker section below.', timingHtml: <span className="timing timing-both">varies</span>, selected: false };
-
-    let slot2Filled = false;
-    let slot3Filled = false;
-    const assigned = new Set();
-
-    // 1. Assign Autumn or 7.5 ECTS electives to Sem 3 slot
-    activeElectives.forEach(item => {
-      const isAutumn = item.timing === 'autumn' || item.timing === 'both';
-      const is7_5 = item.ects === 7.5;
-      if ((isAutumn || is7_5) && !slot3Filled) {
-        slotSem3 = {
-          code: item.code,
-          name: item.name,
-          ects: item.ects,
-          why: item.why,
-          timingHtml: <span className={`timing timing-${item.timing}`}>{item.semText}</span>,
-          selected: true
-        };
-        slot3Filled = true;
-        assigned.add(item.code);
-      }
-    });
-
-    // 2. Assign Spring or remaining electives to Sem 2 slot, then empty slot 3 if not filled
-    activeElectives.forEach(item => {
-      if (assigned.has(item.code)) return;
-      if (!slot2Filled) {
-        slotSem2 = {
-          code: item.code,
-          name: item.name,
-          ects: item.ects,
-          why: item.why,
-          timingHtml: <span className={`timing timing-${item.timing}`}>{item.semText}</span>,
-          selected: true
-        };
-        slot2Filled = true;
-        assigned.add(item.code);
-      } else if (!slot3Filled) {
-        slotSem3 = {
-          code: item.code,
-          name: item.name,
-          ects: item.ects,
-          why: item.why,
-          timingHtml: <span className={`timing timing-${item.timing}`}>{item.semText}</span>,
-          selected: true
-        };
-        slot3Filled = true;
-        assigned.add(item.code);
-      }
-    });
-
-    return { slotSem2, slotSem3 };
-  };
-
-  const { slotSem2, slotSem3 } = getElectiveSlots();
+  const { slotSem2, slotSem3 } = getElectiveSlots(selectedElectives);
 
   // Static structure definitions
   const sem1Courses = [
@@ -267,29 +199,7 @@ export default function RecommendedPlan({
     notes: 'Autumn (E5B — Wed 13–17). Top-listed skill in Danish market. Now no longer conflicts with 02270 (done in Sem 1).'
   });
 
-  const getCategoryClass = (cat) => {
-    switch (cat) {
-      case 'mandatory': return 'cat-mandatory';
-      case 'core': return 'cat-core';
-      case 'prog': return 'cat-prog';
-      case 'innov': return 'cat-innov';
-      case 'elective': return 'cat-elective';
-      case 'thesis': return 'cat-thesis';
-      default: return 'cat-elective';
-    }
-  };
-
-  const getCategoryLabel = (cat) => {
-    switch (cat) {
-      case 'mandatory': return 'Mandatory foundation';
-      case 'core': return 'Core competence';
-      case 'prog': return 'Programme-specific';
-      case 'innov': return 'Innovation II';
-      case 'elective': return 'Free elective';
-      case 'thesis': return 'Thesis';
-      default: return 'Free elective';
-    }
-  };
+  // Helpers getCategoryClass and getCategoryLabel are imported from courses.js
 
   const getTimingBadge = (timing) => {
     if (timing.includes('Autumn')) return <span className="timing timing-autumn">E — Autumn</span>;
@@ -467,7 +377,7 @@ export default function RecommendedPlan({
               </td>
               <td className="ects-cell">{slotSem2.ects}</td>
               <td><span className="cat cat-elective">Free elective</span></td>
-              <td>{slotSem2.timingHtml}</td>
+              <td><span className={`timing timing-${slotSem2.timing}`}>{slotSem2.semText}</span></td>
               <td className="course-detail">{slotSem2.selected ? slotSem2.why : 'Use the elective picker section below to select your preferred option.'}</td>
             </tr>
           </tbody>
@@ -518,7 +428,7 @@ export default function RecommendedPlan({
               </tr>
             ))}
             {/* CHOICE PICKER PANEL FOR SEM 3 */}
-            <tr style={{background: 'var(--amber-light)'}}>
+            <tr className="choice-picker-row" style={{background: 'var(--amber-light)'}}>
               <td colSpan="6" style={{padding: '8px 10px'}}>
                 <div style={{display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap'}}>
                   <span style={{fontSize: 12, color: 'var(--amber)', fontWeight: 500}}>Pick one for semester 3:</span>
@@ -549,7 +459,7 @@ export default function RecommendedPlan({
               </td>
               <td className="ects-cell">{slotSem3.ects}</td>
               <td><span className="cat cat-elective">Free elective</span></td>
-              <td>{slotSem3.timingHtml}</td>
+              <td><span className={`timing timing-${slotSem3.timing}`}>{slotSem3.semText}</span></td>
               <td className="course-detail">{slotSem3.selected ? slotSem3.why : 'Use the elective picker section below.'}</td>
             </tr>
           </tbody>
