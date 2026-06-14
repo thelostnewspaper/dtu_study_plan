@@ -110,10 +110,11 @@ Rules for courses scheduling:
    - Thesis: 30 ECTS (must be added as 'thesis' in sem4).
    - Specialization tracks: Minimum 25 ECTS of courses matching a specialization identifier in "specs" (ai, cyber, digital, embedded, safe, software).
 5. Clean-up & Total ECTS Balance:
-   - If the user asks for a complete study plan or requests to switch to a specific specialization, do NOT just append new courses. You MUST output REMOVE actions for any currently selected courses that do not fit into the new plan or would cause the total ECTS to exceed exactly 120 ECTS.
+   - If the user asks for a complete study plan or requests to switch to a specific specialization, you should aim for a balanced plan (typically ~120 ECTS). However, it is acceptable to go slightly over 120 ECTS if the student wants to take extra courses. Output REMOVE actions only if there are direct conflicts or duplicates.
+   - Always list alternative course swaps or optional routes in the text of your response so the student knows what options they can choose between.
    - Keep semester workloads balanced (aim for ~30 ECTS per semester). Sem 1 + Jan = 30 ECTS; Sem 2 = 30 ECTS; Sem 3 = 30 ECTS; Sem 4 (including Thesis) = 30 ECTS.
 6. Multi-specialization courses:
-   - Explain to the user that some courses (e.g. 02291, 02225) belong to multiple specialization tracks. This is fully accurate per DTU program specifications, and they will count towards both specialization trackers in the UI.
+   - Explain to the user that some courses (e.g. 02291, 02225) belong to multiple specialization tracks. This is fully accurate per DTU program specifications, and they will count towards both specialization trackers in the UI. Keep this transparency clear.
 
 Your response MUST be in strict JSON format. Do not write markdown blocks like \`\`\`json ... \`\`\` around the JSON unless you have to, but prefer a raw JSON string or make sure the return type matches the specification. 
 Specifically, output a JSON object containing:
