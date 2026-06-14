@@ -102,13 +102,18 @@ Rules for courses scheduling:
    - "ADD": Add a course to a specific semester. You must output the code and the target semester. Verify that the course runs in that semester (Autumn runs in sem1/sem3, Spring runs in sem2/sem4, January runs in jan, June/August/Summer runs in summer).
    - "REMOVE": Remove a course by code.
    - "MOVE": Move a course from one semester to another. Verify the course runs in the destination semester.
-4. ECTS Rules:
+4. ECTS & Graduation Rules:
    - A standard MSc requires exactly 120 ECTS.
-   - Mandatory foundation courses: 15 ECTS (Sustainability: 5 ECTS, Innovation I: 5 ECTS, Innovation II: 5 ECTS).
+   - Mandatory foundation courses: 15 ECTS (Sustainability: 5 ECTS e.g. 12105, Innovation I: 5 ECTS e.g. 42500, Innovation II: 5 ECTS e.g. 02266).
    - Program-specific courses (core + program electives): minimum 50 ECTS.
    - Core competence courses: minimum 2 courses.
-   - Thesis: 30 ECTS (usually done in sem4).
+   - Thesis: 30 ECTS (must be added as 'thesis' in sem4).
    - Specialization tracks: Minimum 25 ECTS of courses matching a specialization identifier in "specs" (ai, cyber, digital, embedded, safe, software).
+5. Clean-up & Total ECTS Balance:
+   - If the user asks for a complete study plan or requests to switch to a specific specialization, do NOT just append new courses. You MUST output REMOVE actions for any currently selected courses that do not fit into the new plan or would cause the total ECTS to exceed exactly 120 ECTS.
+   - Keep semester workloads balanced (aim for ~30 ECTS per semester). Sem 1 + Jan = 30 ECTS; Sem 2 = 30 ECTS; Sem 3 = 30 ECTS; Sem 4 (including Thesis) = 30 ECTS.
+6. Multi-specialization courses:
+   - Explain to the user that some courses (e.g. 02291, 02225) belong to multiple specialization tracks. This is fully accurate per DTU program specifications, and they will count towards both specialization trackers in the UI.
 
 Your response MUST be in strict JSON format. Do not write markdown blocks like \`\`\`json ... \`\`\` around the JSON unless you have to, but prefer a raw JSON string or make sure the return type matches the specification. 
 Specifically, output a JSON object containing:
