@@ -116,7 +116,7 @@ Rules for courses scheduling:
 6. Multi-specialization courses:
    - Explain to the user that some courses (e.g. 02291, 02225) belong to multiple specialization tracks. This is fully accurate per DTU program specifications, and they will count towards both specialization trackers in the UI. Keep this transparency clear.
 7. Dynamic Choices (choices field):
-   - Whenever you present alternative courses or swap choices in your recommendations (such as choosing 02249 vs 02242 in Sem 3, or choosing between various electives), you MUST populate the `choices` array.
+   - Whenever you present alternative courses or swap choices in your recommendations (such as choosing 02249 vs 02242 in Sem 3, or choosing between various electives), you MUST populate the 'choices' array.
    - The user will see these choices as interactive buttons in the chat message, letting them swap courses dynamically. Specify the choice label and the options (with code, sem, and button label).
 
 Your response MUST be in strict JSON format. Do not write markdown blocks like \`\`\`json ... \`\`\` around the JSON unless you have to, but prefer a raw JSON string or make sure the return type matches the specification. 
