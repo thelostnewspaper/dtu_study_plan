@@ -252,7 +252,7 @@ export default function CustomPlan({ customState, setCustomState }) {
       <div className="main">
         {/* AI Advisor Chatbot at the top, full width */}
         <div style={{ marginBottom: '2rem' }}>
-          <PlanChatbot currentState={customState} onApplyActions={handleApplyChatActions} />
+          <PlanChatbot currentState={customState} onApplyActions={handleApplyChatActions} courseCatalog={COURSE_CATALOG} />
         </div>
 
         {/* Specialization Tracker */}
@@ -500,46 +500,6 @@ export default function CustomPlan({ customState, setCustomState }) {
                                   </tr>
                                 );
                               })
-                            )}
-                            {sem.id === 'sem3' && (
-                              <tr style={{ background: 'var(--amber-light)' }}>
-                                <td colSpan="5" style={{ padding: '8px 10px' }}>
-                                  <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-                                    <span style={{ fontSize: 12, color: 'var(--amber)', fontWeight: 500 }}>Pick one for semester 3:</span>
-                                    <button
-                                      type="button"
-                                      className={`choice-btn ${customState['02249'] === 'sem3' ? 'active' : ''}`}
-                                      onClick={() => {
-                                        setCustomState(prev => {
-                                          const next = { ...prev };
-                                          delete next['02242'];
-                                          next['02249'] = 'sem3';
-                                          return next;
-                                        });
-                                      }}
-                                    >
-                                      Select 02249 — Computationally Hard Problems
-                                    </button>
-                                    <button
-                                      type="button"
-                                      className={`choice-btn ${customState['02242'] === 'sem3' ? 'active' : ''}`}
-                                      onClick={() => {
-                                        setCustomState(prev => {
-                                          const next = { ...prev };
-                                          delete next['02249'];
-                                          next['02242'] = 'sem3';
-                                          return next;
-                                        });
-                                      }}
-                                    >
-                                      Select 02242 — Program Analysis
-                                    </button>
-                                    <span style={{ fontSize: 11, color: 'var(--text-faint)', marginLeft: 4 }}>
-                                      Note: 02249 counts toward Embedded specialization; 02242 does not.
-                                    </span>
-                                  </div>
-                                </td>
-                              </tr>
                             )}
                             {slotEcts > 0 && (
                               <tr style={{ background: '#FAF9F6', border: '1px dashed var(--border-strong)' }}>

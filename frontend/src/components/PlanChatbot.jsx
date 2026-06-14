@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-export default function PlanChatbot({ currentState, onApplyActions }) {
+export default function PlanChatbot({ currentState, onApplyActions, courseCatalog }) {
   const [messages, setMessages] = useState([
     {
       id: 'welcome',
@@ -173,6 +173,9 @@ export default function PlanChatbot({ currentState, onApplyActions }) {
                   <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
                     {choice.options.map((opt, idx) => {
                       const isActive = currentState[opt.code] === opt.sem;
+                      const c = courseCatalog ? courseCatalog[opt.code] : null;
+                      const buttonText = c ? `${opt.code} — ${c.name} (${c.ects} ECTS)` : opt.label;
+                      
                       return (
                         <button
                           key={idx}
@@ -180,6 +183,7 @@ export default function PlanChatbot({ currentState, onApplyActions }) {
                           className={`choice-btn ${isActive ? 'active' : ''}`}
                           style={{ fontSize: 10, padding: '3px 8px' }}
                           onClick={() => {
+                            console.log(`Choice button clicked! Option:`, opt, `Current active state:`, isActive);
                             const newActions = [
                               { type: 'ADD', code: opt.code, sem: opt.sem }
                             ];
@@ -189,10 +193,11 @@ export default function PlanChatbot({ currentState, onApplyActions }) {
                                 newActions.push({ type: 'REMOVE', code: otherOpt.code });
                               }
                             });
+                            console.log(`Dispatching actions:`, newActions);
                             onApplyActions(newActions);
                           }}
                         >
-                          {opt.label}
+                          {buttonText}
                         </button>
                       );
                     })}
