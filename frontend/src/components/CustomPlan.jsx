@@ -450,7 +450,7 @@ export default function CustomPlan({ customState, setCustomState }) {
                             );
                           })
                         )}
-                        {ectsSum < (sem.id === 'jan' || sem.id === 'summer' ? 5 : 30) && (
+                        {totalEcts < 120 && ectsSum < (sem.id === 'jan' || sem.id === 'summer' ? 5 : 30) && (
                           <tr style={{ background: '#FAF9F6', border: '1px dashed var(--border-strong)' }}>
                             <td className="code" style={{ width: 60, verticalAlign: 'middle', fontSize: 10, color: 'var(--text-faint)' }}>—</td>
                             <td style={{ verticalAlign: 'middle' }}>
