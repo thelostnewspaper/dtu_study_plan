@@ -364,114 +364,167 @@ export default function CustomPlan({ customState, setCustomState }) {
             <h3 style={{ fontSize: 15, fontWeight: 600, marginBottom: '1rem', borderBottom: '2px solid var(--accent)', paddingBottom: 6 }}>2. Custom Schedule</h3>
             <p style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: '1.5rem' }}>Select courses on the left or type in the chat. They appear below where you can adjust timing.</p>
 
-            <div style={{ maxHeight: 720, overflowY: 'auto' }}>
-              {SEMESTERS.map(sem => {
-                const semCourses = Object.entries(customState).filter(([_, sVal]) => sVal === sem.id);
-                const ectsSum = semCourses.reduce((acc, [code]) => acc + (COURSE_CATALOG[code]?.ects || 0), 0);
-                
-                return (
-                  <div key={sem.id} className="sem-block" style={{ marginBottom: '1.5rem', background: '#fff', padding: 12, border: '1px solid var(--border)', borderRadius: 8 }}>
-                    <div className="sem-header" style={{ marginBottom: '0.5rem', borderBottom: '2px solid var(--accent)', display: 'flex', alignTo: 'baseline' }}>
-                      <span className="sem-title" style={{ fontSize: 13, fontWeight: 600 }}>{sem.title}</span>
-                      <span className="sem-period" style={{ fontSize: 9, marginLeft: 6 }}>{sem.period}</span>
-                      <span className="sem-ects-total" style={{ marginLeft: 'auto', fontSize: 11, fontWeight: 600, color: 'var(--accent)' }}>{ectsSum} ECTS</span>
-                    </div>
+            {/* Schedule Column */}
+            <div style={{ flex: '1 1 480px', minWidth: 320 }}>
+              <h3 style={{ fontSize: 15, fontWeight: 600, marginBottom: '1rem', borderBottom: '2px solid var(--accent)', paddingBottom: 6 }}>2. Custom Schedule</h3>
+              <p style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: '1.5rem' }}>Select courses on the left or type in the chat. They appear below where you can adjust timing.</p>
 
-                    <table className="course-table">
-                      <tbody>
-                        {semCourses.length === 0 ? (
-                          <tr>
-                            <td colSpan="5" style={{ textAlign: 'center', color: 'var(--text-faint)', fontStyle: 'italic', padding: 12, fontSize: 11 }}>
-                              No courses assigned.
-                            </td>
-                          </tr>
-                        ) : (
-                          semCourses.map(([code]) => {
-                            const c = COURSE_CATALOG[code];
-                            if (!c) return null;
+              <div style={{ maxHeight: 720, overflowY: 'auto' }}>
+                {(() => {
+                  // Calculate dynamic placeholder slot allocations to hit exactly 120 ECTS
+                  const allocatedSlots = {
+                    sem1: 0,
+                    jan: 0,
+                    sem2: 0,
+                    summer: 0,
+                    sem3: 0,
+                    sem4: 0
+                  };
 
-                            const allowed = c.sem;
-                            const isAutumnOnly = allowed.length === 1 && allowed[0] === 'Autumn';
-                            const isSpringOnly = allowed.length === 1 && allowed[0] === 'Spring';
-                            const isJanuaryOnly = allowed.length === 1 && allowed[0] === 'January';
-                            const isSummerOnly = allowed.length === 1 && (allowed[0] === 'June' || allowed[0] === 'August' || allowed.join().includes('June'));
+                  if (totalEcts < 120) {
+                    let pool = 120 - totalEcts;
+                    const mainSems = ['sem1', 'sem2', 'sem3', 'sem4'];
+                    
+                    // 1. Allocate to regular semesters first (up to 30 ECTS each)
+                    for (const id of mainSems) {
+                      const semCourses = Object.entries(customState).filter(([_, sVal]) => sVal === id);
+                      const ectsSum = semCourses.reduce((acc, [code]) => acc + (COURSE_CATALOG[code]?.ects || 0), 0);
+                      if (ectsSum < 30) {
+                        const space = 30 - ectsSum;
+                        const alloc = Math.min(space, pool);
+                        allocatedSlots[id] = alloc;
+                        pool -= alloc;
+                      }
+                      if (pool <= 0) break;
+                    }
 
-                            let options = [];
-                            if (code === 'thesis') {
-                              options = [
-                                { val: 'sem4', label: 'Sem 4 (Spring)' },
-                                { val: 'sem3', label: 'Sem 3 (Autumn)' }
-                              ];
-                            } else if (isJanuaryOnly) {
-                              options = [{ val: 'jan', label: 'January' }];
-                            } else if (isSummerOnly) {
-                              options = [{ val: 'summer', label: 'Summer' }];
-                            } else if (isAutumnOnly) {
-                              options = [
-                                { val: 'sem1', label: 'Sem 1 (Autumn)' },
-                                { val: 'sem3', label: 'Sem 3 (Autumn)' }
-                              ];
-                            } else if (isSpringOnly) {
-                              options = [
-                                { val: 'sem2', label: 'Sem 2 (Spring)' },
-                                { val: 'sem4', label: 'Sem 4 (Spring)' }
-                              ];
-                            } else {
-                              options = [
-                                { val: 'sem1', label: 'Sem 1 (Autumn)' },
-                                { val: 'sem2', label: 'Sem 2 (Spring)' },
-                                { val: 'sem3', label: 'Sem 3 (Autumn)' },
-                                { val: 'sem4', label: 'Sem 4 (Spring)' }
-                              ];
-                            }
+                    // 2. Allocate remaining to intensives if needed (up to 5 ECTS each)
+                    if (pool > 0) {
+                      const intensives = ['jan', 'summer'];
+                      for (const id of intensives) {
+                        const semCourses = Object.entries(customState).filter(([_, sVal]) => sVal === id);
+                        const ectsSum = semCourses.reduce((acc, [code]) => acc + (COURSE_CATALOG[code]?.ects || 0), 0);
+                        if (ectsSum < 5) {
+                          const space = 5 - ectsSum;
+                          const alloc = Math.min(space, pool);
+                          allocatedSlots[id] = alloc;
+                          pool -= alloc;
+                        }
+                        if (pool <= 0) break;
+                      }
+                    }
+                  }
 
-                            return (
-                              <tr key={code}>
-                                <td className="code" style={{ width: 60, verticalAlign: 'middle', fontSize: 10 }}>{code === 'thesis' ? 'THESIS' : code}</td>
-                                <td style={{ verticalAlign: 'middle' }}>
-                                  <div className="course-name" style={{ fontSize: 11, fontWeight: 500 }}>{c.name}</div>
-                                </td>
-                                <td className="ects-cell" style={{ width: 40, verticalAlign: 'middle', fontSize: 11 }}>{c.ects}</td>
-                                <td style={{ width: 100, verticalAlign: 'middle' }}>
-                                  <select
-                                    value={sem.id}
-                                    onChange={(e) => changeCustomCourseSemester(code, e.target.value)}
-                                    style={{ width: '100%', padding: '2px 4px', fontSize: 10, border: '1px solid var(--border)', borderRadius: 4, background: 'var(--surface)', color: 'var(--text)' }}
-                                  >
-                                    {options.map(opt => (
-                                      <option key={opt.val} value={opt.val}>{opt.label}</option>
-                                    ))}
-                                  </select>
-                                </td>
-                                <td style={{ width: 25, textAlign: 'center', verticalAlign: 'middle' }}>
-                                  <button onClick={() => toggleCustomCourse(code)} style={{ border: 'none', background: 'none', color: 'var(--red)', cursor: 'pointer', fontSize: 14 }}>&times;</button>
+                  return SEMESTERS.map(sem => {
+                    const semCourses = Object.entries(customState).filter(([_, sVal]) => sVal === sem.id);
+                    const ectsSum = semCourses.reduce((acc, [code]) => acc + (COURSE_CATALOG[code]?.ects || 0), 0);
+                    const slotEcts = allocatedSlots[sem.id];
+                    
+                    return (
+                      <div key={sem.id} className="sem-block" style={{ marginBottom: '1.5rem', background: '#fff', padding: 12, border: '1px solid var(--border)', borderRadius: 8 }}>
+                        <div className="sem-header" style={{ marginBottom: '0.5rem', borderBottom: '2px solid var(--accent)', display: 'flex', alignTo: 'baseline' }}>
+                          <span className="sem-title" style={{ fontSize: 13, fontWeight: 600 }}>{sem.title}</span>
+                          <span className="sem-period" style={{ fontSize: 9, marginLeft: 6 }}>{sem.period}</span>
+                          <span className="sem-ects-total" style={{ marginLeft: 'auto', fontSize: 11, fontWeight: 600, color: 'var(--accent)' }}>{ectsSum} ECTS</span>
+                        </div>
+
+                        <table className="course-table">
+                          <tbody>
+                            {semCourses.length === 0 ? (
+                              <tr>
+                                <td colSpan="5" style={{ textAlign: 'center', color: 'var(--text-faint)', fontStyle: 'italic', padding: 12, fontSize: 11 }}>
+                                  No courses assigned.
                                 </td>
                               </tr>
-                            );
-                          })
-                        )}
-                        {totalEcts < 120 && ectsSum < (sem.id === 'jan' || sem.id === 'summer' ? 5 : 30) && (
-                          <tr style={{ background: '#FAF9F6', border: '1px dashed var(--border-strong)' }}>
-                            <td className="code" style={{ width: 60, verticalAlign: 'middle', fontSize: 10, color: 'var(--text-faint)' }}>—</td>
-                            <td style={{ verticalAlign: 'middle' }}>
-                              <div className="course-name" style={{ fontSize: 11, fontWeight: 500, color: 'var(--text-muted)', fontStyle: 'italic' }}>
-                                {sem.id === 'jan' || sem.id === 'summer' ? 'Free intensive slot' : 'Free elective / choice slot'}
-                              </div>
-                              <div className="course-detail" style={{ fontSize: 10, color: 'var(--text-faint)' }}>
-                                Select a course from the catalog on the left to fill this space.
-                              </div>
-                            </td>
-                            <td className="ects-cell" style={{ width: 40, verticalAlign: 'middle', fontSize: 11, color: 'var(--text-muted)' }}>
-                              {(sem.id === 'jan' || sem.id === 'summer' ? 5 : 30) - ectsSum} ECTS
-                            </td>
-                            <td colSpan="2"></td>
-                          </tr>
-                        )}
-                      </tbody>
-                    </table>
-                  </div>
-                );
-              })}
+                            ) : (
+                              semCourses.map(([code]) => {
+                                const c = COURSE_CATALOG[code];
+                                if (!c) return null;
+
+                                const allowed = c.sem;
+                                const isAutumnOnly = allowed.length === 1 && allowed[0] === 'Autumn';
+                                const isSpringOnly = allowed.length === 1 && allowed[0] === 'Spring';
+                                const isJanuaryOnly = allowed.length === 1 && allowed[0] === 'January';
+                                const isSummerOnly = allowed.length === 1 && (allowed[0] === 'June' || allowed[0] === 'August' || allowed.join().includes('June'));
+
+                                let options = [];
+                                if (code === 'thesis') {
+                                  options = [
+                                    { val: 'sem4', label: 'Sem 4 (Spring)' },
+                                    { val: 'sem3', label: 'Sem 3 (Autumn)' }
+                                  ];
+                                } else if (isJanuaryOnly) {
+                                  options = [{ val: 'jan', label: 'January' }];
+                                } else if (isSummerOnly) {
+                                  options = [{ val: 'summer', label: 'Summer' }];
+                                } else if (isAutumnOnly) {
+                                  options = [
+                                    { val: 'sem1', label: 'Sem 1 (Autumn)' },
+                                    { val: 'sem3', label: 'Sem 3 (Autumn)' }
+                                  ];
+                                } else if (isSpringOnly) {
+                                  options = [
+                                    { val: 'sem2', label: 'Sem 2 (Spring)' },
+                                    { val: 'sem4', label: 'Sem 4 (Spring)' }
+                                  ];
+                                } else {
+                                  options = [
+                                    { val: 'sem1', label: 'Sem 1 (Autumn)' },
+                                    { val: 'sem2', label: 'Sem 2 (Spring)' },
+                                    { val: 'sem3', label: 'Sem 3 (Autumn)' },
+                                    { val: 'sem4', label: 'Sem 4 (Spring)' }
+                                  ];
+                                }
+
+                                return (
+                                  <tr key={code}>
+                                    <td className="code" style={{ width: 60, verticalAlign: 'middle', fontSize: 10 }}>{code === 'thesis' ? 'THESIS' : code}</td>
+                                    <td style={{ verticalAlign: 'middle' }}>
+                                      <div className="course-name" style={{ fontSize: 11, fontWeight: 500 }}>{c.name}</div>
+                                    </td>
+                                    <td className="ects-cell" style={{ width: 40, verticalAlign: 'middle', fontSize: 11 }}>{c.ects}</td>
+                                    <td style={{ width: 100, verticalAlign: 'middle' }}>
+                                      <select
+                                        value={sem.id}
+                                        onChange={(e) => changeCustomCourseSemester(code, e.target.value)}
+                                        style={{ width: '100%', padding: '2px 4px', fontSize: 10, border: '1px solid var(--border)', borderRadius: 4, background: 'var(--surface)', color: 'var(--text)' }}
+                                      >
+                                        {options.map(opt => (
+                                          <option key={opt.val} value={opt.val}>{opt.label}</option>
+                                        ))}
+                                      </select>
+                                    </td>
+                                    <td style={{ width: 25, textAlign: 'center', verticalAlign: 'middle' }}>
+                                      <button onClick={() => toggleCustomCourse(code)} style={{ border: 'none', background: 'none', color: 'var(--red)', cursor: 'pointer', fontSize: 14 }}>&times;</button>
+                                    </td>
+                                  </tr>
+                                );
+                              })
+                            )}
+                            {slotEcts > 0 && (
+                              <tr style={{ background: '#FAF9F6', border: '1px dashed var(--border-strong)' }}>
+                                <td className="code" style={{ width: 60, verticalAlign: 'middle', fontSize: 10, color: 'var(--text-faint)' }}>—</td>
+                                <td style={{ verticalAlign: 'middle' }}>
+                                  <div className="course-name" style={{ fontSize: 11, fontWeight: 500, color: 'var(--text-muted)', fontStyle: 'italic' }}>
+                                    {sem.id === 'jan' || sem.id === 'summer' ? 'Free intensive slot' : 'Free elective / choice slot'}
+                                  </div>
+                                  <div className="course-detail" style={{ fontSize: 10, color: 'var(--text-faint)' }}>
+                                    Select a course from the catalog on the left to fill this space.
+                                  </div>
+                                </td>
+                                <td className="ects-cell" style={{ width: 40, verticalAlign: 'middle', fontSize: 11, color: 'var(--text-muted)' }}>
+                                  {slotEcts} ECTS
+                                </td>
+                                <td colSpan="2"></td>
+                              </tr>
+                            )}
+                          </tbody>
+                        </table>
+                      </div>
+                    );
+                  });
+                })()}
+              </div>
             </div>
           </div>
 
