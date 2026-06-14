@@ -55,7 +55,8 @@ export default function PlanChatbot({ currentState, onApplyActions }) {
               id: (Date.now() + 1).toString(),
               sender: 'bot',
               content: errorData.text,
-              actions: errorData.actions || []
+              actions: errorData.actions || [],
+              choices: errorData.choices || []
             };
             setMessages(prev => [...prev, botMessage]);
             return;
@@ -70,7 +71,8 @@ export default function PlanChatbot({ currentState, onApplyActions }) {
         id: (Date.now() + 1).toString(),
         sender: 'bot',
         content: data.text,
-        actions: data.actions || []
+        actions: data.actions || [],
+        choices: data.choices || []
       };
 
       setMessages(prev => [...prev, botMessage]);
@@ -161,9 +163,41 @@ export default function PlanChatbot({ currentState, onApplyActions }) {
             <div key={msg.id} className={`message-bubble message-${msg.sender}`}>
               <div>{formatMessageContent(msg.content)}</div>
               {msg.actions && msg.actions.map((act, i) => (
-                <span key={i} className="message-action-tag">
+                <span key={i} className="message-action-tag" style={{ marginRight: 4 }}>
                   [Action Applied] {act.type}: {act.code} {act.sem ? `(${act.sem})` : ''}
                 </span>
+              ))}
+              {msg.choices && msg.choices.map((choice, i) => (
+                <div key={i} style={{ marginTop: 8, padding: 8, background: 'var(--amber-light)', border: '1px solid #F0D090', borderRadius: 6 }}>
+                  <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--amber)', marginBottom: 6 }}>{choice.label}</div>
+                  <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+                    {choice.options.map((opt, idx) => {
+                      const isActive = currentState[opt.code] === opt.sem;
+                      return (
+                        <button
+                          key={idx}
+                          type="button"
+                          className={`choice-btn ${isActive ? 'active' : ''}`}
+                          style={{ fontSize: 10, padding: '3px 8px' }}
+                          onClick={() => {
+                            const newActions = [
+                              { type: 'ADD', code: opt.code, sem: opt.sem }
+                            ];
+                            // Remove all other options in this choice group
+                            choice.options.forEach(otherOpt => {
+                              if (otherOpt.code !== opt.code) {
+                                newActions.push({ type: 'REMOVE', code: otherOpt.code });
+                              }
+                            });
+                            onApplyActions(newActions);
+                          }}
+                        >
+                          {opt.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
               ))}
             </div>
           ))}

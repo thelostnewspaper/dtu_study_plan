@@ -115,6 +115,9 @@ Rules for courses scheduling:
    - Keep semester workloads balanced (aim for ~30 ECTS per semester). Sem 1 + Jan = 30 ECTS; Sem 2 = 30 ECTS; Sem 3 = 30 ECTS; Sem 4 (including Thesis) = 30 ECTS.
 6. Multi-specialization courses:
    - Explain to the user that some courses (e.g. 02291, 02225) belong to multiple specialization tracks. This is fully accurate per DTU program specifications, and they will count towards both specialization trackers in the UI. Keep this transparency clear.
+7. Dynamic Choices (choices field):
+   - Whenever you present alternative courses or swap choices in your recommendations (such as choosing 02249 vs 02242 in Sem 3, or choosing between various electives), you MUST populate the `choices` array.
+   - The user will see these choices as interactive buttons in the chat message, letting them swap courses dynamically. Specify the choice label and the options (with code, sem, and button label).
 
 Your response MUST be in strict JSON format. Do not write markdown blocks like \`\`\`json ... \`\`\` around the JSON unless you have to, but prefer a raw JSON string or make sure the return type matches the specification. 
 Specifically, output a JSON object containing:
@@ -123,12 +126,27 @@ Specifically, output a JSON object containing:
    - "type": "ADD", "REMOVE", or "MOVE"
    - "code": the course code (e.g., "02203")
    - "sem": the semester key (e.g., "sem1") - only required for ADD and MOVE.
-   
+3. "choices": (optional) an array of choice blocks, each containing:
+   - "label": "Choose course for Semester 3",
+   - "options": an array of options, each containing:
+     - "code": "02249",
+     - "sem": "sem3",
+     - "label": "02249 - Hard Problems"
+    
 Example JSON response:
 {
-  "text": "I've added Design of Digital Systems (02203) to your first semester since it runs in the Autumn. Note that this adds 5 ECTS to your Digital Systems and Embedded specializations.",
+  "text": "I've drafted a plan, but you can choose between two algorithms courses in Semester 3.",
   "actions": [
     { "type": "ADD", "code": "02203", "sem": "sem1" }
+  ],
+  "choices": [
+    {
+      "label": "Choose algorithms course for Semester 3",
+      "options": [
+        { "code": "02249", "sem": "sem3", "label": "02249 — Computationally Hard Problems (7.5 ECTS)" },
+        { "code": "02242", "sem": "sem3", "label": "02242 — Program Analysis (7.5 ECTS)" }
+      ]
+    }
   ]
 }
 
@@ -202,6 +220,28 @@ Please respond to the user's message. Assess if they want to add/remove/move cou
               sem: { type: "STRING", enum: ["sem1", "jan", "sem2", "summer", "sem3", "sem4"] }
             },
             required: ["type", "code"]
+          }
+        },
+        choices: {
+          type: "ARRAY",
+          items: {
+            type: "OBJECT",
+            properties: {
+              label: { type: "STRING" },
+              options: {
+                type: "ARRAY",
+                items: {
+                  type: "OBJECT",
+                  properties: {
+                    code: { type: "STRING" },
+                    sem: { type: "STRING", enum: ["sem1", "jan", "sem2", "summer", "sem3", "sem4"] },
+                    label: { type: "STRING" }
+                  },
+                  required: ["code", "sem", "label"]
+                }
+              }
+            },
+            required: ["label", "options"]
           }
         }
       },
@@ -278,7 +318,7 @@ You can add them by typing *"add 02225"* or by checking the box in the catalog. 
     text = `[Mock Mode] Hello! I'm your DTU Study Plan advisor. You can ask me to add or remove courses (e.g. *"add 02203"* or *"remove 42500"*). To enable full AI reasoning, please add your Gemini API Key in the backend \`.env\` file as \`GEMINI_API_KEY\`.`;
   }
 
-  return res.json({ text, actions });
+  return res.json({ text, actions, choices: [] });
 }
 
 app.listen(PORT, () => {
