@@ -450,6 +450,23 @@ export default function CustomPlan({ customState, setCustomState }) {
                             );
                           })
                         )}
+                        {ectsSum < (sem.id === 'jan' || sem.id === 'summer' ? 5 : 30) && (
+                          <tr style={{ background: '#FAF9F6', border: '1px dashed var(--border-strong)' }}>
+                            <td className="code" style={{ width: 60, verticalAlign: 'middle', fontSize: 10, color: 'var(--text-faint)' }}>—</td>
+                            <td style={{ verticalAlign: 'middle' }}>
+                              <div className="course-name" style={{ fontSize: 11, fontWeight: 500, color: 'var(--text-muted)', fontStyle: 'italic' }}>
+                                {sem.id === 'jan' || sem.id === 'summer' ? 'Free intensive slot' : 'Free elective / choice slot'}
+                              </div>
+                              <div className="course-detail" style={{ fontSize: 10, color: 'var(--text-faint)' }}>
+                                Select a course from the catalog on the left to fill this space.
+                              </div>
+                            </td>
+                            <td className="ects-cell" style={{ width: 40, verticalAlign: 'middle', fontSize: 11, color: 'var(--text-muted)' }}>
+                              {(sem.id === 'jan' || sem.id === 'summer' ? 5 : 30) - ectsSum} ECTS
+                            </td>
+                            <td colSpan="2"></td>
+                          </tr>
+                        )}
                       </tbody>
                     </table>
                   </div>
