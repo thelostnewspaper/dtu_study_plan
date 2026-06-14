@@ -49,7 +49,7 @@ const COURSE_CATALOG = {
   "02277": { name: "Cyber Risk Management and Incident Response", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber"], desc: "NIS2 compliance, risk frameworks, incident handling." },
   "02278": { name: "Post-Quantum Cryptography", ects: 5, sem: ["June"], cat: "prog", specs: ["cyber"], desc: "Forward bet on quantum-resistant cryptographic algorithms." },
   "02282": { name: "Algorithms for Massive Data Sets", ects: 7.5, sem: ["Autumn"], cat: "prog", specs: ["ai"], desc: "Streaming algorithms, hashing, handling giant data collections." },
-  "02285": { name: "Artificial Intelligence and Multi-Agent Systems", ects: 7.5, sem: ["Autumn"], cat: "prog", specs: ["ai"], desc: "Robotics and autonomous agent decision-making models." },
+  "02280": { name: "Artificial Intelligence and Multi-Agent Systems", ects: 10, sem: ["Autumn"], cat: "prog", specs: ["ai"], desc: "Robotics and autonomous agent decision-making models." },
   "02287": { name: "Logical Theories for Uncertainty and Learning", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai"], desc: "Probabilistic logic and foundations of machine learning." },
   "02289": { name: "Algorithmic Techniques for Modern Data Models", ects: 5, sem: ["Spring"], cat: "prog", specs: ["ai"], desc: "Advanced graph algorithms, data structures, metric spaces." },
   "02291": { name: "System Integration", ects: 5, sem: ["Autumn"], cat: "core", specs: ["ai", "cyber", "digital", "embedded", "safe", "software"], desc: "Heterogeneous systems, APIs, middleware, SOA." }
@@ -238,12 +238,7 @@ export default function CustomPlan({ customState, setCustomState }) {
 
   return (
     <div>
-      <div className="progress-wrap">
-        <span className="progress-label">Custom Progress</span>
-        <div className="progress-bar-outer">
-          <div className="progress-bar-inner" style={{ width: `${Math.min(100, (totalEcts / 120) * 100)}%` }}></div>
-        </div>
-        <span className="progress-ects">{totalEcts} / 120 ECTS</span>
+      <div style={{ padding: '0 2rem 1rem', display: 'flex', justifyContent: 'center' }}>
         <div className="req-pills">
           <span className={`req-pill ${sustainSelected ? 'met' : ''}`}>Sustainability</span>
           <span className={`req-pill ${innovSelected ? 'met' : ''}`}>Innovation I</span>

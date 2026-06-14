@@ -65,7 +65,7 @@ export default function App() {
         '02268': { code: '02268', ects: 5, timing: 'spring' },
         '02278': { code: '02278', ects: 5, timing: 'june' },
         '02234': { code: '02234', ects: 5, timing: 'autumn' },
-        '02285': { code: '02285', ects: 7.5, timing: 'autumn' },
+        '02280': { code: '02280', ects: 10, timing: 'autumn' },
         '31372': { code: '31372', ects: 5, timing: 'spring' },
         '34760': { code: '34760', ects: 5, timing: 'autumn' },
         '30310': { code: '30310', ects: 5, timing: 'autumn' },
@@ -84,7 +84,7 @@ export default function App() {
 
       activeElectives.forEach(item => {
         const isAutumn = item.timing === 'autumn' || item.timing === 'both';
-        const is7_5 = item.ects === 7.5;
+        const is7_5 = item.ects === 7.5 || item.ects === 10;
         if ((isAutumn || is7_5) && !slot3Filled) {
           slot3Ects = item.ects;
           slot3Filled = true;
@@ -135,7 +135,7 @@ export default function App() {
         "02246": 7.5, "02247": 5, "02249": 7.5, "02256": 5, "02258": 5,
         "02262": 5, "02267": 5, "02268": 5, "02269": 5, "02270": 5,
         "02271": 5, "02275": 5, "02276": 5, "02277": 5, "02278": 5,
-        "02282": 7.5, "02285": 7.5, "02287": 5, "02289": 5, "02291": 5
+        "02282": 7.5, "02280": 10, "02287": 5, "02289": 5, "02291": 5
       };
 
       Object.entries(customState).forEach(([code]) => {
@@ -195,6 +195,15 @@ export default function App() {
         >
           Custom Plan Builder
         </button>
+      </div>
+
+      {/* ECTS PROGRESS TRACKER BAR */}
+      <div className="progress-wrap">
+        <span className="progress-label">{activeTab === 'recommended' ? 'Recommended Plan Progress' : 'Custom Progress'}</span>
+        <div className="progress-bar-outer">
+          <div className="progress-bar-inner" style={{ width: `${Math.min(100, (total / 120) * 100)}%` }}></div>
+        </div>
+        <span className="progress-ects">{total} / 120 ECTS</span>
       </div>
 
       {/* TAB CONTENTS */}
