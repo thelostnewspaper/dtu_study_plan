@@ -364,12 +364,7 @@ export default function CustomPlan({ customState, setCustomState }) {
             <h3 style={{ fontSize: 15, fontWeight: 600, marginBottom: '1rem', borderBottom: '2px solid var(--accent)', paddingBottom: 6 }}>2. Custom Schedule</h3>
             <p style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: '1.5rem' }}>Select courses on the left or type in the chat. They appear below where you can adjust timing.</p>
 
-            {/* Schedule Column */}
-            <div style={{ flex: '1 1 480px', minWidth: 320 }}>
-              <h3 style={{ fontSize: 15, fontWeight: 600, marginBottom: '1rem', borderBottom: '2px solid var(--accent)', paddingBottom: 6 }}>2. Custom Schedule</h3>
-              <p style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: '1.5rem' }}>Select courses on the left or type in the chat. They appear below where you can adjust timing.</p>
-
-              <div style={{ maxHeight: 720, overflowY: 'auto' }}>
+            <div style={{ maxHeight: 720, overflowY: 'auto' }}>
                 {(() => {
                   // Calculate dynamic placeholder slot allocations to hit exactly 120 ECTS
                   const allocatedSlots = {
@@ -526,9 +521,8 @@ export default function CustomPlan({ customState, setCustomState }) {
                 })()}
               </div>
             </div>
-          </div>
 
-        </div>
+          </div>
 
         {/* Custom Plan Summary Grid */}
         <div className="section-title" style={{ marginTop: '3rem' }}>Custom Plan Summary</div>
