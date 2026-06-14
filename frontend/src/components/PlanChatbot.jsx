@@ -48,6 +48,19 @@ export default function PlanChatbot({ currentState, onApplyActions }) {
       });
 
       if (!response.ok) {
+        try {
+          const errorData = await response.json();
+          if (errorData && errorData.text) {
+            const botMessage = {
+              id: (Date.now() + 1).toString(),
+              sender: 'bot',
+              content: errorData.text,
+              actions: errorData.actions || []
+            };
+            setMessages(prev => [...prev, botMessage]);
+            return;
+          }
+        } catch (_) {}
         throw new Error('API request failed');
       }
 
