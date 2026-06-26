@@ -56,6 +56,16 @@ export default function CustomPlan({ customState, setCustomState }) {
       const next = { ...prev };
       actions.forEach(act => {
         if (act.type === 'ADD') {
+          if (!COURSE_CATALOG[act.code] && act.fallbackName) {
+            COURSE_CATALOG[act.code] = {
+              name: act.fallbackName,
+              ects: act.fallbackEcts || 5,
+              sem: ['Autumn', 'Spring', 'January', 'June'],
+              cat: 'elective',
+              specs: [],
+              desc: 'Custom DTU course.'
+            };
+          }
           if (COURSE_CATALOG[act.code]) {
             // Default to appropriate semester if not provided or valid
             let targetSem = act.sem;

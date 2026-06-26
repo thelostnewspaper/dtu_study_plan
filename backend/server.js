@@ -129,14 +129,20 @@ Rules for courses scheduling:
 7. Dynamic Choices (choices field):
    - Whenever you present alternative courses or swap choices in your recommendations (such as choosing 02249 vs 02242 in Sem 3, or choosing between various electives), you MUST populate the 'choices' array.
    - The user will see these choices as interactive buttons in the chat message, letting them swap courses dynamically. Specify the choice label and the options (with code, sem, and button label).
+8. Entire DTU Catalog for Electives:
+   - The user has access to the ENTIRE base of DTU courses for their electives. If the user asks to add a specific DTU course code (e.g. 02105, 42101) that is NOT in the provided COURSE_CATALOG, you MUST still allow it!
+   - Treat it as a valid 5 ECTS or 10 ECTS elective course and output the ADD action for it. Do NOT reject DTU course codes just because they are missing from the JSON catalog.
+   - When adding an unknown course, you MUST include 'fallbackName' (a reasonable guess or placeholder name for the course) and 'fallbackEcts' (usually 5 or 10) in the action object.
 
 Your response MUST be in strict JSON format. Do not write markdown blocks like \`\`\`json ... \`\`\` around the JSON unless you have to, but prefer a raw JSON string or make sure the return type matches the specification. 
 Specifically, output a JSON object containing:
 1. "text": a friendly, natural language explanation of your response, suggestions, alerts, or details of actions taken. Feel free to use markdown in this text block.
 2. "actions": an array of modification actions. Each action is an object with:
    - "type": "ADD", "REMOVE", or "MOVE"
-   - "code": the course code (e.g., "02203")
+   - "code": the course code (e.g., "02203" or any valid 5-digit DTU code)
    - "sem": the semester key (e.g., "sem1") - only required for ADD and MOVE.
+   - "fallbackName": (optional) string, the name of the course if it is not in the provided catalog.
+   - "fallbackEcts": (optional) number, the ECTS value if it is not in the provided catalog.
 3. "choices": (optional) an array of choice blocks, each containing:
    - "label": "Choose course for Semester 3",
    - "options": an array of options, each containing:
@@ -228,7 +234,9 @@ Please respond to the user's message. Assess if they want to add/remove/move cou
             properties: {
               type: { type: "STRING", enum: ["ADD", "REMOVE", "MOVE"] },
               code: { type: "STRING" },
-              sem: { type: "STRING", enum: ["sem1", "jan", "sem2", "summer", "sem3", "sem4"] }
+              sem: { type: "STRING", enum: ["sem1", "jan", "sem2", "summer", "sem3", "sem4"] },
+              fallbackName: { type: "STRING" },
+              fallbackEcts: { type: "NUMBER" }
             },
             required: ["type", "code"]
           }
