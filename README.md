@@ -1,5 +1,7 @@
 # DTU MSc Study Planner (Embedded & Distributed Systems Specialization)
 
+**🌐 Live Demo:** [https://teal-melba-c2498b.netlify.app/](https://teal-melba-c2498b.netlify.app/)
+
 An interactive, user-friendly study planner application designed for students enrolled in the **MSc in Computer Science and Engineering** at the **Technical Technical University of Denmark (DTU)**. It specifically helps plan a course trajectory targeting the **Embedded & Distributed Systems** specialization, along with a secondary focus on **security-aware systems**.
 
 ---
