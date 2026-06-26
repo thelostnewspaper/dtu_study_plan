@@ -13,14 +13,10 @@ const SEMESTERS = [
   { id: "jan1", title: "January Intensive 1", period: "January", type: 'intensive' },
   { id: "sem2", title: "Semester 2 — Spring", period: "February – May", type: 'regular' },
   { id: "jun1", title: "June Intensive 1", period: "June", type: 'intensive' },
-  { id: "jul1", title: "July Intensive 1", period: "July", type: 'intensive' },
   { id: "aug1", title: "August Intensive 1", period: "August", type: 'intensive' },
   { id: "sem3", title: "Semester 3 — Autumn", period: "September – December", type: 'regular' },
   { id: "jan2", title: "January Intensive 2", period: "January", type: 'intensive' },
-  { id: "sem4", title: "Semester 4 — Spring", period: "February – May", type: 'regular' },
-  { id: "jun2", title: "June Intensive 2", period: "June", type: 'intensive' },
-  { id: "jul2", title: "July Intensive 2", period: "July", type: 'intensive' },
-  { id: "aug2", title: "August Intensive 2", period: "August", type: 'intensive' }
+  { id: "sem4", title: "Semester 4 — Spring", period: "February – May", type: 'regular' }
 ];
 
 export default function CustomPlan({ customState, setCustomState, chatMessages, setChatMessages, setActiveTab, onSave, onClear }) {
@@ -332,7 +328,9 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
               const hasThesis = semCourses.some(([code]) => code === 'thesis');
               
               let emptySlotsCount = 0;
-              if (hasThesis) {
+              if (sem.id === 'sem4') {
+                emptySlotsCount = Math.max(0, 2 - semCourses.filter(([c]) => c !== 'thesis').length);
+              } else if (hasThesis) {
                 emptySlotsCount = 2; // Fixed requirement: only keep 2 extra slots for thesis
               } else {
                 emptySlotsCount = Math.max(0, targetSlots - Math.ceil(ectsSum / 5));
@@ -343,12 +341,24 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                   <div className="sem-header" style={{ marginBottom: '0.5rem', borderBottom: '2px solid var(--accent)', display: 'flex', alignTo: 'baseline' }}>
                     <span className="sem-title" style={{ fontSize: 15, fontWeight: 900 }}>{sem.title}</span>
                     <span className="sem-period" style={{ fontSize: 11, marginLeft: 8, fontWeight: 500, alignSelf: 'center' }}>{sem.period}</span>
-                    <span className="sem-ects-total" style={{ marginLeft: 'auto', fontSize: 13, fontWeight: 900, color: 'var(--accent)' }}>{ectsSum} ECTS</span>
+                    <span className="sem-ects-total" style={{ marginLeft: 'auto', fontSize: 13, fontWeight: 900, color: 'var(--accent)' }}>{sem.id === 'sem4' ? ectsSum + (hasThesis ? 0 : 30) : ectsSum} ECTS</span>
                   </div>
 
                   <table className="course-table">
                     <tbody>
+                      {sem.id === 'sem4' && (
+                        <tr style={{ background: 'var(--color-bg)', border: '2px solid var(--color-border)' }}>
+                          <td className="code" style={{ width: 60, verticalAlign: 'middle', fontSize: 12, fontWeight: 900, color: 'var(--color-text)' }}>THESIS</td>
+                          <td style={{ verticalAlign: 'middle', padding: '16px 8px' }}>
+                            <div className="course-name" style={{ fontSize: 14, fontWeight: 900, color: 'var(--color-text)' }}>MASTER'S THESIS PROJECT</div>
+                            <div className="course-detail" style={{ fontSize: 12, marginTop: 4 }}>Independent 30 ECTS research project.</div>
+                          </td>
+                          <td className="ects-cell" style={{ width: 40, verticalAlign: 'middle', fontSize: 14, fontWeight: 900 }}>30</td>
+                          <td colSpan="2"></td>
+                        </tr>
+                      )}
                       {semCourses.map(([code]) => {
+                        if (sem.id === 'sem4' && code === 'thesis') return null; // Already hardcoded above
                         const c = COURSE_CATALOG[code];
                         if (!c) return null;
 
@@ -368,8 +378,7 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                           options = [{ val: 'jan1', label: 'January Y1' }, { val: 'jan2', label: 'January Y2' }];
                         } else if (isSummerOnly) {
                           options = [
-                            { val: 'jun1', label: 'June Y1' }, { val: 'jul1', label: 'July Y1' }, { val: 'aug1', label: 'Aug Y1' },
-                            { val: 'jun2', label: 'June Y2' }, { val: 'jul2', label: 'July Y2' }, { val: 'aug2', label: 'Aug Y2' }
+                            { val: 'jun1', label: 'June Y1' }, { val: 'aug1', label: 'Aug Y1' }
                           ];
                         } else if (isAutumnOnly) {
                           options = [
@@ -560,7 +569,7 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                                 {c.specs.map(sId => (
                                   <span key={sId} className="cat" style={{ fontSize: 9, padding: '2px 6px', ...specColors[sId] }}>{specNameMap[sId]}</span>
                                 ))}
-                                {c.programs && c.programs.map(prog => (
+                                {c.programs && c.cat !== 'mandatory' && c.programs.map(prog => (
                                   <span key={prog} style={{ fontSize: 9, padding: '2px 6px', background: 'var(--color-pink)', color: '#fff', fontWeight: 900, textTransform: 'uppercase' }}>{prog === 'hcai' ? 'HCAI' : 'AUTONOMOUS'}</span>
                                 ))}
                               </div>

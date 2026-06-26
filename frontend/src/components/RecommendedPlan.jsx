@@ -75,19 +75,43 @@ function CourseRow({ course, flexId, flexChoices, onFlexChange }) {
       </td>
       <td>
         {isFlex ? (
-          <div className="flex-select-wrap">
-            <select
-              className="flex-select"
-              value={flexChoices[flexId] || course.code}
-              onChange={e => onFlexChange(flexId, e.target.value)}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div className="flex-select-wrap">
+              <select
+                className="flex-select"
+                value={flexChoices[flexId] || course.code}
+                onChange={e => onFlexChange(flexId, e.target.value)}
+              >
+                {FLEX_ALTERNATIVES[flexId].options.map(opt => (
+                  <option key={opt.code} value={opt.code}>
+                    {opt.code} — {opt.name}
+                  </option>
+                ))}
+              </select>
+              <span className="flex-select-arrow">▾</span>
+            </div>
+            <a
+              href={`https://dtucourseanalyzer.pythonanywhere.com/course/${displayCourse.code}`}
+              target="_blank"
+              rel="noreferrer"
+              title="Analyze Course"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '32px',
+                height: '32px',
+                background: 'var(--color-yellow)',
+                color: 'var(--color-text)',
+                border: '2px solid var(--color-text)',
+                boxShadow: '2px 2px 0 var(--color-text)',
+                textDecoration: 'none',
+                fontWeight: '900',
+                flexShrink: 0
+              }}
             >
-              {FLEX_ALTERNATIVES[flexId].options.map(opt => (
-                <option key={opt.code} value={opt.code}>
-                  {opt.code} — {opt.name}
-                </option>
-              ))}
-            </select>
-            <span className="flex-select-arrow">▾</span>
+              ↗
+            </a>
           </div>
         ) : (
           <a
