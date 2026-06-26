@@ -113,14 +113,17 @@ Rules for courses scheduling:
    - Thesis: 30 ECTS (must be added as 'thesis' in sem4).
    - Electives: remaining ECTS to reach 120 ECTS in total.
    - Specialization tracks: Minimum 25 ECTS of courses matching a specialization identifier in "specs" (ai, cyber, digital, embedded, safe, software).
-5. Clean-up & Total ECTS Balance:
-   - When asked to recommend or build a plan, you MUST distribute courses evenly. You CANNOT place only 3 courses in Semester 1.
+5. Clean-up & Total ECTS Balance (STRICT MATH RULES):
+   - When asked to recommend or build a plan, you MUST distribute courses evenly.
+   - STRICT MATH CONSTRAINTS: Courses are typically 5, 7.5, or 10 ECTS. Semesters MUST sum to an integer (e.g. 25 or 30).
+     * If you add a 7.5 ECTS course, you MUST pair it with another 7.5 ECTS course in the SAME semester to make 15 ECTS total.
+     * NEVER leave a semester with a sum like 27.5 ECTS, because a 2.5 ECTS course does not exist. Do not create 2.5 ECTS gaps.
    - You MUST adhere to these target semester workloads:
-     * Semester 1 (Autumn): exactly 25 ECTS (5 courses) or 30 ECTS (6 courses).
-     * January: exactly 5 ECTS (1 course) or 10 ECTS (2 courses).
-     * Semester 2 (Spring): exactly 25 ECTS (5 courses) or 30 ECTS (6 courses).
-     * Summer: exactly 0 or 5 ECTS.
-     * Semester 3 (Autumn): exactly 25 ECTS (5 courses) or 30 ECTS (6 courses).
+     * Semester 1 (Autumn): exactly 25 ECTS or 30 ECTS.
+     * January: AT MOST 5 ECTS (strictly 1 course). Do NOT assign 2 courses in a 3-week intensive block.
+     * Semester 2 (Spring): exactly 25 ECTS or 30 ECTS.
+     * Summer: AT MOST 5 ECTS (strictly 1 course).
+     * Semester 3 (Autumn): exactly 25 ECTS or 30 ECTS.
      * Semester 4 (Spring): exactly 30 ECTS (Master's Thesis).
    - If the user asks for a complete study plan or requests to switch to a specific specialization, you MUST output REMOVE actions for any currently selected courses that do not fit into the new plan or would cause the total ECTS to exceed 120 ECTS.
    - Always list alternative course swaps or optional routes in the text of your response so the student knows what options they can choose between.

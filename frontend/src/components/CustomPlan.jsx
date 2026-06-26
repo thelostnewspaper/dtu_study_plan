@@ -440,11 +440,11 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                                       </div>
                                     </td>
                                     <td className="ects-cell" style={{ width: 40, verticalAlign: 'middle', fontSize: 11 }}>{c.ects}</td>
-                                    <td className="hide-print" style={{ width: 100, verticalAlign: 'middle' }}>
+                                    <td className="hide-print" style={{ width: 130, verticalAlign: 'middle' }}>
                                       <select
                                         value={sem.id}
                                         onChange={(e) => changeCustomCourseSemester(code, e.target.value)}
-                                        style={{ width: '100%', padding: '4px', fontSize: 10, border: '2px solid var(--color-border)', borderRadius: 0, background: 'var(--color-yellow)', color: 'var(--color-text)', outline: 'none' }}
+                                        style={{ width: '100%', padding: '4px', fontSize: 10, border: '2px solid var(--color-border)', borderRadius: 0, background: 'var(--color-yellow)', color: 'var(--color-text)', outline: 'none', textOverflow: 'ellipsis' }}
                                       >
                                         {options.map(opt => (
                                           <option key={opt.val} value={opt.val}>{opt.label}</option>
