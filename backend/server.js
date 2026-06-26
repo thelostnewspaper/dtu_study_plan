@@ -1,6 +1,8 @@
 import express from 'express'; // reload server
 import cors from 'cors';
 import dotenv from 'dotenv';
+import helmet from 'helmet';
+import rateLimit from 'express-rate-limit';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
 dotenv.config();
@@ -8,8 +10,17 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+app.use(helmet()); // Secure HTTP headers
 app.use(cors());
-app.use(express.json());
+app.use(express.json({ limit: '50kb' })); // Limit body size
+
+// Rate limiting: max 100 requests per 15 minutes per IP
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, 
+  max: 100,
+  message: { error: 'Too many requests, please try again later.' }
+});
+app.use('/api/', apiLimiter);
 
 // Initialize Gemini API
 const apiKey = process.env.GEMINI_API_KEY;
@@ -178,9 +189,16 @@ app.post('/api/chat', async (req, res) => {
   const { messages, currentState } = req.body;
   console.log(`\n[Server] POST /api/chat received. History length: ${messages?.length || 0}`);
 
-  if (!messages || !Array.isArray(messages)) {
+  if (!messages || !Array.isArray(messages) || messages.length === 0) {
     console.warn("[Server] Bad Request: missing messages array.");
     return res.status(400).json({ error: "Missing or invalid messages array." });
+  }
+
+  // Basic input validation: ensure the latest message isn't maliciously huge
+  const latestMessage = messages[messages.length - 1];
+  if (!latestMessage || typeof latestMessage.content !== 'string' || latestMessage.content.length > 2000) {
+    console.warn("[Server] Bad Request: message content exceeds length limits or is invalid.");
+    return res.status(400).json({ error: "Message is too long or invalid." });
   }
 
   // Construct message payload for Gemini
