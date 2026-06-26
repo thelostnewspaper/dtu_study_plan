@@ -29,7 +29,7 @@ export default function PlanChatbot({ currentState, onApplyActions, courseCatalo
     setIsTyping(true);
 
     try {
-      const response = await fetch('/api/chat', {
+      const response = await fetch('https://dtu-study-plan.onrender.com/api/chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -54,12 +54,12 @@ export default function PlanChatbot({ currentState, onApplyActions, courseCatalo
             setMessages(prev => [...prev, botMessage]);
             return;
           }
-        } catch (_) {}
+        } catch (_) { }
         throw new Error('API request failed');
       }
 
       const data = await response.json();
-      
+
       const botMessage = {
         id: (Date.now() + 1).toString(),
         sender: 'bot',
@@ -168,7 +168,7 @@ export default function PlanChatbot({ currentState, onApplyActions, courseCatalo
                       const isActive = currentState[opt.code] === opt.sem;
                       const c = courseCatalog ? courseCatalog[opt.code] : null;
                       const buttonText = c ? `${opt.code} — ${c.name} (${c.ects} ECTS)` : opt.label;
-                      
+
                       return (
                         <button
                           key={idx}
