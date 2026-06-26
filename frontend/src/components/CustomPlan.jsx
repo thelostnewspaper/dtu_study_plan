@@ -20,6 +20,31 @@ const SEMESTERS = [
 export default function CustomPlan({ customState, setCustomState, chatMessages, setChatMessages, setActiveTab }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [specFilter, setSpecFilter] = useState('all');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [targetSemesterId, setTargetSemesterId] = useState(null);
+
+  const openCourseModal = (semId) => {
+    setTargetSemesterId(semId);
+    setIsModalOpen(true);
+  };
+
+  const closeCourseModal = () => {
+    setIsModalOpen(false);
+    setTargetSemesterId(null);
+  };
+
+  const handleModalCourseSelect = (code) => {
+    // If course is already in the plan, don't allow duplicate addition via modal.
+    if (customState[code]) {
+      alert(`Course ${code} is already in your plan!`);
+      return;
+    }
+    setCustomState(prev => ({
+      ...prev,
+      [code]: targetSemesterId
+    }));
+    closeCourseModal();
+  };
 
   const toggleCustomCourse = (code) => {
     setCustomState(prev => {
@@ -171,6 +196,19 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
     software: { background: "var(--color-yellow)", color: "var(--color-text)" }
   };
 
+  // Rule Validation Engine
+  const isEctsOverload = totalEcts > 120;
+  
+  let intensiveOverloads = [];
+  const janCourses = Object.entries(customState).filter(([_, sVal]) => sVal === 'jan');
+  if (janCourses.length > 1) {
+    intensiveOverloads.push('January');
+  }
+  const summerCourses = Object.entries(customState).filter(([_, sVal]) => sVal === 'summer');
+  if (summerCourses.length > 1) {
+    intensiveOverloads.push('Summer');
+  }
+  
   return (
     <div>
       <div style={{ padding: '0 2rem 1rem', display: 'flex', justifyContent: 'center' }}>
@@ -225,293 +263,260 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                 </div>
               );
             })}
+            {/* Rule Warnings */}
+        {isEctsOverload && (
+          <div style={{ background: 'var(--color-pink)', color: 'var(--color-bg)', padding: '1rem', border: '3px solid var(--color-text)', boxShadow: '4px 4px 0 var(--color-text)', marginBottom: '2rem', fontWeight: 900, textAlign: 'center', fontSize: 16 }}>
+            WARNING: YOU HAVE EXCEEDED THE 120 ECTS LIMIT!
           </div>
-        </div>
+        )}
+        {intensiveOverloads.length > 0 && (
+          <div style={{ background: 'var(--color-yellow)', color: 'var(--color-text)', padding: '1rem', border: '3px solid var(--color-text)', boxShadow: '4px 4px 0 var(--color-text)', marginBottom: '2rem', fontWeight: 900, textAlign: 'center', fontSize: 16 }}>
+            WARNING: YOU CANNOT TAKE MORE THAN 1 COURSE (5 ECTS) IN THE {intensiveOverloads.join(' AND ').toUpperCase()} INTENSIVE BLOCK!
+          </div>
+        )}
 
-        {/* 2-Column Layout */}
-        <div className="custom-plan-layout" style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginTop: '1.5rem', alignItems: 'flex-start' }}>
-          
-          {/* Catalog Column */}
-          <div className="custom-plan-catalog" style={{ flex: '1 1 480px', minWidth: 320, background: 'var(--color-bg)', border: '3px solid var(--color-border)', borderRadius: 0, padding: '1.5rem', boxShadow: '5px 5px 0px var(--color-text)' }}>
-            <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 18, fontWeight: 900, marginBottom: '1rem', borderBottom: '3px solid var(--color-text)', paddingBottom: 6, color: 'var(--color-text)' }}>1. Course Catalog</h3>
-            
-            <div style={{ display: 'flex', gap: 10, marginBottom: '1rem' }}>
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search catalog..."
-                style={{ flex: 1, padding: '8px 12px', border: '2px solid var(--color-border)', borderRadius: 0, fontFamily: 'var(--font-main)', fontSize: 13, outline: 'none', background: 'var(--color-bg)', color: 'var(--color-text)', boxShadow: '3px 3px 0px var(--color-text)' }}
-              />
-              <select
-                value={specFilter}
-                onChange={(e) => setSpecFilter(e.target.value)}
-                style={{ padding: '8px 12px', border: '2px solid var(--color-border)', borderRadius: 0, fontFamily: 'var(--font-main)', fontSize: 13, background: 'var(--color-cyan)', color: 'var(--color-text)', boxShadow: '3px 3px 0px var(--color-text)', outline: 'none' }}
-              >
-                <option value="all">All Specs</option>
-                <option value="ai">AI</option>
-                <option value="cyber">Cyber</option>
-                <option value="digital">Digital</option>
-                <option value="embedded">Embedded</option>
-                <option value="safe">Safe & Secure</option>
-                <option value="software">Software</option>
-                <option value="mandatory">Mandatory</option>
-                <option value="innov2">Innov II</option>
-              </select>
-            </div>
+        {/* Single Column Schedule Layout */}
+        <div className="custom-plan-schedule" style={{ width: '100%', maxWidth: 1000, margin: '0 auto', background: 'var(--color-bg)', border: '3px solid var(--color-border)', borderRadius: 0, padding: '1.5rem', boxShadow: '5px 5px 0px var(--color-text)' }}>
+          <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 24, fontWeight: 900, marginBottom: '1rem', borderBottom: '3px solid var(--color-text)', paddingBottom: 6, color: 'var(--color-text)' }}>Custom Schedule</h3>
+          <p style={{ fontSize: 14, color: 'var(--color-text)', marginBottom: '1.5rem', fontWeight: 500 }}>Select empty slots to add courses. You must complete exactly 120 ECTS.</p>
 
-            <div style={{ maxHeight: 650, overflowY: 'auto', border: '1px solid var(--border)', borderRadius: 6 }}>
-              <table className="course-table">
-                <thead>
-                  <tr>
-                    <th style={{ width: 50, textAlign: 'center' }}>Select</th>
-                    <th style={{ width: 70 }}>Code</th>
-                    <th>Details</th>
-                    <th style={{ width: 50, textAlign: 'center' }}>ECTS</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {Object.entries(COURSE_CATALOG)
-                    .filter(([code, c]) => {
-                      const matchesSearch = code.includes(searchQuery) || c.name.toLowerCase().includes(searchQuery.toLowerCase());
-                      let matchesFilter = true;
-                      if (specFilter !== 'all') {
-                        if (specFilter === 'mandatory') matchesFilter = c.cat === 'mandatory';
-                        else if (specFilter === 'innov2') matchesFilter = c.cat === 'innov2';
-                        else matchesFilter = c.specs.includes(specFilter);
-                      }
-                      return matchesSearch && matchesFilter;
-                    })
-                    .map(([code, c]) => {
-                      const isSelected = customState[code] !== undefined;
-                      return (
-                        <tr key={code} className={isSelected ? 'selected-choice' : ''} style={{ cursor: 'pointer' }}>
-                          <td style={{ textAlign: 'center', verticalAlign: 'middle' }} onClick={(e) => { e.stopPropagation(); toggleCustomCourse(code); }}>
-                            <input type="checkbox" checked={isSelected} readOnly style={{ cursor: 'pointer' }} />
-                          </td>
-                          <td className="code" style={{ verticalAlign: 'middle' }}>
-                            <a
-                              href={`https://dtucourseanalyzer.pythonanywhere.com/course/${code}`}
-                              target="_blank"
-                              rel="noreferrer"
-                              onClick={(e) => e.stopPropagation()}
-                              style={{ color: 'inherit', textDecoration: 'underline' }}
-                            >
-                              {code === 'thesis' ? 'THESIS' : code}
-                            </a>
-                          </td>
-                          <td onClick={() => toggleCustomCourse(code)}>
-                            <div className="course-name" style={{ fontSize: 12, fontWeight: 500 }}>
-                                <a
-                                  href={`https://dtucourseanalyzer.pythonanywhere.com/course/${code}`}
-                                  target="_blank"
+          <div style={{ overflowY: 'auto' }}>
+            {SEMESTERS.map(sem => {
+              const semCourses = Object.entries(customState).filter(([_, sVal]) => sVal === sem.id);
+              const ectsSum = semCourses.reduce((acc, [code]) => acc + (COURSE_CATALOG[code]?.ects || 0), 0);
+              
+              // Target slots: 6 for main semesters, 1 for intensives
+              const targetSlots = (sem.id === 'jan' || sem.id === 'summer') ? 1 : 6;
+              const emptySlotsCount = Math.max(0, targetSlots - semCourses.length);
+
+              return (
+                <div key={sem.id} className="sem-block" style={{ marginBottom: '1.5rem', background: '#fff', padding: 12, border: '2px solid var(--border)', borderRadius: 0, boxShadow: '3px 3px 0 var(--border)' }}>
+                  <div className="sem-header" style={{ marginBottom: '0.5rem', borderBottom: '2px solid var(--accent)', display: 'flex', alignTo: 'baseline' }}>
+                    <span className="sem-title" style={{ fontSize: 15, fontWeight: 900 }}>{sem.title}</span>
+                    <span className="sem-period" style={{ fontSize: 11, marginLeft: 8, fontWeight: 500, alignSelf: 'center' }}>{sem.period}</span>
+                    <span className="sem-ects-total" style={{ marginLeft: 'auto', fontSize: 13, fontWeight: 900, color: 'var(--accent)' }}>{ectsSum} ECTS</span>
+                  </div>
+
+                  <table className="course-table">
+                    <tbody>
+                      {semCourses.map(([code]) => {
+                        const c = COURSE_CATALOG[code];
+                        if (!c) return null;
+
+                        const allowed = c.sem;
+                        const isAutumnOnly = allowed.length === 1 && allowed[0] === 'Autumn';
+                        const isSpringOnly = allowed.length === 1 && allowed[0] === 'Spring';
+                        const isJanuaryOnly = allowed.length === 1 && allowed[0] === 'January';
+                        const isSummerOnly = allowed.length === 1 && (allowed[0] === 'June' || allowed[0] === 'August' || allowed.join().includes('June'));
+
+                        let options = [];
+                        if (code === 'thesis') {
+                          options = [
+                            { val: 'sem4', label: 'Sem 4 (Spring)' },
+                            { val: 'sem3', label: 'Sem 3 (Autumn)' }
+                          ];
+                        } else if (isJanuaryOnly) {
+                          options = [{ val: 'jan', label: 'January' }];
+                        } else if (isSummerOnly) {
+                          options = [{ val: 'summer', label: 'Summer' }];
+                        } else if (isAutumnOnly) {
+                          options = [
+                            { val: 'sem1', label: 'Sem 1 (Autumn)' },
+                            { val: 'sem3', label: 'Sem 3 (Autumn)' }
+                          ];
+                        } else if (isSpringOnly) {
+                          options = [
+                            { val: 'sem2', label: 'Sem 2 (Spring)' },
+                            { val: 'sem4', label: 'Sem 4 (Spring)' }
+                          ];
+                        } else {
+                          options = [
+                            { val: 'sem1', label: 'Sem 1 (Autumn)' },
+                            { val: 'sem2', label: 'Sem 2 (Spring)' },
+                            { val: 'sem3', label: 'Sem 3 (Autumn)' },
+                            { val: 'sem4', label: 'Sem 4 (Spring)' }
+                          ];
+                        }
+
+                        return (
+                          <tr key={code}>
+                            <td className="code" style={{ width: 60, verticalAlign: 'middle', fontSize: 11, fontWeight: 900 }}>
+                              <a
+                                href={`https://dtucourseanalyzer.pythonanywhere.com/course/${code}`}
+                                target="_blank"
                                 rel="noreferrer"
                                 onClick={(e) => e.stopPropagation()}
                                 style={{ color: 'inherit', textDecoration: 'underline' }}
                               >
-                                {c.name}
+                                {code === 'thesis' ? 'THESIS' : code}
                               </a>
-                            </div>
-                            <div className="course-detail" style={{ fontSize: 11, marginTop: 2 }}>{c.desc}</div>
-                            <div style={{ marginTop: 4, display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-                              <span className={`cat ${getCategoryClass(c.cat)}`} style={{ fontSize: 8, padding: '1px 4px' }}>{getCategoryLabel(c.cat)}</span>
-                              <span className={`timing ${getTimingClass(c.sem.join('/'))}`} style={{ fontSize: 8, padding: '1px 4px' }}>{c.sem.join('/')}</span>
-                              {c.specs.map(sId => (
-                                <span key={sId} className="cat" style={{ fontSize: 8, padding: '1px 4px', ...specColors[sId] }}>{specNameMap[sId]}</span>
-                              ))}
-                            </div>
+                            </td>
+                            <td style={{ verticalAlign: 'middle' }}>
+                              <div className="course-name" style={{ fontSize: 12, fontWeight: 600 }}>
+                                <a
+                                  href={`https://dtucourseanalyzer.pythonanywhere.com/course/${code}`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  onClick={(e) => e.stopPropagation()}
+                                  style={{ color: 'inherit', textDecoration: 'underline' }}
+                                >
+                                  {c.name}
+                                </a>
+                              </div>
+                            </td>
+                            <td className="ects-cell" style={{ width: 40, verticalAlign: 'middle', fontSize: 12, fontWeight: 600 }}>{c.ects}</td>
+                            <td className="hide-print" style={{ width: 140, verticalAlign: 'middle' }}>
+                              <select
+                                value={sem.id}
+                                onChange={(e) => changeCustomCourseSemester(code, e.target.value)}
+                                style={{ width: '100%', padding: '6px', fontSize: 11, border: '2px solid var(--color-border)', borderRadius: 0, background: 'var(--color-yellow)', color: 'var(--color-text)', outline: 'none', fontWeight: 600 }}
+                              >
+                                {options.map(opt => (
+                                  <option key={opt.val} value={opt.val}>{opt.label}</option>
+                                ))}
+                              </select>
+                            </td>
+                            <td className="hide-print" style={{ width: 30, textAlign: 'center', verticalAlign: 'middle' }}>
+                              <button onClick={() => toggleCustomCourse(code)} style={{ border: '2px solid var(--color-text)', background: 'var(--color-pink)', color: '#fff', cursor: 'pointer', fontSize: 14, fontWeight: 900, width: 24, height: 24, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>&times;</button>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                      
+                      {/* Empty Placeholder Slots */}
+                      {Array.from({ length: emptySlotsCount }).map((_, i) => (
+                        <tr key={`empty-${i}`} style={{ background: 'var(--color-bg)', border: '2px dashed var(--color-border)' }}>
+                          <td className="code" style={{ width: 60, verticalAlign: 'middle', fontSize: 12, color: 'var(--color-text)' }}>—</td>
+                          <td style={{ verticalAlign: 'middle', padding: '8px 4px' }}>
+                            <button
+                              onClick={() => openCourseModal(sem.id)}
+                              style={{ width: '100%', textAlign: 'left', padding: '8px 12px', background: 'var(--color-cyan)', color: 'var(--color-text)', border: '2px solid var(--color-text)', boxShadow: '2px 2px 0 var(--color-text)', fontSize: 12, fontWeight: 900, cursor: 'pointer' }}
+                            >
+                              + SELECT COURSE
+                            </button>
                           </td>
-                          <td className="ects-cell" onClick={() => toggleCustomCourse(code)} style={{ verticalAlign: 'middle' }}>{c.ects}</td>
+                          <td className="ects-cell" style={{ width: 40, verticalAlign: 'middle', fontSize: 11, color: 'var(--text-muted)' }}>
+                            —
+                          </td>
+                          <td colSpan="2"></td>
                         </tr>
-                      );
-                    })}
-                </tbody>
-              </table>
-            </div>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              );
+            })}
           </div>
+        </div>
 
-          {/* Schedule Column */}
-          <div className="custom-plan-schedule" style={{ flex: '1 1 480px', minWidth: 320 }}>
-            <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 18, fontWeight: 900, marginBottom: '1rem', borderBottom: '3px solid var(--color-text)', paddingBottom: 6, color: 'var(--color-text)' }}>2. Custom Schedule</h3>
-            <p style={{ fontSize: 13, color: 'var(--color-text)', marginBottom: '1.5rem' }}>Select courses on the left or type in the chat. They appear below where you can adjust timing.</p>
+        {/* Modal Overlay */}
+        {isModalOpen && (
+          <div style={{
+            position: 'fixed', top: 0, left: 0, width: '100%', height: '100%',
+            backgroundColor: 'rgba(0, 0, 0, 0.7)', zIndex: 1000,
+            display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '1rem'
+          }}>
+            <div style={{
+              background: 'var(--color-bg)', border: '4px solid var(--color-text)', borderRadius: 0,
+              padding: '1.5rem', boxShadow: '8px 8px 0px var(--color-text)',
+              width: '100%', maxWidth: 800, maxHeight: '90vh', display: 'flex', flexDirection: 'column'
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem', borderBottom: '3px solid var(--color-text)', paddingBottom: 6 }}>
+                <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 20, fontWeight: 900, color: 'var(--color-text)', margin: 0 }}>Select Course for {SEMESTERS.find(s => s.id === targetSemesterId)?.title}</h3>
+                <button onClick={closeCourseModal} style={{ background: 'var(--color-pink)', color: '#fff', border: '2px solid var(--color-text)', padding: '4px 8px', fontWeight: 900, cursor: 'pointer' }}>CLOSE X</button>
+              </div>
 
-            <div style={{ maxHeight: 720, overflowY: 'auto' }}>
-                {(() => {
-                  // Calculate dynamic placeholder slot allocations to hit exactly 120 ECTS
-                  const allocatedSlots = {
-                    sem1: 0,
-                    jan: 0,
-                    sem2: 0,
-                    summer: 0,
-                    sem3: 0,
-                    sem4: 0
-                  };
+              <div style={{ display: 'flex', gap: 10, marginBottom: '1rem' }}>
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Search catalog..."
+                  style={{ flex: 1, padding: '10px 14px', border: '2px solid var(--color-text)', borderRadius: 0, fontFamily: 'var(--font-main)', fontSize: 14, outline: 'none', background: '#fff', color: 'var(--color-text)', boxShadow: '3px 3px 0px var(--color-text)' }}
+                />
+                <select
+                  value={specFilter}
+                  onChange={(e) => setSpecFilter(e.target.value)}
+                  style={{ padding: '10px 14px', border: '2px solid var(--color-text)', borderRadius: 0, fontFamily: 'var(--font-main)', fontSize: 14, background: 'var(--color-cyan)', color: 'var(--color-text)', boxShadow: '3px 3px 0px var(--color-text)', outline: 'none', fontWeight: 600 }}
+                >
+                  <option value="all">All Specs</option>
+                  <option value="ai">AI</option>
+                  <option value="cyber">Cyber</option>
+                  <option value="digital">Digital</option>
+                  <option value="embedded">Embedded</option>
+                  <option value="safe">Safe & Secure</option>
+                  <option value="software">Software</option>
+                  <option value="mandatory">Mandatory</option>
+                  <option value="innov2">Innov II</option>
+                </select>
+              </div>
 
-                  if (totalEcts < 120) {
-                    let pool = 120 - totalEcts;
-                    const mainSems = ['sem1', 'sem2', 'sem3', 'sem4'];
-                    
-                    // 1. Allocate to regular semesters first (up to 30 ECTS each)
-                    for (const id of mainSems) {
-                      const semCourses = Object.entries(customState).filter(([_, sVal]) => sVal === id);
-                      const ectsSum = semCourses.reduce((acc, [code]) => acc + (COURSE_CATALOG[code]?.ects || 0), 0);
-                      if (ectsSum < 30) {
-                        const space = 30 - ectsSum;
-                        const alloc = Math.min(space, pool);
-                        allocatedSlots[id] = alloc;
-                        pool -= alloc;
-                      }
-                      if (pool <= 0) break;
-                    }
-
-                    // 2. Allocate remaining to intensives if needed (up to 5 ECTS each)
-                    if (pool > 0) {
-                      const intensives = ['jan', 'summer'];
-                      for (const id of intensives) {
-                        const semCourses = Object.entries(customState).filter(([_, sVal]) => sVal === id);
-                        const ectsSum = semCourses.reduce((acc, [code]) => acc + (COURSE_CATALOG[code]?.ects || 0), 0);
-                        if (ectsSum < 5) {
-                          const space = 5 - ectsSum;
-                          const alloc = Math.min(space, pool);
-                          allocatedSlots[id] = alloc;
-                          pool -= alloc;
+              <div style={{ flex: 1, overflowY: 'auto', border: '2px solid var(--color-text)', background: '#fff' }}>
+                <table className="course-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
+                  <thead style={{ background: 'var(--color-text)', color: 'var(--color-bg)' }}>
+                    <tr>
+                      <th style={{ width: 70, padding: 8 }}>Code</th>
+                      <th style={{ padding: 8 }}>Details</th>
+                      <th style={{ width: 50, textAlign: 'center', padding: 8 }}>ECTS</th>
+                      <th style={{ width: 80, textAlign: 'center', padding: 8 }}>Add</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {Object.entries(COURSE_CATALOG)
+                      .filter(([code, c]) => {
+                        const matchesSearch = code.includes(searchQuery) || c.name.toLowerCase().includes(searchQuery.toLowerCase());
+                        let matchesFilter = true;
+                        if (specFilter !== 'all') {
+                          if (specFilter === 'mandatory') matchesFilter = c.cat === 'mandatory';
+                          else if (specFilter === 'innov2') matchesFilter = c.cat === 'innov2';
+                          else matchesFilter = c.specs.includes(specFilter);
                         }
-                        if (pool <= 0) break;
-                      }
-                    }
-                  }
-
-                  return SEMESTERS.map(sem => {
-                    const semCourses = Object.entries(customState).filter(([_, sVal]) => sVal === sem.id);
-                    const ectsSum = semCourses.reduce((acc, [code]) => acc + (COURSE_CATALOG[code]?.ects || 0), 0);
-                    const slotEcts = allocatedSlots[sem.id];
-                    
-                    return (
-                      <div key={sem.id} className="sem-block" style={{ marginBottom: '1.5rem', background: '#fff', padding: 12, border: '1px solid var(--border)', borderRadius: 8 }}>
-                        <div className="sem-header" style={{ marginBottom: '0.5rem', borderBottom: '2px solid var(--accent)', display: 'flex', alignTo: 'baseline' }}>
-                          <span className="sem-title" style={{ fontSize: 13, fontWeight: 600 }}>{sem.title}</span>
-                          <span className="sem-period" style={{ fontSize: 9, marginLeft: 6 }}>{sem.period}</span>
-                          <span className="sem-ects-total" style={{ marginLeft: 'auto', fontSize: 11, fontWeight: 600, color: 'var(--accent)' }}>{ectsSum} ECTS</span>
-                        </div>
-
-                        <table className="course-table">
-                          <tbody>
-                            {semCourses.length === 0 ? (
-                              <tr>
-                                <td colSpan="5" style={{ textAlign: 'center', color: 'var(--text-faint)', fontStyle: 'italic', padding: 12, fontSize: 11 }}>
-                                  No courses assigned.
-                                </td>
-                              </tr>
-                            ) : (
-                              semCourses.map(([code]) => {
-                                const c = COURSE_CATALOG[code];
-                                if (!c) return null;
-
-                                const allowed = c.sem;
-                                const isAutumnOnly = allowed.length === 1 && allowed[0] === 'Autumn';
-                                const isSpringOnly = allowed.length === 1 && allowed[0] === 'Spring';
-                                const isJanuaryOnly = allowed.length === 1 && allowed[0] === 'January';
-                                const isSummerOnly = allowed.length === 1 && (allowed[0] === 'June' || allowed[0] === 'August' || allowed.join().includes('June'));
-
-                                let options = [];
-                                if (code === 'thesis') {
-                                  options = [
-                                    { val: 'sem4', label: 'Sem 4 (Spring)' },
-                                    { val: 'sem3', label: 'Sem 3 (Autumn)' }
-                                  ];
-                                } else if (isJanuaryOnly) {
-                                  options = [{ val: 'jan', label: 'January' }];
-                                } else if (isSummerOnly) {
-                                  options = [{ val: 'summer', label: 'Summer' }];
-                                } else if (isAutumnOnly) {
-                                  options = [
-                                    { val: 'sem1', label: 'Sem 1 (Autumn)' },
-                                    { val: 'sem3', label: 'Sem 3 (Autumn)' }
-                                  ];
-                                } else if (isSpringOnly) {
-                                  options = [
-                                    { val: 'sem2', label: 'Sem 2 (Spring)' },
-                                    { val: 'sem4', label: 'Sem 4 (Spring)' }
-                                  ];
-                                } else {
-                                  options = [
-                                    { val: 'sem1', label: 'Sem 1 (Autumn)' },
-                                    { val: 'sem2', label: 'Sem 2 (Spring)' },
-                                    { val: 'sem3', label: 'Sem 3 (Autumn)' },
-                                    { val: 'sem4', label: 'Sem 4 (Spring)' }
-                                  ];
-                                }
-
-                                return (
-                                  <tr key={code}>
-                                    <td className="code" style={{ width: 60, verticalAlign: 'middle', fontSize: 10 }}>
-                                      <a
-                                        href={`https://dtucourseanalyzer.pythonanywhere.com/course/${code}`}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        onClick={(e) => e.stopPropagation()}
-                                        style={{ color: 'inherit', textDecoration: 'underline' }}
-                                      >
-                                        {code === 'thesis' ? 'THESIS' : code}
-                                      </a>
-                                    </td>
-                                    <td style={{ verticalAlign: 'middle' }}>
-                                      <div className="course-name" style={{ fontSize: 11, fontWeight: 500 }}>
-                                          <a
-                                            href={`https://dtucourseanalyzer.pythonanywhere.com/course/${code}`}
-                                            target="_blank"
-                                          rel="noreferrer"
-                                          onClick={(e) => e.stopPropagation()}
-                                          style={{ color: 'inherit', textDecoration: 'underline' }}
-                                        >
-                                          {c.name}
-                                        </a>
-                                      </div>
-                                    </td>
-                                    <td className="ects-cell" style={{ width: 40, verticalAlign: 'middle', fontSize: 11 }}>{c.ects}</td>
-                                    <td className="hide-print" style={{ width: 130, verticalAlign: 'middle' }}>
-                                      <select
-                                        value={sem.id}
-                                        onChange={(e) => changeCustomCourseSemester(code, e.target.value)}
-                                        style={{ width: '100%', padding: '4px', fontSize: 10, border: '2px solid var(--color-border)', borderRadius: 0, background: 'var(--color-yellow)', color: 'var(--color-text)', outline: 'none', textOverflow: 'ellipsis' }}
-                                      >
-                                        {options.map(opt => (
-                                          <option key={opt.val} value={opt.val}>{opt.label}</option>
-                                        ))}
-                                      </select>
-                                    </td>
-                                    <td className="hide-print" style={{ width: 25, textAlign: 'center', verticalAlign: 'middle' }}>
-                                      <button onClick={() => toggleCustomCourse(code)} style={{ border: 'none', background: 'none', color: 'var(--red)', cursor: 'pointer', fontSize: 14 }}>&times;</button>
-                                    </td>
-                                  </tr>
-                                );
-                              })
-                            )}
-                            {slotEcts > 0 && (
-                              <tr style={{ background: 'var(--color-bg)', border: '2px dashed var(--color-border)' }}>
-                                <td className="code" style={{ width: 60, verticalAlign: 'middle', fontSize: 10, color: 'var(--color-text)' }}>—</td>
-                                <td style={{ verticalAlign: 'middle' }}>
-                                  <div className="course-name" style={{ fontSize: 11, fontWeight: 500, color: 'var(--text-muted)', fontStyle: 'italic' }}>
-                                    {sem.id === 'jan' || sem.id === 'summer' ? 'Free intensive slot' : 'Free elective / choice slot'}
-                                  </div>
-                                  <div className="course-detail" style={{ fontSize: 10, color: 'var(--text-faint)' }}>
-                                    Select a course from the catalog on the left to fill this space.
-                                  </div>
-                                </td>
-                                <td className="ects-cell" style={{ width: 40, verticalAlign: 'middle', fontSize: 11, color: 'var(--text-muted)' }}>
-                                  {slotEcts} ECTS
-                                </td>
-                                <td colSpan="2"></td>
-                              </tr>
-                            )}
-                          </tbody>
-                        </table>
-                      </div>
-                    );
-                  });
-                })()}
+                        return matchesSearch && matchesFilter;
+                      })
+                      .map(([code, c]) => {
+                        const isSelected = customState[code] !== undefined;
+                        return (
+                          <tr key={code} style={{ borderBottom: '1px solid var(--color-border)', background: isSelected ? 'var(--color-bg)' : '#fff' }}>
+                            <td className="code" style={{ verticalAlign: 'middle', padding: 8 }}>
+                              {code === 'thesis' ? 'THESIS' : code}
+                            </td>
+                            <td style={{ padding: 8 }}>
+                              <div className="course-name" style={{ fontSize: 13, fontWeight: 600 }}>{c.name}</div>
+                              <div className="course-detail" style={{ fontSize: 11, marginTop: 4 }}>{c.desc}</div>
+                              <div style={{ marginTop: 6, display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+                                <span className={`cat ${getCategoryClass(c.cat)}`} style={{ fontSize: 9, padding: '2px 6px' }}>{getCategoryLabel(c.cat)}</span>
+                                <span className={`timing ${getTimingClass(c.sem.join('/'))}`} style={{ fontSize: 9, padding: '2px 6px' }}>{c.sem.join('/')}</span>
+                                {c.specs.map(sId => (
+                                  <span key={sId} className="cat" style={{ fontSize: 9, padding: '2px 6px', ...specColors[sId] }}>{specNameMap[sId]}</span>
+                                ))}
+                              </div>
+                            </td>
+                            <td className="ects-cell" style={{ verticalAlign: 'middle', textAlign: 'center', padding: 8, fontWeight: 600 }}>{c.ects}</td>
+                            <td style={{ verticalAlign: 'middle', textAlign: 'center', padding: 8 }}>
+                              <button
+                                onClick={() => handleModalCourseSelect(code)}
+                                disabled={isSelected}
+                                style={{
+                                  padding: '6px 12px',
+                                  background: isSelected ? 'var(--color-border)' : 'var(--color-yellow)',
+                                  color: isSelected ? '#999' : 'var(--color-text)',
+                                  border: `2px solid ${isSelected ? '#999' : 'var(--color-text)'}`,
+                                  boxShadow: isSelected ? 'none' : '2px 2px 0 var(--color-text)',
+                                  fontWeight: 900, cursor: isSelected ? 'not-allowed' : 'pointer'
+                                }}
+                              >
+                                {isSelected ? 'ADDED' : 'ADD'}
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                  </tbody>
+                </table>
               </div>
             </div>
+          </div>
+        )}       </div>
 
           </div>
 
