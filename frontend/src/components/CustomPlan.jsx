@@ -153,12 +153,12 @@ export default function CustomPlan({ customState, setCustomState }) {
   };
 
   const specColors = {
-    ai: "var(--purple-light); color: var(--purple);",
-    cyber: "var(--teal-light); color: var(--teal);",
-    digital: "var(--red-light); color: var(--red);",
-    embedded: "var(--accent-light); color: var(--accent);",
-    safe: "var(--amber-light); color: var(--amber);",
-    software: "var(--green-light); color: var(--green);"
+    ai: { background: "var(--color-pink)", color: "var(--color-bg)" },
+    cyber: { background: "var(--color-cyan)", color: "var(--color-text)" },
+    digital: { background: "var(--color-yellow)", color: "var(--color-text)" },
+    embedded: { background: "var(--color-text)", color: "var(--color-bg)" },
+    safe: { background: "var(--color-pink)", color: "var(--color-bg)" },
+    software: { background: "var(--color-yellow)", color: "var(--color-text)" }
   };
 
   return (
@@ -185,7 +185,9 @@ export default function CustomPlan({ customState, setCustomState }) {
         <div className="spec-tracker">
           <h3 style={{ fontSize: 13, fontWeight: 600, marginBottom: '1rem' }}>Diploma Endorsement Eligibility — Minimum 25 ECTS in a specialization line</h3>
           <div className="spec-rows" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px 20px' }}>
-            {Object.entries(specEcts).map(([specId, ectsVal]) => {
+            {(() => {
+              const specId = 'embedded';
+              const ectsVal = specEcts[specId] || 0;
               const pctVal = Math.min(100, (ectsVal / 25) * 100);
               const isMet = ectsVal >= 25;
               return (
@@ -193,12 +195,12 @@ export default function CustomPlan({ customState, setCustomState }) {
                   <span className="spec-check" style={{ color: isMet ? 'var(--green)' : 'var(--text-faint)' }}>{isMet ? '✓' : '○'}</span>
                   <span className="spec-name" style={{ width: 180 }}>{specNameMap[specId]}</span>
                   <div className="spec-bar-outer">
-                    <div className="spec-bar-inner" style={{ width: `${pctVal}%`, background: specId === 'ai' ? 'var(--purple)' : specId === 'cyber' ? 'var(--teal)' : specId === 'digital' ? 'var(--red)' : specId === 'embedded' ? 'var(--accent)' : specId === 'safe' ? 'var(--amber)' : 'var(--green)' }}></div>
+                    <div className="spec-bar-inner" style={{ width: `${pctVal}%`, background: 'var(--accent)' }}></div>
                   </div>
                   <span className="spec-num">{ectsVal} / 25 ECTS</span>
                 </div>
               );
-            })}
+            })()}
           </div>
         </div>
 
@@ -206,8 +208,8 @@ export default function CustomPlan({ customState, setCustomState }) {
         <div className="custom-plan-layout" style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginTop: '1.5rem', alignItems: 'flex-start' }}>
           
           {/* Catalog Column */}
-          <div className="custom-plan-catalog" style={{ flex: '1 1 480px', minWidth: 320, background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 8, padding: '1.5rem' }}>
-            <h3 style={{ fontSize: 15, fontWeight: 600, marginBottom: '1rem', borderBottom: '2px solid var(--accent)', paddingBottom: 6 }}>1. Course Catalog</h3>
+          <div className="custom-plan-catalog" style={{ flex: '1 1 480px', minWidth: 320, background: 'var(--glass-bg)', backdropFilter: 'var(--glass-blur)', border: '1px solid var(--glass-border)', borderRadius: 12, padding: '1.5rem', boxShadow: 'var(--glass-shadow)' }}>
+            <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 18, fontWeight: 900, marginBottom: '1rem', borderBottom: '2px solid var(--accent)', paddingBottom: 6, color: 'var(--accent)' }}>1. Course Catalog</h3>
             
             <div style={{ display: 'flex', gap: 10, marginBottom: '1rem' }}>
               <input
@@ -215,12 +217,12 @@ export default function CustomPlan({ customState, setCustomState }) {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search catalog..."
-                style={{ flex: 1, padding: '8px 12px', border: '1px solid var(--border)', borderRadius: 6, fontFamily: 'var(--sans)', fontSize: 13, outline: 'none', background: 'var(--bg)', color: 'var(--text)' }}
+                style={{ flex: 1, padding: '8px 12px', border: '2px solid var(--color-border)', borderRadius: 0, fontFamily: 'var(--font-main)', fontSize: 13, outline: 'none', background: 'var(--color-bg)', color: 'var(--color-text)', boxShadow: '3px 3px 0px var(--color-text)' }}
               />
               <select
                 value={specFilter}
                 onChange={(e) => setSpecFilter(e.target.value)}
-                style={{ padding: '8px 12px', border: '1px solid var(--border)', borderRadius: 6, fontFamily: 'var(--sans)', fontSize: 13, background: 'var(--surface)', color: 'var(--text)' }}
+                style={{ padding: '8px 12px', border: '2px solid var(--color-border)', borderRadius: 0, fontFamily: 'var(--font-main)', fontSize: 13, background: 'var(--color-cyan)', color: 'var(--color-text)', boxShadow: '3px 3px 0px var(--color-text)', outline: 'none' }}
               >
                 <option value="all">All Specs</option>
                 <option value="ai">AI</option>
@@ -237,7 +239,7 @@ export default function CustomPlan({ customState, setCustomState }) {
             <div style={{ maxHeight: 650, overflowY: 'auto', border: '1px solid var(--border)', borderRadius: 6 }}>
               <table className="course-table">
                 <thead>
-                  <tr style={{ position: 'sticky', top: 0, zIndex: 10, background: 'var(--surface2)' }}>
+                  <tr>
                     <th style={{ width: 50, textAlign: 'center' }}>Select</th>
                     <th style={{ width: 70 }}>Code</th>
                     <th>Details</th>
@@ -265,13 +267,23 @@ export default function CustomPlan({ customState, setCustomState }) {
                           </td>
                           <td className="code" onClick={() => toggleCustomCourse(code)} style={{ verticalAlign: 'middle' }}>{code === 'thesis' ? 'THESIS' : code}</td>
                           <td onClick={() => toggleCustomCourse(code)}>
-                            <div className="course-name" style={{ fontSize: 12, fontWeight: 500 }}>{c.name}</div>
+                            <div className="course-name" style={{ fontSize: 12, fontWeight: 500 }}>
+                              <a
+                                href={`https://dtucourseanalyzer.com/course/${code}`}
+                                target="_blank"
+                                rel="noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                style={{ color: 'inherit', textDecoration: 'underline' }}
+                              >
+                                {c.name}
+                              </a>
+                            </div>
                             <div className="course-detail" style={{ fontSize: 11, marginTop: 2 }}>{c.desc}</div>
                             <div style={{ marginTop: 4, display: 'flex', flexWrap: 'wrap', gap: 2 }}>
                               <span className={`cat ${getCategoryClass(c.cat)}`} style={{ fontSize: 8, padding: '1px 4px' }}>{getCategoryLabel(c.cat)}</span>
                               <span className={`timing ${getTimingClass(c.sem.join('/'))}`} style={{ fontSize: 8, padding: '1px 4px' }}>{c.sem.join('/')}</span>
                               {c.specs.map(sId => (
-                                <span key={sId} className="cat" style={{ fontSize: 8, padding: '1px 4px', background: specColors[sId] }}>{specNameMap[sId]}</span>
+                                <span key={sId} className="cat" style={{ fontSize: 8, padding: '1px 4px', ...specColors[sId] }}>{specNameMap[sId]}</span>
                               ))}
                             </div>
                           </td>
@@ -286,8 +298,8 @@ export default function CustomPlan({ customState, setCustomState }) {
 
           {/* Schedule Column */}
           <div className="custom-plan-schedule" style={{ flex: '1 1 480px', minWidth: 320 }}>
-            <h3 style={{ fontSize: 15, fontWeight: 600, marginBottom: '1rem', borderBottom: '2px solid var(--accent)', paddingBottom: 6 }}>2. Custom Schedule</h3>
-            <p style={{ fontSize: 12, color: 'var(--text-muted)', marginBottom: '1.5rem' }}>Select courses on the left or type in the chat. They appear below where you can adjust timing.</p>
+            <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 18, fontWeight: 900, marginBottom: '1rem', borderBottom: '2px solid var(--accent)', paddingBottom: 6, color: 'var(--accent)' }}>2. Custom Schedule</h3>
+            <p style={{ fontSize: 13, color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>Select courses on the left or type in the chat. They appear below where you can adjust timing.</p>
 
             <div style={{ maxHeight: 720, overflowY: 'auto' }}>
                 {(() => {
@@ -400,14 +412,24 @@ export default function CustomPlan({ customState, setCustomState }) {
                                   <tr key={code}>
                                     <td className="code" style={{ width: 60, verticalAlign: 'middle', fontSize: 10 }}>{code === 'thesis' ? 'THESIS' : code}</td>
                                     <td style={{ verticalAlign: 'middle' }}>
-                                      <div className="course-name" style={{ fontSize: 11, fontWeight: 500 }}>{c.name}</div>
+                                      <div className="course-name" style={{ fontSize: 11, fontWeight: 500 }}>
+                                        <a
+                                          href={`https://dtucourseanalyzer.com/course/${code}`}
+                                          target="_blank"
+                                          rel="noreferrer"
+                                          onClick={(e) => e.stopPropagation()}
+                                          style={{ color: 'inherit', textDecoration: 'underline' }}
+                                        >
+                                          {c.name}
+                                        </a>
+                                      </div>
                                     </td>
                                     <td className="ects-cell" style={{ width: 40, verticalAlign: 'middle', fontSize: 11 }}>{c.ects}</td>
                                     <td className="hide-print" style={{ width: 100, verticalAlign: 'middle' }}>
                                       <select
                                         value={sem.id}
                                         onChange={(e) => changeCustomCourseSemester(code, e.target.value)}
-                                        style={{ width: '100%', padding: '2px 4px', fontSize: 10, border: '1px solid var(--border)', borderRadius: 4, background: 'var(--surface)', color: 'var(--text)' }}
+                                        style={{ width: '100%', padding: '4px', fontSize: 10, border: '2px solid var(--color-border)', borderRadius: 0, background: 'var(--color-yellow)', color: 'var(--color-text)', outline: 'none' }}
                                       >
                                         {options.map(opt => (
                                           <option key={opt.val} value={opt.val}>{opt.label}</option>
@@ -422,8 +444,8 @@ export default function CustomPlan({ customState, setCustomState }) {
                               })
                             )}
                             {slotEcts > 0 && (
-                              <tr style={{ background: '#FAF9F6', border: '1px dashed var(--border-strong)' }}>
-                                <td className="code" style={{ width: 60, verticalAlign: 'middle', fontSize: 10, color: 'var(--text-faint)' }}>—</td>
+                              <tr style={{ background: 'var(--color-bg)', border: '2px dashed var(--color-border)' }}>
+                                <td className="code" style={{ width: 60, verticalAlign: 'middle', fontSize: 10, color: 'var(--color-text)' }}>—</td>
                                 <td style={{ verticalAlign: 'middle' }}>
                                   <div className="course-name" style={{ fontSize: 11, fontWeight: 500, color: 'var(--text-muted)', fontStyle: 'italic' }}>
                                     {sem.id === 'jan' || sem.id === 'summer' ? 'Free intensive slot' : 'Free elective / choice slot'}
@@ -450,7 +472,7 @@ export default function CustomPlan({ customState, setCustomState }) {
           </div>
 
         {/* Custom Plan Summary Grid */}
-        <div className="section-title" style={{ marginTop: '3rem' }}>Custom Plan Summary</div>
+        <div className="section-divider" style={{ marginTop: '3rem' }}><span>Custom Plan Summary</span></div>
         <div className="summary-grid">
           <div className="sum-card">
             <div className="sum-num">{totalEcts}</div>

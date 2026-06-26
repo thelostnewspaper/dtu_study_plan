@@ -1,8 +1,16 @@
+// ============================================================
+// DTU MSc Computer Science & Engineering — Study Plan Data
+// Specialization: Cybersecurity · Profile: AI/Data + Security
+// 120 ECTS · 2 years
+// ============================================================
+
+// ---------- BACKWARD-COMPAT EXPORTS (CustomPlan uses these) ----------
+
 export const COURSE_CATALOG = {
-  "12100": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Autumn"], cat: "mandatory", specs: [], desc: "Life-cycle assessment, environmental impact quantification." },
+  "12100": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Spring"], cat: "mandatory", specs: [], desc: "Life-cycle assessment, environmental impact quantification." },
   "12101": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Spring"], cat: "mandatory", specs: [], desc: "Life-cycle assessment, environmental impact quantification." },
   "12105": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Autumn"], cat: "mandatory", specs: [], desc: "Life-cycle assessment, environmental impact quantification (Evening slot)." },
-  "12106": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Spring"], cat: "mandatory", specs: [], desc: "Life-cycle assessment, environmental impact quantification." },
+  "12106": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Autumn"], cat: "mandatory", specs: [], desc: "Life-cycle assessment, environmental impact quantification." },
   "42500": { name: "Innovation in Engineering", ects: 5, sem: ["January"], cat: "mandatory", specs: [], desc: "Entrepreneurship, design thinking, innovation processes." },
   "42501": { name: "Innovation in Engineering", ects: 5, sem: ["June"], cat: "mandatory", specs: [], desc: "Entrepreneurship, design thinking, innovation processes." },
   "42504": { name: "Innovation in Engineering", ects: 5, sem: ["August"], cat: "mandatory", specs: [], desc: "Entrepreneurship, design thinking, innovation processes." },
@@ -13,31 +21,31 @@ export const COURSE_CATALOG = {
   "02266": { name: "User Experience Engineering", ects: 5, sem: ["January"], cat: "innov2", specs: ["software"], desc: "UI/UX methods, user research, prototyping, usability testing." },
   "38102": { name: "Technology Entrepreneurship", ects: 5, sem: ["Autumn"], cat: "innov2", specs: [], desc: "Business modeling, startup creation, commercialization strategies." },
   "38103": { name: "X-Tech Entrepreneurship", ects: 10, sem: ["Autumn", "Spring"], cat: "innov2", specs: [], desc: "Project incubator connecting researchers and students to build startups." },
-  "38106": { name: "Developing an Entrepreneurial Mindset", ects: 5, sem: ["Spring"], cat: "innov2", specs: [], desc: "Creativity, mindset building, startup exploration." },
+  "38106": { name: "Developing an Entrepreneurial Mindset", ects: 5, sem: ["Spring", "Autumn"], cat: "innov2", specs: [], desc: "Creativity, mindset building, startup exploration." },
   "38113": { name: "Applied AI for Entrepreneurs", ects: 5, sem: ["Autumn"], cat: "innov2", specs: [], desc: "Leveraging AI/ML systems to build new commercial platforms." },
   "02201": { name: "Agile Hardware Design", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["digital"], desc: "Modern agile workflows for digital systems, rapid prototyping." },
   "02203": { name: "Design of Digital Systems", ects: 5, sem: ["Autumn"], cat: "core", specs: ["digital", "embedded"], desc: "FPGA hardware design, CAD tools, digital circuit implementation." },
   "02205": { name: "VLSI Design", ects: 5, sem: ["Spring"], cat: "prog", specs: ["digital"], desc: "Very Large Scale Integration, CMOS technology, transistor-level layout." },
   "02207": { name: "Verification of Digital Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["digital"], desc: "Formal verification, model checking, assertion-based testing." },
-  "02209": { name: "Test of Digital Systems", ects: 5, sem: ["Spring"], cat: "prog", specs: ["digital"], desc: "Fault modeling, automatic test pattern generation, design-for-testability." },
-  "02211": { name: "Research Topics in Computer Architecture", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["digital", "embedded"], desc: "Advanced processor design, memory hierarchies, research directions." },
+  "02209": { name: "Test of Digital Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["digital"], desc: "Fault modeling, automatic test pattern generation, design-for-testability." },
+  "02211": { name: "Research Topics in Computer Architecture", ects: 5, sem: ["Spring"], cat: "prog", specs: ["digital", "embedded"], desc: "Advanced processor design, memory hierarchies, research directions." },
   "02214": { name: "Hardware/Software Codesign", ects: 5, sem: ["Spring"], cat: "prog", specs: ["digital", "embedded"], desc: "FPGA-software interfaces, firmware-hardware boundary, co-simulation." },
   "02225": { name: "Distributed Real-Time Systems", ects: 5, sem: ["Spring"], cat: "core", specs: ["digital", "embedded"], desc: "Real-time scheduling, fault tolerance, distributed protocols." },
   "02226": { name: "Networked Embedded Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["embedded"], desc: "Communication protocols, IoT architectures, real-world embedded labs." },
   "02231": { name: "Cryptography Fundamentals", ects: 5, sem: ["Autumn", "Spring"], cat: "prog", specs: ["cyber", "safe"], desc: "Symmetric/asymmetric crypto, protocols, mathematical foundations." },
-  "02232": { name: "Applied Cryptography", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber", "safe"], desc: "Implementation of crypto algorithms, secure communication protocols." },
+  "02232": { name: "Applied Cryptography", ects: 5, sem: ["Autumn", "Spring"], cat: "prog", specs: ["cyber", "safe"], desc: "Implementation of crypto algorithms, secure communication protocols." },
   "02234": { name: "Research Topics in Cybersecurity", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["cyber"], desc: "Keeps you current on emerging threats and OT/ICS security." },
   "02242": { name: "Program Analysis", ects: 7.5, sem: ["Autumn"], cat: "core", specs: ["safe", "software"], desc: "Static analysis, dataflow, type systems, software reliability." },
-  "02244": { name: "Logic for Security", ects: 7.5, sem: ["Autumn"], cat: "prog", specs: ["safe"], desc: "Mathematical logic, formal models of security protocols." },
-  "02245": { name: "Program Verification", ects: 7.5, sem: ["Spring"], cat: "prog", specs: ["safe", "software"], desc: "Formal verification tools, Hoare logic, proving program correctness." },
-  "02246": { name: "Model Checking", ects: 7.5, sem: ["Spring"], cat: "prog", specs: ["safe"], desc: "Automated verification of finite-state concurrent systems." },
+  "02244": { name: "Logic for Security", ects: 7.5, sem: ["Spring"], cat: "prog", specs: ["safe"], desc: "Mathematical logic, formal models of security protocols." },
+  "02245": { name: "Program Verification", ects: 7.5, sem: ["Autumn"], cat: "prog", specs: ["safe", "software"], desc: "Formal verification tools, Hoare logic, proving program correctness." },
+  "02246": { name: "Model Checking", ects: 7.5, sem: ["Autumn"], cat: "prog", specs: ["safe"], desc: "Automated verification of finite-state concurrent systems." },
   "02247": { name: "Compiler Construction", ects: 5, sem: ["Spring"], cat: "prog", specs: ["safe"], desc: "Parsing, lexing, semantic analysis, compiler design." },
   "02249": { name: "Computationally Hard Problems", ects: 7.5, sem: ["Autumn"], cat: "core", specs: ["ai", "embedded"], desc: "NP-completeness, approximation algorithms, exact algorithms." },
-  "02256": { name: "Automated Reasoning", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai", "safe"], desc: "Theorem proving, SAT/SMT solvers, logical frameworks." },
+  "02256": { name: "Automated Reasoning", ects: 5, sem: ["Spring"], cat: "prog", specs: ["ai", "safe"], desc: "Theorem proving, SAT/SMT solvers, logical frameworks." },
   "02258": { name: "Parallel Computer Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["embedded"], desc: "Concurrent programming, parallel architectures, performance models." },
-  "02262": { name: "Formal Aspects of Process Science", ects: 5, sem: ["Spring"], cat: "prog", specs: ["safe", "software"], desc: "Concurrency theory, Petri nets, process algebra." },
-  "02267": { name: "Software Development of Web Services", ects: 5, sem: ["Spring"], cat: "prog", specs: ["software"], desc: "Cloud/API layer and IoT cloud connectivity." },
-  "02268": { name: "Process-Oriented and Event-Driven Software Systems", ects: 5, sem: ["Spring"], cat: "prog", specs: ["software"], desc: "Industrial automation and IoT event pipelines." },
+  "02262": { name: "Formal Aspects of Process Science", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["safe", "software"], desc: "Concurrency theory, Petri nets, process algebra." },
+  "02267": { name: "Software Development of Web Services", ects: 5, sem: ["January"], cat: "prog", specs: ["software"], desc: "Cloud/API layer and IoT cloud connectivity." },
+  "02268": { name: "Process-Oriented and Event-Driven Software Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["software"], desc: "Industrial automation and IoT event pipelines." },
   "02269": { name: "Process Mining", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["software"], desc: "Discovering, monitoring, and improving processes from event logs." },
   "02270": { name: "Cybersecurity Fundamentals", ects: 5, sem: ["Autumn"], cat: "core", specs: ["cyber", "software"], desc: "Network security, threat modeling, secure systems design." },
   "02271": { name: "Advanced Cybersecurity", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber"], desc: "Advanced threat defense, secure architecture design." },
@@ -45,30 +53,22 @@ export const COURSE_CATALOG = {
   "02276": { name: "Usable Security and Privacy", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber"], desc: "Human factors in security, interface design for security." },
   "02277": { name: "Cyber Risk Management and Incident Response", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber"], desc: "NIS2 compliance, risk frameworks, incident handling." },
   "02278": { name: "Post-Quantum Cryptography", ects: 5, sem: ["June"], cat: "prog", specs: ["cyber"], desc: "Forward bet on quantum-resistant cryptographic algorithms." },
-  "02282": { name: "Algorithms for Massive Data Sets", ects: 7.5, sem: ["Autumn"], cat: "prog", specs: ["ai"], desc: "Streaming algorithms, hashing, handling giant data collections." },
-  "02280": { name: "Artificial Intelligence and Multi-Agent Systems", ects: 10, sem: ["Autumn"], cat: "prog", specs: ["ai"], desc: "Robotics and autonomous agent decision-making models." },
+  "02280": { name: "Artificial Intelligence and Multi-Agent Systems", ects: 10, sem: ["Spring"], cat: "prog", specs: ["ai"], desc: "Robotics and autonomous agent decision-making models." },
+  "02282": { name: "Algorithms for Massive Data Sets", ects: 7.5, sem: ["Spring"], cat: "prog", specs: ["ai"], desc: "Streaming algorithms, hashing, handling giant data collections." },
   "02287": { name: "Logical Theories for Uncertainty and Learning", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai"], desc: "Probabilistic logic and foundations of machine learning." },
-  "02289": { name: "Algorithmic Techniques for Modern Data Models", ects: 5, sem: ["Spring"], cat: "prog", specs: ["ai"], desc: "Advanced graph algorithms, data structures, metric spaces." },
-  "02291": { name: "System Integration", ects: 5, sem: ["Autumn"], cat: "core", specs: ["ai", "cyber", "digital", "embedded", "safe", "software"], desc: "Heterogeneous systems, APIs, middleware, SOA." }
+  "02289": { name: "Algorithmic Techniques for Modern Data Models", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai"], desc: "Advanced graph algorithms, data structures, metric spaces." },
+  "02291": { name: "System Integration", ects: 5, sem: ["Spring"], cat: "core", specs: ["ai", "cyber", "digital", "embedded", "safe", "software"], desc: "Heterogeneous systems, APIs, middleware, SOA." },
+  "02417": { name: "Time Series Analysis", ects: 5, sem: ["Spring"], cat: "elective", specs: [], desc: "Statistical modeling of sequential data, forecasting, ARIMA, state-space models." },
+  "02452": { name: "Machine Learning", ects: 5, sem: ["Autumn"], cat: "elective", specs: ["ai"], desc: "Supervised/unsupervised learning, neural networks, model selection, evaluation." },
+  "02456": { name: "Deep Learning", ects: 5, sem: ["Autumn"], cat: "elective", specs: ["ai"], desc: "CNNs, RNNs, transformers, generative models, practical deep learning." },
+  "02471": { name: "Machine Learning for Signal Processing", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai"], desc: "Advanced understanding of machine learning techniques applied to signal processing." },
+  "02476": { name: "MLOps", ects: 5, sem: ["January"], cat: "elective", specs: ["ai"], desc: "ML deployment pipelines, monitoring, CI/CD for ML, containerization." },
+  "02517": { name: "Responsible AI", ects: 5, sem: ["Autumn"], cat: "elective", specs: ["ai"], desc: "Fairness, accountability, transparency, ethics in AI systems." },
+  "02807": { name: "Computational Tools for Data Science", ects: 5, sem: ["Autumn"], cat: "elective", specs: ["ai"], desc: "Python data stack, visualization, big-data tools, reproducible workflows." }
 };
 
 export const EMBEDDED_COURSES = ['02203', '02211', '02214', '02225', '02226', '02249', '02258', '02291'];
 export const CYBER_COURSES = ['02231', '02232', '02234', '02270', '02271', '02275', '02276', '02277', '02278', '02291'];
-
-export const ELECTIVES_LIST = [
-  { code: '02267', name: 'Software Development of Web Services', why: 'Adds cloud/API layer. Many embedded roles now involve IoT cloud connectivity (Grundfos, Kamstrup, Danfoss).', semText: 'F — Spring', ects: 5, timing: 'spring' },
-  { code: '02268', name: 'Process-Oriented & Event-Driven Software Systems', why: 'Industrial automation and IoT event pipelines. Relevant to manufacturing and process industries — common in Denmark.', semText: 'F — Spring', ects: 5, timing: 'spring' },
-  { code: '02278', name: 'Post-Quantum Cryptography', why: 'Forward bet — EU quantum regulation incoming. Rare skill that differentiates within security-aware embedded roles.', semText: 'June intensive', ects: 5, timing: 'june' },
-  { code: '02234', name: 'Research Topics in Cybersecurity', why: 'Keeps you current on emerging threats. Good for thesis ideation if targeting OT/ICS security at Terma or telecom companies.', semText: 'E — Autumn', ects: 5, timing: 'autumn' },
-  { code: '02280', name: 'Artificial Intelligence and Multi-Agent Systems', why: 'If you want to angle toward robotics or autonomous systems — growing sector in Denmark (Universal Robots, MAN Energy).', semText: 'E — Autumn', ects: 10, timing: 'autumn' },
-  { code: '31372', name: 'Hierarchical and Distributed Automation Systems', why: 'DTU Electro. Covers PLC, SCADA, and fieldbuses. Perfect for Danish industrial IoT roles (Grundfos, Danfoss) where embedded HW meets automation.', semText: 'F — Spring', ects: 5, timing: 'spring' },
-  { code: '34760', name: 'Safety and Reliability in Robotic Systems', why: 'DTU Electro. Safety standards, risk analysis, reliability modeling. Critical for safety-critical and security-aware industrial embedded careers.', semText: 'E — Autumn', ects: 5, timing: 'autumn' },
-  { code: '30310', name: 'Space Systems Engineering', why: 'DTU Space. Covers systems engineering, trade-offs, reliability, integration, and risk management in extreme environments. Excellent for complex systems.', semText: 'E — Autumn', ects: 5, timing: 'autumn' },
-  { code: '22058', name: 'Wearable Sensors: Designing and Prototyping', why: 'DTU Health Tech. Hands-on design of wearable bio-sensors (ECG, IMU). Crucial if targeting Danish medical tech giants like Demant or GN Hearing.', semText: 'F — Spring', ects: 5, timing: 'spring' },
-  { code: '22449', name: 'Introduction to Biomedical Product Development', why: 'DTU Health Tech. Medical device regulations, QA, and risk management (ISO 13485). Key for security-aware compliance engineering.', semText: 'E — Autumn', ects: 5, timing: 'autumn' },
-  { code: '27510', name: 'Biosensors and Bioanalysis', why: 'DTU Bioengineering. Biological transducers, micro/nanofabrication, and sensor integration. Bridges biotech and physical sensors.', semText: 'F — Spring', ects: 5, timing: 'spring' },
-  { code: 'other', name: 'Other outside-department course', why: 'Choose based on target industry. Wind energy → offshore systems. Pharma → biomedical devices. Maritime → autonomous vessels.', semText: 'varies', ects: 5, timing: 'both' }
-];
 
 export const getCategoryClass = (cat) => {
   switch (cat) {
@@ -114,65 +114,228 @@ export const getTimingClass = (timingStr) => {
   return 'timing-both';
 };
 
-export const getElectiveSlots = (selectedElectives) => {
-  const activeElectives = ELECTIVES_LIST.filter(e => selectedElectives.has(e.code));
-  
-  let slotSem2 = { code: '—', name: 'Free elective slot', ects: 5, why: 'Use the elective picker section below to select your preferred option.', timing: 'both', semText: 'varies', selected: false };
-  let slotSem3 = { code: '—', name: 'Free elective slot', ects: 7.5, why: 'Use the elective picker section below.', timing: 'both', semText: 'varies', selected: false };
+// ---------- NEW RECOMMENDED PLAN DATA (Cybersecurity + AI/Data) ----------
 
-  let slot2Filled = false;
-  let slot3Filled = false;
-  const assigned = new Set();
+// Courses that count toward the Cybersecurity specialization (must = 25 ECTS)
+export const CYBER_SPEC_COURSES = ['02231', '02232', '02270', '02277', '02291'];
 
-  // 1. Assign Autumn or 7.5 ECTS electives to Sem 3 slot
-  activeElectives.forEach(item => {
-    const isAutumn = item.timing === 'autumn' || item.timing === 'both';
-    const is7_5 = item.ects === 7.5;
-    if ((isAutumn || is7_5) && !slot3Filled) {
-      slotSem3 = {
-        code: item.code,
-        name: item.name,
-        ects: item.ects,
-        why: item.why,
-        timing: item.timing,
-        semText: item.semText,
-        selected: true
-      };
-      slot3Filled = true;
-      assigned.add(item.code);
-    }
-  });
+// Courses that count toward Programme-specific (must = 50 ECTS)
+export const PS_COURSES = ['38113', '02270', '02231', '02289', '02267', '02280', '02291', '02277', '02232'];
 
-  // 2. Assign Spring or remaining electives to Sem 2 slot, then empty slot 3 if not filled
-  activeElectives.forEach(item => {
-    if (assigned.has(item.code)) return;
-    if (!slot2Filled) {
-      slotSem2 = {
-        code: item.code,
-        name: item.name,
-        ects: item.ects,
-        why: item.why,
-        timing: item.timing,
-        semText: item.semText,
-        selected: true
-      };
-      slot2Filled = true;
-      assigned.add(item.code);
-    } else if (!slot3Filled) {
-      slotSem3 = {
-        code: item.code,
-        name: item.name,
-        ects: item.ects,
-        why: item.why,
-        timing: item.timing,
-        semText: item.semText,
-        selected: true
-      };
-      slot3Filled = true;
-      assigned.add(item.code);
-    }
-  });
+// The full recommended plan — each semester with all course details
+export const PLAN_SEMESTERS = [
+  {
+    id: 'sem1',
+    title: 'Semester 1 — Autumn Y1',
+    period: 'September – December',
+    year: 1,
+    targetEcts: 25,
+    note: '5 courses — build the security + algorithms foundation',
+    courses: [
+      { code: '38113', name: 'Applied AI for Entrepreneurs', ects: 5, slot: 'E2B', exam: 'Oral + assignments', role: 'Innovation II', status: 'LOCKED', grading: '7-point', cyberSpec: false, ps: true },
+      { code: '02270', name: 'Cybersecurity Fundamentals', ects: 5, slot: 'E5B', exam: 'Written 2 h', role: 'Core Competence #1', status: 'LOCKED', grading: '7-point', cyberSpec: true, ps: true },
+      { code: '02231', name: 'Cryptography Fundamentals', ects: 5, slot: 'E1A', exam: 'Written + exercises', role: 'Programme-specific', status: 'LOCKED', grading: '7-point', cyberSpec: true, ps: true },
+      { code: '02289', name: 'Algorithmic Techniques for Modern Data', ects: 5, slot: 'E4B', exam: 'Oral', role: 'Programme-specific', status: 'LOCKED', grading: '7-point', cyberSpec: false, ps: true },
+      { code: '12105', name: 'Quant. Methods to Assess Sustainability', ects: 5, slot: 'E7', exam: 'Written + reports 2 h', role: 'Foundation', status: 'LOCKED', grading: '7-point', cyberSpec: false, ps: false }
+    ]
+  },
+  {
+    id: 'jan1',
+    title: 'January Y1',
+    period: '3-week block',
+    year: 1,
+    targetEcts: 5,
+    mini: true,
+    note: 'Intensive project-based block',
+    courses: [
+      { code: '02267', name: 'Software Development of Web Services', ects: 5, slot: 'Jan', exam: 'Project + report', role: 'Programme-specific', status: 'LOCKED', grading: '7-point', cyberSpec: false, ps: true }
+    ]
+  },
+  {
+    id: 'sem2',
+    title: 'Semester 2 — Spring Y1',
+    period: 'February – May',
+    year: 1,
+    targetEcts: 25,
+    note: 'AI depth + system integration + cyber risk',
+    courses: [
+      { code: '02280', name: 'AI & Multi-Agent Systems', ects: 10, slot: 'F4A', exam: 'Project (group programming)', role: 'Programme-specific', status: 'LOCKED', grading: '7-point', cyberSpec: false, ps: true },
+      { code: '02291', name: 'System Integration', ects: 5, slot: 'F5A', exam: 'Written 4 h + project', role: 'Core Competence #2', status: 'LOCKED', grading: '7-point', cyberSpec: true, ps: true },
+      { code: '02417', name: 'Time Series Analysis', ects: 5, slot: 'F4B', exam: 'Report', role: 'Elective', status: 'FLEX', grading: '7-point', cyberSpec: false, ps: false, flexId: 'sem2_flex' },
+      { code: '02277', name: 'Cyber Risk Management & Incident Response', ects: 5, slot: 'F3B', exam: 'Report', role: 'Programme-specific', status: 'LOCKED', grading: '7-point', cyberSpec: true, ps: true }
+    ]
+  },
+  {
+    id: 'jun1',
+    title: 'June Y1',
+    period: '3-week block',
+    year: 1,
+    targetEcts: 5,
+    mini: true,
+    note: 'Foundation course (Pass/Fail)',
+    courses: [
+      { code: '42501', name: 'Innovation in Engineering', ects: 5, slot: 'Jun', exam: 'Report', role: 'Foundation', status: 'LOCKED', grading: 'P/F', cyberSpec: false, ps: false }
+    ]
+  },
+  {
+    id: 'summer',
+    title: 'Summer Y1',
+    period: 'July – August',
+    year: 1,
+    targetEcts: 0,
+    break: true,
+    note: 'FREE for internship / student job — this is your thesis audition',
+    courses: []
+  },
+  {
+    id: 'sem3',
+    title: 'Semester 3 — Autumn Y2',
+    period: 'September – December',
+    year: 2,
+    targetEcts: 25,
+    note: 'Core AI semester (ML / DL / Responsible AI) + applied crypto',
+    courses: [
+      { code: '02452', name: 'Machine Learning', ects: 5, slot: 'E4A', exam: 'Written 4 h + exercises', role: 'Elective', status: 'KEEP', grading: '7-point', cyberSpec: false, ps: false },
+      { code: '02456', name: 'Deep Learning', ects: 5, slot: 'E2A', exam: 'Written 2 h + reports', role: 'Elective', status: 'KEEP', grading: '7-point', cyberSpec: false, ps: false },
+      { code: '02232', name: 'Applied Cryptography', ects: 5, slot: 'E1B', exam: 'Oral + project', role: 'Programme-specific', status: 'LOCKED', grading: '7-point', cyberSpec: true, ps: true },
+      { code: '02517', name: 'Responsible AI', ects: 5, slot: 'E2B', exam: 'Written 3 h + reports', role: 'Elective', status: 'FLEX', grading: '7-point', cyberSpec: false, ps: false, flexId: 'sem3_flex1' },
+      { code: '02807', name: 'Computational Tools for Data Science', ects: 5, slot: 'E7', exam: 'Report + experiments', role: 'Elective', status: 'FLEX', grading: '7-point', cyberSpec: false, ps: false, flexId: 'sem3_flex2' }
+    ]
+  },
+  {
+    id: 'jan2',
+    title: 'January Y2',
+    period: '3-week block',
+    year: 2,
+    targetEcts: 5,
+    mini: true,
+    note: 'Deploy your thesis model',
+    courses: [
+      { code: '02476', name: 'MLOps', ects: 5, slot: 'Jan', exam: 'Project', role: 'Elective (after DL)', status: 'KEEP', grading: 'P/F', cyberSpec: false, ps: false }
+    ]
+  },
+  {
+    id: 'sem4',
+    title: 'Semester 4 — Spring Y2',
+    period: 'February – June',
+    year: 2,
+    targetEcts: 30,
+    thesis: true,
+    note: 'Industry-partnered thesis — your single most important career asset',
+    courses: [
+      { code: 'thesis', name: "Master's Thesis", ects: 30, slot: '—', exam: 'Thesis + oral defense', role: 'Thesis', status: 'LOCKED', grading: '7-point', cyberSpec: false, ps: false }
+    ]
+  }
+];
 
-  return { slotSem2, slotSem3 };
+// Dropdown alternatives for FLEX slots (avoid E4A where ML lives)
+export const FLEX_ALTERNATIVES = {
+  sem2_flex: {
+    label: 'Spring Elective',
+    semester: 'Spring',
+    options: [
+      { code: '02417', name: 'Time Series Analysis', ects: 5, slot: 'F4B', exam: 'Report', grading: '7-point' },
+      { code: '02271', name: 'Advanced Cybersecurity', ects: 5, slot: 'F1A', exam: 'Written 4 h', grading: '7-point' },
+      { code: '02276', name: 'Usable Security and Privacy', ects: 5, slot: 'F2B', exam: 'Oral', grading: '7-point' },
+      { code: '02256', name: 'Automated Reasoning', ects: 5, slot: 'F3A', exam: 'Project + report', grading: '7-point' }
+    ]
+  },
+  sem3_flex1: {
+    label: 'Autumn Elective (avoid E4A)',
+    semester: 'Autumn',
+    options: [
+      { code: '02517', name: 'Responsible AI', ects: 5, slot: 'E2B', exam: 'Written 3 h + reports', grading: '7-point' },
+      { code: '02275', name: 'Ethical Hacking', ects: 5, slot: 'E1B', exam: 'Written 2 h', grading: '7-point' },
+      { code: '02234', name: 'Research Topics in Cybersecurity', ects: 5, slot: 'E5A', exam: 'Report', grading: '7-point' },
+      { code: '02287', name: 'Logical Theories for Uncertainty', ects: 5, slot: 'E3B', exam: 'Oral', grading: '7-point' }
+    ]
+  },
+  sem3_flex2: {
+    label: 'Autumn Elective (avoid E4A)',
+    semester: 'Autumn',
+    options: [
+      { code: '02807', name: 'Computational Tools for Data Science', ects: 5, slot: 'E7', exam: 'Report + experiments', grading: '7-point' },
+      { code: '02269', name: 'Process Mining', ects: 5, slot: 'E4A', exam: 'Project', grading: '7-point' },
+      { code: '02471', name: 'ML for Signal Processing', ects: 5, slot: 'E2A', exam: 'Written 4 h', grading: '7-point' },
+      { code: '02268', name: 'Process-Oriented & Event-Driven Systems', ects: 5, slot: 'E1A', exam: 'Oral', grading: '7-point' }
+    ]
+  }
 };
 
+// Prerequisite chains (order-locked)
+export const PREREQ_CHAINS = [
+  { from: '02231', to: '02232', label: 'Crypto Fundamentals → Applied Crypto' },
+  { from: '02270', to: '02277', label: 'Cyber Fundamentals → Cyber Risk Mgmt' },
+  { from: '02456', to: '02476', label: 'Deep Learning → MLOps' },
+  { from: '02452', to: '02517', label: 'ML/DL → Responsible AI', note: 'concurrent OK in practice' }
+];
+
+// Career roadmap phases
+export const CAREER_ROADMAP = [
+  {
+    phase: 'Now → First Weeks',
+    items: [
+      'English 1-page CV (lead with your AI/data internship)',
+      'LinkedIn + GitHub profiles polished',
+      '~15 target companies shortlisted',
+      'One finished, deployed ML project',
+      'Start Danish A1'
+    ]
+  },
+  {
+    phase: 'Sem 1 (Autumn Y1)',
+    items: [
+      'DTU autumn career fair — make contacts',
+      'Apply for part-time studiejob (10–15 h/wk)',
+      'Summer internship listings start opening'
+    ]
+  },
+  {
+    phase: 'Jan + Sem 2 (Y1)',
+    items: [
+      'Jan–Mar = internship deadline season, apply broadly',
+      'Portfolio from 02280 + System Integration',
+      'Goal: secure internship by April'
+    ]
+  },
+  {
+    phase: 'Summer Y1 (PIVOT)',
+    items: [
+      'Internship = thesis audition',
+      'Float a thesis collaboration before you leave',
+      'Build company relationships for Year 2'
+    ]
+  },
+  {
+    phase: 'Sem 3 (Autumn Y2)',
+    items: [
+      'Core AI semester — ML / DL / Responsible AI',
+      'Lock thesis by Nov–Dec (project + company + DTU supervisor)',
+      'Build capstone project for portfolio'
+    ]
+  },
+  {
+    phase: 'Jan + Sem 4 (Y2)',
+    items: [
+      'MLOps → deploy your thesis model',
+      'Thesis at the company',
+      'Apply for grad roles Feb–Apr — thesis company is target #1'
+    ]
+  }
+];
+
+// Four parallel career threads
+export const CAREER_THREADS = [
+  { name: 'Portfolio', desc: '2 finished projects, 1 = thesis' },
+  { name: 'Network', desc: 'Fairs, studiejob, LinkedIn, supervisors' },
+  { name: 'Internship → Thesis → Job', desc: 'The spine — each step a referral into the next' },
+  { name: 'Danish', desc: 'Conversational by Year 2' }
+];
+
+// Confirm before registration checklist
+export const CONFIRM_ITEMS = [
+  { id: 'prereq-bsc', text: 'BSc prereqs from your degree: 02110 (→02289), 02141/02161/02170 (→02291), intro programming (02270, 02267), 02402 statistics (→02417)' },
+  { id: 'confirm-02280', text: '02280 runs at 10 ECTS (replaces terminated 7.5-ECTS 02285) — confirm slot' },
+  { id: 'confirm-02517', text: '02517 prereq is recommended, not hard-gated — if blocked, swap a FLEX slot' },
+  { id: 'verify-exams', text: 'Verify all exam formats / ECTS on kurser.dtu.dk before registration' }
+];
