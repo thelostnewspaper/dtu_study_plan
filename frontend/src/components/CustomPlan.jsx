@@ -275,7 +275,10 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                 </div>
               );
             })}
-            {/* Rule Warnings */}
+          </div>
+        </div>
+        
+        {/* Rule Warnings */}
         {isEctsOverload && (
           <div style={{ background: 'var(--color-pink)', color: 'var(--color-bg)', padding: '1rem', border: '3px solid var(--color-text)', boxShadow: '4px 4px 0 var(--color-text)', marginBottom: '2rem', fontWeight: 900, textAlign: 'center', fontSize: 16 }}>
             WARNING: YOU HAVE EXCEEDED THE 120 ECTS LIMIT!
@@ -528,9 +531,7 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
               </div>
             </div>
           </div>
-        )}       </div>
-
-          </div>
+        )}
 
         {/* Custom Plan Summary Grid */}
         <div className="section-divider" style={{ marginTop: '3rem' }}><span>Custom Plan Summary</span></div>
