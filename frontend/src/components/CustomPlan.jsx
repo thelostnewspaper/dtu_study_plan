@@ -289,12 +289,22 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                           <td style={{ textAlign: 'center', verticalAlign: 'middle' }} onClick={(e) => { e.stopPropagation(); toggleCustomCourse(code); }}>
                             <input type="checkbox" checked={isSelected} readOnly style={{ cursor: 'pointer' }} />
                           </td>
-                          <td className="code" onClick={() => toggleCustomCourse(code)} style={{ verticalAlign: 'middle' }}>{code === 'thesis' ? 'THESIS' : code}</td>
+                          <td className="code" style={{ verticalAlign: 'middle' }}>
+                            <a
+                              href={`https://dtucourseanalyzer.pythonanywhere.com/course/${code}`}
+                              target="_blank"
+                              rel="noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              style={{ color: 'inherit', textDecoration: 'underline' }}
+                            >
+                              {code === 'thesis' ? 'THESIS' : code}
+                            </a>
+                          </td>
                           <td onClick={() => toggleCustomCourse(code)}>
                             <div className="course-name" style={{ fontSize: 12, fontWeight: 500 }}>
-                              <a
-                                href={`https://dtucourseanalyzer.com/course/${code}`}
-                                target="_blank"
+                                <a
+                                  href={`https://dtucourseanalyzer.pythonanywhere.com/course/${code}`}
+                                  target="_blank"
                                 rel="noreferrer"
                                 onClick={(e) => e.stopPropagation()}
                                 style={{ color: 'inherit', textDecoration: 'underline' }}
@@ -434,12 +444,22 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
 
                                 return (
                                   <tr key={code}>
-                                    <td className="code" style={{ width: 60, verticalAlign: 'middle', fontSize: 10 }}>{code === 'thesis' ? 'THESIS' : code}</td>
+                                    <td className="code" style={{ width: 60, verticalAlign: 'middle', fontSize: 10 }}>
+                                      <a
+                                        href={`https://dtucourseanalyzer.pythonanywhere.com/course/${code}`}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        onClick={(e) => e.stopPropagation()}
+                                        style={{ color: 'inherit', textDecoration: 'underline' }}
+                                      >
+                                        {code === 'thesis' ? 'THESIS' : code}
+                                      </a>
+                                    </td>
                                     <td style={{ verticalAlign: 'middle' }}>
                                       <div className="course-name" style={{ fontSize: 11, fontWeight: 500 }}>
-                                        <a
-                                          href={`https://dtucourseanalyzer.com/course/${code}`}
-                                          target="_blank"
+                                          <a
+                                            href={`https://dtucourseanalyzer.pythonanywhere.com/course/${code}`}
+                                            target="_blank"
                                           rel="noreferrer"
                                           onClick={(e) => e.stopPropagation()}
                                           style={{ color: 'inherit', textDecoration: 'underline' }}

@@ -100,7 +100,7 @@ export default function FinalPlan({ customState }) {
                       <tr key={c.code}>
                         <td className="code">
                           <a 
-                            href={`https://dtucourseanalyzer.com/course/${c.code}`}
+                            href={`https://dtucourseanalyzer.pythonanywhere.com/course/${c.code}`}
                             target="_blank"
                             rel="noreferrer"
                             style={{ color: 'inherit', textDecoration: 'underline' }}

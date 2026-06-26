@@ -65,7 +65,7 @@ function CourseRow({ course, flexId, flexChoices, onFlexChange }) {
     <tr className={isFlex ? 'flex-row' : ''}>
       <td className="code">
         <a 
-          href={`https://kurser.dtu.dk/course/2025-2026/${displayCourse.code}?menulanguage=en`} 
+          href={`https://dtucourseanalyzer.pythonanywhere.com/course/${displayCourse.code}`} 
           target="_blank" 
           rel="noreferrer"
           style={{ color: 'inherit', textDecoration: 'underline' }}
@@ -91,7 +91,7 @@ function CourseRow({ course, flexId, flexChoices, onFlexChange }) {
           </div>
         ) : (
           <a
-            href={`https://dtucourseanalyzer.com/course/${displayCourse.code}`}
+            href={`https://dtucourseanalyzer.pythonanywhere.com/course/${displayCourse.code}`}
             target="_blank"
             rel="noreferrer"
             className="course-name"
@@ -163,7 +163,7 @@ function MiniCard({ semester, flexChoices, onFlexChange }) {
       <div className="mini-right">
         <div className="mini-course-code">
           <a 
-            href={`https://kurser.dtu.dk/course/2025-2026/${course.code}?menulanguage=en`} 
+            href={`https://dtucourseanalyzer.pythonanywhere.com/course/${course.code}`} 
             target="_blank" 
             rel="noreferrer"
             style={{ color: 'inherit', textDecoration: 'underline' }}
@@ -173,7 +173,7 @@ function MiniCard({ semester, flexChoices, onFlexChange }) {
         </div>
         <div className="mini-course-name">
           <a
-            href={`https://dtucourseanalyzer.com/course/${course.code}`}
+            href={`https://dtucourseanalyzer.pythonanywhere.com/course/${course.code}`}
             target="_blank"
             rel="noreferrer"
             style={{ color: 'inherit', textDecoration: 'underline' }}
