@@ -497,14 +497,6 @@ export default function RecommendedPlan() {
           ))}
         </div>
 
-        <div className="career-threads">
-          {CAREER_THREADS.map((thread, i) => (
-            <div className="career-thread" key={i}>
-              <div className="career-thread-name">{thread.name}</div>
-              <div className="career-thread-desc">{thread.desc}</div>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Timetable Feature */}
