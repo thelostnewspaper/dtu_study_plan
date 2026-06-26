@@ -1107,3 +1107,34 @@ body {
 .sum-card { background: var(--color-bg); border: var(--border-width) solid var(--color-text); box-shadow: var(--shadow); padding: 2rem; text-align: center; }
 .sum-card:hover { background: var(--color-yellow); transform: translate(2px, 2px); box-shadow: var(--shadow-hover); }
 .sum-num { font-family: var(--font-mono); font-size: 48px; font-weight: 900; color: var(--color-pink); line-height: 1; margin-bottom: 12px; text-shadow: 2px 2px 0px var(--color-text); }
+
+/* Mobile Responsiveness for Custom Plan */
+@media (max-width: 768px) {
+  .custom-plan-schedule {
+    padding: 1rem !important;
+  }
+  .sem-block {
+    padding: 8px !important;
+  }
+  .sem-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 4px;
+  }
+  .sem-ects-total {
+    margin-left: 0 !important;
+  }
+  .course-table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+  .course-table td, .course-table th {
+    white-space: normal;
+  }
+  .course-table td.code {
+    white-space: nowrap;
+  }
+}
