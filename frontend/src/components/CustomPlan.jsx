@@ -17,7 +17,7 @@ const SEMESTERS = [
   { id: "sem4", title: "Semester 4 — Spring", period: "February – June" }
 ];
 
-export default function CustomPlan({ customState, setCustomState, chatMessages, setChatMessages, setActiveTab }) {
+export default function CustomPlan({ customState, setCustomState, chatMessages, setChatMessages, setActiveTab, onSave, onClear }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [specFilter, setSpecFilter] = useState('all');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -223,7 +223,19 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
       </div>
 
       <div className="main">
-        <div className="hide-print" style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem' }}>
+        <div className="hide-print" style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem', marginBottom: '1rem' }}>
+          <button
+            onClick={onSave}
+            style={{ padding: '8px 16px', background: 'var(--color-cyan)', color: 'var(--color-text)', border: '2px solid var(--color-text)', boxShadow: '3px 3px 0 var(--color-text)', fontWeight: 900, cursor: 'pointer', fontFamily: 'var(--font-main)' }}
+          >
+            Save Plan
+          </button>
+          <button
+            onClick={onClear}
+            style={{ padding: '8px 16px', background: 'var(--color-pink)', color: '#fff', border: '2px solid var(--color-text)', boxShadow: '3px 3px 0 var(--color-text)', fontWeight: 900, cursor: 'pointer', fontFamily: 'var(--font-main)' }}
+          >
+            Clear All
+          </button>
           <button
             className="download-pdf-btn"
             onClick={() => window.print()}
@@ -287,7 +299,7 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
               
               // Target slots: 6 for main semesters, 1 for intensives
               const targetSlots = (sem.id === 'jan' || sem.id === 'summer') ? 1 : 6;
-              const emptySlotsCount = Math.max(0, targetSlots - semCourses.length);
+              const emptySlotsCount = Math.max(0, targetSlots - Math.ceil(ectsSum / 5));
 
               return (
                 <div key={sem.id} className="sem-block" style={{ marginBottom: '1.5rem', background: '#fff', padding: 12, border: '2px solid var(--border)', borderRadius: 0, boxShadow: '3px 3px 0 var(--border)' }}>

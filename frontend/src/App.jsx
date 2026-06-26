@@ -21,15 +21,30 @@ export default function App() {
     }
   ]);
 
-  // Custom Plan State (legacy — kept for backward compat)
-  const [customState, setCustomState] = useState({
-    "12105": "sem1",
-    "42500": "jan",
-    "02266": "jan",
-    "02203": "sem1",
-    "02225": "sem2",
-    "thesis": "sem4"
+  const [customState, setCustomState] = useState(() => {
+    const saved = localStorage.getItem('dtu_custom_plan');
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        return {};
+      }
+    }
+    // Default empty if not saved
+    return {};
   });
+
+  const saveCustomPlan = () => {
+    localStorage.setItem('dtu_custom_plan', JSON.stringify(customState));
+    alert('Custom plan saved to your browser!');
+  };
+
+  const clearCustomPlan = () => {
+    if (window.confirm("Are you sure you want to clear all courses from your custom plan?")) {
+      setCustomState({});
+      localStorage.removeItem('dtu_custom_plan');
+    }
+  };
 
   // Compute header stats based on active tab
   const calculateHeaderStats = () => {
@@ -143,6 +158,8 @@ export default function App() {
           chatMessages={chatMessages}
           setChatMessages={setChatMessages}
           setActiveTab={setActiveTab}
+          onSave={saveCustomPlan}
+          onClear={clearCustomPlan}
         />
       )}
 
