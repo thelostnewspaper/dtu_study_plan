@@ -185,6 +185,15 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
       </div>
 
       <div className="main">
+        <div className="hide-print" style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '1rem' }}>
+          <button
+            className="download-pdf-btn"
+            onClick={() => window.print()}
+          >
+            Download PDF
+          </button>
+        </div>
+
         {/* AI Advisor Chatbot at the top, full width */}
         <div style={{ marginBottom: '2rem' }}>
           <PlanChatbot 
@@ -511,15 +520,6 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
           </div>
         </div>
 
-        <div style={{ marginTop: '2rem', textAlign: 'right' }}>
-          <button 
-            className="choice-btn" 
-            style={{ padding: '1rem 2rem', fontSize: '1.1rem', background: 'var(--color-cyan)' }}
-            onClick={() => setActiveTab('final')}
-          >
-            Next: Review Final Plan
-          </button>
-        </div>
       </div>
     </div>
   );

@@ -111,12 +111,6 @@ export default function App() {
           >
             Custom Plan Builder
           </button>
-          <button
-            className={`choice-btn ${activeTab === 'final' ? 'active' : ''}`}
-            onClick={() => setActiveTab('final')}
-          >
-            Final Plan
-          </button>
         </div>
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
           {total >= 120 && (
@@ -132,7 +126,7 @@ export default function App() {
 
       {/* PROGRESS BAR */}
       <div className="progress-wrap">
-        <span className="progress-label">{activeTab === 'recommended' ? 'Recommended Plan' : activeTab === 'final' ? 'Final Plan' : 'Custom Plan'}</span>
+        <span className="progress-label">{activeTab === 'recommended' ? 'Recommended Plan' : 'Custom Plan'}</span>
         <div className="progress-bar-outer">
           <div className="progress-bar-inner" style={{ width: `${Math.min(100, (total / 120) * 100)}%` }}></div>
         </div>
@@ -142,8 +136,6 @@ export default function App() {
       {/* TAB CONTENTS */}
       {activeTab === 'recommended' ? (
         <RecommendedPlan />
-      ) : activeTab === 'final' ? (
-        <FinalPlan customState={customState} />
       ) : (
         <CustomPlan
           customState={customState}
@@ -155,18 +147,22 @@ export default function App() {
       )}
 
       {/* PRINT-ONLY RENDER */}
-      <div className={activeTab === 'final' ? 'hide-print' : 'print-only'}>
-        <div className="print-header">
-          <div className="header-eyebrow">Technical University of Denmark · MSc Computer Science & Engineering</div>
-          <h1>DTU Study Plan — Cybersecurity · AI/Data + Security</h1>
-          <div className="print-header-sub">
-            <span><strong>Total ECTS:</strong> {total} / 120</span>
-            <span style={{ marginLeft: 20 }}><strong>Cybersecurity Spec:</strong> 25 / 25</span>
-            <span style={{ marginLeft: 20 }}><strong>Programme-specific:</strong> 50 / 50</span>
-          </div>
-        </div>
+      <div className="print-only">
+        {activeTab === 'custom' ? (
+          <FinalPlan customState={customState} />
+        ) : (
+          <>
+            <div className="print-header">
+              <div className="header-eyebrow">Technical University of Denmark · MSc Computer Science & Engineering</div>
+              <h1>DTU Study Plan — Cybersecurity · AI/Data + Security</h1>
+              <div className="print-header-sub">
+                <span><strong>Total ECTS:</strong> {total} / 120</span>
+                <span style={{ marginLeft: 20 }}><strong>Cybersecurity Spec:</strong> 25 / 25</span>
+                <span style={{ marginLeft: 20 }}><strong>Programme-specific:</strong> 50 / 50</span>
+              </div>
+            </div>
 
-        {PLAN_SEMESTERS.filter(s => !s.break).map((sem, idx) => (
+            {PLAN_SEMESTERS.filter(s => !s.break).map((sem, idx) => (
           <div key={idx} className="sem-block" style={{ pageBreakInside: 'avoid' }}>
             <div className="sem-header">
               <span className="sem-title">{sem.title}</span>
@@ -203,6 +199,8 @@ export default function App() {
             </table>
           </div>
         ))}
+        </>
+      )}
       </div>
     </div>
   );
