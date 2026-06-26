@@ -1,13 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 
-export default function PlanChatbot({ currentState, onApplyActions, courseCatalog }) {
-  const [messages, setMessages] = useState([
-    {
-      id: 'welcome',
-      sender: 'bot',
-      content: "Hello! I'm your DTU Study Plan advisor. Ask me anything about your course planning, like *\"Which cybersecurity courses should I choose?\"* or command me: *\"Add 02225 to semester 2\"* or *\"Remove 02266\"*."
-    }
-  ]);
+export default function PlanChatbot({ currentState, onApplyActions, courseCatalog, messages, setMessages }) {
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const messagesEndRef = useRef(null);

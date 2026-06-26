@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import RecommendedPlan from './components/RecommendedPlan';
 import CustomPlan from './components/CustomPlan';
+import FinalPlan from './components/FinalPlan';
 import {
   COURSE_CATALOG,
   EMBEDDED_COURSES,
@@ -11,6 +12,14 @@ import {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('recommended');
+
+  const [chatMessages, setChatMessages] = useState([
+    {
+      id: 'welcome',
+      sender: 'bot',
+      content: "Hello! I'm your DTU Study Plan advisor. Ask me anything about your course planning, like *\"Which cybersecurity courses should I choose?\"* or command me: *\"Add 02225 to semester 2\"* or *\"Remove 02266\"*."
+    }
+  ]);
 
   // Custom Plan State (legacy — kept for backward compat)
   const [customState, setCustomState] = useState({
@@ -29,7 +38,7 @@ export default function App() {
       const cyberEcts = 25; // fixed — 5 courses × 5 ECTS
       return { total: totalEcts, cyberEcts };
     } else {
-      // Custom Plan Stats
+      // Custom Plan Stats / Final Plan Stats
       let total = 0;
       const FULL_CATALOG_ECTS = {
         "12100": 5, "12101": 5, "12105": 5, "12106": 5,
@@ -102,6 +111,12 @@ export default function App() {
           >
             Custom Plan Builder
           </button>
+          <button
+            className={`choice-btn ${activeTab === 'final' ? 'active' : ''}`}
+            onClick={() => setActiveTab('final')}
+          >
+            Final Plan
+          </button>
         </div>
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
           {total >= 120 && (
@@ -117,7 +132,7 @@ export default function App() {
 
       {/* PROGRESS BAR */}
       <div className="progress-wrap">
-        <span className="progress-label">{activeTab === 'recommended' ? 'Recommended Plan' : 'Custom Plan'}</span>
+        <span className="progress-label">{activeTab === 'recommended' ? 'Recommended Plan' : activeTab === 'final' ? 'Final Plan' : 'Custom Plan'}</span>
         <div className="progress-bar-outer">
           <div className="progress-bar-inner" style={{ width: `${Math.min(100, (total / 120) * 100)}%` }}></div>
         </div>
@@ -127,15 +142,20 @@ export default function App() {
       {/* TAB CONTENTS */}
       {activeTab === 'recommended' ? (
         <RecommendedPlan />
+      ) : activeTab === 'final' ? (
+        <FinalPlan customState={customState} />
       ) : (
         <CustomPlan
           customState={customState}
           setCustomState={setCustomState}
+          chatMessages={chatMessages}
+          setChatMessages={setChatMessages}
+          setActiveTab={setActiveTab}
         />
       )}
 
       {/* PRINT-ONLY RENDER */}
-      <div className="print-only">
+      <div className={activeTab === 'final' ? 'hide-print' : 'print-only'}>
         <div className="print-header">
           <div className="header-eyebrow">Technical University of Denmark · MSc Computer Science & Engineering</div>
           <h1>DTU Study Plan — Cybersecurity · AI/Data + Security</h1>

@@ -17,7 +17,7 @@ const SEMESTERS = [
   { id: "sem4", title: "Semester 4 — Spring", period: "February – June" }
 ];
 
-export default function CustomPlan({ customState, setCustomState }) {
+export default function CustomPlan({ customState, setCustomState, chatMessages, setChatMessages, setActiveTab }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [specFilter, setSpecFilter] = useState('all');
 
@@ -187,7 +187,13 @@ export default function CustomPlan({ customState, setCustomState }) {
       <div className="main">
         {/* AI Advisor Chatbot at the top, full width */}
         <div style={{ marginBottom: '2rem' }}>
-          <PlanChatbot currentState={customState} onApplyActions={handleApplyChatActions} courseCatalog={COURSE_CATALOG} />
+          <PlanChatbot 
+            currentState={customState} 
+            onApplyActions={handleApplyChatActions} 
+            courseCatalog={COURSE_CATALOG} 
+            messages={chatMessages}
+            setMessages={setChatMessages}
+          />
         </div>
 
         {/* Specialization Tracker */}
@@ -503,6 +509,16 @@ export default function CustomPlan({ customState, setCustomState }) {
             <div className="sum-num">{Math.max(0, 120 - totalEcts)}</div>
             <div className="sum-label">Remaining ECTS</div>
           </div>
+        </div>
+
+        <div style={{ marginTop: '2rem', textAlign: 'right' }}>
+          <button 
+            className="choice-btn" 
+            style={{ padding: '1rem 2rem', fontSize: '1.1rem', background: 'var(--color-cyan)' }}
+            onClick={() => setActiveTab('final')}
+          >
+            Next: Review Final Plan
+          </button>
         </div>
       </div>
     </div>
