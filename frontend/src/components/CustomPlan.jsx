@@ -185,22 +185,21 @@ export default function CustomPlan({ customState, setCustomState }) {
         <div className="spec-tracker">
           <h3 style={{ fontSize: 13, fontWeight: 600, marginBottom: '1rem' }}>Diploma Endorsement Eligibility — Minimum 25 ECTS in a specialization line</h3>
           <div className="spec-rows" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '12px 20px' }}>
-            {(() => {
-              const specId = 'embedded';
+            {Object.keys(specNameMap).map(specId => {
               const ectsVal = specEcts[specId] || 0;
               const pctVal = Math.min(100, (ectsVal / 25) * 100);
               const isMet = ectsVal >= 25;
               return (
                 <div key={specId} className="spec-row">
-                  <span className="spec-check" style={{ color: isMet ? 'var(--green)' : 'var(--text-faint)' }}>{isMet ? '✓' : '○'}</span>
+                  <span className="spec-check" style={{ color: isMet ? 'var(--color-cyan)' : 'var(--color-text)' }}>{isMet ? '✓' : '○'}</span>
                   <span className="spec-name" style={{ width: 180 }}>{specNameMap[specId]}</span>
                   <div className="spec-bar-outer">
-                    <div className="spec-bar-inner" style={{ width: `${pctVal}%`, background: 'var(--accent)' }}></div>
+                    <div className="spec-bar-inner" style={{ width: `${pctVal}%`, background: 'var(--color-pink)' }}></div>
                   </div>
                   <span className="spec-num">{ectsVal} / 25 ECTS</span>
                 </div>
               );
-            })()}
+            })}
           </div>
         </div>
 
@@ -208,8 +207,8 @@ export default function CustomPlan({ customState, setCustomState }) {
         <div className="custom-plan-layout" style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', marginTop: '1.5rem', alignItems: 'flex-start' }}>
           
           {/* Catalog Column */}
-          <div className="custom-plan-catalog" style={{ flex: '1 1 480px', minWidth: 320, background: 'var(--glass-bg)', backdropFilter: 'var(--glass-blur)', border: '1px solid var(--glass-border)', borderRadius: 12, padding: '1.5rem', boxShadow: 'var(--glass-shadow)' }}>
-            <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 18, fontWeight: 900, marginBottom: '1rem', borderBottom: '2px solid var(--accent)', paddingBottom: 6, color: 'var(--accent)' }}>1. Course Catalog</h3>
+          <div className="custom-plan-catalog" style={{ flex: '1 1 480px', minWidth: 320, background: 'var(--color-bg)', border: '3px solid var(--color-border)', borderRadius: 0, padding: '1.5rem', boxShadow: '5px 5px 0px var(--color-text)' }}>
+            <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 18, fontWeight: 900, marginBottom: '1rem', borderBottom: '3px solid var(--color-text)', paddingBottom: 6, color: 'var(--color-text)' }}>1. Course Catalog</h3>
             
             <div style={{ display: 'flex', gap: 10, marginBottom: '1rem' }}>
               <input
@@ -298,8 +297,8 @@ export default function CustomPlan({ customState, setCustomState }) {
 
           {/* Schedule Column */}
           <div className="custom-plan-schedule" style={{ flex: '1 1 480px', minWidth: 320 }}>
-            <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 18, fontWeight: 900, marginBottom: '1rem', borderBottom: '2px solid var(--accent)', paddingBottom: 6, color: 'var(--accent)' }}>2. Custom Schedule</h3>
-            <p style={{ fontSize: 13, color: 'var(--text-secondary)', marginBottom: '1.5rem' }}>Select courses on the left or type in the chat. They appear below where you can adjust timing.</p>
+            <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 18, fontWeight: 900, marginBottom: '1rem', borderBottom: '3px solid var(--color-text)', paddingBottom: 6, color: 'var(--color-text)' }}>2. Custom Schedule</h3>
+            <p style={{ fontSize: 13, color: 'var(--color-text)', marginBottom: '1.5rem' }}>Select courses on the left or type in the chat. They appear below where you can adjust timing.</p>
 
             <div style={{ maxHeight: 720, overflowY: 'auto' }}>
                 {(() => {
