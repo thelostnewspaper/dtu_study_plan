@@ -560,6 +560,9 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                                 {c.specs.map(sId => (
                                   <span key={sId} className="cat" style={{ fontSize: 9, padding: '2px 6px', ...specColors[sId] }}>{specNameMap[sId]}</span>
                                 ))}
+                                {c.programs && c.programs.map(prog => (
+                                  <span key={prog} style={{ fontSize: 9, padding: '2px 6px', background: 'var(--color-pink)', color: '#fff', fontWeight: 900, textTransform: 'uppercase' }}>{prog === 'hcai' ? 'HCAI' : 'AUTONOMOUS'}</span>
+                                ))}
                               </div>
                             </td>
                             <td className="ects-cell" style={{ verticalAlign: 'middle', textAlign: 'center', padding: 8, fontWeight: 600 }}>{c.ects}</td>
