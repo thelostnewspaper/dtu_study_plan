@@ -9,12 +9,18 @@ import {
 } from '../courses';
 
 const SEMESTERS = [
-  { id: "sem1", title: "Semester 1 — Autumn", period: "September – December" },
-  { id: "jan", title: "January Intensive", period: "3-week block · January" },
-  { id: "sem2", title: "Semester 2 — Spring", period: "February – May" },
-  { id: "summer", title: "Summer Intensive", period: "June / August" },
-  { id: "sem3", title: "Semester 3 — Autumn", period: "September – December" },
-  { id: "sem4", title: "Semester 4 — Spring", period: "February – June" }
+  { id: "sem1", title: "Semester 1 — Autumn", period: "September – December", type: 'regular' },
+  { id: "jan1", title: "January Intensive 1", period: "January", type: 'intensive' },
+  { id: "sem2", title: "Semester 2 — Spring", period: "February – May", type: 'regular' },
+  { id: "jun1", title: "June Intensive 1", period: "June", type: 'intensive' },
+  { id: "jul1", title: "July Intensive 1", period: "July", type: 'intensive' },
+  { id: "aug1", title: "August Intensive 1", period: "August", type: 'intensive' },
+  { id: "sem3", title: "Semester 3 — Autumn", period: "September – December", type: 'regular' },
+  { id: "jan2", title: "January Intensive 2", period: "January", type: 'intensive' },
+  { id: "sem4", title: "Semester 4 — Spring", period: "February – May", type: 'regular' },
+  { id: "jun2", title: "June Intensive 2", period: "June", type: 'intensive' },
+  { id: "jul2", title: "July Intensive 2", period: "July", type: 'intensive' },
+  { id: "aug2", title: "August Intensive 2", period: "August", type: 'intensive' }
 ];
 
 export default function CustomPlan({ customState, setCustomState, chatMessages, setChatMessages, setActiveTab, onSave, onClear }) {
@@ -33,12 +39,47 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
     setTargetSemesterId(null);
   };
 
+  const getSeasonForSemester = (semId) => {
+    if (!semId) return null;
+    if (semId.startsWith('sem1') || semId.startsWith('sem3')) return 'Autumn';
+    if (semId.startsWith('sem2') || semId.startsWith('sem4')) return 'Spring';
+    if (semId.startsWith('jan')) return 'January';
+    if (semId.startsWith('jun')) return 'June';
+    if (semId.startsWith('jul')) return 'July';
+    if (semId.startsWith('aug')) return 'August';
+    return null;
+  };
+
+  const checkCollision = (code, targetSemId) => {
+    const newCourse = COURSE_CATALOG[code];
+    if (!newCourse || !newCourse.slot || newCourse.slot === 'UNKNOWN') return null;
+    
+    // Find all courses already in targetSemId
+    for (const [existingCode, semId] of Object.entries(customState)) {
+      if (semId === targetSemId) {
+        const existingCourse = COURSE_CATALOG[existingCode];
+        // If slot matches and is not unknown/blank
+        if (existingCourse && existingCourse.slot && existingCourse.slot !== 'UNKNOWN' && existingCourse.slot === newCourse.slot) {
+          return existingCode;
+        }
+      }
+    }
+    return null;
+  };
+
   const handleModalCourseSelect = (code) => {
     // If course is already in the plan, don't allow duplicate addition via modal.
     if (customState[code]) {
       alert(`Course ${code} is already in your plan!`);
       return;
     }
+
+    const collision = checkCollision(code, targetSemesterId);
+    if (collision) {
+      alert(`Schedule Collision: Cannot add ${code} because ${collision} is already scheduled in slot ${COURSE_CATALOG[code].slot} for this block!`);
+      return;
+    }
+
     setCustomState(prev => ({
       ...prev,
       [code]: targetSemesterId
@@ -51,19 +92,6 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
       const next = { ...prev };
       if (next[code] !== undefined) {
         delete next[code];
-      } else {
-        const course = COURSE_CATALOG[code];
-        if (code === 'thesis') {
-          next[code] = 'sem4';
-        } else if (course.sem.includes('January')) {
-          next[code] = 'jan';
-        } else if (course.sem.includes('June') || course.sem.includes('August') || course.sem.join().includes('June')) {
-          next[code] = 'summer';
-        } else if (course.sem.includes('Autumn')) {
-          next[code] = 'sem1';
-        } else {
-          next[code] = 'sem2';
-        }
       }
       return next;
     });
@@ -96,8 +124,8 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
             let targetSem = act.sem;
             const allowed = COURSE_CATALOG[act.code].sem;
             if (!targetSem) {
-              if (allowed.includes('January')) targetSem = 'jan';
-              else if (allowed.includes('June') || allowed.includes('August')) targetSem = 'summer';
+              if (allowed.includes('January')) targetSem = 'jan1';
+              else if (allowed.includes('June') || allowed.includes('August')) targetSem = 'jun1';
               else if (allowed.includes('Autumn')) targetSem = 'sem1';
               else targetSem = 'sem2';
             }
@@ -300,9 +328,15 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
               const semCourses = Object.entries(customState).filter(([_, sVal]) => sVal === sem.id);
               const ectsSum = semCourses.reduce((acc, [code]) => acc + (COURSE_CATALOG[code]?.ects || 0), 0);
               
-              // Target slots: 6 for main semesters, 1 for intensives
-              const targetSlots = (sem.id === 'jan' || sem.id === 'summer') ? 1 : 6;
-              const emptySlotsCount = Math.max(0, targetSlots - Math.ceil(ectsSum / 5));
+              const targetSlots = (sem.type === 'intensive') ? 1 : 6;
+              const hasThesis = semCourses.some(([code]) => code === 'thesis');
+              
+              let emptySlotsCount = 0;
+              if (hasThesis) {
+                emptySlotsCount = 2; // Fixed requirement: only keep 2 extra slots for thesis
+              } else {
+                emptySlotsCount = Math.max(0, targetSlots - Math.ceil(ectsSum / 5));
+              }
 
               return (
                 <div key={sem.id} className="sem-block" style={{ marginBottom: '1.5rem', background: '#fff', padding: 12, border: '2px solid var(--border)', borderRadius: 0, boxShadow: '3px 3px 0 var(--border)' }}>
@@ -331,9 +365,12 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                             { val: 'sem3', label: 'Sem 3 (Autumn)' }
                           ];
                         } else if (isJanuaryOnly) {
-                          options = [{ val: 'jan', label: 'January' }];
+                          options = [{ val: 'jan1', label: 'January Y1' }, { val: 'jan2', label: 'January Y2' }];
                         } else if (isSummerOnly) {
-                          options = [{ val: 'summer', label: 'Summer' }];
+                          options = [
+                            { val: 'jun1', label: 'June Y1' }, { val: 'jul1', label: 'July Y1' }, { val: 'aug1', label: 'Aug Y1' },
+                            { val: 'jun2', label: 'June Y2' }, { val: 'jul2', label: 'July Y2' }, { val: 'aug2', label: 'Aug Y2' }
+                          ];
                         } else if (isAutumnOnly) {
                           options = [
                             { val: 'sem1', label: 'Sem 1 (Autumn)' },
@@ -349,7 +386,9 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                             { val: 'sem1', label: 'Sem 1 (Autumn)' },
                             { val: 'sem2', label: 'Sem 2 (Spring)' },
                             { val: 'sem3', label: 'Sem 3 (Autumn)' },
-                            { val: 'sem4', label: 'Sem 4 (Spring)' }
+                            { val: 'sem4', label: 'Sem 4 (Spring)' },
+                            { val: 'jan1', label: 'Jan Y1' }, { val: 'jan2', label: 'Jan Y2' },
+                            { val: 'jun1', label: 'Jun Y1' }, { val: 'jun2', label: 'Jun Y2' }
                           ];
                         }
 
@@ -378,12 +417,24 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                                   {c.name}
                                 </a>
                               </div>
+                              {c.slot && c.slot !== 'UNKNOWN' && (
+                                <div style={{ fontSize: 10, fontFamily: 'var(--font-mono)', fontWeight: 900, background: 'var(--color-pink)', color: '#fff', display: 'inline-block', padding: '2px 4px', marginTop: 4 }}>
+                                  SLOT: {c.slot}
+                                </div>
+                              )}
                             </td>
                             <td className="ects-cell" style={{ width: 40, verticalAlign: 'middle', fontSize: 12, fontWeight: 600 }}>{c.ects}</td>
                             <td className="hide-print" style={{ width: 140, verticalAlign: 'middle' }}>
                               <select
                                 value={sem.id}
-                                onChange={(e) => changeCustomCourseSemester(code, e.target.value)}
+                                onChange={(e) => {
+                                  const collision = checkCollision(code, e.target.value);
+                                  if (collision) {
+                                    alert(`Cannot move ${code} because ${collision} is already scheduled in slot ${COURSE_CATALOG[code].slot} for this block!`);
+                                    return;
+                                  }
+                                  changeCustomCourseSemester(code, e.target.value);
+                                }}
                                 style={{ width: '100%', padding: '6px', fontSize: 11, border: '2px solid var(--color-border)', borderRadius: 0, background: 'var(--color-yellow)', color: 'var(--color-text)', outline: 'none', fontWeight: 600 }}
                               >
                                 {options.map(opt => (
@@ -486,7 +537,12 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                           else if (specFilter === 'innov2') matchesFilter = c.cat === 'innov2';
                           else matchesFilter = c.specs.includes(specFilter);
                         }
-                        return matchesSearch && matchesFilter;
+                        const targetSeason = getSeasonForSemester(targetSemesterId);
+                        let matchesSeason = true;
+                        if (targetSeason) {
+                           matchesSeason = c.sem.includes(targetSeason) || (code === 'thesis' && (targetSeason === 'Autumn' || targetSeason === 'Spring'));
+                        }
+                        return matchesSearch && matchesFilter && matchesSeason;
                       })
                       .map(([code, c]) => {
                         const isSelected = customState[code] !== undefined;
