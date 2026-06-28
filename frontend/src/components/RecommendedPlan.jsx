@@ -65,7 +65,7 @@ function CourseRow({ course, flexId, flexChoices, onFlexChange }) {
     <tr className={isFlex ? 'flex-row' : ''}>
       <td className="code">
         <a 
-          href={`https://dtucourseanalyzer.pythonanywhere.com/course/${displayCourse.code}`} 
+          href={`https://kurser.dtu.dk/course/2025-2026/${displayCourse.code}?menulanguage=en`} 
           target="_blank" 
           rel="noreferrer"
           style={{ color: 'inherit', textDecoration: 'underline' }}

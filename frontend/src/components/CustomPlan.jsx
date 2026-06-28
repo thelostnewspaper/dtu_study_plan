@@ -405,7 +405,7 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                           <tr key={code}>
                             <td className="code" style={{ width: 60, verticalAlign: 'middle', fontSize: 11, fontWeight: 900 }}>
                               <a
-                                href={`https://dtucourseanalyzer.pythonanywhere.com/course/${code}`}
+                                href={`https://kurser.dtu.dk/course/2025-2026/${code}?menulanguage=en`}
                                 target="_blank"
                                 rel="noreferrer"
                                 onClick={(e) => e.stopPropagation()}
