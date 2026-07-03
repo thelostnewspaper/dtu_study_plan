@@ -1040,26 +1040,6 @@ body {
 
 .print-only { display: none; }
 
-@media print {
-  * {
-    box-shadow: none !important;
-    text-shadow: none !important;
-    animation: none !important;
-    transition: none !important;
-    background-image: none !important;
-  }
-  body { background: #fff !important; color: #000 !important; font-size: 12px !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-  .header, .tab-bar, .progress-wrap, .main, .legend-card, button, select { display: none !important; }
-  .print-only { display: block !important; padding: 1.5rem !important; }
-  .print-header { margin-bottom: 1.5rem; border-bottom: 4px solid #000; padding-bottom: 10px; }
-  .print-header h1 { font-family: var(--font-heading); font-size: 24px; margin-bottom: 4px; font-weight: 900; text-transform: uppercase; }
-  .sem-block { margin-bottom: 2rem; page-break-inside: avoid; border: 2px solid #000; padding: 1rem; }
-  .sem-header { display: flex; align-items: baseline; gap: 10px; margin-bottom: 1rem; border-bottom: 2px solid #000; padding-bottom: 10px; }
-  .course-table { box-shadow: none !important; border: 2px solid #000 !important; background: transparent !important; }
-  .course-table th, .course-table td { border: 1px solid #000 !important; padding: 6px !important; font-size: 11px !important; }
-  .course-table th { background: #000 !important; color: #fff !important; }
-}
-
 /* Custom Plan Overrides */
 .cat { display: inline-block; font-family: var(--font-mono); font-size: 11px; padding: 4px 8px; border: 2px solid var(--color-text); font-weight: 800; text-transform: uppercase; box-shadow: 2px 2px 0px var(--color-text); }
 .cat-mandatory { background-color: var(--color-yellow); }
@@ -1137,4 +1117,29 @@ body {
   .course-table td.code {
     white-space: nowrap;
   }
+}
+
+@media print {
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    animation: none !important;
+    transition: none !important;
+    background-image: none !important;
+  }
+  body { background: #fff !important; color: #000 !important; font-size: 12px !important; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  .header, .tab-bar, .progress-wrap, .main, .legend-card, button, .hide-print { display: none !important; }
+  .print-only { display: block !important; padding: 1.5rem !important; }
+  .print-header { margin-bottom: 1.5rem; border-bottom: 4px solid #000; padding-bottom: 10px; }
+  .print-header h1 { font-family: var(--font-heading); font-size: 24px; margin-bottom: 4px; font-weight: 900; text-transform: uppercase; }
+  .sem-block { margin-bottom: 2rem; page-break-inside: avoid; border: 2px solid #000; padding: 1rem; }
+  .sem-header { display: flex !important; flex-direction: row !important; align-items: baseline !important; gap: 10px !important; margin-bottom: 1rem !important; border-bottom: 2px solid #000 !important; padding-bottom: 10px !important; }
+  .sem-title, .bento-card-title { font-family: var(--font-heading) !important; font-size: 20px !important; font-weight: 900 !important; text-transform: uppercase !important; }
+  .sem-period, .sem-ects-total, .bento-card-period, .bento-card-ects { font-size: 13px !important; }
+  .course-table { display: table !important; width: 100% !important; border-collapse: collapse !important; box-shadow: none !important; border: 2px solid #000 !important; background: transparent !important; margin-bottom: 0 !important; }
+  .course-table tr { display: table-row !important; }
+  .course-table th, .course-table td { display: table-cell !important; border: 1px solid #000 !important; padding: 8px !important; font-size: 12px !important; }
+  .course-table th { background: #FFE500 !important; color: #000 !important; font-family: var(--font-heading) !important; font-weight: 900 !important; text-transform: uppercase !important; }
+  .bento-card { margin-bottom: 1.5rem !important; padding: 1rem !important; border: 2px solid #000 !important; }
+  .bento-card-header { margin-bottom: 1rem !important; border-bottom: 2px solid #000 !important; padding-bottom: 10px !important; display: flex !important; flex-direction: row !important; align-items: baseline !important; gap: 10px !important; }
 }

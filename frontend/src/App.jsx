@@ -7,7 +7,8 @@ import {
   EMBEDDED_COURSES,
   getCategoryClass,
   getCategoryLabel,
-  PLAN_SEMESTERS
+  PLAN_SEMESTERS,
+  FLEX_ALTERNATIVES
 } from './courses';
 
 export default function App() {
@@ -20,6 +21,11 @@ export default function App() {
       content: "Hello! I'm your DTU Study Plan advisor. Ask me anything about your course planning, like *\"Which cybersecurity courses should I choose?\"* or command me: *\"Add 02225 to semester 2\"* or *\"Remove 02266\"*."
     }
   ]);
+
+  const [recFlexChoices, setRecFlexChoices] = useState({
+    sem3_flex_dl: '02456',
+    sem3_flex_eh: '02275'
+  });
 
   const [customState, setCustomState] = useState(() => {
     const saved = localStorage.getItem('dtu_custom_plan');
@@ -87,7 +93,6 @@ export default function App() {
       <div className="header">
         <div className="header-eyebrow">Technical University of Denmark · MSc Computer Science & Engineering</div>
         <h1>Your 120 ECTS Study Plan</h1>
-        <div className="header-sub">Specialization: Cybersecurity · Profile: AI/Data + Security · 7-point scale unless (P/F) shown</div>
         <div className="header-stats">
           <div className="hstat">
             <div className="hstat-num">{total}</div>
@@ -97,12 +102,6 @@ export default function App() {
             <div className="hstat-num">120</div>
             <div className="hstat-label">ECTS required</div>
           </div>
-          {activeTab === 'recommended' && (
-            <div className="hstat">
-              <div className="hstat-num">{cyberEcts}</div>
-              <div className="hstat-label">Cybersecurity spec ECTS</div>
-            </div>
-          )}
           <div className="hstat">
             <div className="hstat-num">4</div>
             <div className="hstat-label">Semesters</div>
@@ -150,7 +149,7 @@ export default function App() {
 
       {/* TAB CONTENTS */}
       {activeTab === 'recommended' ? (
-        <RecommendedPlan />
+        <RecommendedPlan flexChoices={recFlexChoices} setFlexChoices={setRecFlexChoices} />
       ) : (
         <CustomPlan
           customState={customState}
@@ -164,61 +163,11 @@ export default function App() {
       )}
 
       {/* PRINT-ONLY RENDER */}
-      <div className="print-only">
-        {activeTab === 'custom' ? (
+      {activeTab === 'custom' && (
+        <div className="print-only">
           <FinalPlan customState={customState} />
-        ) : (
-          <>
-            <div className="print-header">
-              <div className="header-eyebrow">Technical University of Denmark · MSc Computer Science & Engineering</div>
-              <h1>DTU Study Plan — Cybersecurity · AI/Data + Security</h1>
-              <div className="print-header-sub">
-                <span><strong>Total ECTS:</strong> {total} / 120</span>
-                <span style={{ marginLeft: 20 }}><strong>Cybersecurity Spec:</strong> 25 / 25</span>
-                <span style={{ marginLeft: 20 }}><strong>Programme-specific:</strong> 50 / 50</span>
-              </div>
-            </div>
-
-            {PLAN_SEMESTERS.filter(s => !s.break).map((sem, idx) => (
-          <div key={idx} className="sem-block" style={{ pageBreakInside: 'avoid' }}>
-            <div className="sem-header">
-              <span className="sem-title">{sem.title}</span>
-              <span className="sem-period">{sem.period}</span>
-              <span className="sem-ects-total">{sem.targetEcts} ECTS</span>
-            </div>
-            <table className="course-table">
-              <thead>
-                <tr>
-                  <th style={{ width: 60 }}>Code</th>
-                  <th>Course</th>
-                  <th style={{ width: 45, textAlign: 'center' }}>ECTS</th>
-                  <th style={{ width: 50 }}>Slot</th>
-                  <th style={{ width: 120 }}>Exam</th>
-                  <th style={{ width: 120 }}>Role</th>
-                  <th style={{ width: 80 }}>Status</th>
-                  <th style={{ width: 45 }}>Grade</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sem.courses.map(course => (
-                  <tr key={course.code}>
-                    <td className="code">{course.code === 'thesis' ? 'THESIS' : course.code}</td>
-                    <td><span className="course-name">{course.name}</span></td>
-                    <td className="ects-cell">{course.ects}</td>
-                    <td className="slot-cell">{course.slot}</td>
-                    <td className="exam-cell">{course.exam}</td>
-                    <td><span className={`role-badge ${getCategoryClass(course.role)}`}>{course.role}</span></td>
-                    <td>{course.status}</td>
-                    <td className="grade-cell">{course.grading}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        ))}
-        </>
+        </div>
       )}
-      </div>
     </div>
   );
 }

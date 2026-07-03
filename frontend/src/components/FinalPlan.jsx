@@ -32,7 +32,31 @@ export default function FinalPlan({ customState }) {
     return { ...sem, courses: semCourses, ectsSum };
   });
 
-  const totalEcts = semGroups.reduce((sum, s) => sum + s.ectsSum, 0);
+  const specNameMap = {
+    ai: "AI and Algorithms",
+    cyber: "Cybersecurity",
+    digital: "Digital Systems",
+    embedded: "Embedded & Autonomous",
+    safe: "Safe & Secure",
+    software: "Software Engineering"
+  };
+
+  const specEcts = {};
+  semGroups.forEach(sem => {
+    sem.courses.forEach(c => {
+      if (c.specs) {
+        c.specs.forEach(sId => {
+          specEcts[sId] = (specEcts[sId] || 0) + (c.ects || 5);
+        });
+      }
+    });
+  });
+
+  const fulfilledSpecs = Object.keys(specNameMap)
+    .filter(sId => (specEcts[sId] || 0) >= 25)
+    .map(sId => specNameMap[sId]);
+
+  const totalEcts = semGroups.reduce((acc, sem) => acc + sem.ectsSum, 0);
 
   return (
     <div style={{ padding: '0 2rem 2rem' }}>
@@ -41,6 +65,9 @@ export default function FinalPlan({ customState }) {
         <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '24px', fontWeight: 900, textTransform: 'uppercase', margin: 0 }}>DTU Study Plan — Custom Plan</h1>
         <div style={{ display: 'flex', gap: '20px', marginTop: '10px', fontSize: '13px' }}>
           <span><strong>Total ECTS:</strong> {totalEcts} / 120</span>
+          {fulfilledSpecs.length > 0 && (
+            <span><strong>Specializations:</strong> {fulfilledSpecs.join(', ')}</span>
+          )}
         </div>
       </div>
 

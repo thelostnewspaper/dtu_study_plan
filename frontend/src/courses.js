@@ -19,10 +19,13 @@ export const COURSE_CATALOG = {
   "42505": { name: "Facilitating Innovation in Multidisciplinary Teams", ects: 5, sem: ["August"], cat: "mandatory", specs: [], slot: 'Aug', programs: ["hcai"], desc: "Team dynamics, innovation design, creative facilitation." },
   "thesis": { name: "Master's Thesis", ects: 30, sem: ["Spring", "Autumn"], cat: "thesis", specs: [], slot: 'E3B', desc: "Standalone independent project, typically done in Semester 4." },
   "02266": { name: "User Experience Engineering", ects: 5, sem: ["January"], cat: "innov2", specs: ["software"], slot: 'Jan', programs: ["hcai"], desc: "UI/UX methods, user research, prototyping, usability testing." },
-  "38102": { name: "Technology Entrepreneurship", ects: 5, sem: ["Autumn"], cat: "innov2", specs: [], slot: 'E2A', programs: ["hcai","autonomous"], desc: "Business modeling, startup creation, commercialization strategies." },
-  "38103": { name: "X-Tech Entrepreneurship", ects: 10, sem: ["Autumn", "Spring"], cat: "innov2", specs: [], slot: 'E3B', programs: ["hcai"], desc: "Project incubator connecting researchers and students to build startups." },
+  "38102": { name: "Technology Entrepreneurship", ects: 5, sem: ["Autumn"], cat: "innov2", specs: [], slot: 'E2A', programs: ["hcai", "autonomous"], desc: "Business modeling, startup creation, commercialization strategies." },
+  "38103": { name: "X-Tech Entrepreneurship", ects: 10, sem: ["Spring"], cat: "innov2", specs: [], slot: 'E3B', programs: ["hcai"], desc: "Project incubator connecting researchers and students to build startups." },
   "38106": { name: "Developing an Entrepreneurial Mindset", ects: 5, sem: ["Spring", "Autumn"], cat: "innov2", specs: [], slot: 'E3B', programs: ["autonomous"], desc: "Creativity, mindset building, startup exploration." },
   "38113": { name: "Applied AI for Entrepreneurs", ects: 5, sem: ["Autumn"], cat: "innov2", specs: [], slot: 'E2B', programs: ["autonomous"], desc: "Leveraging AI/ML systems to build new commercial platforms." },
+  "38400": { name: "Innovation in Engineering", ects: 5, sem: ["January"], cat: "mandatory", specs: [], slot: 'Jan', programs: ["hcai"], desc: "Entrepreneurship, design thinking, innovation processes." },
+  "38402": { name: "Innovation in Engineering", ects: 5, sem: ["June"], cat: "mandatory", specs: [], slot: 'Jun', programs: ["hcai"], desc: "Entrepreneurship, design thinking, innovation processes." },
+  "38404": { name: "Innovation in Engineering", ects: 5, sem: ["August"], cat: "mandatory", specs: [], slot: 'Aug', programs: ["hcai"], desc: "Entrepreneurship, design thinking, innovation processes." },
   "02201": { name: "Agile Hardware Design", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["digital"], slot: 'E3A', desc: "Modern agile workflows for digital systems, rapid prototyping." },
   "02203": { name: "Design of Digital Systems", ects: 5, sem: ["Autumn"], cat: "core", specs: ["digital", "embedded"], slot: 'E4A', desc: "FPGA hardware design, CAD tools, digital circuit implementation." },
   "02205": { name: "VLSI Design", ects: 5, sem: ["Spring"], cat: "prog", specs: ["digital"], slot: 'F2A', desc: "Very Large Scale Integration, CMOS technology, transistor-level layout." },
@@ -33,7 +36,7 @@ export const COURSE_CATALOG = {
   "02225": { name: "Distributed Real-Time Systems", ects: 5, sem: ["Spring"], cat: "core", specs: ["digital", "embedded"], slot: 'F4A', programs: ["autonomous"], desc: "Real-time scheduling, fault tolerance, distributed protocols." },
   "02226": { name: "Networked Embedded Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["embedded"], slot: 'E5B', desc: "Communication protocols, IoT architectures, real-world embedded labs." },
   "02231": { name: "Cryptography Fundamentals", ects: 5, sem: ["Autumn", "Spring"], cat: "prog", specs: ["cyber", "safe"], slot: 'E3B', desc: "Symmetric/asymmetric crypto, protocols, mathematical foundations." },
-  "02232": { name: "Applied Cryptography", ects: 5, sem: ["Autumn", "Spring"], cat: "prog", specs: ["cyber", "safe"], slot: 'E3B', desc: "Implementation of crypto algorithms, secure communication protocols." },
+  "02232": { name: "Applied Cryptography", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber", "safe"], slot: 'E3B', desc: "Implementation of crypto algorithms, secure communication protocols." },
   "02234": { name: "Research Topics in Cybersecurity", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["cyber"], slot: 'E7', desc: "Keeps you current on emerging threats and OT/ICS security." },
   "02242": { name: "Program Analysis", ects: 7.5, sem: ["Autumn"], cat: "core", specs: ["safe", "software"], slot: 'E1A', desc: "Static analysis, dataflow, type systems, software reliability." },
   "02244": { name: "Logic for Security", ects: 7.5, sem: ["Spring"], cat: "prog", specs: ["safe"], slot: 'F4B', desc: "Mathematical logic, formal models of security protocols." },
@@ -54,18 +57,18 @@ export const COURSE_CATALOG = {
   "02277": { name: "Cyber Risk Management and Incident Response", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber"], slot: 'F1B', desc: "NIS2 compliance, risk frameworks, incident handling." },
   "02278": { name: "Post-Quantum Cryptography", ects: 5, sem: ["June"], cat: "prog", specs: ["cyber"], slot: 'Jun', desc: "Forward bet on quantum-resistant cryptographic algorithms." },
   "02280": { name: "Artificial Intelligence and Multi-Agent Systems", ects: 10, sem: ["Spring"], cat: "prog", specs: ["ai"], slot: 'F2A', desc: "Robotics and autonomous agent decision-making models." },
-  "02282": { name: "Algorithms for Massive Data Sets", ects: 7.5, sem: ["Spring"], cat: "prog", specs: ["ai"], slot: 'F2B', programs: ["hcai"], desc: "Streaming algorithms, hashing, handling giant data collections." },
-  "02287": { name: "Logical Theories for Uncertainty and Learning", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai"], slot: 'E1A', desc: "Probabilistic logic and foundations of machine learning." },
-  "02289": { name: "Algorithmic Techniques for Modern Data Models", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai"], slot: 'E1B', programs: ["hcai"], desc: "Advanced graph algorithms, data structures, metric spaces." },
-  "02291": { name: "System Integration", ects: 5, sem: ["Spring"], cat: "core", specs: ["ai", "cyber", "digital", "embedded", "safe", "software"], slot: 'F3A', programs: ["autonomous"], desc: "Heterogeneous systems, APIs, middleware, SOA." },
-  "02417": { name: "Time Series Analysis", ects: 5, sem: ["Spring"], cat: "elective", specs: [], slot: 'F4A', programs: ["hcai"], desc: "Statistical modeling of sequential data, forecasting, ARIMA, state-space models." },
-  "02452": { name: "Machine Learning", ects: 5, sem: ["Autumn"], cat: "elective", specs: ["ai"], slot: 'E2A', programs: ["hcai","autonomous"], desc: "Supervised/unsupervised learning, neural networks, model selection, evaluation." },
-  "02456": { name: "Deep Learning", ects: 5, sem: ["Autumn"], cat: "elective", specs: ["ai"], slot: 'E2B', programs: ["hcai","autonomous"], desc: "CNNs, RNNs, transformers, generative models, practical deep learning." },
-  "02471": { name: "Machine Learning for Signal Processing", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai"], slot: 'E3A', programs: ["hcai","autonomous"], desc: "Advanced understanding of machine learning techniques applied to signal processing." },
-  "02476": { name: "MLOps", ects: 5, sem: ["January"], cat: "elective", specs: ["ai"], slot: 'Jan', programs: ["hcai","autonomous"], desc: "ML deployment pipelines, monitoring, CI/CD for ML, containerization." },
-  "02517": { name: "Responsible AI", ects: 5, sem: ["Autumn"], cat: "elective", specs: ["ai"], slot: 'E4A', programs: ["hcai"], desc: "Fairness, accountability, transparency, ethics in AI systems." },
-  "02807": { name: "Computational Tools for Data Science", ects: 5, sem: ["Autumn"], cat: "elective", specs: ["ai"], slot: 'E4B', programs: ["hcai"], desc: "Python data stack, visualization, big-data tools, reproducible workflows." }
-,
+  "02282": { name: "Algorithms for Massive Data Sets", ects: 7.5, sem: ["Spring"], cat: "prog", specs: ["ai"], slot: 'F1A', programs: ["hcai"], desc: "Streaming algorithms, hashing, handling giant data collections." },
+  "02287": { name: "Logical Theories for Uncertainty and Learning", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai"], slot: 'E2B', desc: "Probabilistic logic and foundations of machine learning." },
+  "02289": { name: "Algorithmic Techniques for Modern Data Models", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai"], slot: 'E4B', programs: ["hcai"], desc: "Advanced graph algorithms, data structures, metric spaces." },
+  "02291": { name: "System Integration", ects: 5, sem: ["Spring"], cat: "core", specs: ["ai", "cyber", "digital", "embedded", "safe", "software"], slot: 'F5A', programs: ["autonomous"], desc: "Heterogeneous systems, APIs, middleware, SOA." },
+  "02417": { name: "Time Series Analysis", ects: 5, sem: ["Spring"], cat: "elective", specs: [], slot: 'F4B', programs: ["hcai"], desc: "Statistical modeling of sequential data, forecasting, ARIMA, state-space models." },
+  "02452": { name: "Machine Learning", ects: 5, sem: ["Autumn"], cat: "elective", specs: ["ai"], slot: 'E4A', programs: ["hcai", "autonomous"], desc: "Supervised/unsupervised learning, neural networks, model selection, evaluation." },
+  "02456": { name: "Deep Learning", ects: 5, sem: ["Autumn"], cat: "elective", specs: ["ai"], slot: 'E2A', programs: ["hcai", "autonomous"], desc: "CNNs, RNNs, transformers, generative models, practical deep learning." },
+  "02471": { name: "Machine Learning for Signal Processing", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai"], slot: 'E1B', programs: ["hcai", "autonomous"], desc: "Advanced understanding of machine learning techniques applied to signal processing." },
+  "02476": { name: "MLOps", ects: 5, sem: ["January"], cat: "elective", specs: ["ai"], slot: 'Jan', programs: ["hcai", "autonomous"], desc: "ML deployment pipelines, monitoring, CI/CD for ML, containerization." },
+  "02517": { name: "Responsible AI", ects: 5, sem: ["Autumn"], cat: "elective", specs: ["ai"], slot: 'E2B', programs: ["hcai"], desc: "Fairness, accountability, transparency, ethics in AI systems." },
+  "02807": { name: "Computational Tools for Data Science", ects: 5, sem: ["Autumn"], cat: "elective", specs: ["ai"], slot: 'E7', programs: ["hcai"], desc: "Python data stack, visualization, big-data tools, reproducible workflows." }
+  ,
   "30554": { name: "Global Navigation Satellite Systems", ects: 5, sem: ["Spring"], cat: "elective", specs: [], slot: 'F2B', programs: ["autonomous"], desc: "Added from autonomous program." },
   "34241": { name: "Digital video technology", ects: 5, sem: ["Spring"], cat: "elective", specs: [], slot: 'F4A', programs: ["autonomous"], desc: "Added from autonomous program." },
   "34366": { name: "Intelligent systems", ects: 5, sem: ["Autumn"], cat: "elective", specs: [], slot: 'E7', programs: ["autonomous"], desc: "Added from autonomous program." },
@@ -91,23 +94,23 @@ export const COURSE_CATALOG = {
   "02582": { name: "Computational Data Analysis", ects: 5, sem: ["Spring"], cat: "elective", specs: [], slot: 'F2B', programs: ["hcai"], desc: "Added from hcai program." },
   "02805": { name: "Social graphs and interactions", ects: 10, sem: ["Autumn"], cat: "elective", specs: [], slot: 'E5', programs: ["hcai"], desc: "Added from hcai program." },
   "02806": { name: "Social data analysis and visualization", ects: 5, sem: ["Spring"], cat: "elective", specs: [], slot: 'F3A', programs: ["hcai"], desc: "Added from hcai program." },
-  "02180": { name: "Introduction to Artificial Intelligence", ects: 5, sem: ["Spring"], cat: "elective", specs: [], slot: 'F3A', programs: ["hcai","autonomous"], desc: "Added from hcai and autonomous program." },
-  "02285": { name: "Artificial Intelligence and Multi-Agent Systems", ects: 7.5, sem: ["Spring"], cat: "elective", specs: [], slot: 'F4A', programs: ["hcai","autonomous"], desc: "Added from hcai and autonomous program." },
+  "02180": { name: "Introduction to Artificial Intelligence", ects: 5, sem: ["Spring"], cat: "elective", specs: [], slot: 'F3A', programs: ["hcai", "autonomous"], desc: "Added from hcai and autonomous program." },
+  "02285": { name: "Artificial Intelligence and Multi-Agent Systems", ects: 7.5, sem: ["Spring"], cat: "elective", specs: [], slot: 'F4A', programs: ["hcai", "autonomous"], desc: "Added from hcai and autonomous program." },
   "02409": { name: "Multivariate Statistics", ects: 5, sem: ["Autumn"], cat: "elective", specs: [], slot: 'E1A', programs: ["hcai"], desc: "Added from hcai program." },
   "02443": { name: "Stochastic Simulation", ects: 5, sem: ["June"], cat: "elective", specs: [], slot: 'Jun', programs: ["hcai"], desc: "Added from hcai program." },
   "02455": { name: "Experiment in Cognitive Science", ects: 5, sem: ["Autumn"], cat: "elective", specs: [], slot: 'E5B', programs: ["hcai"], desc: "Added from hcai program." },
   "02458": { name: "Cognitive Modelling", ects: 5, sem: ["Autumn"], cat: "elective", specs: [], slot: 'E2B', programs: ["hcai"], desc: "Added from hcai program." },
-  "02460": { name: "Advanced Machine Learning", ects: 5, sem: ["Spring"], cat: "elective", specs: [], slot: 'F1B', programs: ["hcai","autonomous"], desc: "Added from hcai and autonomous program." },
-  "02477": { name: "Bayesian machine learning", ects: 5, sem: ["Spring"], cat: "elective", specs: [], slot: 'F2A', programs: ["hcai","autonomous"], desc: "Added from hcai and autonomous program." },
-  "02501": { name: "Advanced Deep Learning in Computer Vision", ects: 5, sem: ["Spring"], cat: "elective", specs: [], slot: 'F4A', programs: ["hcai","autonomous"], desc: "Added from hcai and autonomous program." },
+  "02460": { name: "Advanced Machine Learning", ects: 5, sem: ["Spring"], cat: "elective", specs: [], slot: 'F1B', programs: ["hcai", "autonomous"], desc: "Added from hcai and autonomous program." },
+  "02477": { name: "Bayesian machine learning", ects: 5, sem: ["Spring"], cat: "elective", specs: [], slot: 'F2A', programs: ["hcai", "autonomous"], desc: "Added from hcai and autonomous program." },
+  "02501": { name: "Advanced Deep Learning in Computer Vision", ects: 5, sem: ["Spring"], cat: "elective", specs: [], slot: 'F4A', programs: ["hcai", "autonomous"], desc: "Added from hcai and autonomous program." },
   "02506": { name: "Advanced Image Analysis", ects: 5, sem: ["Spring"], cat: "elective", specs: [], slot: 'F5B', programs: ["hcai"], desc: "Added from hcai program." },
-  "02516": { name: "Introduction to Deep Learning in Computer Vision", ects: 5, sem: ["Autumn"], cat: "elective", specs: [], slot: 'E5B', programs: ["hcai","autonomous"], desc: "Added from hcai and autonomous program." },
+  "02516": { name: "Introduction to Deep Learning in Computer Vision", ects: 5, sem: ["Autumn"], cat: "elective", specs: [], slot: 'E5B', programs: ["hcai", "autonomous"], desc: "Added from hcai and autonomous program." },
   "02562": { name: "Rendering - Introduction", ects: 5, sem: ["Autumn"], cat: "elective", specs: [], slot: 'E5B', programs: ["hcai"], desc: "Added from hcai program." },
   "02563": { name: "Generative Methods for Computer Graphics", ects: 5, sem: ["Autumn"], cat: "elective", specs: [], slot: 'E5B', programs: ["hcai"], desc: "Added from hcai program." },
   "02566": { name: "Creating Digital Visual Experiences", ects: 10, sem: ["Spring"], cat: "elective", specs: [], slot: 'F2A', programs: ["hcai"], desc: "Added from hcai program." },
   "02581": { name: "Geometric Data Analysis and Processing", ects: 5, sem: ["Autumn"], cat: "elective", specs: [], slot: 'E1B', programs: ["hcai"], desc: "Added from hcai program." },
-  "02613": { name: "Python and High-Performance Computing", ects: 5, sem: ["Spring"], cat: "elective", specs: [], slot: 'F5A', programs: ["hcai","autonomous"], desc: "Added from hcai and autonomous program." },
-  "02614": { name: "High-Performance Computing", ects: 5, sem: ["January"], cat: "elective", specs: [], slot: 'Jan', programs: ["hcai","autonomous"], desc: "Added from hcai and autonomous program." },
+  "02613": { name: "Python and High-Performance Computing", ects: 5, sem: ["Spring"], cat: "elective", specs: [], slot: 'F5A', programs: ["hcai", "autonomous"], desc: "Added from hcai and autonomous program." },
+  "02614": { name: "High-Performance Computing", ects: 5, sem: ["January"], cat: "elective", specs: [], slot: 'Jan', programs: ["hcai", "autonomous"], desc: "Added from hcai and autonomous program." },
   "02808": { name: "Personal Data Interaction for Mobile and Wearables", ects: 10, sem: ["Spring"], cat: "elective", specs: [], slot: 'F5', programs: ["hcai"], desc: "Added from hcai program." },
   "02830": { name: "Advanced Project in Digital Media Engineering", ects: 10, sem: ["Autumn"], cat: "elective", specs: [], slot: 'E5B', programs: ["hcai"], desc: "Added from hcai program." },
   "02840": { name: "Computer Game Programming Fundamentals (DADIU)", ects: 15, sem: ["Autumn"], cat: "elective", specs: [], slot: 'Autumn', programs: ["hcai"], desc: "Added from hcai program." },
@@ -169,10 +172,10 @@ export const getTimingClass = (timingStr) => {
 // ---------- NEW RECOMMENDED PLAN DATA (Cybersecurity + AI/Data) ----------
 
 // Courses that count toward the Cybersecurity specialization (must = 25 ECTS)
-export const CYBER_SPEC_COURSES = ['02231', '02232', '02270', '02277', '02291'];
+export const CYBER_SPEC_COURSES = ['02270', '02291', '02275'];
 
 // Courses that count toward Programme-specific (must = 50 ECTS)
-export const PS_COURSES = ['38113', '02270', '02231', '02289', '02267', '02280', '02291', '02277', '02232'];
+export const PS_COURSES = ['02270', '02269', '02267', '02280', '02291', '02268', '02275', '02289'];
 
 // The full recommended plan — each semester with all course details
 export const PLAN_SEMESTERS = [
@@ -182,13 +185,13 @@ export const PLAN_SEMESTERS = [
     period: 'September – December',
     year: 1,
     targetEcts: 25,
-    note: '5 courses — build the security + algorithms foundation',
+    note: 'Build the AI and Security foundation',
     courses: [
-      { code: '38113', name: 'Applied AI for Entrepreneurs', ects: 5, slot: 'E2B', exam: 'Oral + assignments', role: 'Innovation II', status: 'LOCKED', grading: '7-point', cyberSpec: false, ps: true },
-      { code: '02270', name: 'Cybersecurity Fundamentals', ects: 5, slot: 'E5B', exam: 'Written 2 h', role: 'Core Competence #1', status: 'LOCKED', grading: '7-point', cyberSpec: true, ps: true },
-      { code: '02231', name: 'Cryptography Fundamentals', ects: 5, slot: 'E1A', exam: 'Written + exercises', role: 'Programme-specific', status: 'LOCKED', grading: '7-point', cyberSpec: true, ps: true },
-      { code: '02289', name: 'Algorithmic Techniques for Modern Data', ects: 5, slot: 'E4B', exam: 'Oral', role: 'Programme-specific', status: 'LOCKED', grading: '7-point', cyberSpec: false, ps: true },
-      { code: '12105', name: 'Quant. Methods to Assess Sustainability', ects: 5, slot: 'E7', exam: 'Written + reports 2 h', role: 'Foundation', status: 'LOCKED', grading: '7-point', cyberSpec: false, ps: false }
+      { code: '38113', name: 'Applied AI for Entrepreneurs', ects: 5, slot: 'E2B', exam: 'Oral + assignments', role: 'Innovation II', status: 'LOCKED', grading: '7-point' },
+      { code: '02270', name: 'Cybersecurity Fundamentals', ects: 5, slot: 'E5B', exam: 'Written 2h', role: 'Core Competence', status: 'LOCKED', grading: '7-point' },
+      { code: '02269', name: 'Process Mining', ects: 5, slot: 'E5A', exam: 'Written 1h + reports', role: 'Programme-specific', status: 'LOCKED', grading: '7-point' },
+      { code: '02452', name: 'Machine Learning', ects: 5, slot: 'E4A', exam: 'Written 4h (MCQ)', role: 'Elective', status: 'LOCKED', grading: '7-point' },
+      { code: '12105', name: 'Quant. Methods to Assess Sustainability', ects: 5, slot: 'E7', exam: 'Written 2h + reports', role: 'Foundation', status: 'LOCKED', grading: '7-point' }
     ]
   },
   {
@@ -198,9 +201,9 @@ export const PLAN_SEMESTERS = [
     year: 1,
     targetEcts: 5,
     mini: true,
-    note: 'Intensive project-based block',
+    note: 'Cloud and API intensive project',
     courses: [
-      { code: '02267', name: 'Software Development of Web Services', ects: 5, slot: 'Jan', exam: 'Project + report', role: 'Programme-specific', status: 'LOCKED', grading: '7-point', cyberSpec: false, ps: true }
+      { code: '02267', name: 'Software Development of Web Services', ects: 5, slot: 'Jan', exam: 'Project + report', role: 'Programme-specific', status: 'LOCKED', grading: '7-point' }
     ]
   },
   {
@@ -209,12 +212,12 @@ export const PLAN_SEMESTERS = [
     period: 'February – May',
     year: 1,
     targetEcts: 25,
-    note: 'AI depth + system integration + cyber risk',
+    note: 'Heavy AI models + Big Data scaling',
     courses: [
-      { code: '02280', name: 'AI & Multi-Agent Systems', ects: 10, slot: 'F4A', exam: 'Project (group programming)', role: 'Programme-specific', status: 'LOCKED', grading: '7-point', cyberSpec: false, ps: true },
-      { code: '02291', name: 'System Integration', ects: 5, slot: 'F5A', exam: 'Written 4 h + project', role: 'Core Competence #2', status: 'LOCKED', grading: '7-point', cyberSpec: true, ps: true },
-      { code: '02417', name: 'Time Series Analysis', ects: 5, slot: 'F4B', exam: 'Report', role: 'Elective', status: 'FLEX', grading: '7-point', cyberSpec: false, ps: false, flexId: 'sem2_flex' },
-      { code: '02277', name: 'Cyber Risk Management & Incident Response', ects: 5, slot: 'F3B', exam: 'Report', role: 'Programme-specific', status: 'LOCKED', grading: '7-point', cyberSpec: true, ps: true }
+      { code: '02280', name: 'AI & Multi-Agent Systems', ects: 10, slot: 'F4A', exam: 'Project (group)', role: 'Programme-specific', status: 'LOCKED', grading: '7-point' },
+      { code: '02291', name: 'System Integration', ects: 5, slot: 'F5A', exam: 'Written 4h + project', role: 'Core Competence', status: 'LOCKED', grading: '7-point' },
+      { code: '02582', name: 'Computational Data Analysis', ects: 5, slot: 'F2B', exam: 'Written / Report', role: 'Elective', status: 'LOCKED', grading: '7-point' },
+      { code: '02806', name: 'Social Data Analysis & Vis.', ects: 5, slot: 'F3A', exam: 'Project + peer review', role: 'Elective', status: 'LOCKED', grading: '7-point' }
     ]
   },
   {
@@ -224,9 +227,9 @@ export const PLAN_SEMESTERS = [
     year: 1,
     targetEcts: 5,
     mini: true,
-    note: 'Foundation course (Pass/Fail)',
+    note: 'Innovation requirement',
     courses: [
-      { code: '42501', name: 'Innovation in Engineering', ects: 5, slot: 'Jun', exam: 'Report', role: 'Foundation', status: 'LOCKED', grading: 'P/F', cyberSpec: false, ps: false }
+      { code: '38402', name: 'Innovation in Engineering', ects: 5, slot: 'Jun', exam: 'Report', role: 'Foundation', status: 'LOCKED', grading: 'P/F' }
     ]
   },
   {
@@ -245,13 +248,13 @@ export const PLAN_SEMESTERS = [
     period: 'September – December',
     year: 2,
     targetEcts: 25,
-    note: 'Core AI semester (ML / DL / Responsible AI) + applied crypto',
+    note: 'Deep Learning, Logic & Ethical Hacking',
     courses: [
-      { code: '02452', name: 'Machine Learning', ects: 5, slot: 'E4A', exam: 'Written 4 h + exercises', role: 'Elective', status: 'KEEP', grading: '7-point', cyberSpec: false, ps: false },
-      { code: '02456', name: 'Deep Learning', ects: 5, slot: 'E2A', exam: 'Written 2 h + reports', role: 'Elective', status: 'KEEP', grading: '7-point', cyberSpec: false, ps: false },
-      { code: '02232', name: 'Applied Cryptography', ects: 5, slot: 'E1B', exam: 'Oral + project', role: 'Programme-specific', status: 'LOCKED', grading: '7-point', cyberSpec: true, ps: true },
-      { code: '02517', name: 'Responsible AI', ects: 5, slot: 'E2B', exam: 'Written 3 h + reports', role: 'Elective', status: 'FLEX', grading: '7-point', cyberSpec: false, ps: false, flexId: 'sem3_flex1' },
-      { code: '02807', name: 'Computational Tools for Data Science', ects: 5, slot: 'E7', exam: 'Report + experiments', role: 'Elective', status: 'FLEX', grading: '7-point', cyberSpec: false, ps: false, flexId: 'sem3_flex2' }
+      { code: '02456', name: 'Deep Learning', ects: 5, slot: 'E2A', exam: 'Project + report', role: 'Elective', status: 'FLEX', grading: '7-point', flexId: 'sem3_flex_dl' },
+      { code: '02287', name: 'Logical Theories for Uncertainty', ects: 5, slot: 'E2B', exam: 'Oral', role: 'Programme-specific', status: 'LOCKED', grading: '7-point' },
+      { code: '02268', name: 'Process-Oriented Systems', ects: 5, slot: 'E4A', exam: 'Oral + reports', role: 'Programme-specific', status: 'LOCKED', grading: '7-point' },
+      { code: '02275', name: 'Ethical Hacking', ects: 5, slot: 'E5B', exam: 'Written 2h', role: 'Programme-specific', status: 'FLEX', grading: '7-point', flexId: 'sem3_flex_eh' },
+      { code: '02289', name: 'Algorithmic Tech for Data Models', ects: 5, slot: 'E4B', exam: 'Oral', role: 'Programme-specific', status: 'LOCKED', grading: '7-point' }
     ]
   },
   {
@@ -263,7 +266,7 @@ export const PLAN_SEMESTERS = [
     mini: true,
     note: 'Deploy your thesis model',
     courses: [
-      { code: '02476', name: 'MLOps', ects: 5, slot: 'Jan', exam: 'Project', role: 'Elective (after DL)', status: 'KEEP', grading: 'P/F', cyberSpec: false, ps: false }
+      { code: '02476', name: 'MLOps', ects: 5, slot: 'Jan', exam: 'Project', role: 'Elective', status: 'LOCKED', grading: 'P/F' }
     ]
   },
   {
@@ -275,41 +278,31 @@ export const PLAN_SEMESTERS = [
     thesis: true,
     note: 'Industry-partnered thesis — your single most important career asset',
     courses: [
-      { code: 'thesis', name: "Master's Thesis", ects: 30, slot: '—', exam: 'Thesis + oral defense', role: 'Thesis', status: 'LOCKED', grading: '7-point', cyberSpec: false, ps: false }
+      { code: 'thesis', name: "Master's Thesis", ects: 30, slot: '—', exam: 'Thesis + oral defense', role: 'Thesis', status: 'LOCKED', grading: '7-point' }
     ]
   }
 ];
 
-// Dropdown alternatives for FLEX slots (avoid E4A where ML lives)
+// Dropdown alternatives for FLEX slots
 export const FLEX_ALTERNATIVES = {
-  sem2_flex: {
-    label: 'Spring Elective',
-    semester: 'Spring',
-    options: [
-      { code: '02417', name: 'Time Series Analysis', ects: 5, slot: 'F4B', exam: 'Report', grading: '7-point' },
-      { code: '02271', name: 'Advanced Cybersecurity', ects: 5, slot: 'F1A', exam: 'Written 4 h', grading: '7-point' },
-      { code: '02276', name: 'Usable Security and Privacy', ects: 5, slot: 'F2B', exam: 'Oral', grading: '7-point' },
-      { code: '02256', name: 'Automated Reasoning', ects: 5, slot: 'F3A', exam: 'Project + report', grading: '7-point' }
-    ]
-  },
-  sem3_flex1: {
-    label: 'Autumn Elective (avoid E4A)',
+  sem3_flex_dl: {
+    label: 'Autumn Elective (E2A slot — Mon 13-17)',
     semester: 'Autumn',
     options: [
-      { code: '02517', name: 'Responsible AI', ects: 5, slot: 'E2B', exam: 'Written 3 h + reports', grading: '7-point' },
-      { code: '02275', name: 'Ethical Hacking', ects: 5, slot: 'E1B', exam: 'Written 2 h', grading: '7-point' },
-      { code: '02234', name: 'Research Topics in Cybersecurity', ects: 5, slot: 'E5A', exam: 'Report', grading: '7-point' },
-      { code: '02287', name: 'Logical Theories for Uncertainty', ects: 5, slot: 'E3B', exam: 'Oral', grading: '7-point' }
+      { code: '02456', name: 'Deep Learning', ects: 5, slot: 'E2A', exam: 'Project + report', grading: '7-point' },
+      { code: '02452', name: 'Machine Learning', ects: 5, slot: 'E4A', exam: 'Written 4h (MCQ)', grading: '7-point' },
+      { code: '02517', name: 'Responsible AI', ects: 5, slot: 'E2B', exam: 'Report', grading: '7-point' },
+      { code: '02807', name: 'Computational Tools for Data Science', ects: 5, slot: 'E7', exam: 'Report + experiments', grading: '7-point' }
     ]
   },
-  sem3_flex2: {
-    label: 'Autumn Elective (avoid E4A)',
+  sem3_flex_eh: {
+    label: 'Autumn Elective (E5B slot — Wed 13-17)',
     semester: 'Autumn',
     options: [
+      { code: '02275', name: 'Ethical Hacking', ects: 5, slot: 'E5B', exam: 'Written 2h', grading: '7-point' },
       { code: '02807', name: 'Computational Tools for Data Science', ects: 5, slot: 'E7', exam: 'Report + experiments', grading: '7-point' },
-      { code: '02269', name: 'Process Mining', ects: 5, slot: 'E4A', exam: 'Project', grading: '7-point' },
-      { code: '02471', name: 'ML for Signal Processing', ects: 5, slot: 'E2A', exam: 'Written 4 h', grading: '7-point' },
-      { code: '02268', name: 'Process-Oriented & Event-Driven Systems', ects: 5, slot: 'E1A', exam: 'Oral', grading: '7-point' }
+      { code: '02234', name: 'Research Topics in Cybersecurity', ects: 5, slot: 'E4A', exam: 'Report', grading: '7-point' },
+      { code: '34366', name: 'Intelligent systems', ects: 5, slot: 'E7', exam: 'Project', grading: '7-point' }
     ]
   }
 };
@@ -331,6 +324,7 @@ export const CAREER_ROADMAP = [
       'LinkedIn + GitHub profiles polished',
       '~15 target companies shortlisted',
       'One finished, deployed ML project',
+      'Start learning Microsoft stack (C#/.NET, MS SQL) for enterprise roles',
       'Start Danish A1'
     ]
   },
@@ -346,7 +340,7 @@ export const CAREER_ROADMAP = [
     phase: 'Jan + Sem 2 (Y1)',
     items: [
       'Jan–Mar = internship deadline season, apply broadly',
-      'Portfolio from 02280 + System Integration',
+      'Portfolio from 02280 + System Integration (deploy backends using Azure/.NET)',
       'Goal: secure internship by April'
     ]
   },
@@ -363,7 +357,7 @@ export const CAREER_ROADMAP = [
     items: [
       'Core AI semester — ML / DL / Responsible AI',
       'Lock thesis by Nov–Dec (project + company + DTU supervisor)',
-      'Build capstone project for portfolio'
+      'Build capstone project for portfolio (integrate ML with PowerBI or Azure ML)'
     ]
   },
   {
@@ -379,6 +373,7 @@ export const CAREER_ROADMAP = [
 // Four parallel career threads
 export const CAREER_THREADS = [
   { name: 'Portfolio', desc: '2 finished projects, 1 = thesis' },
+  { name: 'Tech Stack', desc: 'Python/AI + Microsoft Enterprise (Azure, .NET, PowerBI)' },
   { name: 'Network', desc: 'Fairs, studiejob, LinkedIn, supervisors' },
   { name: 'Internship → Thesis → Job', desc: 'The spine — each step a referral into the next' },
   { name: 'Danish', desc: 'Conversational by Year 2' }

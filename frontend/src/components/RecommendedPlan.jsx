@@ -11,6 +11,27 @@ import {
   COURSE_CATALOG
 } from '../courses';
 
+// ---- DTU Slot → Day/Time Lookup ----
+export const SLOT_LABELS = {
+  // Autumn (E) slots
+  'E1A': 'Mon 8-12',   'E1B': 'Thu 13-17',
+  'E2A': 'Mon 13-17',  'E2B': 'Thu 8-12',
+  'E3A': 'Tue 8-12',   'E3B': 'Fri 13-17',
+  'E4A': 'Tue 13-17',  'E4B': 'Fri 8-12',
+  'E5A': 'Wed 8-12',   'E5B': 'Wed 13-17',
+  'E7':  'Tue 18-22',
+  // Spring (F) slots
+  'F1A': 'Mon 8-12',   'F1B': 'Thu 13-17',
+  'F2A': 'Mon 13-17',  'F2B': 'Thu 8-12',
+  'F3A': 'Tue 8-12',   'F3B': 'Fri 13-17',
+  'F4A': 'Tue 13-17',  'F4B': 'Fri 8-12',
+  'F5A': 'Wed 8-12',   'F5B': 'Wed 13-17',
+  'F7':  'Tue 18-22',
+  // Special
+  'Jan': 'January', 'Jun': 'June', 'Aug': 'August',
+  '—': '—',
+};
+
 // ---- Helpers ----
 
 function getRoleClass(role) {
@@ -65,7 +86,7 @@ function CourseRow({ course, flexId, flexChoices, onFlexChange }) {
     <tr className={isFlex ? 'flex-row' : ''}>
       <td className="code">
         <a 
-          href={`https://kurser.dtu.dk/course/2025-2026/${displayCourse.code}?menulanguage=en`} 
+          href={`https://kurser.dtu.dk/course/2026-2027/${displayCourse.code}?menulanguage=en`} 
           target="_blank" 
           rel="noreferrer"
           style={{ color: 'inherit', textDecoration: 'underline' }}
@@ -114,19 +135,35 @@ function CourseRow({ course, flexId, flexChoices, onFlexChange }) {
             </a>
           </div>
         ) : (
-          <a
-            href={`https://dtucourseanalyzer.pythonanywhere.com/course/${displayCourse.code}`}
-            target="_blank"
-            rel="noreferrer"
-            className="course-name"
-            style={{ color: 'inherit', textDecoration: 'underline', cursor: 'pointer' }}
-          >
-            {displayCourse.name}
-          </a>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <a
+              href={`https://dtucourseanalyzer.pythonanywhere.com/course/${displayCourse.code}`}
+              target="_blank"
+              rel="noreferrer"
+              className="course-name"
+              style={{ color: 'inherit', textDecoration: 'underline', cursor: 'pointer' }}
+            >
+              {displayCourse.name}
+            </a>
+            {COURSE_CATALOG[displayCourse.code]?.programs && COURSE_CATALOG[displayCourse.code].cat !== 'mandatory' && (
+              <div style={{ display: 'flex', gap: '4px' }}>
+                {COURSE_CATALOG[displayCourse.code].programs.map(prog => (
+                  <span key={prog} style={{ fontSize: '9px', padding: '2px 6px', background: 'var(--color-pink)', color: '#fff', fontWeight: 900, textTransform: 'uppercase' }}>
+                    {prog === 'hcai' ? 'HCAI' : 'AUTONOMOUS'}
+                  </span>
+                ))}
+              </div>
+            )}
+          </div>
         )}
       </td>
       <td className="ects-cell">{displayCourse.ects}</td>
-      <td className="slot-cell">{displayCourse.slot}</td>
+      <td className="slot-cell">
+        <div style={{ fontWeight: 700 }}>{displayCourse.slot}</div>
+        {SLOT_LABELS[displayCourse.slot] && displayCourse.slot !== SLOT_LABELS[displayCourse.slot] && (
+          <div style={{ fontSize: '10px', color: 'var(--color-text)', opacity: 0.6, whiteSpace: 'nowrap' }}>{SLOT_LABELS[displayCourse.slot]}</div>
+        )}
+      </td>
       <td className="exam-cell">{displayCourse.exam}</td>
       <td>
         <span className={`role-badge ${getRoleClass(displayCourse.role)}`}>
@@ -149,7 +186,7 @@ function SemesterTable({ courses, flexChoices, onFlexChange }) {
           <th style={{ width: 60 }}>Code</th>
           <th>Course</th>
           <th style={{ width: 45, textAlign: 'center' }}>ECTS</th>
-          <th style={{ width: 50 }}>Slot</th>
+          <th style={{ width: 80 }}>Slot / Time</th>
           <th style={{ width: 140 }}>Exam</th>
           <th style={{ width: 130 }}>Role</th>
           <th style={{ width: 90 }}>Status</th>
@@ -195,7 +232,7 @@ function MiniCard({ semester, flexChoices, onFlexChange }) {
             {course.code}
           </a>
         </div>
-        <div className="mini-course-name">
+        <div className="mini-course-name" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
           <a
             href={`https://dtucourseanalyzer.pythonanywhere.com/course/${course.code}`}
             target="_blank"
@@ -204,6 +241,15 @@ function MiniCard({ semester, flexChoices, onFlexChange }) {
           >
             {course.name}
           </a>
+          {COURSE_CATALOG[course.code]?.programs && COURSE_CATALOG[course.code].cat !== 'mandatory' && (
+            <div style={{ display: 'flex', gap: '4px', marginTop: '2px' }}>
+              {COURSE_CATALOG[course.code].programs.map(prog => (
+                <span key={prog} style={{ fontSize: '9px', padding: '2px 6px', background: 'var(--color-pink)', color: '#fff', fontWeight: 900, textTransform: 'uppercase' }}>
+                  {prog === 'hcai' ? 'HCAI' : 'AUTONOMOUS'}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
         <div className="mini-detail">{course.exam}</div>
         <div className="mini-badges">
@@ -258,22 +304,28 @@ function Timetable({ semesters, flexChoices }) {
 
     let foundCourses = [];
     sem.courses.forEach(c => {
-      const isFlex = c.code === 'choice';
-      const actualCode = isFlex ? flexChoices[c.id] : c.code;
-      // In Recommended Plan, courses.js PLAN_SEMESTERS holds the `slot` directly or we find it in FLEX_ALTERNATIVES
+      const isFlex = c.status === 'FLEX' && c.flexId;
+      let actualCode = c.code;
       let slot = c.slot;
-      if (isFlex) {
-        // Find slot from FLEX_ALTERNATIVES
-        const { FLEX_ALTERNATIVES } = require('../courses');
-        const flexOpt = FLEX_ALTERNATIVES[c.id]?.options?.find(o => o.code === actualCode);
-        if (flexOpt) slot = flexOpt.slot;
+      let name = c.name;
+
+      if (isFlex && flexChoices[c.flexId]) {
+        const flexOpt = FLEX_ALTERNATIVES[c.flexId]?.options?.find(o => o.code === flexChoices[c.flexId]);
+        if (flexOpt) {
+          actualCode = flexOpt.code;
+          slot = flexOpt.slot;
+          name = flexOpt.name;
+        }
       }
       
       if (!slot) return;
-      // Check if slot ends with any of validSlotsForThisDayAndTime
-      // e.g. "E1A" ends with "1A"
-      if (validSlotsForThisDayAndTime.some(s => slot.includes(s))) {
-        foundCourses.push({ code: actualCode, name: c.name, slot });
+      
+      let normalizedSlot = slot;
+      if (slot === 'F4A+B') normalizedSlot = 'F4A,F4B';
+      if (slot === 'E4A+B') normalizedSlot = 'E4A,E4B';
+
+      if (validSlotsForThisDayAndTime.some(s => normalizedSlot.includes(s))) {
+        foundCourses.push({ code: actualCode, name: name, slot });
       }
     });
     return foundCourses;
@@ -290,11 +342,11 @@ function Timetable({ semesters, flexChoices }) {
         {semesters.filter(sem => !sem.mini && !sem.thesis && !sem.break).map((sem, i) => (
           <div key={i} className="timetable-sem" style={{ overflowX: 'auto' }}>
             <h4 style={{ marginBottom: 16 }}>{sem.title}</h4>
-            <table className="tt-table">
+            <table className="tt-table" style={{ tableLayout: 'fixed', width: '100%' }}>
               <thead>
                 <tr>
                   <th style={{ width: '120px' }}>Time</th>
-                  {days.map(d => <th key={d}>{d}</th>)}
+                  {days.map(d => <th key={d} style={{ width: 'calc((100% - 120px) / 5)' }}>{d}</th>)}
                 </tr>
               </thead>
               <tbody>
@@ -308,7 +360,8 @@ function Timetable({ semesters, flexChoices }) {
                           {courses.map((c, cIdx) => (
                             <div key={cIdx} className="tt-course-box">
                               <div className="tt-c-code">{c.code}</div>
-                              <div className="tt-c-slot">{c.slot}</div>
+                              <div className="tt-c-name" style={{ fontSize: '10px', lineHeight: 1.2, margin: '2px 0' }}>{c.name}</div>
+                              <div className="tt-c-slot">{c.slot}{SLOT_LABELS[c.slot] ? ` · ${SLOT_LABELS[c.slot]}` : ''}</div>
                             </div>
                           ))}
                         </td>
@@ -328,17 +381,45 @@ function Timetable({ semesters, flexChoices }) {
 // ============================================================
 // MAIN COMPONENT
 // ============================================================
-export default function RecommendedPlan() {
-  const [flexChoices, setFlexChoices] = useState({
-    sem2_flex: '02417',
-    sem3_flex1: '02517',
-    sem3_flex2: '02807'
-  });
-
+export default function RecommendedPlan({ flexChoices, setFlexChoices }) {
   const [checkedItems, setCheckedItems] = useState(new Set());
 
-  const handleFlexChange = (flexId, code) => {
-    setFlexChoices(prev => ({ ...prev, [flexId]: code }));
+  // Compute Specialization ECTS
+  const specNameMap = {
+    ai: "AI and Algorithms",
+    cyber: "Cybersecurity",
+    digital: "Digital Systems",
+    embedded: "Embedded & Autonomous",
+    safe: "Safe & Secure",
+    software: "Software Engineering"
+  };
+
+  const specEcts = {};
+  PLAN_SEMESTERS.forEach(sem => {
+    sem.courses.forEach(c => {
+      const isFlex = c.status === 'FLEX' && c.flexId;
+      let actualCode = c.code;
+      if (isFlex && flexChoices[c.flexId] && flexChoices[c.flexId] !== c.code) {
+        const alt = FLEX_ALTERNATIVES[c.flexId];
+        if (alt) {
+          const selected = alt.options.find(o => o.code === flexChoices[c.flexId]);
+          if (selected) {
+            actualCode = selected.code;
+          }
+        }
+      }
+      
+      const courseObj = COURSE_CATALOG[actualCode];
+      if (courseObj && courseObj.specs) {
+        courseObj.specs.forEach(sId => {
+          specEcts[sId] = (specEcts[sId] || 0) + (courseObj.ects || 5);
+        });
+      }
+    });
+  });
+
+  const handleFlexChange = (flexId, newCode) => {
+    setFlexChoices(prev => ({ ...prev, [flexId]: newCode }));
   };
 
   const toggleCheck = (id) => {
@@ -350,17 +431,35 @@ export default function RecommendedPlan() {
     });
   };
 
-  // Compute totals
-  const totalEcts = PLAN_SEMESTERS.reduce((sum, sem) => sum + sem.targetEcts, 0);
-  const cyberEcts = PLAN_SEMESTERS.flatMap(s => s.courses)
-    .filter(c => CYBER_SPEC_COURSES.includes(c.code))
-    .reduce((sum, c) => sum + c.ects, 0);
-  const psEcts = PLAN_SEMESTERS.flatMap(s => s.courses)
-    .filter(c => PS_COURSES.includes(c.code))
-    .reduce((sum, c) => sum + c.ects, 0);
-  const electiveEcts = PLAN_SEMESTERS.flatMap(s => s.courses)
-    .filter(c => c.status === 'FLEX' || c.status === 'KEEP')
-    .reduce((sum, c) => sum + c.ects, 0);
+  // Dynamically compute totals
+  const totalEcts = 120;
+  
+  let psEcts = 0;
+  let electiveEcts = 0;
+
+  PLAN_SEMESTERS.forEach(sem => {
+    sem.courses.forEach(c => {
+      const isFlex = c.status === 'FLEX' && c.flexId;
+      let actualCode = c.code;
+      if (isFlex && flexChoices[c.flexId]) {
+        const alt = FLEX_ALTERNATIVES[c.flexId]?.options?.find(o => o.code === flexChoices[c.flexId]);
+        if (alt) actualCode = alt.code;
+      }
+      
+      const courseObj = COURSE_CATALOG[actualCode];
+      if (courseObj) {
+        if (['core', 'prog', 'innov2'].includes(courseObj.cat)) {
+          psEcts += courseObj.ects;
+        } else if (courseObj.cat === 'elective') {
+          electiveEcts += courseObj.ects;
+        }
+      }
+    });
+  });
+
+  const fulfilledSpecs = Object.keys(specNameMap)
+    .filter(sId => (specEcts[sId] || 0) >= 25)
+    .map(sId => specNameMap[sId]);
 
   // Split semesters into pairs for bento layout
   const sem1 = PLAN_SEMESTERS.find(s => s.id === 'sem1');
@@ -373,7 +472,8 @@ export default function RecommendedPlan() {
   const sem4 = PLAN_SEMESTERS.find(s => s.id === 'sem4');
 
   return (
-    <div className="main">
+    <>
+      <div className="main">
       {/* ======== STATS BENTO ROW ======== */}
       <div className="bento-stats">
         <div className="bento-stat-card">
@@ -384,10 +484,10 @@ export default function RecommendedPlan() {
           </div>
         </div>
         <div className="bento-stat-card">
-          <div className="bento-stat-num">{cyberEcts}</div>
-          <div className="bento-stat-label">Cyber Spec</div>
+          <div className="bento-stat-num">10</div>
+          <div className="bento-stat-label">Mandatory Foundation</div>
           <div className="bento-stat-bar">
-            <div className="bento-stat-fill" style={{ width: `${(cyberEcts / 25) * 100}%`, background: 'var(--color-cyan)' }} />
+            <div className="bento-stat-fill" style={{ width: '100%', background: 'var(--color-cyan)' }} />
           </div>
         </div>
         <div className="bento-stat-card">
@@ -397,6 +497,7 @@ export default function RecommendedPlan() {
             <div className="bento-stat-fill" style={{ width: `${(psEcts / 50) * 100}%`, background: 'var(--color-yellow)' }} />
           </div>
         </div>
+
         <div className="bento-stat-card">
           <div className="bento-stat-num">{electiveEcts}</div>
           <div className="bento-stat-label">Electives</div>
@@ -427,8 +528,28 @@ export default function RecommendedPlan() {
         <div className="legend-group"><span className="role-badge role-innov">Innovation II</span></div>
         <div className="legend-group"><span className="role-badge role-elective">Elective</span></div>
         <div className="legend-group"><span className="role-badge role-thesis">Thesis</span></div>
-        <div className="legend-divider" />
-        <div className="legend-group"><span className="cyber-dot" /> = counts toward Cybersecurity spec</div>
+      </div>
+
+      {/* ======== SPEC TRACKER ======== */}
+      <div className="bento-card" style={{ marginBottom: '2rem', padding: '1rem' }}>
+        <h3 style={{ fontSize: 12, fontWeight: 900, marginBottom: '0.75rem', textTransform: 'uppercase' }}>Specialization Tracker (Min 25 ECTS)</h3>
+        <div className="spec-rows" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '8px 16px' }}>
+          {Object.keys(specNameMap).map(specId => {
+            const ectsVal = specEcts[specId] || 0;
+            const pctVal = Math.min(100, (ectsVal / 25) * 100);
+            const isMet = ectsVal >= 25;
+            return (
+              <div key={specId} className="spec-row" style={{ gap: '8px', alignItems: 'center', marginBottom: 0 }}>
+                <span className="spec-check" style={{ color: isMet ? 'var(--color-cyan)' : 'var(--color-text)', fontSize: 12, fontWeight: 900 }}>{isMet ? '✓' : '○'}</span>
+                <span className="spec-name" style={{ width: 140, fontSize: 11 }}>{specNameMap[specId]}</span>
+                <div className="spec-bar-outer" style={{ height: 10, flex: 1, backgroundColor: 'var(--color-bg)', border: '1px solid var(--color-text)', boxShadow: 'inset 1px 1px 0px var(--color-text)' }}>
+                  <div className="spec-bar-inner" style={{ width: `${pctVal}%`, height: '100%', background: 'var(--color-pink)', borderRight: '1px solid var(--color-text)' }}></div>
+                </div>
+                <span className="spec-num" style={{ fontSize: 11, width: 45 }}>{ectsVal}/25</span>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       {/* ======== YEAR 1 ======== */}
@@ -525,6 +646,168 @@ export default function RecommendedPlan() {
 
       {/* Timetable Feature */}
       <Timetable semesters={[sem1, sem2, sem3, sem4]} flexChoices={flexChoices} />
-    </div>
+      </div>
+
+      {/* PRINT-ONLY RENDER */}
+      <div className="print-only">
+        <div className="print-header">
+          <div style={{ fontSize: '12px', fontWeight: 900, textTransform: 'uppercase', marginBottom: '4px' }}>Technical University of Denmark · MSc Computer Science & Engineering</div>
+          <h1>DTU Study Plan — Recommended Plan</h1>
+          <div style={{ display: 'flex', gap: '20px', marginTop: '6px', fontSize: '12px' }}>
+            <span><strong>Total ECTS:</strong> {totalEcts} / 120</span>
+            {fulfilledSpecs.length > 0 && (
+              <span><strong>Specializations:</strong> {fulfilledSpecs.join(', ')}</span>
+            )}
+          </div>
+        </div>
+
+        {PLAN_SEMESTERS.filter(s => !s.break).map((sem, idx) => (
+          <div key={idx} className="sem-block">
+            <div className="sem-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+              <span className="sem-title" style={{ margin: 0 }}>{sem.title}</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                <span className="sem-period" style={{ margin: 0 }}>{sem.period}</span>
+                <span className="sem-ects-total" style={{ background: '#FFE500', border: '2px solid #000', padding: '2px 8px', fontWeight: 900, margin: 0 }}>{sem.targetEcts} ECTS</span>
+              </div>
+            </div>
+            <table className="course-table">
+              <thead>
+                <tr>
+                  <th style={{ width: 60 }}>Code</th>
+                  <th>Course</th>
+                  <th style={{ width: 45, textAlign: 'center' }}>ECTS</th>
+                  <th style={{ width: 50 }}>Slot</th>
+                  <th style={{ width: 120 }}>Exam</th>
+                  <th style={{ width: 120 }}>Role</th>
+                  <th style={{ width: 45 }}>Grade</th>
+                </tr>
+              </thead>
+              <tbody>
+                {sem.courses.map(course => {
+                  const isFlex = course.status === 'FLEX' && course.flexId;
+                  let displayCourse = course;
+                  if (isFlex && flexChoices[course.flexId] && flexChoices[course.flexId] !== course.code) {
+                    const alt = FLEX_ALTERNATIVES[course.flexId];
+                    if (alt) {
+                      const selected = alt.options.find(o => o.code === flexChoices[course.flexId]);
+                      if (selected) {
+                        displayCourse = { ...course, ...selected };
+                      }
+                    }
+                  }
+                  const codeDisplay = displayCourse.code === 'thesis' ? 'THESIS' : displayCourse.code;
+                  return (
+                    <tr key={displayCourse.code}>
+                      <td className="code">
+                        <a href={`https://kurser.dtu.dk/course/2026-2027/${displayCourse.code}?menulanguage=en`} target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>
+                          {codeDisplay}
+                        </a>
+                      </td>
+                      <td>
+                        <a href={`https://dtucourseanalyzer.pythonanywhere.com/course/${displayCourse.code}`} target="_blank" rel="noreferrer" style={{ color: 'inherit', textDecoration: 'underline' }}>
+                          {displayCourse.name}
+                        </a>
+                      </td>
+                      <td className="ects-cell">{displayCourse.ects}</td>
+                      <td>{displayCourse.slot}</td>
+                      <td>{displayCourse.exam}</td>
+                      <td>
+                        <span className={`role-badge ${getRoleClass(displayCourse.role)}`}>
+                          {displayCourse.role}
+                        </span>
+                      </td>
+                      <td><GradeBadge grading={displayCourse.grading} /></td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        ))}
+
+        {/* PRINT TIMETABLE for Sems 1-3 */}
+        <div style={{ pageBreakBefore: 'always', padding: '0.5rem 0' }}>
+          <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '15px', fontWeight: 900, textTransform: 'uppercase', marginBottom: '8px', borderBottom: '3px solid #000', paddingBottom: '4px' }}>Weekly Timetable</h2>
+          {[sem1, sem2, sem3].filter(Boolean).map((sem, i) => {
+            const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+            const dayMapping = {
+              'Mon': ['1A', '2A'],
+              'Tue': ['3A', '4A', '7'],
+              'Wed': ['5A', '5B'],
+              'Thu': ['2B', '1B'],
+              'Fri': ['4B', '3B']
+            };
+            const times = [
+              { label: '8–12', slots: ['1A', '2B', '3A', '4B', '5A'] },
+              { label: '13–17', slots: ['2A', '1B', '4A', '3B', '5B'] },
+              { label: '18–22', slots: ['7'] },
+            ];
+
+            const getCoursesForCell = (dayIdx, timeSlots) => {
+              const validSlots = timeSlots.filter(s => dayMapping[days[dayIdx]].includes(s));
+              let found = [];
+              sem.courses.forEach(c => {
+                let displayC = c;
+                if (c.status === 'FLEX' && c.flexId && flexChoices[c.flexId] && flexChoices[c.flexId] !== c.code) {
+                  const alt = FLEX_ALTERNATIVES[c.flexId];
+                  if (alt) {
+                    const selected = alt.options.find(o => o.code === flexChoices[c.flexId]);
+                    if (selected) displayC = { ...c, ...selected };
+                  }
+                }
+                if (!displayC.slot) return;
+                if (validSlots.some(s => displayC.slot.includes(s))) {
+                  found.push(displayC);
+                }
+              });
+              return found;
+            };
+
+            return (
+              <div key={i} style={{ marginBottom: '10px', pageBreakInside: 'avoid' }}>
+                <h4 style={{ fontSize: '11px', fontWeight: 900, marginBottom: '3px', textTransform: 'uppercase' }}>{sem.title}</h4>
+                <table className="course-table" style={{ tableLayout: 'fixed', width: '100%' }}>
+                  <colgroup>
+                    <col style={{ width: '15%' }} />
+                    <col style={{ width: '17%' }} />
+                    <col style={{ width: '17%' }} />
+                    <col style={{ width: '17%' }} />
+                    <col style={{ width: '17%' }} />
+                    <col style={{ width: '17%' }} />
+                  </colgroup>
+                  <thead>
+                    <tr>
+                      <th style={{ padding: '2px 4px', fontSize: '9px' }}>Time</th>
+                      {days.map(d => <th key={d} style={{ padding: '2px 4px', fontSize: '9px' }}>{d}</th>)}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {times.map((t, tIdx) => (
+                      <tr key={tIdx}>
+                        <td style={{ fontWeight: 900, padding: '2px 4px', fontSize: '9px' }}>{t.label}</td>
+                        {days.map((d, dIdx) => {
+                          const courses = getCoursesForCell(dIdx, t.slots);
+                          return (
+                            <td key={dIdx} style={{ verticalAlign: 'top', padding: '2px 4px', fontSize: '8px' }}>
+                              {courses.length > 0 ? courses.map((c, cIdx) => (
+                                <div key={cIdx} style={{ lineHeight: '1.1' }}>
+                                  <strong>{c.code}</strong>
+                                  <br/>
+                                  <span style={{ fontSize: '7.5px', fontWeight: 400, color: '#333' }}>{c.name}</span>
+                                </div>
+                              )) : <span style={{ color: '#ccc' }}>—</span>}
+                            </td>
+                          );
+                        })}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </>
   );
 }
