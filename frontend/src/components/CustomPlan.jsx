@@ -7,6 +7,7 @@ import {
   getTimingClass,
   getTimingLabel
 } from '../courses';
+import { Timetable } from './RecommendedPlan';
 
 const SEMESTERS = [
   { id: "sem1", title: "Semester 1 — Autumn", period: "September – December", type: 'regular' },
@@ -116,10 +117,25 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
             };
           }
           if (COURSE_CATALOG[act.code]) {
-            // Default to appropriate semester if not provided or valid
             let targetSem = act.sem;
             const allowed = COURSE_CATALOG[act.code].sem;
-            if (!targetSem) {
+            
+            // Validate targetSem against allowed seasons
+            let isValid = false;
+            if (targetSem) {
+              const season = targetSem.startsWith('sem1') || targetSem.startsWith('sem3') ? 'Autumn' :
+                             targetSem.startsWith('sem2') || targetSem.startsWith('sem4') ? 'Spring' :
+                             targetSem.startsWith('jan') ? 'January' :
+                             targetSem.startsWith('jun') || targetSem.startsWith('aug') || targetSem.startsWith('summer') ? 'June' : null;
+              
+              if (season && allowed.includes(season) || (act.code === 'thesis' && (season === 'Autumn' || season === 'Spring'))) {
+                isValid = true;
+              }
+              // Allow 'August' edge cases for June blocks
+              if (season === 'June' && allowed.includes('August')) isValid = true;
+            }
+
+            if (!isValid) {
               if (allowed.includes('January')) targetSem = 'jan1';
               else if (allowed.includes('June') || allowed.includes('August')) targetSem = 'jun1';
               else if (allowed.includes('Autumn')) targetSem = 'sem1';
@@ -131,7 +147,19 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
           delete next[act.code];
         } else if (act.type === 'MOVE') {
           if (COURSE_CATALOG[act.code] && act.sem) {
-            next[act.code] = act.sem;
+            // Same validation for MOVE
+            let targetSem = act.sem;
+            const allowed = COURSE_CATALOG[act.code].sem;
+            const season = targetSem.startsWith('sem1') || targetSem.startsWith('sem3') ? 'Autumn' :
+                           targetSem.startsWith('sem2') || targetSem.startsWith('sem4') ? 'Spring' :
+                           targetSem.startsWith('jan') ? 'January' :
+                           targetSem.startsWith('jun') || targetSem.startsWith('aug') || targetSem.startsWith('summer') ? 'June' : null;
+            
+            if (season && (allowed.includes(season) || (act.code === 'thesis' && (season === 'Autumn' || season === 'Spring')) || (season === 'June' && allowed.includes('August')))) {
+              next[act.code] = targetSem;
+            } else {
+              console.warn(`Cannot move course ${act.code} to ${targetSem} because it does not run in ${season}.`);
+            }
           }
         }
       });
@@ -235,7 +263,7 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
   
   return (
     <div>
-      <div style={{ padding: '0 2rem 1rem', display: 'flex', justifyContent: 'center' }}>
+      <div className="hide-print" style={{ padding: '0 2rem 1rem', display: 'flex', justifyContent: 'center' }}>
         <div className="req-pills">
           <span className={`req-pill ${sustainSelected ? 'met' : ''}`}>Sustainability</span>
           <span className={`req-pill ${innovSelected ? 'met' : ''}`}>Innovation I</span>
@@ -514,18 +542,20 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                   onChange={(e) => setSpecFilter(e.target.value)}
                   style={{ padding: '10px 14px', border: '2px solid var(--color-text)', borderRadius: 0, fontFamily: 'var(--font-main)', fontSize: 14, background: 'var(--color-cyan)', color: 'var(--color-text)', boxShadow: '3px 3px 0px var(--color-text)', outline: 'none', fontWeight: 600 }}
                 >
-                  <option value="all">All Specs</option>
-                  <option value="ai">AI</option>
-                  <option value="cyber">Cyber</option>
-                  <option value="digital">Digital</option>
-                  <option value="embedded">Embedded</option>
-                  <option value="safe">Safe & Secure</option>
-                  <option value="software">Software</option>
-                  <option value="mandatory">Mandatory</option>
-                  <option value="innov2">Innov II</option>
+                  <option value="all">All Categories</option>
+                  <option value="polytechnic">Polytechnic Foundation</option>
+                  <option value="innovation">Innovation (Innov II)</option>
+                  <option value="prog-specific">Program Specific (Core/Prog)</option>
+                  <option value="electives">Electives</option>
+                  <option value="ai">AI Specialization</option>
+                  <option value="cyber">Cybersecurity Specialization</option>
+                  <option value="digital">Digital Systems Specialization</option>
+                  <option value="embedded">Embedded Specialization</option>
+                  <option value="safe">Safe & Secure Specialization</option>
+                  <option value="software">Software Specialization</option>
                 </select>
               </div>
-
+ 
               <div style={{ flex: 1, overflowY: 'auto', border: '2px solid var(--color-text)', background: '#fff' }}>
                 <table className="course-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
                   <thead style={{ background: 'var(--color-text)', color: 'var(--color-bg)' }}>
@@ -537,29 +567,54 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                     </tr>
                   </thead>
                   <tbody>
-                    {Object.entries(COURSE_CATALOG)
-                      .filter(([code, c]) => {
-                        const matchesSearch = code.includes(searchQuery) || c.name.toLowerCase().includes(searchQuery.toLowerCase());
-                        let matchesFilter = true;
-                        if (specFilter !== 'all') {
-                          if (specFilter === 'mandatory') matchesFilter = c.cat === 'mandatory';
-                          else if (specFilter === 'innov2') matchesFilter = c.cat === 'innov2';
-                          else matchesFilter = c.specs.includes(specFilter);
-                        }
-                        const targetSeason = getSeasonForSemester(targetSemesterId);
-                        let matchesSeason = true;
-                        if (targetSeason) {
-                           matchesSeason = c.sem.includes(targetSeason) || (code === 'thesis' && (targetSeason === 'Autumn' || targetSeason === 'Spring'));
-                        }
-                        return matchesSearch && matchesFilter && matchesSeason;
-                      })
-                      .map(([code, c]) => {
+                    {(() => {
+                      const targetSeason = getSeasonForSemester(targetSemesterId);
+                      
+                      const getCatWeight = (cat) => {
+                        if (cat === 'mandatory') return 1;
+                        if (cat === 'innov2') return 2;
+                        if (cat === 'core' || cat === 'prog') return 3;
+                        if (cat === 'elective') return 4;
+                        return 5;
+                      };
+
+                      const allFiltered = Object.entries(COURSE_CATALOG)
+                        .filter(([code, c]) => {
+                          if (code === 'thesis') return false; // thesis is hardcoded in sem4
+                          const matchesSearch = code.includes(searchQuery) || c.name.toLowerCase().includes(searchQuery.toLowerCase());
+                          let matchesFilter = true;
+                          if (specFilter !== 'all') {
+                            if (specFilter === 'polytechnic') matchesFilter = c.cat === 'mandatory';
+                            else if (specFilter === 'innovation') matchesFilter = c.cat === 'innov2';
+                            else if (specFilter === 'prog-specific') matchesFilter = c.cat === 'core' || c.cat === 'prog';
+                            else if (specFilter === 'electives') matchesFilter = c.cat === 'elective';
+                            else matchesFilter = c.specs.includes(specFilter);
+                          }
+                          let matchesSeason = true;
+                          if (targetSeason) {
+                            matchesSeason = c.sem.includes(targetSeason);
+                          }
+                          return matchesSearch && matchesFilter && matchesSeason;
+                        })
+                        .sort(([codeA, a], [codeB, b]) => {
+                          const wA = getCatWeight(a.cat);
+                          const wB = getCatWeight(b.cat);
+                          if (wA !== wB) return wA - wB;
+
+                          const progA = (a.programs || []).join(',');
+                          const progB = (b.programs || []).join(',');
+                          if (progA && !progB) return -1;
+                          if (!progA && progB) return 1;
+                          if (progA && progB && progA !== progB) return progA.localeCompare(progB);
+
+                          return codeA.localeCompare(codeB);
+                        });
+
+                      return allFiltered.map(([code, c]) => {
                         const isSelected = customState[code] !== undefined;
                         return (
                           <tr key={code} style={{ borderBottom: '1px solid var(--color-border)', background: isSelected ? 'var(--color-bg)' : '#fff' }}>
-                            <td className="code" style={{ verticalAlign: 'middle', padding: 8 }}>
-                              {code === 'thesis' ? 'THESIS' : code}
-                            </td>
+                            <td className="code" style={{ verticalAlign: 'middle', padding: 8 }}>{code}</td>
                             <td style={{ padding: 8 }}>
                               <div className="course-name" style={{ fontSize: 13, fontWeight: 600 }}>{c.name}</div>
                               <div className="course-detail" style={{ fontSize: 11, marginTop: 4 }}>{c.desc}</div>
@@ -579,21 +634,22 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                               <button
                                 onClick={() => handleModalCourseSelect(code)}
                                 disabled={isSelected}
-                                style={{
-                                  padding: '6px 12px',
-                                  background: isSelected ? 'var(--color-border)' : 'var(--color-yellow)',
-                                  color: isSelected ? '#999' : 'var(--color-text)',
-                                  border: `2px solid ${isSelected ? '#999' : 'var(--color-text)'}`,
-                                  boxShadow: isSelected ? 'none' : '2px 2px 0 var(--color-text)',
-                                  fontWeight: 900, cursor: isSelected ? 'not-allowed' : 'pointer'
-                                }}
+                                      style={{
+                                        padding: '6px 12px',
+                                        background: isSelected ? 'var(--color-border)' : 'var(--color-yellow)',
+                                        color: isSelected ? '#999' : 'var(--color-text)',
+                                        border: `2px solid ${isSelected ? '#999' : 'var(--color-text)'}`,
+                                        boxShadow: isSelected ? 'none' : '2px 2px 0 var(--color-text)',
+                                        fontWeight: 900, cursor: isSelected ? 'not-allowed' : 'pointer'
+                                      }}
                               >
                                 {isSelected ? 'ADDED' : 'ADD'}
                               </button>
                             </td>
                           </tr>
                         );
-                      })}
+                      });
+                    })()}
                   </tbody>
                 </table>
               </div>
@@ -601,9 +657,34 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
           </div>
         )}
 
+        {/* Custom Plan Timetable */}
+        {(() => {
+          const timetableSemesters = SEMESTERS.filter(sem => sem.id !== 'sem4').map(sem => {
+            const semCourses = Object.entries(customState)
+              .filter(([code, sId]) => sId === sem.id)
+              .map(([code]) => {
+                const c = COURSE_CATALOG[code];
+                return c ? { code, name: c.name, slot: c.slot } : null;
+              })
+              .filter(Boolean);
+            
+            return {
+              title: sem.title,
+              mini: sem.type === 'intensive',
+              courses: semCourses
+            };
+          });
+
+          return (
+            <div className="hide-print" style={{ marginTop: '2rem' }}>
+              <Timetable semesters={timetableSemesters} flexChoices={{}} />
+            </div>
+          );
+        })()}
+
         {/* Custom Plan Summary Grid */}
-        <div className="section-divider" style={{ marginTop: '3rem' }}><span>Custom Plan Summary</span></div>
-        <div className="summary-grid">
+        <div className="section-divider hide-print" style={{ marginTop: '3rem' }}><span>Custom Plan Summary</span></div>
+        <div className="summary-grid hide-print">
           <div className="sum-card">
             <div className="sum-num">{totalEcts}</div>
             <div className="sum-label">Total ECTS</div>

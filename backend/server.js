@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import fs from 'fs';
+import path from 'path';
 
 dotenv.config();
 
@@ -360,6 +362,47 @@ You can add them by typing *"add 02225"* or by checking the box in the catalog. 
 
   return res.json({ text, actions, choices: [] });
 }
+
+const PLAN_CACHE_FILE = path.join(process.cwd(), 'plan_cache.json');
+
+// Load cache from disk
+let planCache = {};
+if (fs.existsSync(PLAN_CACHE_FILE)) {
+  try {
+    planCache = JSON.parse(fs.readFileSync(PLAN_CACHE_FILE, 'utf8'));
+  } catch (e) {
+    console.error('[Server] Failed to load plan cache:', e);
+  }
+}
+
+const saveCacheToDisk = () => {
+  try {
+    fs.writeFileSync(PLAN_CACHE_FILE, JSON.stringify(planCache));
+  } catch (e) {
+    console.error('[Server] Failed to save plan cache:', e);
+  }
+};
+
+app.get('/api/plan', (req, res) => {
+  // Use x-forwarded-for if behind a proxy, else req.ip
+  const ip = req.headers['x-forwarded-for'] || req.ip || req.connection.remoteAddress;
+  console.log(`[Server] GET /api/plan from IP: ${ip}`);
+  const plan = planCache[ip] || {};
+  res.json({ plan });
+});
+
+app.post('/api/plan', (req, res) => {
+  const ip = req.headers['x-forwarded-for'] || req.ip || req.connection.remoteAddress;
+  console.log(`[Server] POST /api/plan from IP: ${ip}`);
+  const { plan } = req.body;
+  if (plan && typeof plan === 'object') {
+    planCache[ip] = plan;
+    saveCacheToDisk();
+    res.json({ success: true });
+  } else {
+    res.status(400).json({ error: 'Invalid plan data' });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Backend server is running on http://localhost:${PORT}`);

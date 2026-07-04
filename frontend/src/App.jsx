@@ -24,31 +24,58 @@ export default function App() {
 
   const [recFlexChoices, setRecFlexChoices] = useState({
     sem3_flex_dl: '02456',
-    sem3_flex_eh: '02275'
+    sem3_flex_eh: '02807'
   });
 
-  const [customState, setCustomState] = useState(() => {
-    const saved = localStorage.getItem('dtu_custom_plan');
-    if (saved) {
-      try {
-        return JSON.parse(saved);
-      } catch (e) {
-        return {};
-      }
-    }
-    // Default empty if not saved
-    return {};
-  });
+  const [customState, setCustomState] = useState({});
+  const [hasLoaded, setHasLoaded] = useState(false);
+
+  React.useEffect(() => {
+    fetch('http://localhost:5000/api/plan')
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.plan) {
+          setCustomState(data.plan);
+        }
+        setHasLoaded(true);
+      })
+      .catch(err => {
+        console.error("Failed to fetch plan:", err);
+        setHasLoaded(true);
+      });
+  }, []);
+
+  React.useEffect(() => {
+    if (!hasLoaded) return;
+    fetch('http://localhost:5000/api/plan', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ plan: customState })
+    })
+    .catch(err => console.error("Failed to auto-save plan:", err));
+  }, [customState, hasLoaded]);
 
   const saveCustomPlan = () => {
-    localStorage.setItem('dtu_custom_plan', JSON.stringify(customState));
-    alert('Custom plan saved to your browser!');
+    fetch('http://localhost:5000/api/plan', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ plan: customState })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) alert('Custom plan saved to the cloud based on your IP!');
+    })
+    .catch(err => console.error("Failed to save plan:", err));
   };
 
   const clearCustomPlan = () => {
     if (window.confirm("Are you sure you want to clear all courses from your custom plan?")) {
       setCustomState({});
-      localStorage.removeItem('dtu_custom_plan');
+      fetch('http://localhost:5000/api/plan', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ plan: {} })
+      });
     }
   };
 

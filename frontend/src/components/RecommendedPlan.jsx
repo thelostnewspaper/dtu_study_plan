@@ -164,7 +164,6 @@ function CourseRow({ course, flexId, flexChoices, onFlexChange }) {
           <div style={{ fontSize: '10px', color: 'var(--color-text)', opacity: 0.6, whiteSpace: 'nowrap' }}>{SLOT_LABELS[displayCourse.slot]}</div>
         )}
       </td>
-      <td className="exam-cell">{displayCourse.exam}</td>
       <td>
         <span className={`role-badge ${getRoleClass(displayCourse.role)}`}>
           {displayCourse.role}
@@ -187,7 +186,6 @@ function SemesterTable({ courses, flexChoices, onFlexChange }) {
           <th>Course</th>
           <th style={{ width: 45, textAlign: 'center' }}>ECTS</th>
           <th style={{ width: 80 }}>Slot / Time</th>
-          <th style={{ width: 140 }}>Exam</th>
           <th style={{ width: 130 }}>Role</th>
           <th style={{ width: 90 }}>Status</th>
           <th style={{ width: 45 }}>Grade</th>
@@ -251,7 +249,6 @@ function MiniCard({ semester, flexChoices, onFlexChange }) {
             </div>
           )}
         </div>
-        <div className="mini-detail">{course.exam}</div>
         <div className="mini-badges">
           <span className={`role-badge ${getRoleClass(course.role)}`}>{course.role}</span>
           <StatusBadge status={course.status} />
@@ -268,7 +265,7 @@ function MiniCard({ semester, flexChoices, onFlexChange }) {
 // ============================================================
 // TIMETABLE COMPONENT
 // ============================================================
-function Timetable({ semesters, flexChoices }) {
+export function Timetable({ semesters, flexChoices = {} }) {
   const [isOpen, setIsOpen] = useState(false);
 
   if (!isOpen) {
@@ -709,7 +706,12 @@ export default function RecommendedPlan({ flexChoices, setFlexChoices }) {
                         </a>
                       </td>
                       <td className="ects-cell">{displayCourse.ects}</td>
-                      <td>{displayCourse.slot}</td>
+                      <td className="slot-cell">
+                        <div style={{ fontWeight: 700 }}>{displayCourse.slot}</div>
+                        {SLOT_LABELS[displayCourse.slot] && displayCourse.slot !== SLOT_LABELS[displayCourse.slot] && (
+                          <div style={{ fontSize: '10px', color: 'var(--color-text)', opacity: 0.6, whiteSpace: 'nowrap' }}>{SLOT_LABELS[displayCourse.slot]}</div>
+                        )}
+                      </td>
                       <td>{displayCourse.exam}</td>
                       <td>
                         <span className={`role-badge ${getRoleClass(displayCourse.role)}`}>

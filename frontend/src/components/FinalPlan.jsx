@@ -1,6 +1,8 @@
 import React from 'react';
 import { COURSE_CATALOG, getCategoryLabel, getCategoryClass } from '../courses';
 
+import { SLOT_LABELS, Timetable } from './RecommendedPlan';
+
 const SEMESTERS = [
   { id: "sem1", title: "Semester 1 — Autumn", period: "September – December", targetEcts: 30 },
   { id: "jan", title: "January Intensive", period: "3-week block · January", targetEcts: 5 },
@@ -14,7 +16,11 @@ export default function FinalPlan({ customState }) {
   // Compute grouped courses
   const semGroups = SEMESTERS.map(sem => {
     const semCourses = Object.entries(customState)
-      .filter(([code, sId]) => sId === sem.id)
+      .filter(([code, sId]) => {
+        if (sem.id === 'jan') return sId.startsWith('jan');
+        if (sem.id === 'summer') return sId.startsWith('jun') || sId.startsWith('aug') || sId.startsWith('summer');
+        return sId === sem.id;
+      })
       .map(([code]) => {
         const c = COURSE_CATALOG[code];
         if (!c) return null;
@@ -23,7 +29,8 @@ export default function FinalPlan({ customState }) {
           name: c.name,
           ects: c.ects,
           cat: c.cat,
-          specs: c.specs
+          specs: c.specs,
+          slot: c.slot
         };
       })
       .filter(Boolean);
@@ -59,11 +66,11 @@ export default function FinalPlan({ customState }) {
   const totalEcts = semGroups.reduce((acc, sem) => acc + sem.ectsSum, 0);
 
   return (
-    <div style={{ padding: '0 2rem 2rem' }}>
-      <div className="print-only" style={{ marginBottom: '1.5rem', borderBottom: '4px solid #000', paddingBottom: '10px' }}>
-        <div style={{ fontSize: '12px', fontWeight: 900, textTransform: 'uppercase', marginBottom: '8px' }}>Technical University of Denmark · MSc Computer Science & Engineering</div>
-        <h1 style={{ fontFamily: 'var(--font-heading)', fontSize: '24px', fontWeight: 900, textTransform: 'uppercase', margin: 0 }}>DTU Study Plan — Custom Plan</h1>
-        <div style={{ display: 'flex', gap: '20px', marginTop: '10px', fontSize: '13px' }}>
+    <div className="print-only">
+      <div className="print-header">
+        <div style={{ fontSize: '12px', fontWeight: 900, textTransform: 'uppercase', marginBottom: '4px' }}>Technical University of Denmark · MSc Computer Science & Engineering</div>
+        <h1>DTU Study Plan — Custom Plan</h1>
+        <div style={{ display: 'flex', gap: '20px', marginTop: '6px', fontSize: '12px' }}>
           <span><strong>Total ECTS:</strong> {totalEcts} / 120</span>
           {fulfilledSpecs.length > 0 && (
             <span><strong>Specializations:</strong> {fulfilledSpecs.join(', ')}</span>
@@ -71,59 +78,36 @@ export default function FinalPlan({ customState }) {
         </div>
       </div>
 
-      <div className="hide-print" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
-        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: 24, fontWeight: 900 }}>Final Custom Plan</h2>
-        <button 
-          className="download-pdf-btn"
-          style={{ fontSize: 14, padding: '8px 16px', background: 'var(--color-bg)', color: 'var(--color-text)', border: '2px solid var(--color-border)', boxShadow: '4px 4px 0px var(--color-text)', cursor: 'pointer', fontWeight: 'bold' }}
-          onClick={() => window.print()}
-        >
-          Download PDF
-        </button>
-      </div>
+      {semGroups.map(sem => {
+        if ((sem.id === 'summer' || sem.id === 'jan') && sem.courses.length === 0) return null;
 
-      <div className="bento-plan">
-        {semGroups.map(sem => {
-          if (sem.id === 'summer' && sem.courses.length === 0) {
-            return (
-              <div key={sem.id} className="bento-card summer-card hide-print">
-                <div className="summer-title">{sem.title} — {sem.period}</div>
-                <div className="summer-sub">No courses selected for Summer</div>
+        return (
+          <div key={sem.id} className="sem-block">
+            <div className="sem-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+              <span className="sem-title" style={{ margin: 0 }}>{sem.title}</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+                <span className="sem-period" style={{ margin: 0 }}>{sem.period}</span>
+                <span className="sem-ects-total" style={{ background: '#FFE500', border: '2px solid #000', padding: '2px 8px', fontWeight: 900, margin: 0 }}>{sem.ectsSum} ECTS</span>
               </div>
-            );
-          }
-
-          if (sem.id === 'jan' && sem.courses.length === 0) {
-             return (
-              <div key={sem.id} className="bento-card summer-card hide-print">
-                <div className="summer-title">{sem.title} — {sem.period}</div>
-                <div className="summer-sub">No courses selected for January</div>
-              </div>
-            );
-          }
-
-          return (
-            <div key={sem.id} className="bento-card" style={{ marginBottom: '2rem', pageBreakInside: 'avoid' }}>
-              <div className="bento-card-header">
-                <span className="bento-card-title">{sem.title}</span>
-                <span className="bento-card-period">{sem.period}</span>
-                <span className="bento-card-ects">{sem.ectsSum} ECTS</span>
-              </div>
-              
-              {sem.courses.length === 0 ? (
-                <div style={{ padding: '1rem', fontStyle: 'italic', color: 'var(--text-faint)' }}>No courses assigned.</div>
-              ) : (
-                <table className="course-table">
-                  <thead>
-                    <tr>
-                      <th style={{ width: 80 }}>Code</th>
-                      <th>Course Name</th>
-                      <th style={{ width: 60, textAlign: 'center' }}>ECTS</th>
-                      <th style={{ width: 180 }}>Category</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {sem.courses.map(c => (
+            </div>
+            
+            {sem.courses.length === 0 ? (
+              <div style={{ padding: '1rem', fontStyle: 'italic', color: 'var(--color-text)', opacity: 0.6 }}>No courses assigned.</div>
+            ) : (
+              <table className="course-table">
+                <thead>
+                  <tr>
+                    <th style={{ width: 60 }}>Code</th>
+                    <th>Course</th>
+                    <th style={{ width: 45, textAlign: 'center' }}>ECTS</th>
+                    <th style={{ width: 80 }}>Slot</th>
+                    <th style={{ width: 130 }}>Role</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {sem.courses.map(c => {
+                    const courseFull = COURSE_CATALOG[c.code] || c;
+                    return (
                       <tr key={c.code}>
                         <td className="code">
                           <a 
@@ -136,21 +120,95 @@ export default function FinalPlan({ customState }) {
                           </a>
                         </td>
                         <td>
-                          <div className="course-name" style={{ fontSize: 13, fontWeight: 500 }}>
+                          <a 
+                            href={`https://dtucourseanalyzer.pythonanywhere.com/course/${c.code}`}
+                            target="_blank"
+                            rel="noreferrer"
+                            style={{ color: 'inherit', textDecoration: 'underline' }}
+                          >
                             {c.name}
-                          </div>
+                          </a>
                         </td>
-                        <td className="ects-cell" style={{ textAlign: 'center' }}>{c.ects}</td>
+                        <td className="ects-cell">{c.ects}</td>
+                        <td className="slot-cell">
+                          <div style={{ fontWeight: 700 }}>{courseFull.slot || 'TBA'}</div>
+                          {courseFull.slot && SLOT_LABELS[courseFull.slot] && courseFull.slot !== SLOT_LABELS[courseFull.slot] && (
+                            <div style={{ fontSize: '10px', color: 'var(--color-text)', opacity: 0.6, whiteSpace: 'nowrap' }}>{SLOT_LABELS[courseFull.slot]}</div>
+                          )}
+                        </td>
                         <td>
                           <span className={`role-badge ${getCategoryClass(c.cat)}`}>
                             {getCategoryLabel(c.cat)}
                           </span>
                         </td>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              )}
+                    );
+                  })}
+                </tbody>
+              </table>
+            )}
+          </div>
+        );
+      })}
+      
+      {/* Print Timetable */}
+      <div style={{ pageBreakBefore: 'always', padding: '0.5rem 0' }}>
+        <h2 style={{ fontFamily: 'var(--font-heading)', fontSize: '15px', fontWeight: 900, textTransform: 'uppercase', marginBottom: '8px', borderBottom: '3px solid #000', paddingBottom: '4px' }}>Weekly Timetable</h2>
+        {semGroups.filter(s => ['sem1', 'sem2', 'sem3'].includes(s.id)).map((sem, i) => {
+          const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+          const dayMapping = {
+            'Mon': ['1A', '2A'],
+            'Tue': ['3A', '4A', '7'],
+            'Wed': ['5A', '5B'],
+            'Thu': ['2B', '1B'],
+            'Fri': ['4B', '3B']
+          };
+          const times = [
+            { label: 'Morning (8–12)', match: ['1A', '2B', '3A', '4B', '5A'] },
+            { label: 'Afternoon (13–17)', match: ['2A', '1B', '4A', '3B', '5B'] },
+            { label: 'Evening (18–22)', match: ['7'] }
+          ];
+
+          return (
+            <div key={i} className="timetable-sem-print">
+              <h4 style={{ fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', marginBottom: '4px', marginTop: '12px' }}>{sem.title}</h4>
+              <table className="tt-table-print" style={{ tableLayout: 'fixed', width: '100%', borderCollapse: 'collapse', fontSize: '9px', border: '1px solid #000' }}>
+                <thead>
+                  <tr style={{ background: '#eee' }}>
+                    <th style={{ width: '80px', border: '1px solid #000', padding: '4px' }}>Time</th>
+                    {days.map(d => <th key={d} style={{ border: '1px solid #000', padding: '4px' }}>{d}</th>)}
+                  </tr>
+                </thead>
+                <tbody>
+                  {times.map((timeObj, tIdx) => (
+                    <tr key={tIdx}>
+                      <td style={{ border: '1px solid #000', padding: '4px', fontWeight: 600 }}>{timeObj.label}</td>
+                      {days.map((d, dIdx) => {
+                        const validSlotsForThisDayAndTime = timeObj.match.filter(s => dayMapping[d].includes(s));
+                        const coursesInCell = sem.courses.filter(c => {
+                          const slot = COURSE_CATALOG[c.code]?.slot;
+                          if (!slot) return false;
+                          let normalizedSlot = slot;
+                          if (slot === 'F4A+B') normalizedSlot = 'F4A,F4B';
+                          if (slot === 'E4A+B') normalizedSlot = 'E4A,E4B';
+                          return validSlotsForThisDayAndTime.some(s => normalizedSlot.includes(s));
+                        });
+
+                        return (
+                          <td key={dIdx} style={{ border: '1px solid #000', padding: '4px', verticalAlign: 'top' }}>
+                            {coursesInCell.map((c, cIdx) => (
+                              <div key={cIdx} style={{ marginBottom: '4px' }}>
+                                <strong>{c.code === 'thesis' ? 'THESIS' : c.code}</strong><br/>
+                                <span style={{ fontSize: '8px' }}>{c.name}</span>
+                              </div>
+                            ))}
+                          </td>
+                        );
+                      })}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           );
         })}
