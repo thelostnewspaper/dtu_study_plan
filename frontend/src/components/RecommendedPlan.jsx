@@ -371,6 +371,27 @@ export function Timetable({ semesters, flexChoices = {} }) {
           </div>
         ))}
       </div>
+
+      {/* Intensive Blocks section */}
+      {semesters.some(sem => sem.mini && sem.courses && sem.courses.length > 0) && (
+        <div style={{ marginTop: '1.5rem' }}>
+          <h4 style={{ fontFamily: 'var(--font-heading)', fontSize: 16, fontWeight: 900, marginBottom: 12, borderBottom: '2px solid var(--color-border)', paddingBottom: 4 }}>Intensive Blocks</h4>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
+            {semesters.filter(sem => sem.mini && sem.courses && sem.courses.length > 0).map((sem, i) => (
+              <div key={i} style={{ border: '2px solid var(--color-border)', padding: '0.75rem', minWidth: 200, background: 'var(--color-bg)' }}>
+                <div style={{ fontWeight: 900, fontSize: 13, marginBottom: 8, borderBottom: '1px solid var(--color-border)', paddingBottom: 4 }}>{sem.title}</div>
+                {sem.courses.map((c, ci) => (
+                  <div key={ci} className="tt-course-box" style={{ marginBottom: 4 }}>
+                    <div className="tt-c-code">{c.code}</div>
+                    <div className="tt-c-name" style={{ fontSize: '10px', lineHeight: 1.2, margin: '2px 0' }}>{c.name}</div>
+                    <div className="tt-c-slot">{c.slot}</div>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

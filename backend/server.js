@@ -35,58 +35,59 @@ if (apiKey) {
 
 // Course Catalog database (exact replica from dtu_study_plan.html for context engineering)
 const COURSE_CATALOG = {
-  "12100": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Autumn"], cat: "mandatory", specs: [], desc: "Life-cycle assessment, environmental impact quantification." },
-  "12101": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Spring"], cat: "mandatory", specs: [], desc: "Life-cycle assessment, environmental impact quantification." },
-  "12105": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Autumn"], cat: "mandatory", specs: [], desc: "Life-cycle assessment, environmental impact quantification (Evening slot)." },
-  "12106": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Spring"], cat: "mandatory", specs: [], desc: "Life-cycle assessment, environmental impact quantification." },
-  "42500": { name: "Innovation in Engineering", ects: 5, sem: ["January"], cat: "mandatory", specs: [], desc: "Entrepreneurship, design thinking, innovation processes." },
-  "42501": { name: "Innovation in Engineering", ects: 5, sem: ["June"], cat: "mandatory", specs: [], desc: "Entrepreneurship, design thinking, innovation processes." },
-  "42504": { name: "Innovation in Engineering", ects: 5, sem: ["August"], cat: "mandatory", specs: [], desc: "Entrepreneurship, design thinking, innovation processes." },
-  "42502": { name: "Facilitating Innovation in Multidisciplinary Teams", ects: 5, sem: ["January"], cat: "mandatory", specs: [], desc: "Team dynamics, innovation design, creative facilitation." },
-  "42503": { name: "Facilitating Innovation in Multidisciplinary Teams", ects: 5, sem: ["June"], cat: "mandatory", specs: [], desc: "Team dynamics, innovation design, creative facilitation." },
-  "42505": { name: "Facilitating Innovation in Multidisciplinary Teams", ects: 5, sem: ["August"], cat: "mandatory", specs: [], desc: "Team dynamics, innovation design, creative facilitation." },
-  "thesis": { name: "Master's Thesis", ects: 30, sem: ["Spring", "Autumn"], cat: "thesis", specs: [], desc: "Standalone independent project, typically done in Semester 4." },
-  "02266": { name: "User Experience Engineering", ects: 5, sem: ["January"], cat: "innov2", specs: ["software"], desc: "UI/UX methods, user research, prototyping, usability testing." },
-  "38102": { name: "Technology Entrepreneurship", ects: 5, sem: ["Autumn"], cat: "innov2", specs: [], desc: "Business modeling, startup creation, commercialization strategies." },
-  "38103": { name: "X-Tech Entrepreneurship", ects: 10, sem: ["Autumn", "Spring"], cat: "innov2", specs: [], desc: "Project incubator connecting researchers and students to build startups." },
-  "38106": { name: "Developing an Entrepreneurial Mindset", ects: 5, sem: ["Spring"], cat: "innov2", specs: [], desc: "Creativity, mindset building, startup exploration." },
-  "38113": { name: "Applied AI for Entrepreneurs", ects: 5, sem: ["Autumn"], cat: "innov2", specs: [], desc: "Leveraging AI/ML systems to build new commercial platforms." },
-  "02201": { name: "Agile Hardware Design", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["digital"], desc: "Modern agile workflows for digital systems, rapid prototyping." },
-  "02203": { name: "Design of Digital Systems", ects: 5, sem: ["Autumn"], cat: "core", specs: ["digital", "embedded"], desc: "FPGA hardware design, CAD tools, digital circuit implementation." },
-  "02205": { name: "VLSI Design", ects: 5, sem: ["Spring"], cat: "prog", specs: ["digital"], desc: "Very Large Scale Integration, CMOS technology, transistor-level layout." },
-  "02207": { name: "Verification of Digital Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["digital"], desc: "Formal verification, model checking, assertion-based testing." },
-  "02209": { name: "Test of Digital Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["digital"], desc: "Fault modeling, automatic test pattern generation, design-for-testability." },
-  "02211": { name: "Research Topics in Computer Architecture", ects: 5, sem: ["Spring"], cat: "prog", specs: ["digital", "embedded"], desc: "Advanced processor design, memory hierarchies, research directions." },
-  "02214": { name: "Hardware/Software Codesign", ects: 5, sem: ["Spring"], cat: "prog", specs: ["digital", "embedded"], desc: "FPGA-software interfaces, firmware-hardware boundary, co-simulation." },
-  "02225": { name: "Distributed Real-Time Systems", ects: 5, sem: ["Spring"], cat: "core", specs: ["digital", "embedded"], desc: "Real-time scheduling, fault tolerance, distributed protocols." },
-  "02226": { name: "Networked Embedded Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["embedded"], desc: "Communication protocols, IoT architectures, real-world embedded labs." },
-  "02231": { name: "Cryptography Fundamentals", ects: 5, sem: ["Autumn", "Spring"], cat: "prog", specs: ["cyber", "safe"], desc: "Symmetric/asymmetric crypto, protocols, mathematical foundations." },
-  "02232": { name: "Applied Cryptography", ects: 5, sem: ["Autumn", "Spring"], cat: "prog", specs: ["cyber", "safe"], desc: "Implementation of crypto algorithms, secure communication protocols." },
-  "02234": { name: "Research Topics in Cybersecurity", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["cyber"], desc: "Keeps you current on emerging threats and OT/ICS security." },
-  "02242": { name: "Program Analysis", ects: 7.5, sem: ["Autumn"], cat: "core", specs: ["safe", "software"], desc: "Static analysis, dataflow, type systems, software reliability." },
-  "02244": { name: "Logic for Security", ects: 7.5, sem: ["Spring"], cat: "prog", specs: ["safe"], desc: "Mathematical logic, formal models of security protocols." },
-  "02245": { name: "Program Verification", ects: 7.5, sem: ["Autumn"], cat: "prog", specs: ["safe", "software"], desc: "Formal verification tools, Hoare logic, proving program correctness." },
-  "02246": { name: "Model Checking", ects: 7.5, sem: ["Autumn"], cat: "prog", specs: ["safe"], desc: "Automated verification of finite-state concurrent systems." },
-  "02247": { name: "Compiler Construction", ects: 5, sem: ["Spring"], cat: "prog", specs: ["safe"], desc: "Parsing, lexing, semantic analysis, compiler design." },
-  "02249": { name: "Computationally Hard Problems", ects: 7.5, sem: ["Autumn"], cat: "core", specs: ["ai", "embedded"], desc: "NP-completeness, approximation algorithms, exact algorithms." },
-  "02256": { name: "Automated Reasoning", ects: 5, sem: ["Spring"], cat: "prog", specs: ["ai", "safe"], desc: "Theorem proving, SAT/SMT solvers, logical frameworks." },
-  "02258": { name: "Parallel Computer Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["embedded"], desc: "Concurrent programming, parallel architectures, performance models." },
-  "02262": { name: "Formal Aspects of Process Science", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["safe", "software"], desc: "Concurrency theory, Petri nets, process algebra." },
-  "02267": { name: "Software Development of Web Services", ects: 5, sem: ["January"], cat: "prog", specs: ["software"], desc: "Cloud/API layer and IoT cloud connectivity." },
-  "02268": { name: "Process-Oriented and Event-Driven Software Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["software"], desc: "Industrial automation and IoT event pipelines." },
-  "02269": { name: "Process Mining", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["software"], desc: "Discovering, monitoring, and improving processes from event logs." },
-  "02270": { name: "Cybersecurity Fundamentals", ects: 5, sem: ["Autumn"], cat: "core", specs: ["cyber", "software"], desc: "Network security, threat modeling, secure systems design." },
-  "02271": { name: "Advanced Cybersecurity", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber"], desc: "Advanced threat defense, secure architecture design." },
-  "02275": { name: "Ethical Hacking", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["cyber"], desc: "Penetration testing, vulnerability assessment, exploitation." },
-  "02276": { name: "Usable Security and Privacy", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber"], desc: "Human factors in security, interface design for security." },
-  "02277": { name: "Cyber Risk Management and Incident Response", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber"], desc: "NIS2 compliance, risk frameworks, incident handling." },
-  "02278": { name: "Post-Quantum Cryptography", ects: 5, sem: ["June"], cat: "prog", specs: ["cyber"], desc: "Forward bet on quantum-resistant cryptographic algorithms." },
-  "02282": { name: "Algorithms for Massive Data Sets", ects: 7.5, sem: ["Spring"], cat: "prog", specs: ["ai"], desc: "Streaming algorithms, hashing, handling giant data collections." },
-  "02280": { name: "Artificial Intelligence and Multi-Agent Systems", ects: 10, sem: ["Autumn"], cat: "prog", specs: ["ai"], desc: "Robotics and autonomous agent decision-making models." },
-  "02287": { name: "Logical Theories for Uncertainty and Learning", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai"], desc: "Probabilistic logic and foundations of machine learning." },
-  "02289": { name: "Algorithmic Techniques for Modern Data Models", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai"], desc: "Advanced graph algorithms, data structures, metric spaces." },
-  "02291": { name: "System Integration", ects: 5, sem: ["Spring"], cat: "core", specs: ["ai", "cyber", "digital", "embedded", "safe", "software"], desc: "Heterogeneous systems, APIs, middleware, SOA." },
-  "02471": { name: "Machine Learning for Signal Processing", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai"], desc: "Advanced understanding of machine learning techniques applied to signal processing." }
+  "02201": { name: "Agile Hardware Design", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["digital"], slot: "E4A", desc: "Modern agile workflows for digital systems, rapid prototyping." },
+  "02203": { name: "Design of Digital Systems", ects: 5, sem: ["Autumn"], cat: "core", specs: ["digital", "embedded"], slot: "E2B", desc: "FPGA hardware design, CAD tools, digital circuit implementation." },
+  "02205": { name: "VLSI Design", ects: 5, sem: ["Spring"], cat: "prog", specs: ["digital"], slot: "F3A", desc: "Very Large Scale Integration, CMOS technology, transistor-level layout." },
+  "02207": { name: "Verification of Digital Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["digital"], slot: "E1A", desc: "Formal verification, model checking, assertion-based testing." },
+  "02209": { name: "Test of Digital Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["digital"], slot: "E1B", desc: "Fault modeling, automatic test pattern generation, design-for-testability." },
+  "02211": { name: "Research Topics in Computer Architecture", ects: 5, sem: ["Spring"], cat: "prog", specs: ["digital", "embedded"], slot: "F4A", desc: "Advanced processor design, memory hierarchies, research directions." },
+  "02214": { name: "Hardware/Software Codesign", ects: 5, sem: ["Spring"], cat: "prog", specs: ["digital", "embedded"], slot: "F1B", desc: "FPGA-software interfaces, firmware-hardware boundary, co-simulation." },
+  "02225": { name: "Distributed Real-Time Systems", ects: 5, sem: ["Spring"], cat: "core", specs: ["digital", "embedded"], slot: "F4B", desc: "Real-time scheduling, fault tolerance, distributed protocols." },
+  "02226": { name: "Networked Embedded Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["embedded"], slot: "E1B", desc: "Communication protocols, IoT architectures, real-world embedded labs." },
+  "02231": { name: "Cryptography Fundamentals", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["cyber", "safe"], slot: "E1A", desc: "Symmetric/asymmetric crypto, protocols, mathematical foundations." },
+  "02232": { name: "Applied Cryptography", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber", "safe"], slot: "F1B", desc: "Implementation of crypto algorithms, secure communication protocols." },
+  "02234": { name: "Research Topics in Cybersecurity", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["cyber"], slot: "E4A", desc: "Keeps you current on emerging threats and OT/ICS security." },
+  "02242": { name: "Program Analysis", ects: 7.5, sem: ["Autumn"], cat: "core", specs: ["safe", "software"], slot: "E2A", desc: "Static analysis, dataflow, type systems, software reliability." },
+  "02244": { name: "Logic for Security", ects: 7.5, sem: ["Spring"], cat: "prog", specs: ["safe"], slot: "F2A", desc: "Mathematical logic, formal models of security protocols." },
+  "02245": { name: "Program Verification", ects: 7.5, sem: ["Autumn"], cat: "prog", specs: ["safe", "software"], slot: "E1B", desc: "Formal verification tools, Hoare logic, proving program correctness." },
+  "02246": { name: "Model Checking", ects: 7.5, sem: ["Autumn"], cat: "prog", specs: ["safe"], slot: "E4B", desc: "Automated verification of finite-state concurrent systems." },
+  "02247": { name: "Compiler Construction", ects: 5, sem: ["Spring"], cat: "prog", specs: ["safe"], slot: "F2B", desc: "Parsing, lexing, semantic analysis, compiler design." },
+  "02249": { name: "Computationally Hard Problems", ects: 7.5, sem: ["Autumn"], cat: "core", specs: ["ai", "embedded"], slot: "E3A", desc: "NP-completeness, approximation algorithms, exact algorithms." },
+  "02256": { name: "Automated Reasoning", ects: 5, sem: ["Spring"], cat: "prog", specs: ["ai", "safe"], slot: "F5B", desc: "Theorem proving, SAT/SMT solvers, logical frameworks." },
+  "02258": { name: "Parallel Computer Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["embedded"], slot: "E5A", desc: "Concurrent programming, parallel architectures, performance models." },
+  "02262": { name: "Formal Aspects of Process Science", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["safe", "software"], slot: "E1A", desc: "Concurrency theory, Petri nets, process algebra." },
+  "02266": { name: "User Experience Engineering", ects: 5, sem: ["January"], cat: "innov2", specs: ["software"], slot: "Jan", desc: "UI/UX methods, user research, prototyping, usability testing." },
+  "02267": { name: "Software Development of Web Services", ects: 5, sem: ["January"], cat: "prog", specs: ["software"], slot: "—", desc: "Cloud/API layer and IoT cloud connectivity." },
+  "02268": { name: "Process-Oriented and Event-Driven Software Systems", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["software"], slot: "E4A", desc: "Industrial automation and IoT event pipelines." },
+  "02269": { name: "Process Mining", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["software"], slot: "E5A", desc: "Discovering, monitoring, and improving processes from event logs." },
+  "02270": { name: "Cybersecurity Fundamentals", ects: 5, sem: ["Autumn"], cat: "core", specs: ["cyber", "software"], slot: "E5B", desc: "Network security, threat modeling, secure systems design." },
+  "02271": { name: "Advanced Cybersecurity", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber"], slot: "F4A", desc: "Advanced threat defense, secure architecture design." },
+  "02275": { name: "Ethical Hacking", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["cyber"], slot: "E5B", desc: "Penetration testing, vulnerability assessment, exploitation." },
+  "02276": { name: "Usable Security and Privacy", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber"], slot: "F5B", desc: "Human factors in security, interface design for security." },
+  "02277": { name: "Cyber Risk Management and Incident Response", ects: 5, sem: ["Spring"], cat: "prog", specs: ["cyber"], slot: "F3B", desc: "NIS2 compliance, risk frameworks, incident handling." },
+  "02278": { name: "Post-Quantum Cryptography", ects: 5, sem: ["June"], cat: "prog", specs: ["cyber"], slot: "Jun", desc: "Forward bet on quantum-resistant cryptographic algorithms." },
+  "02280": { name: "Artificial Intelligence and Multi-Agent Systems", ects: 10, sem: ["Spring"], cat: "prog", specs: ["ai"], slot: "F4A", desc: "Robotics and autonomous agent decision-making models." },
+  "02282": { name: "Algorithms for Massive Data Sets", ects: 7.5, sem: ["Spring"], cat: "prog", specs: ["ai"], slot: "F1A", desc: "Streaming algorithms, hashing, handling giant data collections." },
+  "02287": { name: "Logical Theories for Uncertainty and Learning", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai"], slot: "E2B", desc: "Probabilistic logic and foundations of machine learning." },
+  "02289": { name: "Algorithmic Techniques for Modern Data Models", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai"], slot: "E4B", desc: "Advanced graph algorithms, data structures, metric spaces." },
+  "02291": { name: "System Integration", ects: 5, sem: ["Spring"], cat: "core", specs: ["ai", "cyber", "digital", "embedded", "safe", "software"], slot: "F5A", desc: "Heterogeneous systems, APIs, middleware, SOA." },
+  "02471": { name: "Machine Learning for Signal Processing", ects: 5, sem: ["Autumn"], cat: "prog", specs: ["ai"], slot: "E1B", desc: "Advanced understanding of machine learning techniques applied to signal processing." },
+  "12100": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Spring"], cat: "mandatory", specs: [], slot: "F7", desc: "Life-cycle assessment, environmental impact quantification." },
+  "12101": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Spring"], cat: "mandatory", specs: [], slot: "F3B", desc: "Life-cycle assessment, environmental impact quantification." },
+  "12105": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Autumn"], cat: "mandatory", specs: [], slot: "E7", desc: "Life-cycle assessment, environmental impact quantification (Evening slot)." },
+  "12106": { name: "Quantitative Methods to Assess Sustainability", ects: 5, sem: ["Autumn"], cat: "mandatory", specs: [], slot: "E3B", desc: "Life-cycle assessment, environmental impact quantification." },
+  "34766": { name: "Robotic Manipulation: Perception, Planning, Control and Learning", ects: 5, sem: ["Spring"], cat: "elective", specs: [], slot: "F2A", programs: ["autonomous"], desc: "Added from autonomous program." },
+  "38102": { name: "Technology Entrepreneurship", ects: 5, sem: ["Autumn"], cat: "innov2", specs: [], slot: "E1B", desc: "Business modeling, startup creation, commercialization strategies." },
+  "38103": { name: "X-Tech Entrepreneurship", ects: 10, sem: ["Spring"], cat: "innov2", specs: [], slot: "F3", desc: "Project incubator connecting researchers and students to build startups." },
+  "38106": { name: "Developing an Entrepreneurial Mindset", ects: 5, sem: ["Spring", "Autumn"], cat: "innov2", specs: [], slot: "E1B/F1B", desc: "Creativity, mindset building, startup exploration." },
+  "38113": { name: "Applied AI for Entrepreneurs", ects: 5, sem: ["Autumn"], cat: "innov2", specs: [], slot: "E2B", desc: "Leveraging AI/ML systems to build new commercial platforms." },
+  "38400": { name: "Innovation in Engineering", ects: 5, sem: ["January"], cat: "mandatory", specs: [], slot: "—", desc: "Entrepreneurship, design thinking, innovation processes." },
+  "38401": { name: "Facilitating Innovation in Multidisciplinary Teams", ects: 5, sem: ["January"], cat: "mandatory", specs: [], slot: "—", desc: "Team dynamics, innovation design, creative facilitation." },
+  "38402": { name: "Innovation in Engineering", ects: 5, sem: ["June"], cat: "mandatory", specs: [], slot: "—", desc: "Entrepreneurship, design thinking, innovation processes." },
+  "38403": { name: "Facilitating Innovation in Multidisciplinary Teams", ects: 5, sem: ["June"], cat: "mandatory", specs: [], slot: "—", desc: "Team dynamics, innovation design, creative facilitation." },
+  "38404": { name: "Innovation in Engineering", ects: 5, sem: ["August"], cat: "mandatory", specs: [], slot: "—", desc: "Entrepreneurship, design thinking, innovation processes." },
+  "38405": { name: "Facilitating Innovation in Multidisciplinary Teams", ects: 5, sem: ["August"], cat: "mandatory", specs: [], slot: "—", desc: "Team dynamics, innovation design, creative facilitation." },
+  "thesis": { name: "Master", ects: 30, sem: ["Spring", "Autumn"], cat: "thesis", specs: [], slot: "—", desc: "Standalone independent project, typically done in Semester 4." },
 };
 
 // Help helper function to determine if a course is valid
@@ -118,7 +119,7 @@ Rules for courses scheduling:
    - "MOVE": Move a course from one semester to another. Verify the course runs in the destination semester.
 4. ECTS & Graduation Rules:
    - A standard MSc requires exactly 120 ECTS.
-   - Mandatory foundation courses: 10 ECTS (1 course in Sustainability (5 ECTS) e.g. 12105 + 1 course in Innovation I (5 ECTS) e.g. 42500).
+   - Mandatory foundation courses: 10 ECTS (1 course in Sustainability (5 ECTS) e.g. 12105 + 1 course in Innovation I (5 ECTS) e.g. 38400).
    - Programme-Specific Requirements: 50 ECTS minimum, consisting of:
      * Innovation II: 5 ECTS minimum (e.g. 02266).
      * Core Competence: Must choose at least 2 courses (from 02203, 02225, 02242, 02249, 02270, 02291).
@@ -357,7 +358,7 @@ function handleMockChat(userQuery, currentState, res) {
 
 You can add them by typing *"add 02225"* or by checking the box in the catalog. Link your Gemini API key in backend \`.env\` for full conversational assistance!`;
   } else {
-    text = `[Mock Mode] Hello! I'm your DTU Study Plan advisor. You can ask me to add or remove courses (e.g. *"add 02203"* or *"remove 42500"*). To enable full AI reasoning, please add your Gemini API Key in the backend \`.env\` file as \`GEMINI_API_KEY\`.`;
+    text = `[Mock Mode] Hello! I'm your DTU Study Plan advisor. You can ask me to add or remove courses (e.g. *"add 02203"* or *"remove 38400"*). To enable full AI reasoning, please add your Gemini API Key in the backend \`.env\` file as \`GEMINI_API_KEY\`.`;
   }
 
   return res.json({ text, actions, choices: [] });

@@ -5,10 +5,12 @@ import { SLOT_LABELS, Timetable } from './RecommendedPlan';
 
 const SEMESTERS = [
   { id: "sem1", title: "Semester 1 — Autumn", period: "September – December", targetEcts: 30 },
-  { id: "jan", title: "January Intensive", period: "3-week block · January", targetEcts: 5 },
+  { id: "jan1", title: "January Intensive Y1", period: "3-week block · January", targetEcts: 5, mini: true },
   { id: "sem2", title: "Semester 2 — Spring", period: "February – May", targetEcts: 30 },
-  { id: "summer", title: "Summer Intensive", period: "June / August", targetEcts: 0 },
+  { id: "jun1", title: "June Intensive Y1", period: "June", targetEcts: 5, mini: true },
+  { id: "aug1", title: "August Intensive Y1", period: "August", targetEcts: 5, mini: true },
   { id: "sem3", title: "Semester 3 — Autumn", period: "September – December", targetEcts: 25 },
+  { id: "jan2", title: "January Intensive Y2", period: "3-week block · January", targetEcts: 5, mini: true },
   { id: "sem4", title: "Semester 4 — Spring", period: "February – June", targetEcts: 30 }
 ];
 
@@ -17,8 +19,10 @@ export default function FinalPlan({ customState }) {
   const semGroups = SEMESTERS.map(sem => {
     const semCourses = Object.entries(customState)
       .filter(([code, sId]) => {
-        if (sem.id === 'jan') return sId.startsWith('jan');
-        if (sem.id === 'summer') return sId.startsWith('jun') || sId.startsWith('aug') || sId.startsWith('summer');
+        if (sem.id === 'jan1') return sId === 'jan1';
+        if (sem.id === 'jan2') return sId === 'jan2';
+        if (sem.id === 'jun1') return sId === 'jun1';
+        if (sem.id === 'aug1') return sId === 'aug1';
         return sId === sem.id;
       })
       .map(([code]) => {
@@ -79,7 +83,7 @@ export default function FinalPlan({ customState }) {
       </div>
 
       {semGroups.map(sem => {
-        if ((sem.id === 'summer' || sem.id === 'jan') && sem.courses.length === 0) return null;
+      if (sem.mini && sem.courses.length === 0) return null;
 
         return (
           <div key={sem.id} className="sem-block">
@@ -212,6 +216,24 @@ export default function FinalPlan({ customState }) {
             </div>
           );
         })}
+        {/* Intensive Blocks section */}
+        {semGroups.filter(s => s.mini && s.courses.length > 0).length > 0 && (
+          <div style={{ marginTop: '12px' }}>
+            <h3 style={{ fontSize: '11px', fontWeight: 900, textTransform: 'uppercase', marginBottom: '6px', borderBottom: '2px solid #000', paddingBottom: '3px' }}>Intensive Blocks</h3>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+              {semGroups.filter(s => s.mini && s.courses.length > 0).map((sem, i) => (
+                <div key={i} style={{ border: '1px solid #000', padding: '6px', minWidth: 160 }}>
+                  <div style={{ fontWeight: 900, fontSize: '9px', textTransform: 'uppercase', marginBottom: '4px', borderBottom: '1px solid #aaa', paddingBottom: '2px' }}>{sem.title}</div>
+                  {sem.courses.map((c, ci) => (
+                    <div key={ci} style={{ fontSize: '8px', marginBottom: '2px' }}>
+                      <strong>{c.code}</strong> — {c.name} ({c.ects} ECTS)
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

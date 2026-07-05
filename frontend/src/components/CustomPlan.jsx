@@ -198,7 +198,7 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
       mandatoryEcts += ects;
     }
 
-    if (["42500", "42501", "42502", "42503", "42504", "42505"].includes(code)) {
+    if (["38400", "38402", "38404", "38401", "38403", "38405"].includes(code)) {
       innovSelected = true;
       mandatoryEcts += ects;
     }
@@ -409,10 +409,12 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                             { val: 'jun1', label: 'June Y1' }, { val: 'aug1', label: 'Aug Y1' }
                           ];
                         } else if (isAutumnOnly) {
-                          options = [
-                            { val: 'sem1', label: 'Sem 1 (Autumn)' },
-                            { val: 'sem3', label: 'Sem 3 (Autumn)' }
-                          ];
+                          options = code === '02289'
+                            ? [{ val: 'sem3', label: 'Sem 3 (Autumn)' }]
+                            : [
+                                { val: 'sem1', label: 'Sem 1 (Autumn)' },
+                                { val: 'sem3', label: 'Sem 3 (Autumn)' }
+                              ];
                         } else if (isSpringOnly) {
                           options = [
                             { val: 'sem2', label: 'Sem 2 (Spring)' },
@@ -592,7 +594,11 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                           }
                           let matchesSeason = true;
                           if (targetSeason) {
-                            matchesSeason = c.sem.includes(targetSeason);
+                            // For intensive months, also allow August courses in jun1 and June courses in aug1
+                            const seasonMatch = c.sem.includes(targetSeason) ||
+                              (targetSemesterId === 'jun1' && c.sem.includes('August')) ||
+                              (targetSemesterId === 'aug1' && c.sem.includes('June'));
+                            matchesSeason = seasonMatch && !(code === '02289' && targetSemesterId === 'sem1');
                           }
                           return matchesSearch && matchesFilter && matchesSeason;
                         })
