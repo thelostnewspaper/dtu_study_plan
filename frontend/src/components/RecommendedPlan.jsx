@@ -321,7 +321,13 @@ export function Timetable({ semesters, flexChoices = {} }) {
       if (slot === 'F4A+B') normalizedSlot = 'F4A,F4B';
       if (slot === 'E4A+B') normalizedSlot = 'E4A,E4B';
 
-      if (validSlotsForThisDayAndTime.some(s => normalizedSlot.includes(s))) {
+      const isAutumnSem = sem.title.includes('Autumn') || sem.title.includes('sem1') || sem.title.includes('sem3');
+      const isSpringSem = sem.title.includes('Spring') || sem.title.includes('sem2') || sem.title.includes('sem4');
+
+      const isAutumnMatch = (slot === 'Autumn' && isAutumnSem);
+      const isSpringMatch = (slot === 'Spring' && isSpringSem);
+
+      if (isAutumnMatch || isSpringMatch || validSlotsForThisDayAndTime.some(s => normalizedSlot.includes(s))) {
         foundCourses.push({ code: actualCode, name: name, slot });
       }
     });
@@ -428,7 +434,7 @@ export default function RecommendedPlan({ flexChoices, setFlexChoices }) {
       }
       
       const courseObj = COURSE_CATALOG[actualCode];
-      if (courseObj && courseObj.specs) {
+      if (courseObj && courseObj.cat !== 'elective' && courseObj.specs) {
         courseObj.specs.forEach(sId => {
           specEcts[sId] = (specEcts[sId] || 0) + (courseObj.ects || 5);
         });
@@ -779,7 +785,14 @@ export default function RecommendedPlan({ flexChoices, setFlexChoices }) {
                   }
                 }
                 if (!displayC.slot) return;
-                if (validSlots.some(s => displayC.slot.includes(s))) {
+
+                const isAutumnSem = sem.title.includes('Autumn') || sem.id === 'sem1' || sem.id === 'sem3';
+                const isSpringSem = sem.title.includes('Spring') || sem.id === 'sem2' || sem.id === 'sem4';
+
+                const isAutumnMatch = (displayC.slot === 'Autumn' && isAutumnSem);
+                const isSpringMatch = (displayC.slot === 'Spring' && isSpringSem);
+
+                if (isAutumnMatch || isSpringMatch || validSlots.some(s => displayC.slot.includes(s))) {
                   found.push(displayC);
                 }
               });

@@ -35,12 +35,16 @@ export default function App() {
       .then(res => res.json())
       .then(data => {
         if (data && data.plan) {
-          setCustomState(data.plan);
+          // Always ensure thesis is in sem4
+          setCustomState({ thesis: 'sem4', ...data.plan, thesis: 'sem4' });
+        } else {
+          setCustomState({ thesis: 'sem4' });
         }
         setHasLoaded(true);
       })
       .catch(err => {
         console.error("Failed to fetch plan:", err);
+        setCustomState({ thesis: 'sem4' });
         setHasLoaded(true);
       });
   }, []);
@@ -86,25 +90,11 @@ export default function App() {
       const cyberEcts = 25; // fixed — 5 courses × 5 ECTS
       return { total: totalEcts, cyberEcts };
     } else {
-      // Custom Plan Stats / Final Plan Stats
+      // Custom Plan Stats / Final Plan Stats — use COURSE_CATALOG for accurate ECTS per course
       let total = 0;
-      const FULL_CATALOG_ECTS = {
-        "12100": 5, "12101": 5, "12105": 5, "12106": 5,
-        "38400": 5, "38402": 5, "38404": 5, "38401": 5, "38403": 5, "38405": 5,
-        "thesis": 30,
-        "02266": 5, "38102": 5, "38103": 10, "38106": 5, "38113": 5,
-        "02201": 5, "02203": 5, "02205": 5, "02207": 5, "02209": 5,
-        "02211": 5, "02214": 5, "02225": 5, "02226": 5, "02231": 5,
-        "02232": 5, "02234": 5, "02242": 7.5, "02244": 7.5, "02245": 7.5,
-        "02246": 7.5, "02247": 5, "02249": 7.5, "02256": 5, "02258": 5,
-        "02262": 5, "02267": 5, "02268": 5, "02269": 5, "02270": 5,
-        "02271": 5, "02275": 5, "02276": 5, "02277": 5, "02278": 5,
-        "02282": 7.5, "02280": 10, "02287": 5, "02289": 5, "02291": 5, "02471": 5,
-        "02417": 5, "02452": 5, "02456": 5, "02476": 5, "02517": 5, "02807": 5
-      };
 
       Object.entries(customState).forEach(([code]) => {
-        const ects = FULL_CATALOG_ECTS[code] || 5;
+        const ects = COURSE_CATALOG[code]?.ects || 5;
         total += ects;
       });
 

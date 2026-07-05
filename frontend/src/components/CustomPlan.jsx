@@ -55,8 +55,26 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
     for (const [existingCode, semId] of Object.entries(customState)) {
       if (semId === targetSemId) {
         const existingCourse = COURSE_CATALOG[existingCode];
+        if (!existingCourse || !existingCourse.slot || existingCourse.slot === 'UNKNOWN') continue;
+
+        // Special DADIU handling: 02840 and 02841 both have slot 'Autumn' (meaning they cover all slots),
+        // but one is first half, one is second half. So they do not conflict with each other,
+        // but they conflict with any other course in the semester.
+        const isNewDadiu = (code === '02840' || code === '02841');
+        const isExistingDadiu = (existingCode === '02840' || existingCode === '02841');
+
+        if (isNewDadiu && isExistingDadiu) {
+          if (code !== existingCode) {
+            continue; // 02840 and 02841 don't conflict with each other
+          }
+        }
+
+        if (newCourse.slot === 'Autumn' || existingCourse.slot === 'Autumn') {
+          return existingCode; // Any 'Autumn' slot conflicts with other non-DADIU courses
+        }
+
         // If slot matches and is not unknown/blank
-        if (existingCourse && existingCourse.slot && existingCourse.slot !== 'UNKNOWN' && existingCourse.slot === newCourse.slot) {
+        if (existingCourse.slot === newCourse.slot) {
           return existingCode;
         }
       }
@@ -221,11 +239,13 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
       thesisSelected = true;
     }
 
-    course.specs.forEach(specId => {
-      if (specEcts[specId] !== undefined) {
-        specEcts[specId] += ects;
-      }
-    });
+    if (course.cat !== 'elective') {
+      course.specs.forEach(specId => {
+        if (specEcts[specId] !== undefined) {
+          specEcts[specId] += ects;
+        }
+      });
+    }
   });
 
   // Category and timing helpers are imported from courses.js
@@ -357,11 +377,9 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
               
               let emptySlotsCount = 0;
               if (sem.id === 'sem4') {
-                emptySlotsCount = Math.max(0, 2 - semCourses.filter(([c]) => c !== 'thesis').length);
-              } else if (hasThesis) {
-                emptySlotsCount = 2; // Fixed requirement: only keep 2 extra slots for thesis
+                emptySlotsCount = Math.max(0, 3 - semCourses.filter(([c]) => c !== 'thesis').length);
               } else {
-                emptySlotsCount = Math.max(0, targetSlots - Math.ceil(ectsSum / 5));
+                emptySlotsCount = Math.max(0, targetSlots - semCourses.length);
               }
 
               return (
@@ -459,6 +477,11 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                               {c.slot && c.slot !== 'UNKNOWN' && (
                                 <div style={{ fontSize: 10, fontFamily: 'var(--font-mono)', fontWeight: 900, background: 'var(--color-pink)', color: '#fff', display: 'inline-block', padding: '2px 4px', marginTop: 4 }}>
                                   SLOT: {c.slot}
+                                </div>
+                              )}
+                              {(code === '02840' || code === '02841') && (
+                                <div style={{ fontSize: 10, marginTop: 4, color: 'var(--color-pink)', fontWeight: 'bold' }}>
+                                  * Note: Covers all slots in the {code === '02840' ? 'first half' : 'second half'} of the Autumn semester (runs all day Mon-Fri, weeks {code === '02840' ? '1 to 6.5' : '6.5 to 13'}).
                                 </div>
                               )}
                             </td>
@@ -624,6 +647,11 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                             <td style={{ padding: 8 }}>
                               <div className="course-name" style={{ fontSize: 13, fontWeight: 600 }}>{c.name}</div>
                               <div className="course-detail" style={{ fontSize: 11, marginTop: 4 }}>{c.desc}</div>
+                              {(code === '02840' || code === '02841') && (
+                                <div style={{ fontSize: 10, marginTop: 4, color: 'var(--color-pink)', fontWeight: 'bold' }}>
+                                  * Note: Covers all slots in the {code === '02840' ? 'first half' : 'second half'} of the Autumn semester (runs all day Mon-Fri, weeks {code === '02840' ? '1 to 6.5' : '6.5 to 13'}).
+                                </div>
+                              )}
                               <div style={{ marginTop: 6, display: 'flex', flexWrap: 'wrap', gap: 4 }}>
                                 <span className={`cat ${getCategoryClass(c.cat)}`} style={{ fontSize: 9, padding: '2px 6px' }}>{getCategoryLabel(c.cat)}</span>
                                 <span className={`timing ${getTimingClass(c.sem.join('/'))}`} style={{ fontSize: 9, padding: '2px 6px' }}>{c.sem.join('/')}</span>

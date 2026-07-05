@@ -55,7 +55,7 @@ export default function FinalPlan({ customState }) {
   const specEcts = {};
   semGroups.forEach(sem => {
     sem.courses.forEach(c => {
-      if (c.specs) {
+      if (c.cat !== 'elective' && c.specs) {
         c.specs.forEach(sId => {
           specEcts[sId] = (specEcts[sId] || 0) + (c.ects || 5);
         });
@@ -67,7 +67,14 @@ export default function FinalPlan({ customState }) {
     .filter(sId => (specEcts[sId] || 0) >= 25)
     .map(sId => specNameMap[sId]);
 
-  const totalEcts = semGroups.reduce((acc, sem) => acc + sem.ectsSum, 0);
+  const totalEcts = semGroups.reduce((acc, sem) => {
+    if (sem.id === 'sem4') {
+      // Always count thesis as 30 ECTS for sem4
+      const hasThesis = sem.courses.some(c => c.code === 'thesis');
+      return acc + sem.ectsSum + (hasThesis ? 0 : 30);
+    }
+    return acc + sem.ectsSum;
+  }, 0);
 
   return (
     <div className="print-only">
@@ -91,13 +98,15 @@ export default function FinalPlan({ customState }) {
               <span className="sem-title" style={{ margin: 0 }}>{sem.title}</span>
               <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
                 <span className="sem-period" style={{ margin: 0 }}>{sem.period}</span>
-                <span className="sem-ects-total" style={{ background: '#FFE500', border: '2px solid #000', padding: '2px 8px', fontWeight: 900, margin: 0 }}>{sem.ectsSum} ECTS</span>
+                <span className="sem-ects-total" style={{ background: '#FFE500', border: '2px solid #000', padding: '2px 8px', fontWeight: 900, margin: 0 }}>
+                  {sem.id === 'sem4'
+                    ? sem.ectsSum + (sem.courses.some(c => c.code === 'thesis') ? 0 : 30)
+                    : sem.ectsSum} ECTS
+                </span>
               </div>
             </div>
             
-            {sem.courses.length === 0 ? (
-              <div style={{ padding: '1rem', fontStyle: 'italic', color: 'var(--color-text)', opacity: 0.6 }}>No courses assigned.</div>
-            ) : (
+            {sem.id === 'sem4' || sem.courses.length > 0 ? (
               <table className="course-table">
                 <thead>
                   <tr>
@@ -109,6 +118,15 @@ export default function FinalPlan({ customState }) {
                   </tr>
                 </thead>
                 <tbody>
+                  {sem.id === 'sem4' && !sem.courses.some(c => c.code === 'thesis') && (
+                    <tr style={{ fontWeight: 700 }}>
+                      <td className="code">THESIS</td>
+                      <td>Master's Thesis Project</td>
+                      <td className="ects-cell">30</td>
+                      <td className="slot-cell"><div style={{ fontWeight: 700 }}>—</div></td>
+                      <td><span className="role-badge role-thesis">Thesis</span></td>
+                    </tr>
+                  )}
                   {sem.courses.map(c => {
                     const courseFull = COURSE_CATALOG[c.code] || c;
                     return (
@@ -150,6 +168,8 @@ export default function FinalPlan({ customState }) {
                   })}
                 </tbody>
               </table>
+            ) : (
+              <div style={{ padding: '0.75rem', fontStyle: 'italic', color: 'var(--color-text)', opacity: 0.6, fontSize: 12 }}>No courses assigned.</div>
             )}
           </div>
         );
@@ -195,7 +215,14 @@ export default function FinalPlan({ customState }) {
                           let normalizedSlot = slot;
                           if (slot === 'F4A+B') normalizedSlot = 'F4A,F4B';
                           if (slot === 'E4A+B') normalizedSlot = 'E4A,E4B';
-                          return validSlotsForThisDayAndTime.some(s => normalizedSlot.includes(s));
+
+                          const isAutumnSem = sem.title.includes('Autumn') || sem.id === 'sem1' || sem.id === 'sem3';
+                          const isSpringSem = sem.title.includes('Spring') || sem.id === 'sem2' || sem.id === 'sem4';
+
+                          const isAutumnMatch = (slot === 'Autumn' && isAutumnSem);
+                          const isSpringMatch = (slot === 'Spring' && isSpringSem);
+
+                          return isAutumnMatch || isSpringMatch || validSlotsForThisDayAndTime.some(s => normalizedSlot.includes(s));
                         });
 
                         return (
