@@ -1,0 +1,1062 @@
+{
+  "02180": {
+    "code": "02180",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02201": {
+    "code": "02201",
+    "error": "HTTPSConnectionPool(host='kurser.dtu.dk', port=443): Read timed out. (read timeout=15)",
+    "slot": "",
+    "exam_clean": ""
+  },
+  "02203": {
+    "code": "02203",
+    "error": "HTTPSConnectionPool(host='kurser.dtu.dk', port=443): Read timed out. (read timeout=15)",
+    "slot": "",
+    "exam_clean": ""
+  },
+  "02205": {
+    "code": "02205",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02207": {
+    "code": "02207",
+    "error": "HTTPSConnectionPool(host='kurser.dtu.dk', port=443): Read timed out. (read timeout=15)",
+    "slot": "",
+    "exam_clean": ""
+  },
+  "02209": {
+    "code": "02209",
+    "error": "HTTPSConnectionPool(host='kurser.dtu.dk', port=443): Read timed out. (read timeout=15)",
+    "slot": "",
+    "exam_clean": ""
+  },
+  "02211": {
+    "code": "02211",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02214": {
+    "code": "02214",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02225": {
+    "code": "02225",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02226": {
+    "code": "02226",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02231": {
+    "code": "02231",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02232": {
+    "code": "02232",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02234": {
+    "code": "02234",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02242": {
+    "code": "02242",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "7",
+    "exam_clean": ""
+  },
+  "02244": {
+    "code": "02244",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "7",
+    "exam_clean": ""
+  },
+  "02245": {
+    "code": "02245",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "7",
+    "exam_clean": ""
+  },
+  "02246": {
+    "code": "02246",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "7",
+    "exam_clean": ""
+  },
+  "02247": {
+    "code": "02247",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02249": {
+    "code": "02249",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "7",
+    "exam_clean": ""
+  },
+  "02256": {
+    "code": "02256",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02258": {
+    "code": "02258",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02262": {
+    "code": "02262",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02266": {
+    "code": "02266",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02267": {
+    "code": "02267",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02268": {
+    "code": "02268",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02269": {
+    "code": "02269",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02270": {
+    "code": "02270",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02271": {
+    "code": "02271",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02275": {
+    "code": "02275",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02276": {
+    "code": "02276",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02277": {
+    "code": "02277",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02278": {
+    "code": "02278",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02280": {
+    "code": "02280",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "10",
+    "exam_clean": ""
+  },
+  "02282": {
+    "code": "02282",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "7",
+    "exam_clean": ""
+  },
+  "02287": {
+    "code": "02287",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02289": {
+    "code": "02289",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02291": {
+    "code": "02291",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02409": {
+    "code": "02409",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02417": {
+    "code": "02417",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02443": {
+    "code": "02443",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02452": {
+    "code": "02452",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02455": {
+    "code": "02455",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02456": {
+    "code": "02456",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02458": {
+    "code": "02458",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02460": {
+    "code": "02460",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02471": {
+    "code": "02471",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02476": {
+    "code": "02476",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02477": {
+    "code": "02477",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02501": {
+    "code": "02501",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02504": {
+    "code": "02504",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02506": {
+    "code": "02506",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "exam_clean": ""
+  },
+  "02510": {
+    "code": "02510",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02516": {
+    "code": "02516",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02517": {
+    "code": "02517",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02518": {
+    "code": "02518",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02561": {
+    "code": "02561",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02562": {
+    "code": "02562",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02563": {
+    "code": "02563",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02566": {
+    "code": "02566",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "10",
+    "exam_clean": ""
+  },
+  "02581": {
+    "code": "02581",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02582": {
+    "code": "02582",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02611": {
+    "code": "02611",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02612": {
+    "code": "02612",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02613": {
+    "code": "02613",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02614": {
+    "code": "02614",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02619": {
+    "code": "02619",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02805": {
+    "code": "02805",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "10",
+    "exam_clean": ""
+  },
+  "02806": {
+    "code": "02806",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02807": {
+    "code": "02807",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02808": {
+    "code": "02808",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "10",
+    "exam_clean": ""
+  },
+  "02810": {
+    "code": "02810",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "02830": {
+    "code": "02830",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "10",
+    "exam_clean": ""
+  },
+  "02840": {
+    "code": "02840",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "15",
+    "exam_clean": ""
+  },
+  "02841": {
+    "code": "02841",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "15",
+    "exam_clean": ""
+  },
+  "12100": {
+    "code": "12100",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "12101": {
+    "code": "12101",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "12105": {
+    "code": "12105",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "12106": {
+    "code": "12106",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "30554": {
+    "code": "30554",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "34241": {
+    "code": "34241",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "34366": {
+    "code": "34366",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "34367": {
+    "code": "34367",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "34745": {
+    "code": "34745",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "10",
+    "exam_clean": ""
+  },
+  "34746": {
+    "code": "34746",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "10",
+    "exam_clean": ""
+  },
+  "34752": {
+    "code": "34752",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "34753": {
+    "code": "34753",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "34755": {
+    "code": "34755",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "34757": {
+    "code": "34757",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "34759": {
+    "code": "34759",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "10",
+    "exam_clean": ""
+  },
+  "34760": {
+    "code": "34760",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "34761": {
+    "code": "34761",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "exam_clean": ""
+  },
+  "34763": {
+    "code": "34763",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "34764": {
+    "code": "34764",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "exam_clean": ""
+  },
+  "34766": {
+    "code": "34766",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "38102": {
+    "code": "38102",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "38103": {
+    "code": "38103",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "10",
+    "exam_clean": ""
+  },
+  "38106": {
+    "code": "38106",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "38110": {
+    "code": "38110",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "38113": {
+    "code": "38113",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "38400": {
+    "code": "38400",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "38401": {
+    "code": "38401",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "38402": {
+    "code": "38402",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "38403": {
+    "code": "38403",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "38404": {
+    "code": "38404",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "38405": {
+    "code": "38405",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "42136": {
+    "code": "42136",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "42137": {
+    "code": "42137",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "ects": "5",
+    "exam_clean": ""
+  },
+  "42186": {
+    "code": "42186",
+    "schedule": "",
+    "slot": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "semesters": [],
+    "exam_clean": ""
+  }
+}

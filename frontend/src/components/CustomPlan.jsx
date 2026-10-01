@@ -474,11 +474,16 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                                   {c.name}
                                 </a>
                               </div>
-                              {c.slot && c.slot !== 'UNKNOWN' && (
-                                <div style={{ fontSize: 10, fontFamily: 'var(--font-mono)', fontWeight: 900, background: 'var(--color-pink)', color: '#fff', display: 'inline-block', padding: '2px 4px', marginTop: 4 }}>
-                                  SLOT: {c.slot}
+                              <div style={{ display: 'flex', gap: '6px', alignItems: 'center', marginTop: 4, flexWrap: 'wrap' }}>
+                                {c.slot && c.slot !== 'UNKNOWN' && (
+                                  <div style={{ fontSize: 10, fontFamily: 'var(--font-mono)', fontWeight: 900, background: 'var(--color-pink)', color: '#fff', display: 'inline-block', padding: '2px 4px' }}>
+                                    SLOT: {c.slot}
+                                  </div>
+                                )}
+                                <div style={{ fontSize: 10, background: 'var(--color-bg)', border: '1px solid var(--color-border)', padding: '2px 4px', fontWeight: 600 }}>
+                                  📝 {c.exam || COURSE_CATALOG[code]?.exam || 'Exam TBA'}
                                 </div>
-                              )}
+                              </div>
                               {(code === '02840' || code === '02841') && (
                                 <div style={{ fontSize: 10, marginTop: 4, color: 'var(--color-pink)', fontWeight: 'bold' }}>
                                   * Note: Covers all slots in the {code === '02840' ? 'first half' : 'second half'} of the Autumn semester (runs all day Mon-Fri, weeks {code === '02840' ? '1 to 6.5' : '6.5 to 13'}).
@@ -643,9 +648,27 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                         const isSelected = customState[code] !== undefined;
                         return (
                           <tr key={code} style={{ borderBottom: '1px solid var(--color-border)', background: isSelected ? 'var(--color-bg)' : '#fff' }}>
-                            <td className="code" style={{ verticalAlign: 'middle', padding: 8 }}>{code}</td>
+                            <td className="code" style={{ verticalAlign: 'middle', padding: 8 }}>
+                              <a
+                                href={`https://kurser.dtu.dk/course/2026-2027/${code}?menulanguage=en`}
+                                target="_blank"
+                                rel="noreferrer"
+                                style={{ color: 'inherit', textDecoration: 'underline' }}
+                              >
+                                {code}
+                              </a>
+                            </td>
                             <td style={{ padding: 8 }}>
-                              <div className="course-name" style={{ fontSize: 13, fontWeight: 600 }}>{c.name}</div>
+                              <div className="course-name" style={{ fontSize: 13, fontWeight: 600 }}>
+                                <a
+                                  href={`https://dtucourseanalyzer.pythonanywhere.com/course/${code}`}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  style={{ color: 'inherit', textDecoration: 'underline' }}
+                                >
+                                  {c.name}
+                                </a>
+                              </div>
                               <div className="course-detail" style={{ fontSize: 11, marginTop: 4 }}>{c.desc}</div>
                               {(code === '02840' || code === '02841') && (
                                 <div style={{ fontSize: 10, marginTop: 4, color: 'var(--color-pink)', fontWeight: 'bold' }}>
@@ -655,6 +678,7 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
                               <div style={{ marginTop: 6, display: 'flex', flexWrap: 'wrap', gap: 4 }}>
                                 <span className={`cat ${getCategoryClass(c.cat)}`} style={{ fontSize: 9, padding: '2px 6px' }}>{getCategoryLabel(c.cat)}</span>
                                 <span className={`timing ${getTimingClass(c.sem.join('/'))}`} style={{ fontSize: 9, padding: '2px 6px' }}>{c.sem.join('/')}</span>
+                                <span className="cat" style={{ fontSize: 9, padding: '2px 6px', background: 'var(--color-bg)', border: '1px solid var(--color-border)', fontWeight: 700 }}>📝 {c.exam || 'Exam TBA'}</span>
                                 {c.specs.map(sId => (
                                   <span key={sId} className="cat" style={{ fontSize: 9, padding: '2px 6px', ...specColors[sId] }}>{specNameMap[sId]}</span>
                                 ))}

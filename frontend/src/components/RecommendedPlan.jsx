@@ -164,6 +164,11 @@ function CourseRow({ course, flexId, flexChoices, onFlexChange }) {
           <div style={{ fontSize: '10px', color: 'var(--color-text)', opacity: 0.6, whiteSpace: 'nowrap' }}>{SLOT_LABELS[displayCourse.slot]}</div>
         )}
       </td>
+      <td className="exam-cell" style={{ fontSize: '11px', whiteSpace: 'nowrap' }}>
+        <span style={{ background: 'var(--color-bg)', border: '1px solid var(--color-border)', padding: '2px 6px', fontWeight: 600, fontSize: '10px' }}>
+          📝 {displayCourse.exam || COURSE_CATALOG[displayCourse.code]?.exam || 'Exam TBA'}
+        </span>
+      </td>
       <td>
         <span className={`role-badge ${getRoleClass(displayCourse.role)}`}>
           {displayCourse.role}
@@ -186,6 +191,7 @@ function SemesterTable({ courses, flexChoices, onFlexChange }) {
           <th>Course</th>
           <th style={{ width: 45, textAlign: 'center' }}>ECTS</th>
           <th style={{ width: 80 }}>Slot / Time</th>
+          <th style={{ width: 120 }}>Exam</th>
           <th style={{ width: 130 }}>Role</th>
           <th style={{ width: 90 }}>Status</th>
           <th style={{ width: 45 }}>Grade</th>
@@ -222,7 +228,7 @@ function MiniCard({ semester, flexChoices, onFlexChange }) {
       <div className="mini-right">
         <div className="mini-course-code">
           <a 
-            href={`https://dtucourseanalyzer.pythonanywhere.com/course/${course.code}`} 
+            href={`https://kurser.dtu.dk/course/2026-2027/${course.code}?menulanguage=en`} 
             target="_blank" 
             rel="noreferrer"
             style={{ color: 'inherit', textDecoration: 'underline' }}
@@ -251,6 +257,9 @@ function MiniCard({ semester, flexChoices, onFlexChange }) {
         </div>
         <div className="mini-badges">
           <span className={`role-badge ${getRoleClass(course.role)}`}>{course.role}</span>
+          <span style={{ fontSize: '10px', padding: '2px 6px', background: 'var(--color-bg)', border: '1px solid var(--color-border)', fontWeight: 600 }}>
+            📝 {course.exam || COURSE_CATALOG[course.code]?.exam || 'Exam TBA'}
+          </span>
           <StatusBadge status={course.status} />
           <GradeBadge grading={course.grading} />
         </div>
@@ -362,8 +371,26 @@ export function Timetable({ semesters, flexChoices = {} }) {
                         <td key={dIdx} className="tt-cell">
                           {courses.map((c, cIdx) => (
                             <div key={cIdx} className="tt-course-box">
-                              <div className="tt-c-code">{c.code}</div>
-                              <div className="tt-c-name" style={{ fontSize: '10px', lineHeight: 1.2, margin: '2px 0' }}>{c.name}</div>
+                              <div className="tt-c-code">
+                                <a 
+                                  href={c.code === 'thesis' ? '#' : `https://kurser.dtu.dk/course/2026-2027/${c.code}?menulanguage=en`}
+                                  target="_blank" 
+                                  rel="noreferrer" 
+                                  style={{ color: 'inherit', textDecoration: 'underline' }}
+                                >
+                                  {c.code}
+                                </a>
+                              </div>
+                              <div className="tt-c-name" style={{ fontSize: '10px', lineHeight: 1.2, margin: '2px 0' }}>
+                                <a 
+                                  href={c.code === 'thesis' ? '#' : `https://dtucourseanalyzer.pythonanywhere.com/course/${c.code}`}
+                                  target="_blank" 
+                                  rel="noreferrer" 
+                                  style={{ color: 'inherit', textDecoration: 'none' }}
+                                >
+                                  {c.name}
+                                </a>
+                              </div>
                               <div className="tt-c-slot">{c.slot}{SLOT_LABELS[c.slot] ? ` · ${SLOT_LABELS[c.slot]}` : ''}</div>
                             </div>
                           ))}
@@ -388,8 +415,26 @@ export function Timetable({ semesters, flexChoices = {} }) {
                 <div style={{ fontWeight: 900, fontSize: 13, marginBottom: 8, borderBottom: '1px solid var(--color-border)', paddingBottom: 4 }}>{sem.title}</div>
                 {sem.courses.map((c, ci) => (
                   <div key={ci} className="tt-course-box" style={{ marginBottom: 4 }}>
-                    <div className="tt-c-code">{c.code}</div>
-                    <div className="tt-c-name" style={{ fontSize: '10px', lineHeight: 1.2, margin: '2px 0' }}>{c.name}</div>
+                    <div className="tt-c-code">
+                      <a 
+                        href={c.code === 'thesis' ? '#' : `https://kurser.dtu.dk/course/2026-2027/${c.code}?menulanguage=en`}
+                        target="_blank" 
+                        rel="noreferrer" 
+                        style={{ color: 'inherit', textDecoration: 'underline' }}
+                      >
+                        {c.code}
+                      </a>
+                    </div>
+                    <div className="tt-c-name" style={{ fontSize: '10px', lineHeight: 1.2, margin: '2px 0' }}>
+                      <a 
+                        href={c.code === 'thesis' ? '#' : `https://dtucourseanalyzer.pythonanywhere.com/course/${c.code}`}
+                        target="_blank" 
+                        rel="noreferrer" 
+                        style={{ color: 'inherit', textDecoration: 'none' }}
+                      >
+                        {c.name}
+                      </a>
+                    </div>
                     <div className="tt-c-slot">{c.slot}</div>
                   </div>
                 ))}

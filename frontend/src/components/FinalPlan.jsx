@@ -114,6 +114,7 @@ export default function FinalPlan({ customState }) {
                     <th>Course</th>
                     <th style={{ width: 45, textAlign: 'center' }}>ECTS</th>
                     <th style={{ width: 80 }}>Slot</th>
+                    <th style={{ width: 120 }}>Exam</th>
                     <th style={{ width: 130 }}>Role</th>
                   </tr>
                 </thead>
@@ -124,6 +125,7 @@ export default function FinalPlan({ customState }) {
                       <td>Master's Thesis Project</td>
                       <td className="ects-cell">30</td>
                       <td className="slot-cell"><div style={{ fontWeight: 700 }}>—</div></td>
+                      <td style={{ fontSize: '11px', whiteSpace: 'nowrap' }}>Thesis + oral</td>
                       <td><span className="role-badge role-thesis">Thesis</span></td>
                     </tr>
                   )}
@@ -133,7 +135,7 @@ export default function FinalPlan({ customState }) {
                       <tr key={c.code}>
                         <td className="code">
                           <a 
-                            href={`https://dtucourseanalyzer.pythonanywhere.com/course/${c.code}`}
+                            href={c.code === 'thesis' ? 'https://kurser.dtu.dk/' : `https://kurser.dtu.dk/course/2026-2027/${c.code}?menulanguage=en`}
                             target="_blank"
                             rel="noreferrer"
                             style={{ color: 'inherit', textDecoration: 'underline' }}
@@ -157,6 +159,9 @@ export default function FinalPlan({ customState }) {
                           {courseFull.slot && SLOT_LABELS[courseFull.slot] && courseFull.slot !== SLOT_LABELS[courseFull.slot] && (
                             <div style={{ fontSize: '10px', color: 'var(--color-text)', opacity: 0.6, whiteSpace: 'nowrap' }}>{SLOT_LABELS[courseFull.slot]}</div>
                           )}
+                        </td>
+                        <td style={{ fontSize: '11px', whiteSpace: 'nowrap' }}>
+                          {courseFull.exam || COURSE_CATALOG[c.code]?.exam || 'Exam TBA'}
                         </td>
                         <td>
                           <span className={`role-badge ${getCategoryClass(c.cat)}`}>

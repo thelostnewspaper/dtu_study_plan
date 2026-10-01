@@ -24,7 +24,7 @@ export default function App() {
 
   const [recFlexChoices, setRecFlexChoices] = useState({
     sem3_flex_dl: '02456',
-    sem3_flex_eh: '02807'
+    sem3_flex_algo: '02289'
   });
 
   const [customState, setCustomState] = useState({});
@@ -144,14 +144,13 @@ export default function App() {
           </button>
         </div>
         <div style={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
-          {total >= 120 && (
-            <button
-              className="download-pdf-btn"
-              onClick={() => window.print()}
-            >
-              Download PDF
-            </button>
-          )}
+          <button
+            className="download-pdf-btn"
+            onClick={() => window.print()}
+            title="Download / Print Study Plan as PDF"
+          >
+            📄 Download PDF
+          </button>
         </div>
       </div>
 

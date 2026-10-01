@@ -1,0 +1,1393 @@
+{
+  "02180": {
+    "code": "02180",
+    "name": "Introduction to Artificial Intelligence",
+    "ects": "5",
+    "schedule_raw": "F3A (Spring, Tues 8-12)",
+    "slot": "F3A",
+    "exam": "Written exam",
+    "handins": "Mandatory exercises",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02201": {
+    "code": "02201",
+    "name": "Agile Hardware Design",
+    "ects": "5",
+    "schedule_raw": "E4A (Autumn, Tues 13-17)",
+    "slot": "E4A",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02203": {
+    "code": "02203",
+    "name": "Design of Digital Systems",
+    "ects": "5",
+    "schedule_raw": "E2B (Autumn, Thurs 8-12)",
+    "slot": "E2B",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02205": {
+    "code": "02205",
+    "name": "VLSI Design",
+    "ects": "5",
+    "schedule_raw": "F3A (Spring, Tues 8-12)",
+    "slot": "F3A",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02207": {
+    "code": "02207",
+    "name": "Verification of Digital Systems",
+    "ects": "5",
+    "schedule_raw": "E1A (Autumn, Mon 8-12)",
+    "slot": "E1A",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02209": {
+    "code": "02209",
+    "name": "Test of Digital Systems",
+    "ects": "5",
+    "schedule_raw": "E1B (Autumn, Thurs 13-17)",
+    "slot": "E1B",
+    "exam": "Oral exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02211": {
+    "code": "02211",
+    "name": "Research Topics in Computer Architecture",
+    "ects": "5",
+    "schedule_raw": "F4A (Spring, Tues 13-17)",
+    "slot": "F4A",
+    "exam": "Oral exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02214": {
+    "code": "02214",
+    "name": "Hardware/Software Codesign",
+    "ects": "5",
+    "schedule_raw": "F1B (Spring, Thurs 13-17)",
+    "slot": "F1B",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02225": {
+    "code": "02225",
+    "name": "Distributed Real-Time Systems",
+    "ects": "5",
+    "schedule_raw": "F4B (Spring, Fri 8-12)",
+    "slot": "F4B",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02226": {
+    "code": "02226",
+    "name": "Networked Embedded Systems",
+    "ects": "5",
+    "schedule_raw": "E1B (Autumn, Thurs 13-17)",
+    "slot": "E1B",
+    "exam": "Written exam",
+    "handins": "No mandatory assignments",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02231": {
+    "code": "02231",
+    "name": "Cryptography Fundamentals",
+    "ects": "5",
+    "schedule_raw": "E1A (Autumn, Mon 8-12)",
+    "slot": "E1A",
+    "exam": "Written exam",
+    "handins": "Mandatory exercises",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02232": {
+    "code": "02232",
+    "name": "Applied Cryptography",
+    "ects": "5",
+    "schedule_raw": "F1B (Spring, Thurs 13-17)",
+    "slot": "F1B",
+    "exam": "Oral exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02234": {
+    "code": "02234",
+    "name": "Research Topics in Cybersecurity",
+    "ects": "5",
+    "schedule_raw": "E4A (Autumn, Tues 13-17)",
+    "slot": "E4A",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02242": {
+    "code": "02242",
+    "name": "Program Analysis",
+    "ects": "7.5",
+    "schedule_raw": "E2A (Autumn, Mon 13-17)",
+    "slot": "E2A",
+    "exam": "Oral exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02244": {
+    "code": "02244",
+    "name": "Logic for Security",
+    "ects": "7.5",
+    "schedule_raw": "F2A (Spring, Mon 13-17)",
+    "slot": "F2A",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02245": {
+    "code": "02245",
+    "name": "Program Verification",
+    "ects": "7.5",
+    "schedule_raw": "E1B (Autumn, Thurs 13-17)",
+    "slot": "E1B",
+    "exam": "Oral exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02246": {
+    "code": "02246",
+    "name": "Model Checking",
+    "ects": "7.5",
+    "schedule_raw": "E4B (Autumn, Fri 8-12)",
+    "slot": "E4B",
+    "exam": "Oral exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02247": {
+    "code": "02247",
+    "name": "Compiler Construction",
+    "ects": "5",
+    "schedule_raw": "F2B (Spring, Thurs 8-12)",
+    "slot": "F2B",
+    "exam": "Oral exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02249": {
+    "code": "02249",
+    "name": "Computationally Hard Problems",
+    "ects": "7.5",
+    "schedule_raw": "E3A (Autumn, Tues 8-12)",
+    "slot": "E3A",
+    "exam": "Written exam",
+    "handins": "Mandatory exercises",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02256": {
+    "code": "02256",
+    "name": "Automated Reasoning",
+    "ects": "5",
+    "schedule_raw": "F5B (Spring, Wed 13-17)",
+    "slot": "F5B",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02258": {
+    "code": "02258",
+    "name": "Parallel Computer Systems",
+    "ects": "5",
+    "schedule_raw": "E5A (Autumn, Wed 8-12)",
+    "slot": "E5A",
+    "exam": "Written exam",
+    "handins": "No mandatory assignments",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02262": {
+    "code": "02262",
+    "name": "Formal Aspects of Process Science",
+    "ects": "5",
+    "schedule_raw": "E1A (Autumn, Mon 8-12)",
+    "slot": "E1A",
+    "exam": "Oral exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02266": {
+    "code": "02266",
+    "name": "User Experience Engineering",
+    "ects": "5",
+    "schedule_raw": "3-week January",
+    "slot": "Jan",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "January"
+    ],
+    "success": true
+  },
+  "02267": {
+    "code": "02267",
+    "name": "Software Development of Web Services",
+    "ects": "5",
+    "schedule_raw": "3-week January",
+    "slot": "Jan",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "January"
+    ],
+    "success": true
+  },
+  "02268": {
+    "code": "02268",
+    "name": "Process-oriented and Event-driven Software Systems",
+    "ects": "5",
+    "schedule_raw": "E4A (Autumn, Tues 13-17)",
+    "slot": "E4A",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02269": {
+    "code": "02269",
+    "name": "Process Mining",
+    "ects": "5",
+    "schedule_raw": "E5A (Autumn, Wed 8-12)",
+    "slot": "E5A",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02270": {
+    "code": "02270",
+    "name": "Cybersecurity Fundamentals",
+    "ects": "5",
+    "schedule_raw": "E5B (Autumn, Wed 13-17)",
+    "slot": "E5B",
+    "exam": "Written exam",
+    "handins": "No mandatory assignments",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02271": {
+    "code": "02271",
+    "name": "Advanced Cybersecurity",
+    "ects": "5",
+    "schedule_raw": "F4A (Spring, Tues 13-17)",
+    "slot": "F4A",
+    "exam": "Written exam",
+    "handins": "No mandatory assignments",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02275": {
+    "code": "02275",
+    "name": "Ethical Hacking",
+    "ects": "5",
+    "schedule_raw": "E5B (Autumn, Wed 13-17)",
+    "slot": "E5B",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02276": {
+    "code": "02276",
+    "name": "Usable Security and Privacy",
+    "ects": "5",
+    "schedule_raw": "F5B (Spring, Wed 13-17)",
+    "slot": "F5B",
+    "exam": "Written exam",
+    "handins": "No mandatory assignments",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02277": {
+    "code": "02277",
+    "name": "Cyber Risk Management and Incident Response",
+    "ects": "5",
+    "schedule_raw": "F3B (Spring, Fri 13-17)",
+    "slot": "F3B",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02278": {
+    "code": "02278",
+    "name": "Post-Quantum Cryptography",
+    "ects": "5",
+    "schedule_raw": "3-week June",
+    "slot": "Jun",
+    "exam": "Oral exam",
+    "handins": "Mandatory exercises",
+    "semesters": [
+      "June"
+    ],
+    "success": true
+  },
+  "02280": {
+    "code": "02280",
+    "name": "Artificial Intelligence and Multi-Agent Systems",
+    "ects": "10",
+    "schedule_raw": "F4A (Spring, Tues 13-17)",
+    "slot": "F4A",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02282": {
+    "code": "02282",
+    "name": "Algorithms for Massive Data Sets",
+    "ects": "7.5",
+    "schedule_raw": "F1A (Spring, Mon 8-12)",
+    "slot": "F1A",
+    "exam": "Oral exam",
+    "handins": "Mandatory exercises",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02287": {
+    "code": "02287",
+    "name": "Logical Theories for Uncertainty and Learning",
+    "ects": "5",
+    "schedule_raw": "E2B (Autumn, Thurs 8-12)",
+    "slot": "E2B",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02289": {
+    "code": "02289",
+    "name": "Algorithmic Techniques for Modern Data Models",
+    "ects": "5",
+    "schedule_raw": "E4B (Autumn, Fri 8-12)",
+    "slot": "E4B",
+    "exam": "Oral exam",
+    "handins": "No mandatory assignments",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02291": {
+    "code": "02291",
+    "name": "System Integration",
+    "ects": "5",
+    "schedule_raw": "F5A (Spring, Wed 8-12)",
+    "slot": "F5A",
+    "exam": "Written exam",
+    "handins": "No mandatory assignments",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02409": {
+    "code": "02409",
+    "name": "Multivariate Statistics",
+    "ects": "5",
+    "schedule_raw": "E1A (Autumn, Mon 8-12)",
+    "slot": "E1A",
+    "exam": "Written exam",
+    "handins": "No mandatory assignments",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02417": {
+    "code": "02417",
+    "name": "Time Series Analysis",
+    "ects": "5",
+    "schedule_raw": "F4B (Spring, Fri 8-12)",
+    "slot": "F4B",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02443": {
+    "code": "02443",
+    "name": "Stochastic Simulation",
+    "ects": "5",
+    "schedule_raw": "3-week June",
+    "slot": "Jun",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "June"
+    ],
+    "success": true
+  },
+  "02452": {
+    "code": "02452",
+    "name": "Machine Learning",
+    "ects": "5",
+    "schedule_raw": "E4A (Autumn, Tues 13-17)",
+    "slot": "E4A",
+    "exam": "Written exam",
+    "handins": "Mandatory exercises",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02455": {
+    "code": "02455",
+    "name": "Experiment in Cognitive Science",
+    "ects": "5",
+    "schedule_raw": "E5A (Autumn, Wed 8-12)",
+    "slot": "E5A",
+    "exam": "Oral exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02456": {
+    "code": "02456",
+    "name": "Deep learning",
+    "ects": "5",
+    "schedule_raw": "E2A (Autumn, Mon 13-17)",
+    "slot": "E2A",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02458": {
+    "code": "02458",
+    "name": "Cognitive Modelling",
+    "ects": "5",
+    "schedule_raw": "E2B (Autumn, Thurs 8-12)",
+    "slot": "E2B",
+    "exam": "Oral exam",
+    "handins": "No mandatory assignments",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02460": {
+    "code": "02460",
+    "name": "Advanced Machine Learning",
+    "ects": "5",
+    "schedule_raw": "F1B (Spring, Thurs 13-17)",
+    "slot": "F1B",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02471": {
+    "code": "02471",
+    "name": "Machine learning for signal processing",
+    "ects": "5",
+    "schedule_raw": "E1B (Autumn, Thurs 13-17)",
+    "slot": "E1B",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02476": {
+    "code": "02476",
+    "name": "Machine Learning Operations",
+    "ects": "5",
+    "schedule_raw": "3-week January",
+    "slot": "Jan",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "January"
+    ],
+    "success": true
+  },
+  "02477": {
+    "code": "02477",
+    "name": "Bayesian machine learning",
+    "ects": "5",
+    "schedule_raw": "F2A (Spring, Mon 13-17)",
+    "slot": "F2A",
+    "exam": "Written exam",
+    "handins": "No mandatory assignments",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02501": {
+    "code": "02501",
+    "name": "Advanced Deep Learning in Computer Vision",
+    "ects": "5",
+    "schedule_raw": "F4A (Spring, Tues 13-17)",
+    "slot": "F4A",
+    "exam": "Oral exam",
+    "handins": "No mandatory assignments",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02504": {
+    "code": "02504",
+    "name": "Computer Vision",
+    "ects": "5",
+    "schedule_raw": "F3B (Spring, Fri 13-17)",
+    "slot": "F3B",
+    "exam": "Oral exam",
+    "handins": "No mandatory assignments",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02506": {
+    "code": "02506",
+    "name": "",
+    "ects": "",
+    "schedule_raw": "",
+    "slot": "",
+    "exam": "",
+    "handins": "",
+    "semesters": [],
+    "success": true
+  },
+  "02510": {
+    "code": "02510",
+    "name": "Deep learning and data engineering for image analysis",
+    "ects": "5",
+    "schedule_raw": "F5A (Spring, Wed 8-12)",
+    "slot": "F5A",
+    "exam": "Oral exam",
+    "handins": "No mandatory assignments",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02516": {
+    "code": "02516",
+    "name": "Introduction to Deep Learning in Computer Vision",
+    "ects": "5",
+    "schedule_raw": "E5B (Autumn, Wed 13-17)",
+    "slot": "E5B",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02517": {
+    "code": "02517",
+    "name": "Responsible AI: Algorithmic fairness and explainability",
+    "ects": "5",
+    "schedule_raw": "E2B (Autumn, Thurs 8-12)",
+    "slot": "E2B",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02518": {
+    "code": "02518",
+    "name": "Computational 3D Imaging and Analysis",
+    "ects": "5",
+    "schedule_raw": "F5B (Spring, Wed 13-17)",
+    "slot": "F5B",
+    "exam": "Oral exam",
+    "handins": "No mandatory assignments",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02561": {
+    "code": "02561",
+    "name": "Computer Graphics",
+    "ects": "5",
+    "schedule_raw": "E5A (Autumn, Wed 8-12)",
+    "slot": "E5A",
+    "exam": "Report hand-in",
+    "handins": "Mandatory experiments",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02562": {
+    "code": "02562",
+    "name": "Rendering - Introduction",
+    "ects": "5",
+    "schedule_raw": "E5B (Autumn, Wed 13-17)",
+    "slot": "E5B",
+    "exam": "Report hand-in",
+    "handins": "Mandatory experiments",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02563": {
+    "code": "02563",
+    "name": "Generative Methods for Computer Graphics",
+    "ects": "5",
+    "schedule_raw": "E5B (Autumn, Wed 13-17)",
+    "slot": "E5B",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02566": {
+    "code": "02566",
+    "name": "Creating Digital Visual Experiences",
+    "ects": "10",
+    "schedule_raw": "F2A (Spring, Mon 13-17)F2B (Spring, Thurs 8-12)",
+    "slot": "F2A",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02581": {
+    "code": "02581",
+    "name": "Geometric Data Analysis and Processing",
+    "ects": "5",
+    "schedule_raw": "E1B (Autumn, Thurs 13-17)",
+    "slot": "E1B",
+    "exam": "Oral exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02582": {
+    "code": "02582",
+    "name": "Computational Data Analysis",
+    "ects": "5",
+    "schedule_raw": "F2B (Spring, Thurs 8-12)",
+    "slot": "F2B",
+    "exam": "Written exam",
+    "handins": "Mandatory exercises",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02611": {
+    "code": "02611",
+    "name": "Optimization for Data Science",
+    "ects": "5",
+    "schedule_raw": "F5B (Spring, Wed 13-17)",
+    "slot": "F5B",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02612": {
+    "code": "02612",
+    "name": "Constrained Optimization",
+    "ects": "5",
+    "schedule_raw": "F4A (Spring, Tues 13-17)",
+    "slot": "F4A",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02613": {
+    "code": "02613",
+    "name": "Python and High-Performance Computing",
+    "ects": "5",
+    "schedule_raw": "F5A (Spring, Wed 8-12)",
+    "slot": "F5A",
+    "exam": "Written exam",
+    "handins": "No mandatory assignments",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02614": {
+    "code": "02614",
+    "name": "High-Performance Computing",
+    "ects": "5",
+    "schedule_raw": "3-week January",
+    "slot": "Jan",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "January"
+    ],
+    "success": true
+  },
+  "02619": {
+    "code": "02619",
+    "name": "Model Predictive Control",
+    "ects": "5",
+    "schedule_raw": "E2B (Autumn, Thurs 8-12)",
+    "slot": "E2B",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02805": {
+    "code": "02805",
+    "name": "Social graphs and interactions",
+    "ects": "10",
+    "schedule_raw": "E5A (Autumn, Wed 8-12)E5B (Autumn, Wed 13-17)",
+    "slot": "E5A",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02806": {
+    "code": "02806",
+    "name": "Social data analysis and visualization",
+    "ects": "5",
+    "schedule_raw": "F3A (Spring, Tues 8-12)",
+    "slot": "F3A",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02807": {
+    "code": "02807",
+    "name": "Computational Tools for Data Science",
+    "ects": "5",
+    "schedule_raw": "E7 (Autumn, Tues 18-22)",
+    "slot": "E7",
+    "exam": "Report hand-in",
+    "handins": "Mandatory experiments",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02808": {
+    "code": "02808",
+    "name": "Personal Data Interaction for Mobile and Wearables",
+    "ects": "10",
+    "schedule_raw": "F5A (Spring, Wed 8-12)F5B (Spring, Wed 13-17)",
+    "slot": "F5A",
+    "exam": "Report hand-in",
+    "handins": "Mandatory experiments",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "02810": {
+    "code": "02810",
+    "name": "UX Design Prototyping",
+    "ects": "5",
+    "schedule_raw": "E1A (Autumn, Mon 8-12)",
+    "slot": "E1A",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02830": {
+    "code": "02830",
+    "name": "Advanced Project in Digital Media Engineering",
+    "ects": "10",
+    "schedule_raw": "E5B (Autumn, Wed 13-17)",
+    "slot": "E5B",
+    "exam": "Oral exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "02840": {
+    "code": "02840",
+    "name": "Computer Game Programming Fundamentals (DADIU)",
+    "ects": "15",
+    "schedule_raw": "Special schedule",
+    "slot": "S",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [],
+    "success": true
+  },
+  "02841": {
+    "code": "02841",
+    "name": "Computer Game Programming in a Production (DADIU)",
+    "ects": "15",
+    "schedule_raw": "Special schedule",
+    "slot": "S",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [],
+    "success": true
+  },
+  "12100": {
+    "code": "12100",
+    "name": "Quantitative methods to assess sustainability (Polytechnical Foundation)",
+    "ects": "5",
+    "schedule_raw": "Unspecified",
+    "slot": "U",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [],
+    "success": true
+  },
+  "12101": {
+    "code": "12101",
+    "name": "Quantitative methods to assess sustainability (Polytechnical Foundation)",
+    "ects": "5",
+    "schedule_raw": "F3B (Spring, Fri 13-17)",
+    "slot": "F3B",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "12105": {
+    "code": "12105",
+    "name": "Quantitative methods to assess sustainability (Polytechnical Foundation)",
+    "ects": "5",
+    "schedule_raw": "E7 (Autumn, Tues 18-22)",
+    "slot": "E7",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "12106": {
+    "code": "12106",
+    "name": "Quantitative methods to assess sustainability (Polytechnical Foundation)",
+    "ects": "5",
+    "schedule_raw": "E3B (Autumn, Fri 13-17)",
+    "slot": "E3B",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "30554": {
+    "code": "30554",
+    "name": "Global Navigation Satellite Systems",
+    "ects": "5",
+    "schedule_raw": "F2B (Spring, Thurs 8-12)",
+    "slot": "F2B",
+    "exam": "Oral exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "34241": {
+    "code": "34241",
+    "name": "Digital video technology",
+    "ects": "5",
+    "schedule_raw": "F4A (Spring, Tues 13-17)",
+    "slot": "F4A",
+    "exam": "Oral exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "34366": {
+    "code": "34366",
+    "name": "Intelligent systems",
+    "ects": "5",
+    "schedule_raw": "E7 (Autumn, Tues 18-22)",
+    "slot": "E7",
+    "exam": "Oral exam",
+    "handins": "Mandatory exercises",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "34367": {
+    "code": "34367",
+    "name": "Project in Intelligent Systems",
+    "ects": "5",
+    "schedule_raw": "3-week January",
+    "slot": "Jan",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "January"
+    ],
+    "success": true
+  },
+  "34745": {
+    "code": "34745",
+    "name": "Linear control design 2",
+    "ects": "10",
+    "schedule_raw": "E3A (Autumn, Tues 8-12)E3B (Autumn, Fri 13-17)",
+    "slot": "E3A",
+    "exam": "Written exam",
+    "handins": "No mandatory assignments",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "34746": {
+    "code": "34746",
+    "name": "Robust and fault-tolerant control",
+    "ects": "10",
+    "schedule_raw": "F1A (Spring, Mon 8-12)F1B (Spring, Thurs 13-17)",
+    "slot": "F1A",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "34752": {
+    "code": "34752",
+    "name": "Bio-inspired control for robots",
+    "ects": "5",
+    "schedule_raw": "3-week August",
+    "slot": "Aug",
+    "exam": "Report hand-in",
+    "handins": "Mandatory experiments",
+    "semesters": [
+      "August"
+    ],
+    "success": true
+  },
+  "34753": {
+    "code": "34753",
+    "name": "Robotics",
+    "ects": "5",
+    "schedule_raw": "E4A (Autumn, Tues 13-17)",
+    "slot": "E4A",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "34755": {
+    "code": "34755",
+    "name": "Building dependable robot systems",
+    "ects": "5",
+    "schedule_raw": "F3B (Spring, Fri 13-17)",
+    "slot": "F3B",
+    "exam": "Report hand-in",
+    "handins": "Mandatory experiments",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "34757": {
+    "code": "34757",
+    "name": "Unmanned autonomous systems",
+    "ects": "5",
+    "schedule_raw": "3-week June",
+    "slot": "Jun",
+    "exam": "Report hand-in",
+    "handins": "Mandatory experiments",
+    "semesters": [
+      "June"
+    ],
+    "success": true
+  },
+  "34759": {
+    "code": "34759",
+    "name": "Perception for Autonomous Systems",
+    "ects": "10",
+    "schedule_raw": "E1A (Autumn, Mon 8-12)E1B (Autumn, Thurs 13-17)",
+    "slot": "E1A",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "34760": {
+    "code": "34760",
+    "name": "Safety and Reliability in Robotic and Automation Systems",
+    "ects": "5",
+    "schedule_raw": "F5B (Spring, Wed 13-17)",
+    "slot": "F5B",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "34761": {
+    "code": "34761",
+    "name": "",
+    "ects": "",
+    "schedule_raw": "",
+    "slot": "",
+    "exam": "",
+    "handins": "",
+    "semesters": [],
+    "success": true
+  },
+  "34763": {
+    "code": "34763",
+    "name": "Autonomous Marine Robotics",
+    "ects": "5",
+    "schedule_raw": "F5B (Spring, Wed 13-17)",
+    "slot": "F5B",
+    "exam": "Written exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "34764": {
+    "code": "34764",
+    "name": "",
+    "ects": "",
+    "schedule_raw": "",
+    "slot": "",
+    "exam": "",
+    "handins": "",
+    "semesters": [],
+    "success": true
+  },
+  "34766": {
+    "code": "34766",
+    "name": "Robotic Manipulation: Perception, Planning, Control and Learning",
+    "ects": "5",
+    "schedule_raw": "F2A (Spring, Mon 13-17)",
+    "slot": "F2A",
+    "exam": "Written exam",
+    "handins": "Mandatory exercises",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "38102": {
+    "code": "38102",
+    "name": "Technology Entrepreneurship",
+    "ects": "5",
+    "schedule_raw": "E1B (Autumn, Thurs 13-17)",
+    "slot": "E1B",
+    "exam": "Oral exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "38103": {
+    "code": "38103",
+    "name": "X-Tech Entrepreneurship",
+    "ects": "10",
+    "schedule_raw": "F3A (Spring, Tues 8-12)F3B (Spring, Fri 13-17)",
+    "slot": "F3A",
+    "exam": "Oral exam",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "38106": {
+    "code": "38106",
+    "name": "Developing an Entrepreneurial mindset",
+    "ects": "5",
+    "schedule_raw": "F1B (Spring, Thurs 13-17)E1B (Autumn, Thurs 13-17)",
+    "slot": "F1B",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "Autumn",
+      "Spring"
+    ],
+    "success": true
+  },
+  "38110": {
+    "code": "38110",
+    "name": "Staging co-creation and creativity",
+    "ects": "5",
+    "schedule_raw": "E1B (Autumn, Thurs 13-17)",
+    "slot": "E1B",
+    "exam": "Report hand-in",
+    "handins": "Mandatory experiments",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "38113": {
+    "code": "38113",
+    "name": "Applied AI for Entrepreneurs",
+    "ects": "5",
+    "schedule_raw": "E2B (Autumn, Thurs 8-12)",
+    "slot": "E2B",
+    "exam": "Oral exam",
+    "handins": "Mandatory exercises",
+    "semesters": [
+      "Autumn"
+    ],
+    "success": true
+  },
+  "38400": {
+    "code": "38400",
+    "name": "Innovation in Engineering (Polytechnical Foundation)",
+    "ects": "5",
+    "schedule_raw": "3-week January",
+    "slot": "Jan",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "January"
+    ],
+    "success": true
+  },
+  "38401": {
+    "code": "38401",
+    "name": "Facilitating Innovation in Multidisciplinary Teams",
+    "ects": "5",
+    "schedule_raw": "3-week January",
+    "slot": "Jan",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "January"
+    ],
+    "success": true
+  },
+  "38402": {
+    "code": "38402",
+    "name": "Innovation in Engineering (Polytechnical Foundation)",
+    "ects": "5",
+    "schedule_raw": "3-week June",
+    "slot": "Jun",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "June"
+    ],
+    "success": true
+  },
+  "38403": {
+    "code": "38403",
+    "name": "Facilitating Innovation in Multidisciplinary Teams",
+    "ects": "5",
+    "schedule_raw": "3-week June",
+    "slot": "Jun",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "June"
+    ],
+    "success": true
+  },
+  "38404": {
+    "code": "38404",
+    "name": "Innovation in Engineering (Polytechnical Foundation)",
+    "ects": "5",
+    "schedule_raw": "3-week August",
+    "slot": "Aug",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "August"
+    ],
+    "success": true
+  },
+  "38405": {
+    "code": "38405",
+    "name": "Facilitating Innovation in Multidisciplinary Teams",
+    "ects": "5",
+    "schedule_raw": "3-week August",
+    "slot": "Aug",
+    "exam": "Report hand-in",
+    "handins": "Mandatory reports",
+    "semesters": [
+      "August"
+    ],
+    "success": true
+  },
+  "42136": {
+    "code": "42136",
+    "name": "Advanced Operations Research Methods",
+    "ects": "5",
+    "schedule_raw": "F2B (Spring, Thurs 8-12)",
+    "slot": "F2B",
+    "exam": "Written exam",
+    "handins": "Mandatory exercises",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "42137": {
+    "code": "42137",
+    "name": "Optimization using metaheuristics",
+    "ects": "5",
+    "schedule_raw": "F2A (Spring, Mon 13-17)",
+    "slot": "F2A",
+    "exam": "Written exam",
+    "handins": "Mandatory exercises",
+    "semesters": [
+      "Spring"
+    ],
+    "success": true
+  },
+  "42186": {
+    "code": "42186",
+    "name": "",
+    "ects": "",
+    "schedule_raw": "",
+    "slot": "",
+    "exam": "",
+    "handins": "",
+    "semesters": [],
+    "success": true
+  }
+}
