@@ -1,0 +1,1519 @@
+{
+  "02180": {
+    "code": "02180",
+    "title": "Introduction to Artificial Intelligence",
+    "slot": "F3A",
+    "schedule": "Spring F3A (Tues 8-12)",
+    "type_of_assessment": "Written examination and exercises Individualised group reports and a written exam are assessed in\r\ntheir entirety.",
+    "exam_duration": "Written exam: 2 hours",
+    "exam": "Written 2h + report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02201": {
+    "code": "02201",
+    "title": "Agile Hardware Design",
+    "slot": "E4A",
+    "schedule": "Autumn E4A (Tues 13-17)",
+    "type_of_assessment": "Evaluation of exercises/reports",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02203": {
+    "code": "02203",
+    "title": "Design of Digital Systems",
+    "slot": "E2B",
+    "schedule": "Autumn E2B (Thurs 8-12)",
+    "type_of_assessment": "Written examination and reports Written examination and assessment of individualized group reports\r\nprepared during the semester. The final grade is based on all\r\nresults in their entirety.",
+    "exam_duration": "Written exam: 2 hours",
+    "exam": "Written 2h + report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02205": {
+    "code": "02205",
+    "title": "VLSI Design",
+    "slot": "F3A",
+    "schedule": "Spring F3A (Tues 8-12)",
+    "type_of_assessment": "Written examination and reports The final grade is based on an overall assessment.",
+    "exam_duration": "Written exam: 2 hours",
+    "exam": "Written 2h + report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02207": {
+    "code": "02207",
+    "title": "Verification of Digital Systems",
+    "slot": "E1A",
+    "schedule": "Autumn E1A (Mon 8-12)",
+    "type_of_assessment": "Evaluation of exercises/reports Evaluation of exercise/report + student presentation. The final\r\ngrade is given based on an overall assessment.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02209": {
+    "code": "02209",
+    "title": "Test of Digital Systems",
+    "slot": "E1B",
+    "schedule": "Autumn E1B (Thurs 13-17)",
+    "type_of_assessment": "Oral examination and reports Approval of compulsory activities is a prerequisite for taking\r\npart in the examination: 3 oral presentations and 2 written\r\nassignments with oral presentation.",
+    "exam_duration": "",
+    "exam": "Oral + report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02211": {
+    "code": "02211",
+    "title": "Research Topics in Computer Architecture",
+    "slot": "F4A",
+    "schedule": "Spring F4A (Tues 13-17)",
+    "type_of_assessment": "Oral examination and reports the final grade is based on an overall assessment\r\n(\"helhedsvurdering\").",
+    "exam_duration": "",
+    "exam": "Oral + report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02214": {
+    "code": "02214",
+    "title": "Hardware/Software Codesign",
+    "slot": "F1B",
+    "schedule": "Spring F1B (Thurs 13-17)",
+    "type_of_assessment": "Written examination and reports The final grade is based on an overall assessment of\r\nindividualized group reports and a written exam.",
+    "exam_duration": "Written exam: 2 hours",
+    "exam": "Written 2h + report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02225": {
+    "code": "02225",
+    "title": "Distributed Real-Time Systems",
+    "slot": "F4B",
+    "schedule": "Spring F4B (Fri 8-12)",
+    "type_of_assessment": "Evaluation of exercises/reports",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02226": {
+    "code": "02226",
+    "title": "Networked Embedded Systems",
+    "slot": "E1B",
+    "schedule": "Autumn E1B (Thurs 13-17)",
+    "type_of_assessment": "Written examination",
+    "exam_duration": "Written exam: 4 hours",
+    "exam": "Written 4h",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02231": {
+    "code": "02231",
+    "title": "Cryptography Fundamentals",
+    "slot": "E1A",
+    "schedule": "Autumn E1A (Mon 8-12) The course is given every fall semester.",
+    "type_of_assessment": "Written examination and exercises The homeworks count for 20%, the written mini-exam 10% and the\r\nfinal written examination for 70%.",
+    "exam_duration": "Written exam: 4 hours",
+    "exam": "Written 4h + report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02232": {
+    "code": "02232",
+    "title": "Applied Cryptography",
+    "slot": "F1B",
+    "schedule": "Spring F1B (Thurs 13-17)",
+    "type_of_assessment": "Oral examination and reports One overall mark is given for the course based on an oral exam and\r\na written project report.",
+    "exam_duration": "",
+    "exam": "Oral + report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02234": {
+    "code": "02234",
+    "title": "Research Topics in Cybersecurity",
+    "slot": "E4A",
+    "schedule": "Autumn E4A (Tues 13-17)",
+    "type_of_assessment": "Evaluation of exercises/reports",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02242": {
+    "code": "02242",
+    "title": "Program Analysis",
+    "slot": "E2A",
+    "schedule": "Autumn E2A (Mon 13-17)",
+    "type_of_assessment": "Oral examination and reports A paper written in a group serves as the foundation for a joint\r\noral exam and receives a single overall assessment. Throughout the\r\ncourse, students must complete several pass/fail part exams in the\r\nform of take-home assignments. All of these must be passed in order\r\nto qualify for the final exam.",
+    "exam_duration": "",
+    "exam": "Written + oral",
+    "ects": "7,5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02244": {
+    "code": "02244",
+    "title": "Logic for Security",
+    "slot": "F2A",
+    "schedule": "Spring F2A (Mon 13-17)",
+    "type_of_assessment": "Evaluation of exercises/reports Assessment is based on individualized group reports.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "7,5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02245": {
+    "code": "02245",
+    "title": "Program Verification",
+    "slot": "E1B",
+    "schedule": "Autumn E1B (Thurs 13-17)",
+    "type_of_assessment": "Oral examination and reports One or two written reports are the basis for an oral\r\nexam.",
+    "exam_duration": "",
+    "exam": "Written + oral",
+    "ects": "7,5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02246": {
+    "code": "02246",
+    "title": "Model Checking",
+    "slot": "E4B",
+    "schedule": "Autumn E4B (Fri 8-12)",
+    "type_of_assessment": "Oral examination and reports",
+    "exam_duration": "",
+    "exam": "Oral + report",
+    "ects": "7,5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02247": {
+    "code": "02247",
+    "title": "Compiler Construction",
+    "slot": "F2B",
+    "schedule": "Spring F2B (Thurs 8-12)",
+    "type_of_assessment": "Oral examination and reports The exam is based on the project and report that the students have\r\nworked on during the course. The final grade is given based on an\r\noverall assessment.",
+    "exam_duration": "",
+    "exam": "Oral + report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02249": {
+    "code": "02249",
+    "title": "Computationally Hard Problems",
+    "slot": "E3A",
+    "schedule": "Autumn E3A (Tues 8-12)",
+    "type_of_assessment": "Written examination and exercises Written examination and assessment of exercise(s). Group projects\r\nrequire individualization. The mark is given by an overall\r\nassessment.",
+    "exam_duration": "Written exam: 4 hours",
+    "exam": "Written 4h + report",
+    "ects": "7,5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02256": {
+    "code": "02256",
+    "title": "Automated Reasoning",
+    "slot": "F5B",
+    "schedule": "Spring F5B (Wed 13-17)",
+    "type_of_assessment": "Written examination and reports Is evaluated as a whole.",
+    "exam_duration": "Written exam: 2 hours",
+    "exam": "Written 2h + report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02258": {
+    "code": "02258",
+    "title": "Parallel Computer Systems",
+    "slot": "E5A",
+    "schedule": "Autumn E5A (Wed 8-12)",
+    "type_of_assessment": "Written examination",
+    "exam_duration": "Written exam: 4 hours",
+    "exam": "Written 4h",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02262": {
+    "code": "02262",
+    "title": "Formal Aspects of Process Science",
+    "slot": "E1A",
+    "schedule": "Autumn E1A (Mon 8-12)",
+    "type_of_assessment": "Oral examination and reports",
+    "exam_duration": "",
+    "exam": "Oral + report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02266": {
+    "code": "02266",
+    "title": "User Experience Engineering",
+    "slot": "Jan",
+    "schedule": "January",
+    "type_of_assessment": "Evaluation of exercises/reports Assessment is based on individualized group reports and an\r\nindividual report. The course embeds the DTU Compute Digital\r\nInnovation Canon. Passing the tests for each element of the canon\r\ncontained in this course is a prerequisite for taking the\r\nexam.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "January"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02267": {
+    "code": "02267",
+    "title": "Software Development of Web Services",
+    "slot": "Jan",
+    "schedule": "January",
+    "type_of_assessment": "Evaluation of exercises/reports Assessment of an individualized group report and documentation of\r\na larger project.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "January"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02268": {
+    "code": "02268",
+    "title": "Process-oriented and Event-driven Software Systems",
+    "slot": "E4A",
+    "schedule": "Autumn E4A (Tues 13-17)",
+    "type_of_assessment": "Evaluation of exercises/reports The grade will be based on an overall assessment of an\r\nindividualized group project. To be admitted to the exam, the\r\nstudent should have approved a set of intermediate\r\nassignments.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02269": {
+    "code": "02269",
+    "title": "Process Mining",
+    "slot": "E5A",
+    "schedule": "Autumn E5A (Wed 8-12)",
+    "type_of_assessment": "Written examination and reports Assessment is based on group work (presentation and report),\r\nwritten questions, and intermediate exercises.",
+    "exam_duration": "Written exam: 1 hour",
+    "exam": "Written 1h + report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02270": {
+    "code": "02270",
+    "title": "Cybersecurity Fundamentals",
+    "slot": "E5B",
+    "schedule": "Autumn E5B (Wed 13-17)",
+    "type_of_assessment": "Written examination",
+    "exam_duration": "Written exam: 2 hours",
+    "exam": "Written 2h",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02271": {
+    "code": "02271",
+    "title": "Advanced Cybersecurity",
+    "slot": "F4A",
+    "schedule": "Spring F4A (Tues 13-17)",
+    "type_of_assessment": "Written examination The grade is based on a final written exam.",
+    "exam_duration": "Written exam: 4 hours",
+    "exam": "Written 4h",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02275": {
+    "code": "02275",
+    "title": "Ethical Hacking",
+    "slot": "E5B",
+    "schedule": "Autumn E5B (Wed 13-17)",
+    "type_of_assessment": "Evaluation of exercises/reports Assessment is based on individualized group reports",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02276": {
+    "code": "02276",
+    "title": "Usable Security and Privacy",
+    "slot": "F5B",
+    "schedule": "Spring F5B (Wed 13-17)",
+    "type_of_assessment": "Written examination",
+    "exam_duration": "Written exam: 3 hours",
+    "exam": "Written 3h",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02277": {
+    "code": "02277",
+    "title": "Cyber Risk Management and Incident Response",
+    "slot": "F3B",
+    "schedule": "Spring F3B (Fri 13-17)",
+    "type_of_assessment": "Evaluation of exercises/reports Assessment is based on individualized group reports",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02278": {
+    "code": "02278",
+    "title": "Post-Quantum Cryptography",
+    "slot": "Jun",
+    "schedule": "June",
+    "type_of_assessment": "Oral examination and exercises Project presentation and oral exam. Project and presentation in\r\ngroups up to 3, oral exam individual. The project presentation\r\ncounts for 50% and the oral exam for the other 50%.",
+    "exam_duration": "20min for the oral exam",
+    "exam": "Oral + report",
+    "ects": "5",
+    "semesters": [
+      "June"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02280": {
+    "code": "02280",
+    "title": "Artificial Intelligence and Multi-Agent Systems",
+    "slot": "F4A",
+    "schedule": "Spring F4A (Tues 13-17)",
+    "type_of_assessment": "Evaluation of exercises/reports The assessment is based on a combination of assignments during the\r\ncourse and a large final programming project. All mandatory\r\nelements are group assignments with strict requirements for\r\nindividualising each student's contribution. The course is\r\nevaluated as a whole.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "10",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02282": {
+    "code": "02282",
+    "title": "Algorithms for Massive Data Sets",
+    "slot": "F1A",
+    "schedule": "Spring F1A (Mon 8-12)",
+    "type_of_assessment": "Oral examination and exercises Overall assessment",
+    "exam_duration": "",
+    "exam": "Oral + report",
+    "ects": "7,5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02287": {
+    "code": "02287",
+    "title": "Logical Theories for Uncertainty and Learning",
+    "slot": "E2B",
+    "schedule": "Autumn E2B (Thurs 8-12)",
+    "type_of_assessment": "Written examination and reports Assessment of individual/individualized assignments (45 %) and a\r\nwritten exam (55 %).",
+    "exam_duration": "Written exam: 2 hours",
+    "exam": "Written 2h + report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02289": {
+    "code": "02289",
+    "title": "Algorithmic Techniques for Modern Data Models",
+    "slot": "E4B",
+    "schedule": "Autumn E4B (Fri 8-12)",
+    "type_of_assessment": "Oral examination",
+    "exam_duration": "",
+    "exam": "Oral",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02291": {
+    "code": "02291",
+    "title": "System Integration",
+    "slot": "F5A",
+    "schedule": "Spring F5A (Wed 8-12)",
+    "type_of_assessment": "Written examination Written examination. The form and/or duration of the reexam may be\r\ndifferent from that of the regular exam.",
+    "exam_duration": "Written exam: 3 hours",
+    "exam": "Written 3h",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02409": {
+    "code": "02409",
+    "title": "Multivariate Statistics",
+    "slot": "E1A",
+    "schedule": "Autumn E1A (Mon 8-12)",
+    "type_of_assessment": "Written examination Judged as a whole. Multiple-choice. In a multiple-choice exam it\r\nmay happen that the grade 10 is given even if only one answer is\r\nwrong or missing. Summer exam is oral",
+    "exam_duration": "Written exam: 4 hours",
+    "exam": "Written 4h",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02417": {
+    "code": "02417",
+    "title": "Time Series Analysis",
+    "slot": "F4B",
+    "schedule": "Spring F4B (Fri 8-12)",
+    "type_of_assessment": "Evaluation of exercises/reports Assessment of individual reports.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02443": {
+    "code": "02443",
+    "title": "Stochastic Simulation",
+    "slot": "Jun",
+    "schedule": "June",
+    "type_of_assessment": "Evaluation of exercises/reports Coursework and report are written during the course.\r\nResponsibility of elements of the reports needs to be assigned to\r\nindividual course participants.",
+    "exam_duration": "",
+    "exam": "Written + report",
+    "ects": "5",
+    "semesters": [
+      "June"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02452": {
+    "code": "02452",
+    "title": "Machine Learning",
+    "slot": "E4A",
+    "schedule": "Autumn E4A (Tues 13-17)",
+    "type_of_assessment": "Written examination and exercises Approval of assignments/exercises is a prerequisite for passing\r\nthe course.",
+    "exam_duration": "Written exam: 4 hours",
+    "exam": "Written 4h + report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02455": {
+    "code": "02455",
+    "title": "Experiment in Cognitive Science",
+    "slot": "E5A",
+    "schedule": "Autumn E5A (Wed 8-12)",
+    "type_of_assessment": "Oral examination and reports 40% report 60% oral examination",
+    "exam_duration": "",
+    "exam": "Oral + report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02456": {
+    "code": "02456",
+    "title": "Deep learning",
+    "slot": "E2A",
+    "schedule": "Autumn E2A (Mon 13-17)",
+    "type_of_assessment": "Written examination and reports The grade is based on an overall assessment of the report and the\r\nwritten exam.",
+    "exam_duration": "Written exam: 2 hours",
+    "exam": "Written 2h + report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02458": {
+    "code": "02458",
+    "title": "Cognitive Modelling",
+    "slot": "E2B",
+    "schedule": "Autumn E2B (Thurs 8-12)",
+    "type_of_assessment": "Written or oral examination The type of examination depends on the number of students\r\nenrolled. If more than 60 students sign up for the course then the\r\nexam will be written. Otherwise it will be oral. The type of\r\nexamination will be announced as soon as possible after the course\r\nstarts. Exercises and in class presentations will also be part of\r\nthe assessment.",
+    "exam_duration": "Written exam: 4 hours",
+    "exam": "Written 4h + oral",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02460": {
+    "code": "02460",
+    "title": "Advanced Machine Learning",
+    "slot": "F1B",
+    "schedule": "Spring F1B (Thurs 13-17)",
+    "type_of_assessment": "Written examination and reports Reports and exam are equally weighted. The contribution of each\r\nstudent must be indicated in the reports.",
+    "exam_duration": "Written exam: 2 hours",
+    "exam": "Written 2h + report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02471": {
+    "code": "02471",
+    "title": "Machine learning for signal processing",
+    "slot": "E1B",
+    "schedule": "Autumn E1B (Thurs 13-17)",
+    "type_of_assessment": "Written examination and reports The course has three mandatory reports. The first two reports must\r\nbe approved as a prerequisite for passing the course. The final\r\ngrade is based on an overall assessment of the third report and the\r\nwritten exam (20% weighting for report)",
+    "exam_duration": "Written exam: 4 hours",
+    "exam": "Written 4h + report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02476": {
+    "code": "02476",
+    "title": "Machine Learning Operations",
+    "slot": "Jan",
+    "schedule": "January",
+    "type_of_assessment": "Evaluation of exercises/reports",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "January"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02477": {
+    "code": "02477",
+    "title": "Bayesian machine learning",
+    "slot": "F2A",
+    "schedule": "Spring F2A (Mon 13-17)",
+    "type_of_assessment": "Written examination",
+    "exam_duration": "Written exam: 4 hours",
+    "exam": "Written 4h",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02501": {
+    "code": "02501",
+    "title": "Advanced Deep Learning in Computer Vision",
+    "slot": "F4A",
+    "schedule": "Spring F4A (Tues 13-17)",
+    "type_of_assessment": "Written or oral examination Oral or written examination and reports. Approval of reports is a\r\nprerequisite for passing the course. The exam is oral unless there\r\nare so many participants that it becomes impractical. In this case,\r\na written exam will be combined with an assessment of the final\r\nproject.",
+    "exam_duration": "Written exam: 3 hours",
+    "exam": "Written 3h + oral",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02504": {
+    "code": "02504",
+    "title": "Computer Vision",
+    "slot": "F3B",
+    "schedule": "Spring F3B (Fri 13-17)",
+    "type_of_assessment": "Written or oral examination If the number of students is too large, the exam will be written.\r\nOtherwise the exam is oral.",
+    "exam_duration": "Written exam: 4 hours",
+    "exam": "Written 4h + oral",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02506": {
+    "code": "02506",
+    "title": "",
+    "slot": "",
+    "schedule": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "",
+    "semesters": [],
+    "source": "dtucourseanalyzer"
+  },
+  "02510": {
+    "code": "02510",
+    "title": "Deep learning and data engineering for image\r\nanalysis",
+    "slot": "F5A",
+    "schedule": "Spring F5A (Wed 8-12)",
+    "type_of_assessment": "Oral examination The exam will be based on both theoretical and practical of the\r\ncourse content",
+    "exam_duration": "",
+    "exam": "Oral",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02516": {
+    "code": "02516",
+    "title": "Introduction to Deep Learning in Computer Vision",
+    "slot": "E5B",
+    "schedule": "Autumn E5B (Wed 13-17)",
+    "type_of_assessment": "Written examination and reports Written examination and reports. Approval of reports is a\r\nprerequisite for passing the course.",
+    "exam_duration": "Written exam: 3 hours",
+    "exam": "Written 3h + report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02517": {
+    "code": "02517",
+    "title": "Responsible AI: Algorithmic fairness and\r\nexplainability",
+    "slot": "E2B",
+    "schedule": "Autumn E2B (Thurs 8-12)",
+    "type_of_assessment": "Written examination and reports Approval of reports is a prerequisite for passing the course. If\r\nthere are sufficiently few students, there will be an individual\r\noral exam. Otherwise, it will be a 3-hour written exam.",
+    "exam_duration": "Written exam: 3 hours",
+    "exam": "Written 3h + report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02518": {
+    "code": "02518",
+    "title": "Computational 3D Imaging and Analysis",
+    "slot": "F5B",
+    "schedule": "Spring F5B (Wed 13-17)",
+    "type_of_assessment": "Oral examination",
+    "exam_duration": "",
+    "exam": "Oral",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02561": {
+    "code": "02561",
+    "title": "Computer Graphics",
+    "slot": "E5A",
+    "schedule": "Autumn E5A (Wed 8-12)",
+    "type_of_assessment": "Evaluation of experiments and reports Individual submission of lab journal (worksheet solutions) and\r\nproject report. In case of collaboration with someone else, the\r\ndistribution of responsibilities in the collaboration must be\r\nstated clearly in the submission.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02562": {
+    "code": "02562",
+    "title": "Rendering - Introduction",
+    "slot": "E5B",
+    "schedule": "Autumn E5B (Wed 13-17)",
+    "type_of_assessment": "Evaluation of experiments and reports Individual submission of lab journal (worksheet solutions) and\r\nproject report. In case of collaboration with someone else, the\r\ndistribution of responsibilities in the collaboration must be\r\nstated clearly in the submission.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02563": {
+    "code": "02563",
+    "title": "Generative Methods for Computer Graphics",
+    "slot": "E5B",
+    "schedule": "Autumn E5B (Wed 13-17) Offered in even-numbered years",
+    "type_of_assessment": "Evaluation of exercises/reports The assessment is based on a final project report accompanied by a\r\nbrief presentation video. Up to four students can collaborate on a\r\nproject, and only one video is submitted per project, but the\r\nreports are individual. Students can only participate in the exam\r\nif a number of exercise reports have been approved. Exercises are\r\ncarried out in groups.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02566": {
+    "code": "02566",
+    "title": "Creating Digital Visual Experiences",
+    "slot": "F2A/F2B",
+    "schedule": "Spring F2A (Mon 13-17) and Spring F2B (Thurs 8-12)",
+    "type_of_assessment": "Evaluation of exercises/reports Students will submit weekly individual exercises during the first\r\nhalf of the course, and a group report at the end of the course.\r\nThe assessment is based on a overall assessment of these. The final\r\nreport has to be individualized by noting the contributions from\r\neach student in the report.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "10",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02581": {
+    "code": "02581",
+    "title": "Geometric Data Analysis and Processing",
+    "slot": "E1B",
+    "schedule": "Autumn E1B (Thurs 13-17) Offered first time as autumn course in the autumn of\r\n2026",
+    "type_of_assessment": "Oral examination and reports",
+    "exam_duration": "",
+    "exam": "Oral + report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02582": {
+    "code": "02582",
+    "title": "Computational Data Analysis",
+    "slot": "F2B",
+    "schedule": "Spring F2B (Thurs 8-12)",
+    "type_of_assessment": "Written examination and exercises Written exam is based on both the text book, exercises, and the\r\nlectures plus two cases wth hand-ins during the semster. The grade\r\nis given based on an overall assessment of these items.",
+    "exam_duration": "Written exam: 4 hours",
+    "exam": "Written 4h + report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02611": {
+    "code": "02611",
+    "title": "Optimization for Data Science",
+    "slot": "F5B",
+    "schedule": "Spring F5B (Wed 13-17)",
+    "type_of_assessment": "Written examination and reports Assignments are carried out in small groups (2-3 students) with an\r\nindividual component. The final grade is based on an overall\r\nevaluation of reports/assignments and the written exam.",
+    "exam_duration": "Written exam: 3 hours",
+    "exam": "Written 3h + report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02612": {
+    "code": "02612",
+    "title": "Constrained Optimization",
+    "slot": "F4A",
+    "schedule": "Spring F4A (Tues 13-17)",
+    "type_of_assessment": "Evaluation of exercises/reports",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02613": {
+    "code": "02613",
+    "title": "Python and High-Performance Computing",
+    "slot": "F5A",
+    "schedule": "Spring F5A (Wed 8-12)",
+    "type_of_assessment": "Written examination It is a requirement for participating in the exam that a certain\r\npart of the mandatory assignments are approved. These assignments\r\nare not part of the final exam assessment.",
+    "exam_duration": "Written exam: 4 hours",
+    "exam": "Written 4h",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02614": {
+    "code": "02614",
+    "title": "High-Performance Computing",
+    "slot": "Jan",
+    "schedule": "January",
+    "type_of_assessment": "Evaluation of exercises/reports Assessment is based on individualized group reports.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "January"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02619": {
+    "code": "02619",
+    "title": "Model Predictive Control",
+    "slot": "E2B",
+    "schedule": "Autumn E2B (Thurs 8-12)",
+    "type_of_assessment": "Evaluation of exercises/reports Assessment is based on individual reports",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02805": {
+    "code": "02805",
+    "title": "Social graphs and interactions",
+    "slot": "E5",
+    "schedule": "Autumn E5 (Wed 8-17)",
+    "type_of_assessment": "Written examination and reports A single grade based on an overall evaluation of exercises, a\r\nbrief written exam mid-semester, and final project\r\nreport.",
+    "exam_duration": "Written exam: 2 hours",
+    "exam": "Written 2h + report",
+    "ects": "10",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02806": {
+    "code": "02806",
+    "title": "Social data analysis and visualization",
+    "slot": "F3A",
+    "schedule": "Spring F3A (Tues 8-12)",
+    "type_of_assessment": "Written examination and reports A single grade based on an overall evaluation of exercises, a\r\nbrief written exam mid-semester, and final project\r\nreport.",
+    "exam_duration": "Written exam: 2 hours",
+    "exam": "Written 2h + report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02807": {
+    "code": "02807",
+    "title": "Computational Tools for Data Science",
+    "slot": "E7",
+    "schedule": "E7 (Tues 18-22)",
+    "type_of_assessment": "Evaluation of experiments and reports Assessment of reports is based on individualized group\r\nreports.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02808": {
+    "code": "02808",
+    "title": "Personal Data Interaction for Mobile and Wearables",
+    "slot": "F5",
+    "schedule": "Spring F5 (Wed 8-17)",
+    "type_of_assessment": "Evaluation of experiments and reports Evaluation based on an overall assessment of assignments and group\r\nproject reports with clear indication of individual contributions.\r\nAll assignments must be approved in order to pass the\r\ncourse.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "10",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02810": {
+    "code": "02810",
+    "title": "UX Design Prototyping",
+    "slot": "E1A",
+    "schedule": "Autumn E1A (Mon 8-12)",
+    "type_of_assessment": "Evaluation of exercises/reports Assessment is based on individualized group reports and individual\r\nworks. The course embeds the DTU Compute Digital Innovation Canon.\r\nPassing the tests for each element of the canon contained in this\r\ncourse is a prerequisite for taking the exam.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02830": {
+    "code": "02830",
+    "title": "Advanced Project in Digital Media Engineering",
+    "slot": "E5B",
+    "schedule": "Autumn E5B (Wed 13-17) The course is in schedule E5B for project presentations, but\r\nindividual supervision is arranged with the supervisor.",
+    "type_of_assessment": "Oral examination and reports The students prepare a report in the form of a journal paper. The\r\nreports are either individual or must clearly state each\r\nstudent's contribution. The reports have 2/3 weight for the\r\nfinal grade. Students defend their reports at an oral group exam\r\nwhich counts for 1/3 of the grade.",
+    "exam_duration": "",
+    "exam": "Oral + report",
+    "ects": "10",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02840": {
+    "code": "02840",
+    "title": "Computer Game Programming Fundamentals (DADIU)",
+    "slot": "Autumn",
+    "schedule": "Autumn This course covers all time slots in the first half of the autumn\r\n13 week period",
+    "type_of_assessment": "Evaluation of exercises/reports Assessment is based on individual reports",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "15",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "02841": {
+    "code": "02841",
+    "title": "Computer Game Programming in a Production (DADIU)",
+    "slot": "Autumn",
+    "schedule": "Autumn This course covers all time slots in the second half of the 13\r\nweek period.",
+    "type_of_assessment": "Evaluation of exercises/reports Assessment is based on individual reports",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "15",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "12100": {
+    "code": "12100",
+    "title": "Quantitative methods to assess sustainability (Polytechnical\r\nFoundation)",
+    "slot": "F7",
+    "schedule": "F7 (Tues 18-22) The focus in the course is on student-centered teaching and active\r\nlearning. For the course's teaching approach, this means that\r\nstudents watch the video lectures and read articles prior to the\r\nteaching session, and the session itself is concentrated on\r\nstudents' active interaction with teachers and exercises. Each teaching session during the 13 week period is scheduled for 2\r\nhours.",
+    "type_of_assessment": "Written examination and reports To pass the course and get access to the multiple-choice exam, the\r\nstudent must submit task 1 and task 2 (submission and peer\r\nfeedback) for the case study. The final assessment of the student\r\nis based on a multiple-choice quiz (60%) and the case study task 3\r\n(40%). To pass the multiple-choice quiz, the student must achieve\r\nat least 50% correct answers. If the minimum of 50% is not achieved\r\nfor the multiple-choice quiz, the student will not pass the\r\ncourse.",
+    "exam_duration": "Written exam: 2 hours",
+    "exam": "Written 2h + report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "12101": {
+    "code": "12101",
+    "title": "Quantitative methods to assess sustainability (Polytechnical\r\nFoundation)",
+    "slot": "F3B",
+    "schedule": "Spring F3B (Fri 13-17) The focus in the course is on student-centered teaching and active\r\nlearning. For the course's teaching approach, this means that\r\nstudents watch the video lectures and read articles prior to the\r\nteaching session, and the session itself is concentrated on\r\nstudents' active interaction with teachers and exercises. Each teaching session during the 13 week period is scheduled for 2\r\nhours.",
+    "type_of_assessment": "Written examination and reports To pass the course and get access to the multiple-choice exam, the\r\nstudent must submit task 1 and task 2 (submission and peer\r\nfeedback) for the case study. The final assessment of the student\r\nis based on a multiple-choice quiz (60%) and the case study task 3\r\n(40%). To pass the multiple-choice quiz, the student must achieve\r\nat least 50% correct answers. If the minimum of 50% is not achieved\r\nfor the multiple-choice quiz, the student will not pass the\r\ncourse.",
+    "exam_duration": "Written exam: 2 hours",
+    "exam": "Written 2h + report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "12105": {
+    "code": "12105",
+    "title": "Quantitative methods to assess sustainability (Polytechnical\r\nFoundation)",
+    "slot": "E7",
+    "schedule": "E7 (Tues 18-22) The focus in the course is on student-centered teaching and active\r\nlearning. For the course's teaching approach, this means that\r\nstudents watch the video lectures and read articles prior to the\r\nteaching session, and the session itself is concentrated on\r\nstudents' active interaction with teachers and exercises. Each teaching session during the 13 week period is scheduled for 2\r\nhours.",
+    "type_of_assessment": "Written examination and reports To pass the course and get access to the multiple-choice exam, the\r\nstudent must submit task 1 and task 2 (submission and peer\r\nfeedback) for the case study. The final assessment of the student\r\nis based on a multiple-choice quiz (60%) and the case study task 3\r\n(40%). To pass the multiple-choice quiz, the student must achieve\r\nat least 50% correct answers. If the minimum of 50% is not achieved\r\nfor the multiple-choice quiz, the student will not pass the\r\ncourse.",
+    "exam_duration": "Written exam: 2 hours",
+    "exam": "Written 2h + report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "12106": {
+    "code": "12106",
+    "title": "Quantitative methods to assess sustainability (Polytechnical\r\nFoundation)",
+    "slot": "E3B",
+    "schedule": "Autumn E3B (Fri 13-17) The focus in the course is on student-centered teaching and active\r\nlearning. For the course's teaching approach, this means that\r\nstudents watch the video lectures and read articles prior to the\r\nteaching session, and the session itself is concentrated on\r\nstudents' active interaction with teachers and exercises. Each teaching session during the 13 week period is scheduled for 2\r\nhours.",
+    "type_of_assessment": "Written examination and reports To pass the course and get access to the multiple-choice exam, the\r\nstudent must submit task 1 and task 2 (submission and peer\r\nfeedback) for the case study. The final assessment of the student\r\nis based on a multiple-choice quiz (60%) and the case study task 3\r\n(40%). To pass the multiple-choice quiz, the student must achieve\r\nat least 50% correct answers. If the minimum of 50% is not achieved\r\nfor the multiple-choice quiz, the student will not pass the\r\ncourse.",
+    "exam_duration": "Written exam: 2 hours",
+    "exam": "Written 2h + report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "30554": {
+    "code": "30554",
+    "title": "Global Navigation Satellite Systems",
+    "slot": "F2B",
+    "schedule": "Spring F2B (Thurs 8-12)",
+    "type_of_assessment": "Oral examination and reports Overall assessment.",
+    "exam_duration": "",
+    "exam": "Oral + report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "34241": {
+    "code": "34241",
+    "title": "Digital video technology",
+    "slot": "F4A",
+    "schedule": "Spring F4A (Tues 13-17)",
+    "type_of_assessment": "Oral examination and reports During the lecture/exercise part of the course, exercises have to\r\nbe handed-in. At the end of the project work, each group must\r\nhand-in a report and present their project orally. The course\r\nevaluation is based on an overall assessment. Reports for the\r\nexercises must be approved in order to pass the course.",
+    "exam_duration": "",
+    "exam": "Oral + report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "34366": {
+    "code": "34366",
+    "title": "Intelligent systems",
+    "slot": "E7",
+    "schedule": "E7 (Tues 18-22)",
+    "type_of_assessment": "Oral examination and exercises Evaluation is done an overall judgement based on peer-feedback,\r\nfinal project proposal (and plan) and oral examination, with\r\npeer-feedback only counting minor.",
+    "exam_duration": "",
+    "exam": "Oral + report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "34367": {
+    "code": "34367",
+    "title": "Project in Intelligent Systems",
+    "slot": "Jan",
+    "schedule": "January",
+    "type_of_assessment": "Evaluation of exercises/reports Final report with oral presentation.",
+    "exam_duration": "",
+    "exam": "Oral + report",
+    "ects": "5",
+    "semesters": [
+      "January"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "34745": {
+    "code": "34745",
+    "title": "Linear control design 2",
+    "slot": "E3",
+    "schedule": "Autumn E3 (Tues 8-12, Fri 13-17)",
+    "type_of_assessment": "Written examination The written exam consists of theoretical questions and numerical\r\nexercises.",
+    "exam_duration": "Written exam: 6 hours",
+    "exam": "Written 6h",
+    "ects": "10",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "34746": {
+    "code": "34746",
+    "title": "Robust and fault-tolerant control",
+    "slot": "F1",
+    "schedule": "Spring F1 (Mon 8-12, Thurs 13-17)",
+    "type_of_assessment": "Written examination and reports The exam and the reports are evaluated together. The re-exam is an\r\noral exam.",
+    "exam_duration": "Written exam: 2 hours",
+    "exam": "Written 2h + report",
+    "ects": "10",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "34752": {
+    "code": "34752",
+    "title": "Bio-inspired control for robots",
+    "slot": "Aug",
+    "schedule": "August",
+    "type_of_assessment": "Evaluation of experiments and reports Students have to submit two notes based on exercises completed\r\nduring the first and second weeks. The notes are a prerequisite to\r\npassing the course. Additionally, they will work on a project whose\r\noutcomes include a poster and a demo. Final assessment will\r\nconsider the oral presentation of the poster and demo on the final\r\nday of the course. If a student does not participate in the\r\nproject, they are required to submit an individual report that will\r\nbe assessed together with the two notes.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "August"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "34753": {
+    "code": "34753",
+    "title": "Robotics",
+    "slot": "E4A",
+    "schedule": "Autumn E4A (Tues 13-17)",
+    "type_of_assessment": "Written examination and reports The written exam and the report are evaluated together.",
+    "exam_duration": "Written exam: 2 hours",
+    "exam": "Written 2h + report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "34755": {
+    "code": "34755",
+    "title": "Building dependable robot systems",
+    "slot": "F3B",
+    "schedule": "Spring F3B (Fri 13-17) Being present on day one of the course is mandatory, as group\r\nformation takes place then.",
+    "type_of_assessment": "Evaluation of experiments and reports",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "34757": {
+    "code": "34757",
+    "title": "Unmanned autonomous systems",
+    "slot": "Jun",
+    "schedule": "June",
+    "type_of_assessment": "Evaluation of experiments and reports",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "June"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "34759": {
+    "code": "34759",
+    "title": "Perception for Autonomous Systems",
+    "slot": "E1",
+    "schedule": "Autumn E1 (Mon 8-12, Thurs 13-17)",
+    "type_of_assessment": "Written examination and reports Approval of report is mandatory for taking the exam. The written\r\nexam is multiple-choice. The report and the exam will be evaluated\r\ntogether. Re-exam can be written or oral exam only (when the report\r\nis approved).",
+    "exam_duration": "Written exam: 2 hours",
+    "exam": "Written 2h + report",
+    "ects": "10",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "34760": {
+    "code": "34760",
+    "title": "Safety and Reliability in Robotic and Automation\r\nSystems",
+    "slot": "F5B",
+    "schedule": "Spring F5B (Wed 13-17)",
+    "type_of_assessment": "Evaluation of exercises/reports",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "34761": {
+    "code": "34761",
+    "title": "",
+    "slot": "",
+    "schedule": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "",
+    "semesters": [],
+    "source": "dtucourseanalyzer"
+  },
+  "34763": {
+    "code": "34763",
+    "title": "Autonomous Marine Robotics",
+    "slot": "F5B",
+    "schedule": "Spring F5B (Wed 13-17)",
+    "type_of_assessment": "Written examination and reports Group presentation of a poster about project work on autonomous\r\nmarine robotics; Multiple choice questionnaire on the topics of the\r\ncourse.",
+    "exam_duration": "Written exam: 1 hour",
+    "exam": "Written 1h + report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "34764": {
+    "code": "34764",
+    "title": "",
+    "slot": "",
+    "schedule": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "",
+    "semesters": [],
+    "source": "dtucourseanalyzer"
+  },
+  "34766": {
+    "code": "34766",
+    "title": "Robotic Manipulation: Perception, Planning, Control and\r\nLearning",
+    "slot": "F2A",
+    "schedule": "Spring F2A (Mon 13-17)",
+    "type_of_assessment": "Written examination and exercises Written examination and exercises Approval of exercises (total\r\n>= threshold) is mandatory for taking the exam. The written exam\r\nis multiple-choice. The exercises and the exam will be evaluated\r\ntogether. Re-exam can be written or oral exam only (when the report\r\nis approved).",
+    "exam_duration": "Written exam: 2 hours",
+    "exam": "Written 2h + report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "38102": {
+    "code": "38102",
+    "title": "Technology Entrepreneurship",
+    "slot": "E1B",
+    "schedule": "Autumn E1B (Thurs 13-17)",
+    "type_of_assessment": "Oral examination and reports Much of the work will be done in groups. The groups will be formed\r\nby the course responsible, with an emphasis on group heterogeneity.\r\nThe final grade will be given on an individual basis. Students will\r\nbe asked to provide information about their individual contribution\r\nto the team assignments. The assessment is an overall evaluation\r\nbased on: 1) a mid-term group assignment, 2) a mid-term group\r\npresentation, 3) an end-term group presentation, 4) an end-term\r\ngroup report and 5) an end-term individual assignment.",
+    "exam_duration": "",
+    "exam": "Oral + report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "38103": {
+    "code": "38103",
+    "title": "X-Tech Entrepreneurship",
+    "slot": "F3",
+    "schedule": "Spring F3 (Tues 8-12, Fri 13-17)",
+    "type_of_assessment": "Oral examination and reports The evaluation is made based on four elements, each accounting for\r\n25 percent of the total evaluation. The four elements are: - an\r\ninternal exam presentation - an exam presentation, in the style of\r\nLion's Den (external censorship, panel) - a written business\r\nplan (external censorship) - a technology demonstration (external\r\ncensorship, panel). Work is done in groups, but evaluated\r\nindividually. The course is not suited for re-exam.",
+    "exam_duration": "40 minutes",
+    "exam": "Oral + report",
+    "ects": "10",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "38106": {
+    "code": "38106",
+    "title": "Developing an Entrepreneurial mindset",
+    "slot": "F1B/E1B",
+    "schedule": "Spring F1B (Thurs 13-17) Autumn E1B (Thurs 13-17)",
+    "type_of_assessment": "Evaluation of exercises/reports Weekly online individual assignments. Activities corresponding to\r\n11 of 13 sessions must be passed.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "Autumn",
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "38110": {
+    "code": "38110",
+    "title": "Staging co-creation and creativity",
+    "slot": "E1B",
+    "schedule": "Autumn E1B (Thurs 13-17)",
+    "type_of_assessment": "Evaluation of experiments and reports Group – Evaluation of (1) 30% final solution presentation and\r\nposter, and (2) 70% Written reports. Individual – Evaluation of\r\ncontribution table. Overall assessment.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "38113": {
+    "code": "38113",
+    "title": "Applied AI for Entrepreneurs",
+    "slot": "E2B",
+    "schedule": "Autumn E2B (Thurs 8-12)",
+    "type_of_assessment": "Oral examination and exercises Students are to hand in four individual assignments during the\r\nsemester. Each individual assignment counts for 15% of the final\r\ngrade. At the end of the semester, an end-term group presentation\r\nwith individual Q&A is performed and is counted for 40% of the\r\nfinal grade.",
+    "exam_duration": "",
+    "exam": "Oral + report",
+    "ects": "5",
+    "semesters": [
+      "Autumn"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "38400": {
+    "code": "38400",
+    "title": "Innovation in Engineering (Polytechnical\r\nFoundation)",
+    "slot": "Jan",
+    "schedule": "January The course runs in all 3 week periods: 38400(January),\r\n38402(June), 38404(August)",
+    "type_of_assessment": "Evaluation of exercises/reports The team presentation on the final day(exam day) is mandatory and\r\nmust be completed to qualify for the examination. The assessment is\r\nbased on team hand-ins and individual progress report submissions.\r\nThe team hand-ins will count for 40% and the progress reports will\r\ncount for 60% of the passing grade. Min. 80% of all submissions\r\nmust be accepted to pass the course.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "January",
+      "June",
+      "August"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "38401": {
+    "code": "38401",
+    "title": "Facilitating Innovation in Multidisciplinary Teams",
+    "slot": "Jan",
+    "schedule": "January The course runs in all 3 week periods: 38401(January),\r\n38403(June), 38405(August)",
+    "type_of_assessment": "Evaluation of exercises/reports The team presentation on the final day(exam day) is mandatory and\r\nmust be completed to qualify for the examination. The assessment is\r\nbased on team hand-ins and individual progress report submissions.\r\nThe team hand-ins will count for 40% and the progress reports will\r\ncount for 60% of the passing grade. Min. 80% of all submissions\r\nmust be accepted to pass the course.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "January",
+      "June",
+      "August"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "38402": {
+    "code": "38402",
+    "title": "Innovation in Engineering (Polytechnical\r\nFoundation)",
+    "slot": "Jan",
+    "schedule": "June The course runs in all 3 week periods: 38400(January),\r\n38402(June), 38404(August)",
+    "type_of_assessment": "Evaluation of exercises/reports The team presentation on the final day(exam day) is mandatory and\r\nmust be completed to qualify for the examination. The assessment is\r\nbased on team hand-ins and individual progress report submissions.\r\nThe team hand-ins will count for 40% and the progress reports will\r\ncount for 60% of the passing grade. Min. 80% of all submissions\r\nmust be accepted to pass the course.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "January",
+      "June",
+      "August"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "38403": {
+    "code": "38403",
+    "title": "Facilitating Innovation in Multidisciplinary Teams",
+    "slot": "Jan",
+    "schedule": "June The course runs in all 3 week periods: 38401(January),\r\n38403(June), 38405(August)",
+    "type_of_assessment": "Evaluation of exercises/reports The team presentation on the final day(exam day) is mandatory and\r\nmust be completed to qualify for the examination. The assessment is\r\nbased on team hand-ins and individual progress report submissions.\r\nThe team hand-ins will count for 40% and the progress reports will\r\ncount for 60% of the passing grade. Min. 80% of all submissions\r\nmust be accepted to pass the course.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "January",
+      "June",
+      "August"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "38404": {
+    "code": "38404",
+    "title": "Innovation in Engineering (Polytechnical\r\nFoundation)",
+    "slot": "Jan",
+    "schedule": "August The course runs in all 3 week periods: 38400(January),\r\n38402(June), 38404(August)",
+    "type_of_assessment": "Evaluation of exercises/reports The team presentation on the final day(exam day) is mandatory and\r\nmust be completed to qualify for the examination. The assessment is\r\nbased on team hand-ins and individual progress report submissions.\r\nThe team hand-ins will count for 40% and the progress reports will\r\ncount for 60% of the passing grade. Min. 80% of all submissions\r\nmust be accepted to pass the course.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "January",
+      "June",
+      "August"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "38405": {
+    "code": "38405",
+    "title": "Facilitating Innovation in Multidisciplinary Teams",
+    "slot": "Jan",
+    "schedule": "August The course runs in all 3 week periods: 38401(January),\r\n38403(June), 38405(August)",
+    "type_of_assessment": "Evaluation of exercises/reports The team presentation on the final day(exam day) is mandatory and\r\nmust be completed to qualify for the examination. The assessment is\r\nbased on team hand-ins and individual progress report submissions.\r\nThe team hand-ins will count for 40% and the progress reports will\r\ncount for 60% of the passing grade. Min. 80% of all submissions\r\nmust be accepted to pass the course.",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "5",
+    "semesters": [
+      "January",
+      "June",
+      "August"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "42136": {
+    "code": "42136",
+    "title": "Advanced Operations Research Methods",
+    "slot": "F2B",
+    "schedule": "Spring F2B (Thurs 8-12)",
+    "type_of_assessment": "Written examination and exercises Written examination and a project assignment (group work). The\r\nassignment is implementation-oriented and must be approved to\r\nattend the written exam. The assignment is split into two hand-ins.\r\nThe assignment is approved if at least 50% is answered correctly.\r\nThe assignment does not count towards the grade of the\r\ncourse.",
+    "exam_duration": "Written exam: 4 hours",
+    "exam": "Written 4h + report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "42137": {
+    "code": "42137",
+    "title": "Optimization using metaheuristics",
+    "slot": "F2A",
+    "schedule": "Spring F2A (Mon 13-17)",
+    "type_of_assessment": "Written examination and exercises The evaluation is based on an overall evaluation of assignments\r\nand a written exam. The student will have to hand in at least 3\r\nimplemented metaheurists (in Julia) our of 6 possible, each\r\nfunctioning at a reasonable level.",
+    "exam_duration": "Written exam: 3 hours",
+    "exam": "Written 3h + report",
+    "ects": "5",
+    "semesters": [
+      "Spring"
+    ],
+    "source": "kurser.dtu.dk"
+  },
+  "42186": {
+    "code": "42186",
+    "title": "",
+    "slot": "",
+    "schedule": "",
+    "type_of_assessment": "",
+    "exam_duration": "",
+    "exam": "Report",
+    "ects": "",
+    "semesters": [],
+    "source": "dtucourseanalyzer"
+  }
+}

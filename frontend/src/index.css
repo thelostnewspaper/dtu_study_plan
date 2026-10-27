@@ -979,6 +979,65 @@ body {
   color: var(--color-pink);
 }
 
+.toggle-exam-btn {
+  display: block;
+  padding: 15px 30px;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 900;
+  text-transform: uppercase;
+  background: var(--color-cyan);
+  color: var(--color-text);
+  border: var(--border-width) solid var(--color-text);
+  box-shadow: 5px 5px 0px var(--color-text);
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.toggle-exam-btn:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0px var(--color-text);
+  background: var(--color-text);
+  color: var(--color-cyan);
+}
+
+.toggle-monthly-btn {
+  display: block;
+  padding: 15px 30px;
+  font-family: var(--font-heading);
+  font-size: 20px;
+  font-weight: 900;
+  text-transform: uppercase;
+  background: var(--color-yellow);
+  color: var(--color-text);
+  border: var(--border-width) solid var(--color-text);
+  box-shadow: 5px 5px 0px var(--color-text);
+  cursor: pointer;
+  transition: all 0.1s;
+}
+
+.toggle-monthly-btn:hover {
+  transform: translate(3px, 3px);
+  box-shadow: 2px 2px 0px var(--color-text);
+  background: var(--color-text);
+  color: var(--color-yellow);
+}
+
+.timetable-toggles {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+  flex-wrap: wrap;
+}
+
+.timetable-toggles .toggle-tt-btn,
+.timetable-toggles .toggle-exam-btn,
+.timetable-toggles .toggle-monthly-btn {
+  margin: 0 !important;
+}
+
 /* ============================================================
    RESPONSIVE & PRINT
    ============================================================ */
@@ -1142,4 +1201,39 @@ body {
   .course-table th { background: #FFE500 !important; color: #000 !important; font-family: var(--font-heading) !important; font-weight: 900 !important; text-transform: uppercase !important; }
   .bento-card { margin-bottom: 1.5rem !important; padding: 1rem !important; border: 2px solid #000 !important; }
   .bento-card-header { margin-bottom: 1rem !important; border-bottom: 2px solid #000 !important; padding-bottom: 10px !important; display: flex !important; flex-direction: row !important; align-items: baseline !important; gap: 10px !important; }
+  
+  /* DTU Official Exam Timetable Print Styles */
+  .dtu-exam-session-block {
+    page-break-inside: avoid !important;
+    margin-bottom: 24px !important;
+  }
+  .dtu-exam-table {
+    display: table !important;
+    width: 100% !important;
+    border-collapse: collapse !important;
+    border: 2px solid #000 !important;
+    background: #fff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .dtu-exam-table th {
+    background-color: #FFE500 !important;
+    color: #000 !important;
+    border: 1.5px solid #000 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .dtu-exam-table tr.enrolled-row,
+  .dtu-exam-table tr.enrolled-row td {
+    background-color: #E6F9F5 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  .dtu-exam-table tr.non-enrolled-row,
+  .dtu-exam-table tr.non-enrolled-row td {
+    background-color: #ffffff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
 }
+

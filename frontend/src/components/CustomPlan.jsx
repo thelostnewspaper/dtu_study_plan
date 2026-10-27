@@ -8,6 +8,7 @@ import {
   getTimingLabel
 } from '../courses';
 import { Timetable } from './RecommendedPlan';
+import DTUOfficialExamTimetable from './DTUOfficialExamTimetable';
 
 const SEMESTERS = [
   { id: "sem1", title: "Semester 1 — Autumn", period: "September – December", type: 'regular' },
@@ -722,20 +723,24 @@ export default function CustomPlan({ customState, setCustomState, chatMessages, 
               .filter(([code, sId]) => sId === sem.id)
               .map(([code]) => {
                 const c = COURSE_CATALOG[code];
-                return c ? { code, name: c.name, slot: c.slot } : null;
+                return c ? { code, name: c.name, slot: c.slot, exam: c.exam, ects: c.ects } : null;
               })
               .filter(Boolean);
             
             return {
+              id: sem.id,
               title: sem.title,
+              period: sem.period,
+              targetEcts: semCourses.reduce((sum, c) => sum + (c.ects || 5), 0),
               mini: sem.type === 'intensive',
               courses: semCourses
             };
           });
 
           return (
-            <div className="hide-print" style={{ marginTop: '2rem' }}>
+            <div className="hide-print timetable-toggles" style={{ marginTop: '2rem' }}>
               <Timetable semesters={timetableSemesters} flexChoices={{}} />
+              <DTUOfficialExamTimetable semesters={timetableSemesters} flexChoices={{}} />
             </div>
           );
         })()}

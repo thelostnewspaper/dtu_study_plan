@@ -2,6 +2,7 @@ import React from 'react';
 import { COURSE_CATALOG, getCategoryLabel, getCategoryClass } from '../courses';
 
 import { SLOT_LABELS, Timetable } from './RecommendedPlan';
+import { PrintDTUOfficialExamTimetable } from './DTUOfficialExamTimetable';
 
 const SEMESTERS = [
   { id: "sem1", title: "Semester 1 — Autumn", period: "September – December", targetEcts: 30 },
@@ -267,6 +268,9 @@ export default function FinalPlan({ customState }) {
           </div>
         )}
       </div>
+
+      {/* OFFICIAL DTU EXAM TIMETABLE */}
+      <PrintDTUOfficialExamTimetable semesters={semGroups} flexChoices={{}} />
     </div>
   );
 }

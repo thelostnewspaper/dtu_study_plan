@@ -8,29 +8,12 @@ import {
   CONFIRM_ITEMS,
   CYBER_SPEC_COURSES,
   PS_COURSES,
-  COURSE_CATALOG
+  COURSE_CATALOG,
+  SLOT_LABELS
 } from '../courses';
+import DTUOfficialExamTimetable, { PrintDTUOfficialExamTimetable } from './DTUOfficialExamTimetable';
 
-// ---- DTU Slot → Day/Time Lookup ----
-export const SLOT_LABELS = {
-  // Autumn (E) slots
-  'E1A': 'Mon 8-12',   'E1B': 'Thu 13-17',
-  'E2A': 'Mon 13-17',  'E2B': 'Thu 8-12',
-  'E3A': 'Tue 8-12',   'E3B': 'Fri 13-17',
-  'E4A': 'Tue 13-17',  'E4B': 'Fri 8-12',
-  'E5A': 'Wed 8-12',   'E5B': 'Wed 13-17',
-  'E7':  'Tue 18-22',
-  // Spring (F) slots
-  'F1A': 'Mon 8-12',   'F1B': 'Thu 13-17',
-  'F2A': 'Mon 13-17',  'F2B': 'Thu 8-12',
-  'F3A': 'Tue 8-12',   'F3B': 'Fri 13-17',
-  'F4A': 'Tue 13-17',  'F4B': 'Fri 8-12',
-  'F5A': 'Wed 8-12',   'F5B': 'Wed 13-17',
-  'F7':  'Tue 18-22',
-  // Special
-  'Jan': 'January', 'Jun': 'June', 'Aug': 'August',
-  '—': '—',
-};
+export { SLOT_LABELS };
 
 // ---- Helpers ----
 
@@ -713,8 +696,11 @@ export default function RecommendedPlan({ flexChoices, setFlexChoices }) {
 
       </div>
 
-      {/* Timetable Feature */}
-      <Timetable semesters={[sem1, sem2, sem3, sem4]} flexChoices={flexChoices} />
+      {/* Timetable Features */}
+      <div className="timetable-toggles">
+        <Timetable semesters={[sem1, sem2, sem3, sem4]} flexChoices={flexChoices} />
+        <DTUOfficialExamTimetable semesters={PLAN_SEMESTERS} flexChoices={flexChoices} />
+      </div>
       </div>
 
       {/* PRINT-ONLY RENDER */}
@@ -888,6 +874,9 @@ export default function RecommendedPlan({ flexChoices, setFlexChoices }) {
             );
           })}
         </div>
+
+        {/* OFFICIAL DTU EXAM TIMETABLE */}
+        <PrintDTUOfficialExamTimetable semesters={PLAN_SEMESTERS} flexChoices={flexChoices} />
       </div>
     </>
   );
